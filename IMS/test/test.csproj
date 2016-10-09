@@ -44,14 +44,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Facetest.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Facetest.Designer.cs">
+      <DependentUpon>Facetest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IDCardtest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IDCardtest.Designer.cs">
+      <DependentUpon>IDCardtest.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="YV12TORGB.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -72,6 +79,14 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FaceDll\FaceDll.csproj">
+      <Project>{2b01b338-0f5a-4bea-a0ea-c6bc69cba364}</Project>
+      <Name>FaceDll</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HikSDK\HikSDK.csproj">
+      <Project>{226e3cba-9702-487e-bc3e-7c2bc5f5195f}</Project>
+      <Name>HikSDK</Name>
+    </ProjectReference>
     <ProjectReference Include="..\IDCardDll\IDCardDll.csproj">
       <Project>{048e3fb0-1688-4669-bda4-42ff547e8e79}</Project>
       <Name>IDCardDll</Name>

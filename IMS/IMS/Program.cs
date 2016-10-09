@@ -16,7 +16,7 @@ namespace IMS
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ClientMainForm());
+            Application.Run(new MainForm());
         }
     }
 }

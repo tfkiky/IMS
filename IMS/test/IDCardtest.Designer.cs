@@ -1,6 +1,6 @@
 ﻿namespace test
 {
-    partial class Form1
+    partial class IDCardtest
     {
         /// <summary>
         /// 必需的设计器变量。

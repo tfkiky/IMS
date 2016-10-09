@@ -24,6 +24,15 @@ namespace IMS
         {
             InitializeComponent();
             instance = this;
+            FillDataGrid();
+        }
+
+        private void FillDataGrid()
+        {
+            dataGridViewX1.RowTemplate.Height = dataGridViewX1.Height / 3-6;
+            dataGridViewX1.Rows.Add(3);
+            dataGridViewX2.RowTemplate.Height = dataGridViewX1.Height / 3-6;
+            dataGridViewX2.Rows.Add(3);
         }
 
         private void tsmiExit_Click(object sender, EventArgs e)
@@ -38,6 +47,12 @@ namespace IMS
                 ClientMainForm.Instance.CloseClient();
             }
             this.Close();
+        }
+
+        private void tsmiSysConfig_Click(object sender, EventArgs e)
+        {
+            SysConfig sysCfg = new SysConfig();
+            sysCfg.ShowDialog();
         }
     }
 }

@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace test
 {
-    public partial class Form1 : Form
+    public partial class IDCardtest : Form
     {
-        public Form1()
+        public IDCardtest()
         {
             InitializeComponent();
 

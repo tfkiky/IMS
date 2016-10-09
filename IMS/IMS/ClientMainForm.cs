@@ -39,7 +39,7 @@ namespace IMS
         private void ClientMainForm_Load(object sender, EventArgs e)
         {
             MainForm main = new MainForm();
-            main.ShowDialog();
+            main.Show();
         }
     }
 }

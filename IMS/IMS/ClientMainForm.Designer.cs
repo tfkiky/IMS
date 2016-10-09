@@ -30,10 +30,10 @@
         {
             this.components = new System.ComponentModel.Container();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiExit = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
-            this.tsmiExit = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -52,6 +52,13 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(125, 26);
             // 
+            // tsmiExit
+            // 
+            this.tsmiExit.Name = "tsmiExit";
+            this.tsmiExit.Size = new System.Drawing.Size(124, 22);
+            this.tsmiExit.Text = "退出系统";
+            this.tsmiExit.Click += new System.EventHandler(this.tsmiExit_Click);
+            // 
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -62,8 +69,8 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(1013, 517);
-            this.splitContainer1.SplitterDistance = 459;
+            this.splitContainer1.Size = new System.Drawing.Size(1024, 768);
+            this.splitContainer1.SplitterDistance = 681;
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 1;
             // 
@@ -76,8 +83,8 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer4);
-            this.splitContainer2.Size = new System.Drawing.Size(1013, 459);
-            this.splitContainer2.SplitterDistance = 505;
+            this.splitContainer2.Size = new System.Drawing.Size(1024, 681);
+            this.splitContainer2.SplitterDistance = 510;
             this.splitContainer2.SplitterWidth = 1;
             this.splitContainer2.TabIndex = 0;
             // 
@@ -87,29 +94,22 @@
             this.splitContainer4.Location = new System.Drawing.Point(0, 0);
             this.splitContainer4.Name = "splitContainer4";
             this.splitContainer4.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            this.splitContainer4.Size = new System.Drawing.Size(507, 459);
-            this.splitContainer4.SplitterDistance = 242;
+            this.splitContainer4.Size = new System.Drawing.Size(513, 681);
+            this.splitContainer4.SplitterDistance = 359;
             this.splitContainer4.SplitterWidth = 1;
             this.splitContainer4.TabIndex = 0;
-            // 
-            // tsmiExit
-            // 
-            this.tsmiExit.Name = "tsmiExit";
-            this.tsmiExit.Size = new System.Drawing.Size(152, 22);
-            this.tsmiExit.Text = "退出系统";
-            this.tsmiExit.Click += new System.EventHandler(this.tsmiExit_Click);
             // 
             // ClientMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1013, 517);
+            this.ClientSize = new System.Drawing.Size(1024, 768);
             this.ContextMenuStrip = this.contextMenuStrip1;
             this.Controls.Add(this.splitContainer1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "ClientMainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.ClientMainForm_Load);
             this.contextMenuStrip1.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
