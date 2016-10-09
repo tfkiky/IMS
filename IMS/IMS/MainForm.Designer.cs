@@ -50,16 +50,20 @@
             this.labelX2 = new DevComponents.DotNetBar.LabelX();
             this.buttonX3 = new DevComponents.DotNetBar.ButtonX();
             this.buttonX4 = new DevComponents.DotNetBar.ButtonX();
+            this.tsmiCloseComputer = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiSysConfig = new System.Windows.Forms.ToolStripMenuItem();
+            this.labelX3 = new DevComponents.DotNetBar.LabelX();
+            this.lbInspectMode = new DevComponents.DotNetBar.LabelX();
             this.dataGridViewX2 = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.peopleVehicleVideo1 = new IMS.PeopleVehicleVideo();
-            this.tsmiCloseComputer = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiSysConfig = new System.Windows.Forms.ToolStripMenuItem();
+            this.compareInfo1 = new IMS.CompareInfo();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
@@ -71,6 +75,7 @@
             this.splitContainer3.Panel2.SuspendLayout();
             this.splitContainer3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).BeginInit();
+            this.splitContainer4.Panel1.SuspendLayout();
             this.splitContainer4.Panel2.SuspendLayout();
             this.splitContainer4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer5)).BeginInit();
@@ -92,18 +97,20 @@
             this.tsmiExit,
             this.tsmiCloseComputer});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 92);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(125, 70);
             // 
             // tsmiExit
             // 
             this.tsmiExit.Name = "tsmiExit";
-            this.tsmiExit.Size = new System.Drawing.Size(152, 22);
+            this.tsmiExit.Size = new System.Drawing.Size(124, 22);
             this.tsmiExit.Text = "退出系统";
             this.tsmiExit.Click += new System.EventHandler(this.tsmiExit_Click);
             // 
             // splitContainer1
             // 
+            this.splitContainer1.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.IsSplitterFixed = true;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
@@ -111,6 +118,8 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.BackgroundImage = global::IMS.Properties.Resources.header;
+            this.splitContainer1.Panel1.Controls.Add(this.lbInspectMode);
+            this.splitContainer1.Panel1.Controls.Add(this.labelX3);
             // 
             // splitContainer1.Panel2
             // 
@@ -123,6 +132,7 @@
             // splitContainer2
             // 
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.IsSplitterFixed = true;
             this.splitContainer2.Location = new System.Drawing.Point(0, 0);
             this.splitContainer2.Name = "splitContainer2";
             // 
@@ -141,6 +151,7 @@
             // splitContainer3
             // 
             this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer3.IsSplitterFixed = true;
             this.splitContainer3.Location = new System.Drawing.Point(0, 0);
             this.splitContainer3.Name = "splitContainer3";
             this.splitContainer3.Orientation = System.Windows.Forms.Orientation.Horizontal;
@@ -160,9 +171,14 @@
             // splitContainer4
             // 
             this.splitContainer4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer4.IsSplitterFixed = true;
             this.splitContainer4.Location = new System.Drawing.Point(0, 0);
             this.splitContainer4.Name = "splitContainer4";
             this.splitContainer4.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer4.Panel1
+            // 
+            this.splitContainer4.Panel1.Controls.Add(this.compareInfo1);
             // 
             // splitContainer4.Panel2
             // 
@@ -175,6 +191,7 @@
             // splitContainer5
             // 
             this.splitContainer5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer5.IsSplitterFixed = true;
             this.splitContainer5.Location = new System.Drawing.Point(0, 0);
             this.splitContainer5.Name = "splitContainer5";
             this.splitContainer5.Orientation = System.Windows.Forms.Orientation.Horizontal;
@@ -199,6 +216,7 @@
             // splitContainer6
             // 
             this.splitContainer6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer6.IsSplitterFixed = true;
             this.splitContainer6.Location = new System.Drawing.Point(0, 0);
             this.splitContainer6.Name = "splitContainer6";
             this.splitContainer6.Orientation = System.Windows.Forms.Orientation.Horizontal;
@@ -224,6 +242,7 @@
             // 
             this.dataGridViewX1.AllowUserToAddRows = false;
             this.dataGridViewX1.AllowUserToDeleteRows = false;
+            this.dataGridViewX1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewX1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewX1.ColumnHeadersVisible = false;
             this.dataGridViewX1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -252,25 +271,21 @@
             // 
             this.dataGridViewTextBoxColumn5.HeaderText = "Column1";
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.Width = 126;
             // 
             // dataGridViewTextBoxColumn6
             // 
             this.dataGridViewTextBoxColumn6.HeaderText = "Column2";
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.Width = 127;
             // 
             // dataGridViewTextBoxColumn7
             // 
             this.dataGridViewTextBoxColumn7.HeaderText = "Column3";
             this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            this.dataGridViewTextBoxColumn7.Width = 127;
             // 
             // dataGridViewTextBoxColumn8
             // 
             this.dataGridViewTextBoxColumn8.HeaderText = "Column4";
             this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
-            this.dataGridViewTextBoxColumn8.Width = 127;
             // 
             // buttonX1
             // 
@@ -342,10 +357,53 @@
             this.buttonX4.TabIndex = 3;
             this.buttonX4.Text = "人工查验";
             // 
+            // tsmiCloseComputer
+            // 
+            this.tsmiCloseComputer.Name = "tsmiCloseComputer";
+            this.tsmiCloseComputer.Size = new System.Drawing.Size(124, 22);
+            this.tsmiCloseComputer.Text = "关机";
+            // 
+            // tsmiSysConfig
+            // 
+            this.tsmiSysConfig.Name = "tsmiSysConfig";
+            this.tsmiSysConfig.Size = new System.Drawing.Size(124, 22);
+            this.tsmiSysConfig.Text = "系统配置";
+            this.tsmiSysConfig.Click += new System.EventHandler(this.tsmiSysConfig_Click);
+            // 
+            // labelX3
+            // 
+            this.labelX3.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.labelX3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX3.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labelX3.ForeColor = System.Drawing.Color.White;
+            this.labelX3.Location = new System.Drawing.Point(366, 8);
+            this.labelX3.Name = "labelX3";
+            this.labelX3.Size = new System.Drawing.Size(162, 23);
+            this.labelX3.TabIndex = 0;
+            this.labelX3.Text = "当前查验模式：";
+            // 
+            // lbInspectMode
+            // 
+            this.lbInspectMode.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.lbInspectMode.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lbInspectMode.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbInspectMode.ForeColor = System.Drawing.Color.White;
+            this.lbInspectMode.Location = new System.Drawing.Point(527, 8);
+            this.lbInspectMode.Name = "lbInspectMode";
+            this.lbInspectMode.Size = new System.Drawing.Size(162, 23);
+            this.lbInspectMode.TabIndex = 0;
+            // 
             // dataGridViewX2
             // 
             this.dataGridViewX2.AllowUserToAddRows = false;
             this.dataGridViewX2.AllowUserToDeleteRows = false;
+            this.dataGridViewX2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewX2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewX2.ColumnHeadersVisible = false;
             this.dataGridViewX2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -374,25 +432,21 @@
             // 
             this.dataGridViewTextBoxColumn1.HeaderText = "Column1";
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.Width = 126;
             // 
             // dataGridViewTextBoxColumn2
             // 
             this.dataGridViewTextBoxColumn2.HeaderText = "Column2";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.Width = 127;
             // 
             // dataGridViewTextBoxColumn3
             // 
             this.dataGridViewTextBoxColumn3.HeaderText = "Column3";
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.Width = 127;
             // 
             // dataGridViewTextBoxColumn4
             // 
             this.dataGridViewTextBoxColumn4.HeaderText = "Column4";
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.Width = 127;
             // 
             // peopleVehicleVideo1
             // 
@@ -402,18 +456,13 @@
             this.peopleVehicleVideo1.Size = new System.Drawing.Size(512, 469);
             this.peopleVehicleVideo1.TabIndex = 0;
             // 
-            // tsmiCloseComputer
+            // compareInfo1
             // 
-            this.tsmiCloseComputer.Name = "tsmiCloseComputer";
-            this.tsmiCloseComputer.Size = new System.Drawing.Size(152, 22);
-            this.tsmiCloseComputer.Text = "关机";
-            // 
-            // tsmiSysConfig
-            // 
-            this.tsmiSysConfig.Name = "tsmiSysConfig";
-            this.tsmiSysConfig.Size = new System.Drawing.Size(152, 22);
-            this.tsmiSysConfig.Text = "系统配置";
-            this.tsmiSysConfig.Click += new System.EventHandler(this.tsmiSysConfig_Click);
+            this.compareInfo1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.compareInfo1.Location = new System.Drawing.Point(0, 0);
+            this.compareInfo1.Name = "compareInfo1";
+            this.compareInfo1.Size = new System.Drawing.Size(511, 468);
+            this.compareInfo1.TabIndex = 0;
             // 
             // MainForm
             // 
@@ -427,6 +476,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.contextMenuStrip1.ResumeLayout(false);
+            this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
@@ -438,6 +488,7 @@
             this.splitContainer3.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
             this.splitContainer3.ResumeLayout(false);
+            this.splitContainer4.Panel1.ResumeLayout(false);
             this.splitContainer4.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).EndInit();
             this.splitContainer4.ResumeLayout(false);
@@ -476,14 +527,17 @@
         private DevComponents.DotNetBar.LabelX labelX2;
         private DevComponents.DotNetBar.ButtonX buttonX3;
         private DevComponents.DotNetBar.ButtonX buttonX4;
+        private PeopleVehicleVideo peopleVehicleVideo1;
+        private System.Windows.Forms.ToolStripMenuItem tsmiSysConfig;
+        private System.Windows.Forms.ToolStripMenuItem tsmiCloseComputer;
+        private CompareInfo compareInfo1;
+        private DevComponents.DotNetBar.LabelX lbInspectMode;
+        private DevComponents.DotNetBar.LabelX labelX3;
         private DevComponents.DotNetBar.Controls.DataGridViewX dataGridViewX2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private PeopleVehicleVideo peopleVehicleVideo1;
-        private System.Windows.Forms.ToolStripMenuItem tsmiSysConfig;
-        private System.Windows.Forms.ToolStripMenuItem tsmiCloseComputer;
     }
 }
 

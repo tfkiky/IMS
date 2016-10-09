@@ -42,24 +42,26 @@
             this.tabControlPanel5 = new DevComponents.DotNetBar.TabControlPanel();
             this.tabItem6 = new DevComponents.DotNetBar.TabItem(this.components);
             this.tabControlPanel6 = new DevComponents.DotNetBar.TabControlPanel();
+            this.peopleConfig1 = new IMS.PeopleConfig();
             ((System.ComponentModel.ISupportInitialize)(this.tabControl1)).BeginInit();
             this.tabControl1.SuspendLayout();
+            this.tabControlPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
             this.tabControl1.CanReorderTabs = true;
-            this.tabControl1.Controls.Add(this.tabControlPanel6);
+            this.tabControl1.Controls.Add(this.tabControlPanel1);
+            this.tabControl1.Controls.Add(this.tabControlPanel2);
             this.tabControl1.Controls.Add(this.tabControlPanel5);
+            this.tabControl1.Controls.Add(this.tabControlPanel6);
             this.tabControl1.Controls.Add(this.tabControlPanel4);
             this.tabControl1.Controls.Add(this.tabControlPanel3);
-            this.tabControl1.Controls.Add(this.tabControlPanel2);
-            this.tabControl1.Controls.Add(this.tabControlPanel1);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedTabFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold);
-            this.tabControl1.SelectedTabIndex = 4;
+            this.tabControl1.SelectedTabIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(553, 338);
             this.tabControl1.TabIndex = 0;
             this.tabControl1.TabLayoutType = DevComponents.DotNetBar.eTabLayoutType.FixedWithNavigationBox;
@@ -79,6 +81,7 @@
             // 
             // tabControlPanel1
             // 
+            this.tabControlPanel1.Controls.Add(this.peopleConfig1);
             this.tabControlPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControlPanel1.Location = new System.Drawing.Point(0, 26);
             this.tabControlPanel1.Name = "tabControlPanel1";
@@ -209,6 +212,14 @@
             this.tabControlPanel6.TabIndex = 6;
             this.tabControlPanel6.TabItem = this.tabItem6;
             // 
+            // peopleConfig1
+            // 
+            this.peopleConfig1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.peopleConfig1.Location = new System.Drawing.Point(1, 1);
+            this.peopleConfig1.Name = "peopleConfig1";
+            this.peopleConfig1.Size = new System.Drawing.Size(551, 310);
+            this.peopleConfig1.TabIndex = 0;
+            // 
             // SysConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -216,9 +227,11 @@
             this.ClientSize = new System.Drawing.Size(553, 338);
             this.Controls.Add(this.tabControl1);
             this.Name = "SysConfig";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "系统设置";
             ((System.ComponentModel.ISupportInitialize)(this.tabControl1)).EndInit();
             this.tabControl1.ResumeLayout(false);
+            this.tabControlPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -238,5 +251,6 @@
         private DevComponents.DotNetBar.TabItem tabItem2;
         private DevComponents.DotNetBar.TabControlPanel tabControlPanel1;
         private DevComponents.DotNetBar.TabItem tabItem1;
+        private PeopleConfig peopleConfig1;
     }
 }

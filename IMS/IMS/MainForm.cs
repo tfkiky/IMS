@@ -29,9 +29,9 @@ namespace IMS
 
         private void FillDataGrid()
         {
-            dataGridViewX1.RowTemplate.Height = dataGridViewX1.Height / 3-6;
+            dataGridViewX1.RowTemplate.Height = dataGridViewX1.Height / 3-2;
             dataGridViewX1.Rows.Add(3);
-            dataGridViewX2.RowTemplate.Height = dataGridViewX1.Height / 3-6;
+            dataGridViewX2.RowTemplate.Height = dataGridViewX1.Height / 3-2;
             dataGridViewX2.Rows.Add(3);
         }
 

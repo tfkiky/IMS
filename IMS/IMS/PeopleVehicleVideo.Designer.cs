@@ -49,7 +49,7 @@
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.BackColor = System.Drawing.Color.White;
+            this.splitContainer1.Panel2.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.splitContainer1.Panel2.Controls.Add(this.labelX1);
             this.splitContainer1.Size = new System.Drawing.Size(438, 372);
             this.splitContainer1.SplitterDistance = 307;
@@ -63,8 +63,8 @@
             // 
             this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelX1.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.labelX1.Location = new System.Drawing.Point(116, 20);
+            this.labelX1.ForeColor = System.Drawing.Color.White;
+            this.labelX1.Location = new System.Drawing.Point(125, 20);
             this.labelX1.Name = "labelX1";
             this.labelX1.Size = new System.Drawing.Size(204, 23);
             this.labelX1.TabIndex = 0;

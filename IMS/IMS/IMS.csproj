@@ -65,6 +65,12 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="PeopleConfig.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PeopleConfig.Designer.cs">
+      <DependentUpon>PeopleConfig.cs</DependentUpon>
+    </Compile>
     <Compile Include="PeopleIDCard.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -115,6 +121,9 @@
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PeopleConfig.resx">
+      <DependentUpon>PeopleConfig.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PeopleVehicleVideo.resx">
       <DependentUpon>PeopleVehicleVideo.cs</DependentUpon>
     </EmbeddedResource>
@@ -152,6 +161,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\back.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zanwutupian.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
