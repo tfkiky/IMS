@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>IMS.DataBase</RootNamespace>
     <AssemblyName>IMS.DataBase</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,6 +31,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Maticsoft.Common">
+      <HintPath>..\dll\Maticsoft.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Maticsoft.DBUtility">
+      <HintPath>..\dll\Maticsoft.DBUtility.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -39,6 +46,54 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\IMS_DATA_CONFIG.cs" />
+    <Compile Include="BLL\IMS_FACE_BLACKLIST.cs" />
+    <Compile Include="BLL\IMS_PEOPLE_RECORD.cs" />
+    <Compile Include="BLL\IMS_VEHICLE_INFO.cs" />
+    <Compile Include="BLL\IMS_VEHICLE_RECORD.cs" />
+    <Compile Include="BLL\SMT_CARD_INFO.cs" />
+    <Compile Include="BLL\SMT_CARD_RECORDS.cs" />
+    <Compile Include="BLL\SMT_CONTROLLER_INFO.cs" />
+    <Compile Include="BLL\SMT_CONTROLLER_ZONE.cs" />
+    <Compile Include="BLL\SMT_DOOR_INFO.cs" />
+    <Compile Include="BLL\SMT_FUN_MENUPOINT.cs" />
+    <Compile Include="BLL\SMT_ORG_INFO.cs" />
+    <Compile Include="BLL\SMT_STAFF_CARD.cs" />
+    <Compile Include="BLL\SMT_STAFF_DOOR.cs" />
+    <Compile Include="BLL\SMT_STAFF_INFO.cs" />
+    <Compile Include="BLL\SMT_USER_INFO.cs" />
+    <Compile Include="DAL\IMS_DATA_CONFIG.cs" />
+    <Compile Include="DAL\IMS_FACE_BLACKLIST.cs" />
+    <Compile Include="DAL\IMS_PEOPLE_RECORD.cs" />
+    <Compile Include="DAL\IMS_VEHICLE_INFO.cs" />
+    <Compile Include="DAL\IMS_VEHICLE_RECORD.cs" />
+    <Compile Include="DAL\SMT_CARD_INFO.cs" />
+    <Compile Include="DAL\SMT_CARD_RECORDS.cs" />
+    <Compile Include="DAL\SMT_CONTROLLER_INFO.cs" />
+    <Compile Include="DAL\SMT_CONTROLLER_ZONE.cs" />
+    <Compile Include="DAL\SMT_DOOR_INFO.cs" />
+    <Compile Include="DAL\SMT_FUN_MENUPOINT.cs" />
+    <Compile Include="DAL\SMT_ORG_INFO.cs" />
+    <Compile Include="DAL\SMT_STAFF_CARD.cs" />
+    <Compile Include="DAL\SMT_STAFF_DOOR.cs" />
+    <Compile Include="DAL\SMT_STAFF_INFO.cs" />
+    <Compile Include="DAL\SMT_USER_INFO.cs" />
+    <Compile Include="Model\IMS_DATA_CONFIG.cs" />
+    <Compile Include="Model\IMS_FACE_BLACKLIST.cs" />
+    <Compile Include="Model\IMS_PEOPLE_RECORD.cs" />
+    <Compile Include="Model\IMS_VEHICLE_INFO.cs" />
+    <Compile Include="Model\IMS_VEHICLE_RECORD.cs" />
+    <Compile Include="Model\SMT_CARD_INFO.cs" />
+    <Compile Include="Model\SMT_CARD_RECORDS.cs" />
+    <Compile Include="Model\SMT_CONTROLLER_INFO.cs" />
+    <Compile Include="Model\SMT_CONTROLLER_ZONE.cs" />
+    <Compile Include="Model\SMT_DOOR_INFO.cs" />
+    <Compile Include="Model\SMT_FUN_MENUPOINT.cs" />
+    <Compile Include="Model\SMT_ORG_INFO.cs" />
+    <Compile Include="Model\SMT_STAFF_CARD.cs" />
+    <Compile Include="Model\SMT_STAFF_DOOR.cs" />
+    <Compile Include="Model\SMT_STAFF_INFO.cs" />
+    <Compile Include="Model\SMT_USER_INFO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

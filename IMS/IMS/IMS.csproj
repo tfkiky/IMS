@@ -33,7 +33,19 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevComponents.DotNetBar2, Version=10.7.0.3, Culture=neutral, PublicKeyToken=c39c3242a43eee2b, processorArchitecture=MSIL" />
+    <Reference Include="DevComponents.DotNetBar2, Version=10.7.0.3, Culture=neutral, PublicKeyToken=c39c3242a43eee2b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\dll\dotnetbar\DevComponents.DotNetBar2.dll</HintPath>
+    </Reference>
+    <Reference Include="Maticsoft.Common">
+      <HintPath>..\dll\Maticsoft.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Maticsoft.DBUtility">
+      <HintPath>..\dll\Maticsoft.DBUtility.dll</HintPath>
+    </Reference>
+    <Reference Include="SunCreate.Common">
+      <HintPath>..\dll\SunCreate.Common.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -46,85 +58,92 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\YV12TORGB.cs" />
-    <Compile Include="CompareInfo.cs">
+    <Compile Include="Collecter\AccessCollect.cs" />
+    <Compile Include="Collecter\AccessReader.cs" />
+    <Compile Include="Common\Config\SysConfigClass.cs" />
+    <Compile Include="Common\Database\DatabaseConfigClass.cs" />
+    <Compile Include="Common\Database\DatabaseHelper.cs" />
+    <Compile Include="Common\EncDec\EncDecClass.cs" />
+    <Compile Include="Collecter\FaceCollect.cs" />
+    <Compile Include="Collecter\IDCardCollect.cs" />
+    <Compile Include="MainCtrl\CompareInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CompareInfo.Designer.cs">
+    <Compile Include="MainCtrl\CompareInfo.Designer.cs">
       <DependentUpon>CompareInfo.cs</DependentUpon>
     </Compile>
-    <Compile Include="FaceVideo.cs">
+    <Compile Include="MainCtrl\FaceVideo.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FaceVideo.Designer.cs">
+    <Compile Include="MainCtrl\FaceVideo.Designer.cs">
       <DependentUpon>FaceVideo.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainForm.cs">
+    <Compile Include="Main\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.Designer.cs">
+    <Compile Include="Main\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="PeopleConfig.cs">
+    <Compile Include="Config\PeopleConfig.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PeopleConfig.Designer.cs">
+    <Compile Include="Config\PeopleConfig.Designer.cs">
       <DependentUpon>PeopleConfig.cs</DependentUpon>
     </Compile>
-    <Compile Include="PeopleIDCard.cs">
+    <Compile Include="MainCtrl\PeopleIDCard.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PeopleIDCard.Designer.cs">
+    <Compile Include="MainCtrl\PeopleIDCard.Designer.cs">
       <DependentUpon>PeopleIDCard.cs</DependentUpon>
     </Compile>
-    <Compile Include="PeopleVehicleVideo.cs">
+    <Compile Include="MainCtrl\PeopleVehicleVideo.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PeopleVehicleVideo.Designer.cs">
+    <Compile Include="MainCtrl\PeopleVehicleVideo.Designer.cs">
       <DependentUpon>PeopleVehicleVideo.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ClientMainForm.cs">
+    <Compile Include="Main\ClientMainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ClientMainForm.Designer.cs">
+    <Compile Include="Main\ClientMainForm.Designer.cs">
       <DependentUpon>ClientMainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="RealPeoplePass.cs">
+    <Compile Include="MainCtrl\RealPeoplePass.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="RealPeoplePass.Designer.cs">
+    <Compile Include="MainCtrl\RealPeoplePass.Designer.cs">
       <DependentUpon>RealPeoplePass.cs</DependentUpon>
     </Compile>
-    <Compile Include="RealVehiclePass.cs">
+    <Compile Include="MainCtrl\RealVehiclePass.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="RealVehiclePass.Designer.cs">
+    <Compile Include="MainCtrl\RealVehiclePass.Designer.cs">
       <DependentUpon>RealVehiclePass.cs</DependentUpon>
     </Compile>
-    <Compile Include="SysConfig.cs">
+    <Compile Include="Config\SysConfig.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SysConfig.Designer.cs">
+    <Compile Include="Config\SysConfig.Designer.cs">
       <DependentUpon>SysConfig.cs</DependentUpon>
     </Compile>
-    <Compile Include="ValidateResult.cs">
+    <Compile Include="MainCtrl\ValidateResult.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ValidateResult.Designer.cs">
+    <Compile Include="MainCtrl\ValidateResult.Designer.cs">
       <DependentUpon>ValidateResult.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="CompareInfo.resx">
+    <EmbeddedResource Include="MainCtrl\CompareInfo.resx">
       <DependentUpon>CompareInfo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.resx">
+    <EmbeddedResource Include="Main\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PeopleConfig.resx">
+    <EmbeddedResource Include="Config\PeopleConfig.resx">
       <DependentUpon>PeopleConfig.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PeopleVehicleVideo.resx">
+    <EmbeddedResource Include="MainCtrl\PeopleVehicleVideo.resx">
       <DependentUpon>PeopleVehicleVideo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -137,10 +156,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="ClientMainForm.resx">
+    <EmbeddedResource Include="Main\ClientMainForm.resx">
       <DependentUpon>ClientMainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SysConfig.resx">
+    <EmbeddedResource Include="Config\SysConfig.resx">
       <DependentUpon>SysConfig.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
@@ -164,6 +183,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\zanwutupian.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FaceDll\FaceDll.csproj">
+      <Project>{2b01b338-0f5a-4bea-a0ea-c6bc69cba364}</Project>
+      <Name>FaceDll</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HikSDK\HikSDK.csproj">
+      <Project>{226e3cba-9702-487e-bc3e-7c2bc5f5195f}</Project>
+      <Name>HikSDK</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IDCardDll\IDCardDll.csproj">
+      <Project>{048e3fb0-1688-4669-bda4-42ff547e8e79}</Project>
+      <Name>IDCardDll</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IMS.DataBase\IMS.DataBase.csproj">
+      <Project>{c6ec28ef-301d-4be2-965f-a18bf6415269}</Project>
+      <Name>IMS.DataBase</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

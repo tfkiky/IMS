@@ -5,6 +5,10 @@ using System.Text;
 using System.Runtime.InteropServices;
 using System.Threading;
 using HikSDK;
+using IMS.Common;
+using System.Drawing;
+using System.Drawing.Imaging;
+using FaceDll;
 
 namespace SunCreate.pahftx.Client.Proccess.FirstPlugin.Controller.Video.Hikon
 {
@@ -12,6 +16,9 @@ namespace SunCreate.pahftx.Client.Proccess.FirstPlugin.Controller.Video.Hikon
     {
         public int lastErrorCode = 0;
         public string lastError = "";
+        private Int32 m_lPort = -1;
+        private CHCNetSDK.REALDATACALLBACK RealData = null;
+        private PlayCtrl.DECCBFUN m_fDisplayFun = null;
         public log4net.ILog log = log4net.LogManager.GetLogger(typeof(HikonComDevice));
     
         /// <summary>
@@ -197,6 +204,167 @@ namespace SunCreate.pahftx.Client.Proccess.FirstPlugin.Controller.Video.Hikon
             }
             return str;
         }
+
+        private string RealPlayCallBack()
+        {
+            if (userId < 0)
+            {
+                return null;
+            }
+
+            CHCNetSDK.NET_DVR_PREVIEWINFO lpPreviewInfo = new CHCNetSDK.NET_DVR_PREVIEWINFO();
+            lpPreviewInfo.hPlayWnd = IntPtr.Zero;//预览窗口 live view window
+            lpPreviewInfo.lChannel = 1;//预览的设备通道 the device channel number
+            lpPreviewInfo.dwStreamType = 0;//码流类型：0-主码流，1-子码流，2-码流3，3-码流4，以此类推
+            lpPreviewInfo.dwLinkMode = 0;//连接方式：0- TCP方式，1- UDP方式，2- 多播方式，3- RTP方式，4-RTP/RTSP，5-RSTP/HTTP 
+            lpPreviewInfo.bBlocked = true; //0- 非阻塞取流，1- 阻塞取流
+            lpPreviewInfo.dwDisplayBufNum = 15; //播放库显示缓冲区最大帧数
+
+            IntPtr pUser = IntPtr.Zero;//用户数据 user data 
+
+
+            lpPreviewInfo.hPlayWnd = IntPtr.Zero;//预览窗口 live view window
+            RealData = new CHCNetSDK.REALDATACALLBACK(RealDataCallBack);//预览实时流回调函数 real-time stream callback function 
+            int phandle = CHCNetSDK.NET_DVR_RealPlay_V40(userId, ref lpPreviewInfo, RealData, pUser);
+
+            bool ret = phandle >= 0;
+            UpdateError(ret);
+            return phandle.ToString();
+        }
+
+        public void RealDataCallBack(Int32 lRealHandle, UInt32 dwDataType, IntPtr pBuffer, UInt32 dwBufSize, IntPtr pUser)
+        {
+            //下面数据处理建议使用委托的方式
+            switch (dwDataType)
+            {
+                case CHCNetSDK.NET_DVR_SYSHEAD:     // sys head
+                    if (dwBufSize > 0)
+                    {
+                        if (m_lPort >= 0)
+                        {
+                            return; //同一路码流不需要多次调用开流接口
+                        }
+
+                        //获取播放句柄 Get the port to play
+                        if (!PlayCtrl.PlayM4_GetPort(ref m_lPort))
+                        {
+                            lastErrorCode = (int)PlayCtrl.PlayM4_GetLastError(m_lPort);
+                            break;
+                        }
+
+                        //设置流播放模式 Set the stream mode: real-time stream mode
+                        if (!PlayCtrl.PlayM4_SetStreamOpenMode(m_lPort, PlayCtrl.STREAME_REALTIME))
+                        {
+                            lastErrorCode = (int)PlayCtrl.PlayM4_GetLastError(m_lPort);
+                        }
+
+                        //打开码流，送入头数据 Open stream
+                        if (!PlayCtrl.PlayM4_OpenStream(m_lPort, pBuffer, dwBufSize, 2 * 1024 * 1024))
+                        {
+                            lastErrorCode = (int)PlayCtrl.PlayM4_GetLastError(m_lPort);
+                            break;
+                        }
+
+
+                        //设置显示缓冲区个数 Set the display buffer number
+                        if (!PlayCtrl.PlayM4_SetDisplayBuf(m_lPort, 15))
+                        {
+                            lastErrorCode = (int)PlayCtrl.PlayM4_GetLastError(m_lPort);
+                        }
+
+                        //设置显示模式 Set the display mode
+                        if (!PlayCtrl.PlayM4_SetOverlayMode(m_lPort, 0, 0/* COLORREF(0)*/)) //play off screen 
+                        {
+                            lastErrorCode = (int)PlayCtrl.PlayM4_GetLastError(m_lPort);
+                        }
+
+                        //设置解码回调函数，获取解码后音视频原始数据 Set callback function of decoded data
+                        m_fDisplayFun = new PlayCtrl.DECCBFUN(DecCallbackFUN);
+                        if (!PlayCtrl.PlayM4_SetDecCallBackEx(m_lPort, m_fDisplayFun, IntPtr.Zero, 0))
+                        {
+                        }
+
+                        //开始解码 Start to play                       
+                        if (!PlayCtrl.PlayM4_Play(m_lPort, IntPtr.Zero))
+                        {
+                            lastErrorCode = (int)PlayCtrl.PlayM4_GetLastError(m_lPort);
+                            break;
+                        }
+                    }
+                    break;
+                case CHCNetSDK.NET_DVR_STREAMDATA:     // video stream data
+                    if (dwBufSize > 0 && m_lPort != -1)
+                    {
+                        for (int i = 0; i < 999; i++)
+                        {
+                            //送入码流数据进行解码 Input the stream data to decode
+                            if (!PlayCtrl.PlayM4_InputData(m_lPort, pBuffer, dwBufSize))
+                            {
+                                lastErrorCode = (int)PlayCtrl.PlayM4_GetLastError(m_lPort);
+                                Thread.Sleep(2);
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+                    }
+                    break;
+                default:
+                    if (dwBufSize > 0 && m_lPort != -1)
+                    {
+                        //送入其他数据 Input the other data
+                        for (int i = 0; i < 999; i++)
+                        {
+                            if (!PlayCtrl.PlayM4_InputData(m_lPort, pBuffer, dwBufSize))
+                            {
+                                lastErrorCode = (int)PlayCtrl.PlayM4_GetLastError(m_lPort);
+                                Thread.Sleep(2);
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+                    }
+                    break;
+            }
+        }
+
+        private void DecCallbackFUN(int nPort, IntPtr pBuf, int nSize, ref PlayCtrl.FRAME_INFO pFrameInfo, int nReserved1, int nReserved2)
+        {
+            if (pFrameInfo.nType == 3) //#define T_YV12	3
+            {
+                byte[] byteBuf = new byte[nSize];
+                Marshal.Copy(pBuf, byteBuf, 0, nSize);
+
+                byte[] rgbbuff = new byte[pFrameInfo.nWidth * pFrameInfo.nHeight * 3];
+
+                YV12ToRGB yvRgb = new YV12ToRGB(pFrameInfo.nWidth, pFrameInfo.nHeight);
+                yvRgb.Convert(byteBuf, ref rgbbuff);
+
+                byte[] feature1 = new byte[3000], feature2 = new byte[3000];
+
+                System.Drawing.Imaging.PixelFormat pFmt = System.Drawing.Imaging.PixelFormat.Format24bppRgb;
+                Bitmap bitmap = new Bitmap(pFrameInfo.nWidth, pFrameInfo.nHeight, pFmt);
+                BitmapData bmpData = bitmap.LockBits(new System.Drawing.Rectangle(0, 0, pFrameInfo.nWidth, pFrameInfo.nHeight), ImageLockMode.WriteOnly, pFmt);   //// 获取图像参数
+
+                string picFile = @".\pic\\" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".jpg";
+                System.Runtime.InteropServices.Marshal.Copy(rgbbuff, 0, bmpData.Scan0, rgbbuff.Length);
+                bitmap.UnlockBits(bmpData);
+                bitmap.Save(picFile, System.Drawing.Imaging.ImageFormat.Jpeg);
+
+                int f3 = FaceService.face_get_feature_from_image(picFile, feature1);
+
+                //string base64bmp = Convert.ToBase64String(rgbbuff);
+                //int f3 = FaceService.face_get_feature(base64bmp, feature1, null);
+
+                int f2 = FaceService.face_get_feature_from_image("E:\\查验系统\\2.jpg", feature2);
+
+                int result2 = FaceService.face_comp_feature(feature1, feature2);
+            }
+        }
+
         //停止实时播放
         public void RealStop(string playHandle)
         {

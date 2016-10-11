@@ -36,6 +36,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -47,6 +48,13 @@
     <Compile Include="HikonComDevice.cs" />
     <Compile Include="PlayCtrl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="YV12TORGB.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FaceDll\FaceDll.csproj">
+      <Project>{2b01b338-0f5a-4bea-a0ea-c6bc69cba364}</Project>
+      <Name>FaceDll</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
