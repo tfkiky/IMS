@@ -14,11 +14,11 @@ namespace IMS.Common.Database
     [Serializable]
     public class DatabaseConfigClass
     {
-        public string serverName;//服务器名称
-        public int verType;//验证类型
-        public string user;//用户名
-        public string pwd;//密码
-        public string database = "AccessData";
+        public string serverName = "(local)";//服务器名称
+        public int verType=0;//验证类型
+        public string user="sa";//用户名
+        public string pwd="abc.123";//密码
+        public string database = "SmartAccess";
         private static byte[] encIV = new byte[] 
         { 
             0x89,0xab,0x00,0x12,0xef,0x43,0x1f,0x10,0x20,0xac,0x19,0xa0,0x40,0x28,0x5f,0xda,0x33,0x68,0x3e,0xed
