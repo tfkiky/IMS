@@ -6,7 +6,7 @@
 *
 * Ver    变更日期             负责人  变更内容
 * ───────────────────────────────────
-* V0.01  2016/10/9 19:15:44   N/A    初版
+* V0.01  2016/10/17 21:30:19   N/A    初版
 *
 * Copyright (c) 2012 Maticsoft Corporation. All rights reserved.
 *┌──────────────────────────────────┐
@@ -108,7 +108,7 @@ namespace Maticsoft.Model
 			get{return _mac;}
 		}
 		/// <summary>
-		/// 控制器类型:OneDoorTwoDirections=0,//单门双向  ;  TwoDoorsTwoDirections=1,//双门双向; FourDoorsOneDirection=2,//四门单向
+		/// 控制器类型:OneDoorTwoDirections=0,//单门双向  ;  TwoDoorsTwoDirections=1,//双门双向 ; FourDoorsOneDirection=2,//四门单向
 		/// </summary>
 		public int? CTRLR_TYPE
 		{

@@ -60,10 +60,10 @@
   <ItemGroup>
     <Compile Include="Collecter\AccessCollect.cs" />
     <Compile Include="Collecter\AccessReader.cs" />
-    <Compile Include="Common\Config\SysConfigClass.cs" />
-    <Compile Include="Common\Database\DatabaseConfigClass.cs" />
-    <Compile Include="Common\Database\DatabaseHelper.cs" />
-    <Compile Include="Common\EncDec\EncDecClass.cs" />
+    <Compile Include="Collecter\Common\Config\SysConfigClass.cs" />
+    <Compile Include="Collecter\Common\Database\DatabaseConfigClass.cs" />
+    <Compile Include="Collecter\Common\Database\DatabaseHelper.cs" />
+    <Compile Include="Collecter\Common\EncDec\EncDecClass.cs" />
     <Compile Include="Collecter\FaceCollect.cs" />
     <Compile Include="Collecter\IDCardCollect.cs" />
     <Compile Include="MainCtrl\CompareInfo.cs">

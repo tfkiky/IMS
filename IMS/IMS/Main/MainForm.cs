@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using IMS.Common.Config;
 using DevComponents.DotNetBar;
 using IMS.Collecter;
+using IMS.Common.Database;
 
 namespace IMS
 {
@@ -33,7 +34,11 @@ namespace IMS
         public MainForm()
         {
             InitializeComponent();
-            //Maticsoft.DBUtility.DbHelperSQL.connectionString = SysConfigClass.GetSqlServerConnectString();
+            Maticsoft.DBUtility.DbHelperSQL.connectionString = SysConfigClass.GetSqlServerConnectString();
+
+            //DatabaseConfigClass configCls = new DatabaseConfigClass();
+            //configCls.SaveConfig("SqlServerConnectString");
+
             StyleManager.Style = eStyle.Office2007Black;
             instance = this;
             FillDataGrid();
