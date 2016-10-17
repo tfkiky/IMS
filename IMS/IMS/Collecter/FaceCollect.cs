@@ -14,6 +14,7 @@ namespace IMS.Collecter
         Maticsoft.BLL.IMS_FACE_BLACKLIST blackListBll = new Maticsoft.BLL.IMS_FACE_BLACKLIST();
         private static Thread faceThread;
         private static string currentFacePic;
+        private static string localFaceDir;
 
         public static string CurrentFacePic
         {
@@ -38,6 +39,7 @@ namespace IMS.Collecter
             };
             worker.RunWorkerCompleted += (p, q) =>
             {
+                InitFaceList();
             };
             worker.RunWorkerAsync();
         }
