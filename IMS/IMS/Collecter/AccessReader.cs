@@ -28,7 +28,7 @@ namespace IMS.Collecter
         /// </summary>
         private DataReadHandler onDataRead;
 
-        Maticsoft.BLL.SMT_CARD_RECORDS alarmEventBll = new Maticsoft.BLL.SMT_CARD_RECORDS();
+        Maticsoft.BLL.SMT_CARD_RECORDS recordBll = new Maticsoft.BLL.SMT_CARD_RECORDS();
 
         /// <summary>
         /// 数据读取事件
@@ -95,7 +95,7 @@ namespace IMS.Collecter
             Thread.Sleep(500);
             try
             {
-                List<Maticsoft.Model.SMT_CARD_RECORDS> recordList = alarmEventBll.GetModelList("PROCSTATUS='0' ORDER BY  ALARMTIME DESC ");
+                List<Maticsoft.Model.SMT_CARD_RECORDS> recordList = recordBll.GetModelList(" ORDER BY  RECORD_INDEX DESC ");
                 if (recordList.Count > 0 && recordList.Exists(record=>record.RECORD_INDEX.Value>AccessCollect.LastAccessIndex))
                 {
                     //Console.WriteLine("有新数据............."+alarmEventList.Count.ToString());
