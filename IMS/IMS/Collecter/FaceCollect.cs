@@ -21,6 +21,7 @@ namespace IMS.Collecter
             set { FaceCollect.isFaceLoad = value; }
         }
         private static string currentFacePic;
+        private static string localFaceDir;
 
         public static string CurrentFacePic
         {
