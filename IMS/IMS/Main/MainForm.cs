@@ -18,9 +18,33 @@ namespace IMS
     {
         #region 定义全局变量
         private int iFaceMode = 0;  //人脸识别验证模式 0- 1:1验证、1- 1：N验证、2- 1：n验证
-        private bool bIsBlackMode = false;    //是否开启黑名单模式
+
+        public int IFaceMode
+        {
+            get { return iFaceMode; }
+            set { iFaceMode = value; }
+        }
+        private int iBlackMode = 0;    //黑名单模式 0-开启；1：关闭
+
+        public int IBlackMode
+        {
+            get { return iBlackMode; }
+            set { iBlackMode = value; }
+        }
         private int iSwipeMode = 0;   //刷卡模式 0-门禁刷卡，1:-身份证刷卡
+
+        public int ISwipeMode
+        {
+            get { return iSwipeMode; }
+            set { iSwipeMode = value; }
+        }
         private int iThreshold = 60;  //人脸识别阈值，默认60
+
+        public int IThreshold
+        {
+            get { return iThreshold; }
+            set { iThreshold = value; }
+        }
         #endregion
 
         private static MainForm instance;
@@ -42,7 +66,8 @@ namespace IMS
             StyleManager.Style = eStyle.Office2007Black;
             instance = this;
             FillDataGrid();
-            LoadHeader();
+            LoadParams();
+            FaceCollect.Start(iFaceMode, iSwipeMode, iThreshold, iBlackMode);
         }
 
         private void FillDataGrid()
@@ -57,58 +82,35 @@ namespace IMS
         /// </summary>
         private void LoadParams()
         {
-            Maticsoft.BLL.IMS_DATA_CONFIG imsConfigBll=new Maticsoft.BLL.IMS_DATA_CONFIG();
-            List<Maticsoft.Model.IMS_DATA_CONFIG> imsConfigModelList = new List<Maticsoft.Model.IMS_DATA_CONFIG>();
-            //加载人脸识别验证模式
-            imsConfigModelList = imsConfigBll.GetModelList("DataType='IMS_CONFIG' AND DataKey='FaceMode'");
-            if (imsConfigModelList != null && imsConfigModelList.Count>0)
-            {
-                iFaceMode = int.Parse(imsConfigModelList[0].DataValue);
-            }
-            //加载是否开始黑名单
-            imsConfigModelList = imsConfigBll.GetModelList("DataType='IMS_CONFIG' AND DataKey='IsBlackMode'");
-            if (imsConfigModelList != null && imsConfigModelList.Count > 0)
-            {
-                bIsBlackMode = bool.Parse(imsConfigModelList[0].DataValue);
-            }
-            //加载刷卡验证模式
-            imsConfigModelList = imsConfigBll.GetModelList("DataType='IMS_CONFIG' AND DataKey='SwipeMode'");
-            if (imsConfigModelList != null && imsConfigModelList.Count > 0)
-            {
-                iSwipeMode = int.Parse(imsConfigModelList[0].DataValue);
-            }
-            //加载人脸验证阈值
-            imsConfigModelList = imsConfigBll.GetModelList("DataType='IMS_CONFIG' AND DataKey='Threshold'");
-            if (imsConfigModelList != null && imsConfigModelList.Count > 0)
-            {
-                iThreshold = int.Parse(imsConfigModelList[0].DataValue);
-            }
-            FaceCollect.Start(iFaceMode,iSwipeMode,iThreshold,bIsBlackMode);
-        }
-
-        private void LoadHeader()
-        {
+            iFaceMode = int.Parse(SysConfigClass.GetIMSConfig("IMS_CONFIG", "FaceMode"));
+            iBlackMode = int.Parse(SysConfigClass.GetIMSConfig("IMS_CONFIG", "IsBlackMode"));
+            iSwipeMode = int.Parse(SysConfigClass.GetIMSConfig("IMS_CONFIG", "SwipeMode"));
+        
             switch (iFaceMode)
             {
                 case 0:
                     lbInspectMode.Text = "1:1模式";
+                    iThreshold = int.Parse(SysConfigClass.GetIMSConfig("FACE_1_1", "Threshold"));
                     break;
                 case 1:
                     lbInspectMode.Text = "1:N模式";
+                    iThreshold = int.Parse(SysConfigClass.GetIMSConfig("FACE_1_N", "Threshold"));
                     break;
                 case 2:
                     lbInspectMode.Text = "1:n模式";
+                    iThreshold = int.Parse(SysConfigClass.GetIMSConfig("FACE_1_LN", "Threshold"));
                     break;
                 default:
                     lbInspectMode.Text = "1:1模式";
+                    iThreshold = int.Parse(SysConfigClass.GetIMSConfig("FACE_1_1", "Threshold"));
                     break;
             }
-            switch (bIsBlackMode)
+            switch (iBlackMode)
             {
-                case true:
+                case 0:
                     lbBlackList.Text = "+黑名单";
                     break;
-                case false:
+                case 1:
                     lbBlackList.Text = "";
                     break;
                 default:

@@ -35,9 +35,11 @@ namespace IMS.Collecter
             staffList = staffBll.GetModelList("ID='" + record.STAFF_ID + "'");
             if(staffList!=null&&staffList.Count>0)
             {
-
+                if (FaceCollect.FaceWhiteList.ContainsKey((int)record.STAFF_ID))
+                {
+                    FaceCollect.CurrentFacePic = FaceCollect.FaceWhiteList[(int)record.STAFF_ID];
+                }
             }
-            //FaceCollect.CurrentFacePic=
         }
 
     }

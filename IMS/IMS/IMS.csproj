@@ -64,6 +64,7 @@
     <Compile Include="Collecter\Common\Database\DatabaseConfigClass.cs" />
     <Compile Include="Collecter\Common\Database\DatabaseHelper.cs" />
     <Compile Include="Collecter\Common\EncDec\EncDecClass.cs" />
+    <Compile Include="Collecter\Common\ImageHelper.cs" />
     <Compile Include="Collecter\FaceCollect.cs" />
     <Compile Include="Collecter\IDCardCollect.cs" />
     <Compile Include="MainCtrl\CompareInfo.cs">

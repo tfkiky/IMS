@@ -45,6 +45,24 @@ namespace IMS.Common.Config
             return configcls.SaveConfig("SqlServerConnectString");
         }
 
+        /// <summary>
+        /// 获取数据字典配置项
+        /// </summary>
+        /// <param name="DataType"></param>
+        /// <param name="DataKey"></param>
+        /// <returns></returns>
+        public static string GetIMSConfig(string DataType, string DataKey)
+        {
+            Maticsoft.BLL.IMS_DATA_CONFIG imsConfigBll = new Maticsoft.BLL.IMS_DATA_CONFIG();
+            List<Maticsoft.Model.IMS_DATA_CONFIG> imsConfigModelList = new List<Maticsoft.Model.IMS_DATA_CONFIG>();
+            imsConfigModelList = imsConfigBll.GetModelList("DataType='" + DataType + "' AND DataKey='" + DataKey + "'");
+            if (imsConfigModelList != null && imsConfigModelList.Count > 0)
+            {
+                return imsConfigModelList[0].DataValue;
+            }
+            else return null;
+        }
+
     }
 
    
