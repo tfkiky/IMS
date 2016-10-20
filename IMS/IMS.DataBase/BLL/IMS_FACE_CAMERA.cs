@@ -1,12 +1,12 @@
 ﻿/**  版本信息模板在安装目录下，可自行修改。
-* SMT_DOOR_INFO.cs
+* IMS_FACE_CAMERA.cs
 *
 * 功 能： N/A
-* 类 名： SMT_DOOR_INFO
+* 类 名： IMS_FACE_CAMERA
 *
 * Ver    变更日期             负责人  变更内容
 * ───────────────────────────────────
-* V0.01  2016/8/5 0:01:57   N/A    初版
+* V0.01  2016/10/20 13:41:17   N/A    初版
 *
 * Copyright (c) 2012 Maticsoft Corporation. All rights reserved.
 *┌──────────────────────────────────┐
@@ -22,12 +22,12 @@ using Maticsoft.Model;
 namespace Maticsoft.BLL
 {
 	/// <summary>
-	/// 门表
+	/// IMS_FACE_CAMERA
 	/// </summary>
-	public partial class SMT_DOOR_INFO
+	public partial class IMS_FACE_CAMERA
 	{
-		private readonly Maticsoft.DAL.SMT_DOOR_INFO dal=new Maticsoft.DAL.SMT_DOOR_INFO();
-		public SMT_DOOR_INFO()
+		private readonly Maticsoft.DAL.IMS_FACE_CAMERA dal=new Maticsoft.DAL.IMS_FACE_CAMERA();
+		public IMS_FACE_CAMERA()
 		{}
 		#region  BasicMethod
 		/// <summary>
@@ -41,7 +41,7 @@ namespace Maticsoft.BLL
 		/// <summary>
 		/// 增加一条数据
 		/// </summary>
-		public decimal Add(Maticsoft.Model.SMT_DOOR_INFO model)
+		public bool Add(Maticsoft.Model.IMS_FACE_CAMERA model)
 		{
 			return dal.Add(model);
 		}
@@ -49,7 +49,7 @@ namespace Maticsoft.BLL
 		/// <summary>
 		/// 更新一条数据
 		/// </summary>
-		public bool Update(Maticsoft.Model.SMT_DOOR_INFO model)
+		public bool Update(Maticsoft.Model.IMS_FACE_CAMERA model)
 		{
 			return dal.Update(model);
 		}
@@ -67,13 +67,13 @@ namespace Maticsoft.BLL
 		/// </summary>
 		public bool DeleteList(string IDlist )
 		{
-            return dal.DeleteList(IDlist);
+			return dal.DeleteList(IDlist );
 		}
 
 		/// <summary>
 		/// 得到一个对象实体
 		/// </summary>
-		public Maticsoft.Model.SMT_DOOR_INFO GetModel(decimal ID)
+		public Maticsoft.Model.IMS_FACE_CAMERA GetModel(decimal ID)
 		{
 			
 			return dal.GetModel(ID);
@@ -82,10 +82,10 @@ namespace Maticsoft.BLL
 		/// <summary>
 		/// 得到一个对象实体，从缓存中
 		/// </summary>
-		public Maticsoft.Model.SMT_DOOR_INFO GetModelByCache(decimal ID)
+		public Maticsoft.Model.IMS_FACE_CAMERA GetModelByCache(decimal ID)
 		{
 			
-			string CacheKey = "SMT_DOOR_INFOModel-" + ID;
+			string CacheKey = "IMS_FACE_CAMERAModel-" + ID;
 			object objModel = Maticsoft.Common.DataCache.GetCache(CacheKey);
 			if (objModel == null)
 			{
@@ -100,7 +100,7 @@ namespace Maticsoft.BLL
 				}
 				catch{}
 			}
-			return (Maticsoft.Model.SMT_DOOR_INFO)objModel;
+			return (Maticsoft.Model.IMS_FACE_CAMERA)objModel;
 		}
 
 		/// <summary>
@@ -120,7 +120,7 @@ namespace Maticsoft.BLL
 		/// <summary>
 		/// 获得数据列表
 		/// </summary>
-		public List<Maticsoft.Model.SMT_DOOR_INFO> GetModelList(string strWhere)
+		public List<Maticsoft.Model.IMS_FACE_CAMERA> GetModelList(string strWhere)
 		{
 			DataSet ds = dal.GetList(strWhere);
 			return DataTableToList(ds.Tables[0]);
@@ -128,13 +128,13 @@ namespace Maticsoft.BLL
 		/// <summary>
 		/// 获得数据列表
 		/// </summary>
-		public List<Maticsoft.Model.SMT_DOOR_INFO> DataTableToList(DataTable dt)
+		public List<Maticsoft.Model.IMS_FACE_CAMERA> DataTableToList(DataTable dt)
 		{
-			List<Maticsoft.Model.SMT_DOOR_INFO> modelList = new List<Maticsoft.Model.SMT_DOOR_INFO>();
+			List<Maticsoft.Model.IMS_FACE_CAMERA> modelList = new List<Maticsoft.Model.IMS_FACE_CAMERA>();
 			int rowsCount = dt.Rows.Count;
 			if (rowsCount > 0)
 			{
-				Maticsoft.Model.SMT_DOOR_INFO model;
+				Maticsoft.Model.IMS_FACE_CAMERA model;
 				for (int n = 0; n < rowsCount; n++)
 				{
 					model = dal.DataRowToModel(dt.Rows[n]);

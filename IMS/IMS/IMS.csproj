@@ -37,6 +37,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\dll\dotnetbar\DevComponents.DotNetBar2.dll</HintPath>
     </Reference>
+    <Reference Include="Li.Access.Core">
+      <HintPath>..\dll\Li.Access.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\dll\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Maticsoft.Common">
       <HintPath>..\dll\Maticsoft.Common.dll</HintPath>
     </Reference>
@@ -60,12 +66,17 @@
   <ItemGroup>
     <Compile Include="Collecter\AccessCollect.cs" />
     <Compile Include="Collecter\AccessReader.cs" />
-    <Compile Include="Collecter\Common\Config\SysConfigClass.cs" />
-    <Compile Include="Collecter\Common\Database\DatabaseConfigClass.cs" />
-    <Compile Include="Collecter\Common\Database\DatabaseHelper.cs" />
-    <Compile Include="Collecter\Common\EncDec\EncDecClass.cs" />
-    <Compile Include="Collecter\Common\ImageHelper.cs" />
+    <Compile Include="Collecter\ValidateResultEventArgs.cs" />
+    <Compile Include="Common\Data\AreaDataHelper.cs" />
+    <Compile Include="Common\Config\SysConfigClass.cs" />
+    <Compile Include="Common\Data\ControllerHelper.cs" />
+    <Compile Include="Common\Database\DatabaseConfigClass.cs" />
+    <Compile Include="Common\Database\DatabaseHelper.cs" />
+    <Compile Include="Common\Data\DoorDataHelper.cs" />
+    <Compile Include="Common\EncDec\EncDecClass.cs" />
+    <Compile Include="Common\Data\ImageHelper.cs" />
     <Compile Include="Collecter\FaceCollect.cs" />
+    <Compile Include="Collecter\IDCardClass.cs" />
     <Compile Include="Collecter\IDCardCollect.cs" />
     <Compile Include="MainCtrl\CompareInfo.cs">
       <SubType>UserControl</SubType>

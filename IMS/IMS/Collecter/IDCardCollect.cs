@@ -10,7 +10,20 @@ namespace IMS.Collecter
     public class IDCardCollect
     {
         private static System.Threading.Timer timer;
+        private static IDCardClass currentIDCard;
+
+        public static IDCardClass CurrentIDCard
+        {
+            get { return IDCardCollect.currentIDCard; }
+            set { IDCardCollect.currentIDCard = value; }
+        }
         private static int iLastErrorCode;
+
+        public static int ILastErrorCode
+        {
+            get { return IDCardCollect.iLastErrorCode; }
+            set { IDCardCollect.iLastErrorCode = value; }
+        }
         private static string sLastErrorMsg;
 
         public static void Start()
@@ -37,6 +50,25 @@ namespace IMS.Collecter
                 byte[] heByte = new byte[fsLen];
                 int r = fsRead.Read(heByte, 0, heByte.Length);
                 string myStr = System.Text.Encoding.Unicode.GetString(heByte);
+
+                if (string.IsNullOrEmpty(myStr))
+                {
+                    string[] idInfo = myStr.Trim().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                    currentIDCard = new IDCardClass();
+                    currentIDCard.Name = idInfo[0];
+                    currentIDCard.Sex = idInfo[1];
+                    currentIDCard.Nation = idInfo[2];
+                    currentIDCard.Birth = DateTime.Parse(idInfo[3]);
+                    currentIDCard.Address = idInfo[4];
+                    currentIDCard.SignGov = idInfo[5];
+                    currentIDCard.StartDate = DateTime.Parse(idInfo[6]);
+                    currentIDCard.LimitDate = DateTime.Parse(idInfo[7]);
+                    if (File.Exists("./zp.bmp"))
+                    {
+                        currentIDCard.PhotoFile = AppDomain.CurrentDomain.BaseDirectory+"zp.bmp";
+                        FaceCollect.CurrentFacePic = currentIDCard.PhotoFile;
+                    }
+                }
             }
         }
 

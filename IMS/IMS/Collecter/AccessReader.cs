@@ -15,7 +15,7 @@ namespace IMS.Collecter
     /// <summary>
     /// 定时读取报警数据
     /// </summary>
-    public class AlarmReader
+    public class AccessReader
     {
 
         /// <summary>
