@@ -21,8 +21,12 @@ namespace IMS
         private ILog mlog = LogManager.GetLogger("MainForm");
         private Maticsoft.BLL.IMS_FACE_CAMERA faceCameraBll = new Maticsoft.BLL.IMS_FACE_CAMERA();
         private Maticsoft.Model.IMS_FACE_CAMERA faceCamera;
+        private HikSDK.HikonComDevice hikCam = new HikSDK.HikonComDevice();
+        private string playHandle;
 
         private FaceCollect faceCollect = new FaceCollect();
+        private AccessCollect accessCollect = new AccessCollect();
+        private IDCardCollect idCardCollect = new IDCardCollect();
 
         private int iFaceMode = 0;  //人脸识别验证模式 0- 1:1验证、1- 1：N验证、2- 1：n验证
 
@@ -68,17 +72,42 @@ namespace IMS
         {
             InitializeComponent();
             instance = this;
-
-            Maticsoft.DBUtility.DbHelperSQL.connectionString = SysConfigClass.GetSqlServerConnectString();
             StyleManager.Style = eStyle.Office2007Black;
             FillDataGrid();
-            LoadParams();
-            AccessCollect.Start();
-            faceCollect.Start(iFaceMode, iSwipeMode, iThreshold, iBlackMode);
-            if (FaceCollect.IsFaceLoad)
+            
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            if (!SysConfigClass.TestDBConn())
             {
-                faceCollect.ValidateEvent += faceCollect_ValidateEvent;
+                MessageBox.Show("数据库连接失败，请检查网络或数据库配置");
+                this.Close();
             }
+            else
+            {
+                Maticsoft.DBUtility.DbHelperSQL.connectionString = SysConfigClass.GetSqlServerConnectString();
+                LoadParams();
+                accessCollect.Start();
+                accessCollect.AccessEvent += accessCollect_AccessEvent;
+                idCardCollect.Start();
+                idCardCollect.IDCardEvent += idCardCollect_IDCardEvent;
+                faceCollect.Start(iFaceMode, iSwipeMode, iThreshold, iBlackMode);
+                if (FaceCollect.IsFaceLoad)
+                {
+                    faceCollect.ValidateEvent += faceCollect_ValidateEvent;
+                }
+            }
+        }
+
+        void idCardCollect_IDCardEvent(object sender, IDCardEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        void accessCollect_AccessEvent(object sender, AccessEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         void faceCollect_ValidateEvent(object sender, ValidateResultEventArgs e)
@@ -157,9 +186,28 @@ namespace IMS
             }
         }
 
+        private void LoadCamera()
+        {
+            if (faceCamera != null && !string.IsNullOrEmpty(faceCamera.CameraIP))
+            {
+                hikCam.Login(faceCamera.CameraIP, int.Parse(faceCamera.CameraPort), faceCamera.CameraUser, faceCamera.CameraPwd);
+                playHandle=hikCam.RealPlay("0",(int)peopleVehicleVideo1.Handle,0,0,0);
+            }
+        }
+
+        private void CloseCamera()
+        {
+            if (!string.IsNullOrEmpty(playHandle))
+            {
+                hikCam.RealStop(playHandle);
+                hikCam.Logout();
+            }
+        }
+
         private void tsmiExit_Click(object sender, EventArgs e)
         {
             CloseIMS();
+            CloseCamera();
         }
 
         private void CloseIMS()
@@ -177,5 +225,7 @@ namespace IMS
             SysConfig sysCfg = new SysConfig();
             sysCfg.ShowDialog();
         }
+
+       
     }
 }

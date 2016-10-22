@@ -65,8 +65,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Collecter\AccessCollect.cs" />
+    <Compile Include="Collecter\Events\AccessEventArgs.cs" />
     <Compile Include="Collecter\AccessReader.cs" />
-    <Compile Include="Collecter\ValidateResultEventArgs.cs" />
+    <Compile Include="Collecter\Events\IDCardEventArgs.cs" />
+    <Compile Include="Collecter\Events\ValidateResultEventArgs.cs" />
     <Compile Include="Common\Data\AreaDataHelper.cs" />
     <Compile Include="Common\Config\SysConfigClass.cs" />
     <Compile Include="Common\Data\ControllerHelper.cs" />
