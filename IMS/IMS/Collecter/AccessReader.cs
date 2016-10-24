@@ -96,10 +96,10 @@ namespace IMS.Collecter
             try
             {
                 List<Maticsoft.Model.SMT_CARD_RECORDS> recordList = recordBll.GetModelList(" ORDER BY  RECORD_INDEX DESC ");
-                if (recordList.Count > 0 && recordList.Exists(record=>record.RECORD_INDEX.Value>AccessCollect.LastAccessIndex))
+                if (recordList.Count > 0 && recordList.Exists(record=>record.RECORD_INDEX.Value>AccessCollect.Instance.LastAccessIndex))
                 {
                     //Console.WriteLine("有新数据............."+alarmEventList.Count.ToString());
-                    onDataRead(recordList.Find(record => record.RECORD_INDEX.Value > AccessCollect.LastAccessIndex));
+                    onDataRead(recordList.Find(record => record.RECORD_INDEX.Value > AccessCollect.Instance.LastAccessIndex));
                 }
             }
             catch (Exception ex)

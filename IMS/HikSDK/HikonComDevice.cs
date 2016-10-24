@@ -4,13 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Runtime.InteropServices;
 using System.Threading;
-using HikSDK;
 using IMS.Common;
 using System.Drawing;
 using System.Drawing.Imaging;
 using FaceDll;
 
-namespace SunCreate.pahftx.Client.Proccess.FirstPlugin.Controller.Video.Hikon
+namespace HikSDK
 {
     public class HikonComDevice 
     {

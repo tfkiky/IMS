@@ -63,6 +63,25 @@ namespace IMS.Common.Config
             else return null;
         }
 
+        public static bool TestDBConn()
+        {
+            try
+            {
+                Maticsoft.BLL.IMS_DATA_CONFIG imsConfigBll = new Maticsoft.BLL.IMS_DATA_CONFIG();
+                List<Maticsoft.Model.IMS_DATA_CONFIG> imsConfigModelList = new List<Maticsoft.Model.IMS_DATA_CONFIG>();
+                imsConfigModelList = imsConfigBll.GetModelList("1=1");
+                if (imsConfigModelList != null && imsConfigModelList.Count > 0)
+                {
+                    return true;
+                }
+                else return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
     }
 
    

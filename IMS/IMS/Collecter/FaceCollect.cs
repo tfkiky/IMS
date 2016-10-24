@@ -11,12 +11,14 @@ using FaceDll;
 using Li.Access.Core;
 using Li.Access.Core.WGAccesses;
 using SmartAccess.Common.Datas;
+using log4net;
 
 namespace IMS.Collecter
 {
     public class FaceCollect
     {
         #region 全局变量定义
+        private ILog mlog = LogManager.GetLogger("FaceCollect");
         private static Maticsoft.BLL.IMS_DATA_CONFIG imsConfigBll = new Maticsoft.BLL.IMS_DATA_CONFIG();
         private static Maticsoft.BLL.SMT_CONTROLLER_INFO ctrlBll = new Maticsoft.BLL.SMT_CONTROLLER_INFO();
         private static Maticsoft.BLL.SMT_STAFF_INFO staffInfoBll = new Maticsoft.BLL.SMT_STAFF_INFO();
@@ -167,6 +169,7 @@ namespace IMS.Collecter
             }
             catch (System.Exception ex)
             {
+                mlog.Error("Stop Error", ex);
             }
         }
         /// <summary>
@@ -219,9 +222,9 @@ namespace IMS.Collecter
                         using (IAccessCore access = new WGAccess())
                         {
                             ///控制开门
-                            Maticsoft.Model.SMT_CONTROLLER_INFO _ctrlr = ctrlBll.GetModel(AccessCollect.FaceControllerID);
+                            Maticsoft.Model.SMT_CONTROLLER_INFO _ctrlr = ctrlBll.GetModel(AccessCollect.Instance.FaceControllerID);
                             Controller c = ControllerHelper.ToController(_ctrlr);
-                            bool ret = access.OpenRemoteControllerDoor(c, AccessCollect.FaceDoorIndex);
+                            bool ret = access.OpenRemoteControllerDoor(c, AccessCollect.Instance.FaceDoorIndex);
                             if (!ret)
                             {
                                 //WinInfoHelper.ShowInfoWindow(this, "上传门控制方式失败！");

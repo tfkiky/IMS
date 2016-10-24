@@ -1,4 +1,5 @@
-﻿using System;
+﻿using log4net;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -9,30 +10,32 @@ namespace IMS.Collecter
 {
     public class IDCardCollect
     {
-        private static System.Threading.Timer timer;
-        private static IDCardClass currentIDCard;
+        private System.Threading.Timer timer;
+        private ILog mlog = LogManager.GetLogger("IDCardCollect");
 
-        public static IDCardClass CurrentIDCard
+        public event EventHandler<IDCardEventArgs> IDCardEvent;
+        private IDCardClass currentIDCard;
+
+        public IDCardClass CurrentIDCard
         {
-            get { return IDCardCollect.currentIDCard; }
-            set { IDCardCollect.currentIDCard = value; }
+            get { return currentIDCard; }
+            set { currentIDCard = value; }
         }
-        private static int iLastErrorCode;
+        private int iLastErrorCode;
 
-        public static int ILastErrorCode
+        public int ILastErrorCode
         {
-            get { return IDCardCollect.iLastErrorCode; }
-            set { IDCardCollect.iLastErrorCode = value; }
+            get { return iLastErrorCode; }
+            set { iLastErrorCode = value; }
         }
-        private static string sLastErrorMsg;
 
-        public static void Start()
+        public void Start()
         {
             iLastErrorCode = IDCardDll.IDCard.InitCommExt();
             timer = new System.Threading.Timer(new TimerCallback(CollectIDCard), null, 1000, 1000);
         }
 
-        private static void CollectIDCard(object state)
+        private void CollectIDCard(object state)
         {
             iLastErrorCode = IDCardDll.IDCard.Authenticate();
 
@@ -67,12 +70,16 @@ namespace IMS.Collecter
                     {
                         currentIDCard.PhotoFile = AppDomain.CurrentDomain.BaseDirectory+"zp.bmp";
                         FaceCollect.CurrentFacePic = currentIDCard.PhotoFile;
+                        if(IDCardEvent!=null)
+                        {
+                            IDCardEvent(this, new IDCardEventArgs(currentIDCard));
+                        }
                     }
                 }
             }
         }
 
-        public static void Stop()
+        public void Stop()
         {
             iLastErrorCode = IDCardDll.IDCard.CloseComm();
             timer.Dispose();
