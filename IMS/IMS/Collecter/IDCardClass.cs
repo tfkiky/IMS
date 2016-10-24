@@ -28,9 +28,9 @@ namespace IMS.Collecter
             get { return nation; }
             set { nation = value; }
         }
-        private DateTime birth;
+        private string birth;
 
-        public DateTime Birth
+        public string Birth
         {
             get { return birth; }
             set { birth = value; }
@@ -56,16 +56,16 @@ namespace IMS.Collecter
             get { return signGov; }
             set { signGov = value; }
         }
-        private DateTime startDate;
+        private string startDate;
 
-        public DateTime StartDate
+        public string StartDate
         {
             get { return startDate; }
             set { startDate = value; }
         }
-        private DateTime limitDate;
+        private string limitDate;
 
-        public DateTime LimitDate
+        public string LimitDate
         {
             get { return limitDate; }
             set { limitDate = value; }

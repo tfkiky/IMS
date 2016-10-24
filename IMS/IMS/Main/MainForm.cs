@@ -22,7 +22,19 @@ namespace IMS
         private Maticsoft.BLL.IMS_FACE_CAMERA faceCameraBll = new Maticsoft.BLL.IMS_FACE_CAMERA();
         private Maticsoft.Model.IMS_FACE_CAMERA faceCamera;
         private HikSDK.HikonComDevice hikCam = new HikSDK.HikonComDevice();
+
+        public HikSDK.HikonComDevice HikCam
+        {
+            get { return hikCam; }
+            set { hikCam = value; }
+        }
         private string playHandle;
+
+        public string PlayHandle
+        {
+            get { return playHandle; }
+            set { playHandle = value; }
+        }
 
         private FaceCollect faceCollect = new FaceCollect();
         private AccessCollect accessCollect = new AccessCollect();
@@ -79,6 +91,7 @@ namespace IMS
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            Maticsoft.DBUtility.DbHelperSQL.connectionString = SysConfigClass.GetSqlServerConnectString();
             if (!SysConfigClass.TestDBConn())
             {
                 MessageBox.Show("数据库连接失败，请检查网络或数据库配置");
@@ -86,8 +99,8 @@ namespace IMS
             }
             else
             {
-                Maticsoft.DBUtility.DbHelperSQL.connectionString = SysConfigClass.GetSqlServerConnectString();
                 LoadParams();
+                LoadCamera();
                 accessCollect.Start();
                 accessCollect.AccessEvent += accessCollect_AccessEvent;
                 idCardCollect.Start();
@@ -102,12 +115,12 @@ namespace IMS
 
         void idCardCollect_IDCardEvent(object sender, IDCardEventArgs e)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         void accessCollect_AccessEvent(object sender, AccessEventArgs e)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         void faceCollect_ValidateEvent(object sender, ValidateResultEventArgs e)
@@ -191,7 +204,7 @@ namespace IMS
             if (faceCamera != null && !string.IsNullOrEmpty(faceCamera.CameraIP))
             {
                 hikCam.Login(faceCamera.CameraIP, int.Parse(faceCamera.CameraPort), faceCamera.CameraUser, faceCamera.CameraPwd);
-                playHandle=hikCam.RealPlay("0",(int)peopleVehicleVideo1.Handle,0,0,0);
+                playHandle = hikCam.RealPlay("0", (int)peopleVehicleVideo1.VideoPanel.Handle, 1, 1, 2);
             }
         }
 
@@ -218,6 +231,8 @@ namespace IMS
             }
             this.Close();
             faceCollect.Stop();
+            accessCollect.Stop();
+            idCardCollect.Stop();
         }
 
         private void tsmiSysConfig_Click(object sender, EventArgs e)

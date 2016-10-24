@@ -75,6 +75,8 @@
     <Compile Include="Common\Database\DatabaseConfigClass.cs" />
     <Compile Include="Common\Database\DatabaseHelper.cs" />
     <Compile Include="Common\Data\DoorDataHelper.cs" />
+    <Compile Include="Common\Data\NationHelper.cs" />
+    <Compile Include="Common\Data\SexHelper.cs" />
     <Compile Include="Common\EncDec\EncDecClass.cs" />
     <Compile Include="Common\Data\ImageHelper.cs" />
     <Compile Include="Collecter\FaceCollect.cs" />

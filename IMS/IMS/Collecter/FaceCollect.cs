@@ -158,7 +158,7 @@ namespace IMS.Collecter
         {
             InitFacePath();
             InitFaceStore();
-            timer = new System.Threading.Timer(new TimerCallback(FaceValidate), null, 1000, 1000);
+            timer = new System.Threading.Timer(new TimerCallback(FaceValidate), null, 1000, 2000);
         }
 
         public void Stop()
@@ -238,6 +238,7 @@ namespace IMS.Collecter
                     if (ValidateEvent != null)
                     {
                         ValidateEvent(this, new ValidateResultEventArgs(capturePic, localPic, faceValue, ValidateResult.NoPerson));
+                        File.Delete(capturePic);
                     }
                 }
             }
@@ -245,10 +246,21 @@ namespace IMS.Collecter
 
         private string GetCameraPic()
         {
-            string picPath="";
-
-
-            return picPath;
+            string dir="./Faces/";
+            if (!Directory.Exists(dir))
+            {
+                Directory.CreateDirectory(dir);
+            }
+            string sBmpPicFileName =dir+ DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")+".bmp";
+            if (!string.IsNullOrEmpty(MainForm.Instance.PlayHandle))
+            {
+                MainForm.Instance.HikCam.CapturePicture(int.Parse(MainForm.Instance.PlayHandle), sBmpPicFileName);
+            }
+            if (File.Exists(sBmpPicFileName)&&FaceService.face_exist(sBmpPicFileName).Equals(1))
+            {
+                return sBmpPicFileName;
+            }
+            else return null;
         }
     }
 }

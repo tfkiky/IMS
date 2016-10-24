@@ -1,4 +1,5 @@
-﻿using log4net;
+﻿using IMS.Common.Data;
+using log4net;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -53,19 +54,20 @@ namespace IMS.Collecter
                 byte[] heByte = new byte[fsLen];
                 int r = fsRead.Read(heByte, 0, heByte.Length);
                 string myStr = System.Text.Encoding.Unicode.GetString(heByte);
-
-                if (string.IsNullOrEmpty(myStr))
+                //唐飞             10119890130安徽省合肥市蜀山区科学大道１９号华地紫园１５幢１００２室       340122198901300018合肥市公安局蜀山分局     2016032120360321          
+                if (!string.IsNullOrEmpty(myStr))
                 {
                     string[] idInfo = myStr.Trim().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
                     currentIDCard = new IDCardClass();
                     currentIDCard.Name = idInfo[0];
-                    currentIDCard.Sex = idInfo[1];
-                    currentIDCard.Nation = idInfo[2];
-                    currentIDCard.Birth = DateTime.Parse(idInfo[3]);
-                    currentIDCard.Address = idInfo[4];
-                    currentIDCard.SignGov = idInfo[5];
-                    currentIDCard.StartDate = DateTime.Parse(idInfo[6]);
-                    currentIDCard.LimitDate = DateTime.Parse(idInfo[7]);
+                    currentIDCard.Sex = SexHelper.GetSex(idInfo[1].Substring(0,1));
+                    currentIDCard.Nation = NationHelper.GetNation(idInfo[1].Substring(1, 2));
+                    currentIDCard.Birth = idInfo[1].Substring(3, 8);
+                    currentIDCard.Address = idInfo[1].Substring(11);
+                    currentIDCard.Id = idInfo[2].Substring(0,18);
+                    currentIDCard.SignGov = idInfo[2].Substring(18);
+                    currentIDCard.StartDate = idInfo[3].Substring(0,8);
+                    currentIDCard.LimitDate = idInfo[3].Substring( 8);
                     if (File.Exists("./zp.bmp"))
                     {
                         currentIDCard.PhotoFile = AppDomain.CurrentDomain.BaseDirectory+"zp.bmp";

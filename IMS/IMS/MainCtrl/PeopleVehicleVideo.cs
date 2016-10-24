@@ -16,5 +16,10 @@ namespace IMS
         {
             InitializeComponent();
         }
+
+        public Panel VideoPanel
+        {
+            get { return splitContainer1.Panel1; }
+        }
     }
 }
