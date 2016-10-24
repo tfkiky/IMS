@@ -74,6 +74,7 @@ namespace IMS
             FillDataGrid();
             LoadParams();
             AccessCollect.Start();
+            IDCardCollect.Start();
             faceCollect.Start(iFaceMode, iSwipeMode, iThreshold, iBlackMode);
             if (FaceCollect.IsFaceLoad)
             {

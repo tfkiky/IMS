@@ -70,6 +70,9 @@ namespace IMS.Collecter
         /// </summary>
         public void InitFacePath()
         {
+            faceWhiteList = new Dictionary<int, string>();
+            faceBlackList = new List<string>();
+            faceTempList = new List<string>();
             staffFacePath = SysConfigClass.GetIMSConfig("STAFF_FACE", "FilePath");
             blackFacePath = SysConfigClass.GetIMSConfig("BLACK_FACE", "FilePath");
             tempFacePath = SysConfigClass.GetIMSConfig("TEMP_FACE", "FilePath");
