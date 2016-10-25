@@ -9,13 +9,15 @@ namespace IMS.Collecter
     {
         private string _captruePic;
         private string _localPic;
+        private string _blackPic;
         private int _validateValue;
         private ValidateResult _validateResult;
 
-        public ValidateResultEventArgs(string captruePic, string localPic, int validateValue, ValidateResult validateResult)
+        public ValidateResultEventArgs(string captruePic, string localPic,string blackPic, int validateValue, ValidateResult validateResult)
         {
             _captruePic = captruePic;
             _localPic = localPic;
+            _blackPic = blackPic;
             _validateValue = validateValue;
             _validateResult = validateResult;
         }
@@ -33,6 +35,14 @@ namespace IMS.Collecter
             get
             {
                 return _localPic;
+            }
+        }
+
+        public string BlackPic
+        {
+            get
+            {
+                return _blackPic;
             }
         }
 
@@ -57,6 +67,7 @@ namespace IMS.Collecter
     {
         Success=0,
         NoPerson,
+        Black,
         Error
     }
 }

@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiSysConfig = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiExit = new System.Windows.Forms.ToolStripMenuItem();
@@ -57,8 +57,8 @@
             this.compareInfo1 = new IMS.CompareInfo();
             this.splitContainer5 = new System.Windows.Forms.SplitContainer();
             this.labelX2 = new DevComponents.DotNetBar.LabelX();
-            this.buttonX3 = new DevComponents.DotNetBar.ButtonX();
-            this.buttonX4 = new DevComponents.DotNetBar.ButtonX();
+            this.btnPersonRecord = new DevComponents.DotNetBar.ButtonX();
+            this.btnCheckPerson = new DevComponents.DotNetBar.ButtonX();
             this.dataGridViewX2 = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -263,7 +263,7 @@
             // 
             this.peopleVehicleVideo1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.peopleVehicleVideo1.Location = new System.Drawing.Point(0, 0);
-            this.peopleVehicleVideo1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.peopleVehicleVideo1.Margin = new System.Windows.Forms.Padding(4);
             this.peopleVehicleVideo1.Name = "peopleVehicleVideo1";
             this.peopleVehicleVideo1.Size = new System.Drawing.Size(512, 443);
             this.peopleVehicleVideo1.TabIndex = 0;
@@ -342,14 +342,14 @@
             this.dataGridViewTextBoxColumn6,
             this.dataGridViewTextBoxColumn7,
             this.dataGridViewTextBoxColumn8});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewX1.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewX1.DefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridViewX1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewX1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dataGridViewX1.Location = new System.Drawing.Point(0, 0);
@@ -403,7 +403,7 @@
             // 
             this.compareInfo1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.compareInfo1.Location = new System.Drawing.Point(0, 0);
-            this.compareInfo1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.compareInfo1.Margin = new System.Windows.Forms.Padding(4);
             this.compareInfo1.Name = "compareInfo1";
             this.compareInfo1.Size = new System.Drawing.Size(511, 443);
             this.compareInfo1.TabIndex = 0;
@@ -420,8 +420,8 @@
             // 
             this.splitContainer5.Panel1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.splitContainer5.Panel1.Controls.Add(this.labelX2);
-            this.splitContainer5.Panel1.Controls.Add(this.buttonX3);
-            this.splitContainer5.Panel1.Controls.Add(this.buttonX4);
+            this.splitContainer5.Panel1.Controls.Add(this.btnPersonRecord);
+            this.splitContainer5.Panel1.Controls.Add(this.btnCheckPerson);
             this.splitContainer5.Panel1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.splitContainer5.Panel1.ForeColor = System.Drawing.SystemColors.Highlight;
             // 
@@ -446,30 +446,32 @@
             this.labelX2.TabIndex = 4;
             this.labelX2.Text = "实时人员通行";
             // 
-            // buttonX3
+            // btnPersonRecord
             // 
-            this.buttonX3.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.buttonX3.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonX3.Location = new System.Drawing.Point(417, 4);
-            this.buttonX3.Name = "buttonX3";
-            this.buttonX3.Size = new System.Drawing.Size(81, 49);
-            this.buttonX3.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.buttonX3.TabIndex = 2;
-            this.buttonX3.Text = "历史记录";
-            this.buttonX3.TextColor = System.Drawing.Color.Black;
+            this.btnPersonRecord.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnPersonRecord.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btnPersonRecord.Location = new System.Drawing.Point(417, 4);
+            this.btnPersonRecord.Name = "btnPersonRecord";
+            this.btnPersonRecord.Size = new System.Drawing.Size(81, 49);
+            this.btnPersonRecord.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btnPersonRecord.TabIndex = 2;
+            this.btnPersonRecord.Text = "历史记录";
+            this.btnPersonRecord.TextColor = System.Drawing.Color.Black;
+            this.btnPersonRecord.Click += new System.EventHandler(this.btnPersonRecord_Click);
             // 
-            // buttonX4
+            // btnCheckPerson
             // 
-            this.buttonX4.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.buttonX4.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.buttonX4.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonX4.Location = new System.Drawing.Point(330, 4);
-            this.buttonX4.Name = "buttonX4";
-            this.buttonX4.Size = new System.Drawing.Size(81, 49);
-            this.buttonX4.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.buttonX4.TabIndex = 3;
-            this.buttonX4.Text = "人工查验";
-            this.buttonX4.TextColor = System.Drawing.Color.Black;
+            this.btnCheckPerson.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnCheckPerson.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.btnCheckPerson.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btnCheckPerson.Location = new System.Drawing.Point(330, 4);
+            this.btnCheckPerson.Name = "btnCheckPerson";
+            this.btnCheckPerson.Size = new System.Drawing.Size(81, 49);
+            this.btnCheckPerson.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btnCheckPerson.TabIndex = 3;
+            this.btnCheckPerson.Text = "人工查验";
+            this.btnCheckPerson.TextColor = System.Drawing.Color.Black;
+            this.btnCheckPerson.Click += new System.EventHandler(this.btnCheckPerson_Click);
             // 
             // dataGridViewX2
             // 
@@ -483,14 +485,14 @@
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn4});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewX2.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewX2.DefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridViewX2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewX2.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dataGridViewX2.Location = new System.Drawing.Point(0, 0);
@@ -584,8 +586,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
         private System.Windows.Forms.SplitContainer splitContainer5;
         private DevComponents.DotNetBar.LabelX labelX2;
-        private DevComponents.DotNetBar.ButtonX buttonX3;
-        private DevComponents.DotNetBar.ButtonX buttonX4;
+        private DevComponents.DotNetBar.ButtonX btnPersonRecord;
+        private DevComponents.DotNetBar.ButtonX btnCheckPerson;
         private PeopleVehicleVideo peopleVehicleVideo1;
         private System.Windows.Forms.ToolStripMenuItem tsmiSysConfig;
         private System.Windows.Forms.ToolStripMenuItem tsmiCloseComputer;

@@ -79,7 +79,7 @@ namespace IMS.Collecter
                     FaceCollect.CurrentFacePic = FaceCollect.FaceWhiteList[(int)record.STAFF_ID];
                     if (AccessEvent != null)
                     {
-                        AccessEvent(this, new AccessEventArgs(staffList[0]));
+                        AccessEvent(this, new AccessEventArgs(staffList[0],record.RECORD_DATE.Value.ToString("yyyy-MM-dd HH:mm:ss")));
                     }
                 }
             }

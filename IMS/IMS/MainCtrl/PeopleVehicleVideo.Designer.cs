@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.labelX1 = new DevComponents.DotNetBar.LabelX();
+            this.lbResult = new DevComponents.DotNetBar.LabelX();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -50,25 +50,25 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.splitContainer1.Panel2.Controls.Add(this.labelX1);
+            this.splitContainer1.Panel2.Controls.Add(this.lbResult);
             this.splitContainer1.Size = new System.Drawing.Size(438, 372);
             this.splitContainer1.SplitterDistance = 307;
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 0;
             // 
-            // labelX1
+            // lbResult
             // 
             // 
             // 
             // 
-            this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelX1.ForeColor = System.Drawing.Color.White;
-            this.labelX1.Location = new System.Drawing.Point(125, 20);
-            this.labelX1.Name = "labelX1";
-            this.labelX1.Size = new System.Drawing.Size(204, 23);
-            this.labelX1.TabIndex = 0;
-            this.labelX1.Text = "人员/车辆查验结果显示区";
+            this.lbResult.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lbResult.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbResult.ForeColor = System.Drawing.Color.White;
+            this.lbResult.Location = new System.Drawing.Point(125, 20);
+            this.lbResult.Name = "lbResult";
+            this.lbResult.Size = new System.Drawing.Size(204, 23);
+            this.lbResult.TabIndex = 0;
+            this.lbResult.Text = "人员/车辆查验结果显示区";
             // 
             // PeopleVehicleVideo
             // 
@@ -87,6 +87,6 @@
         #endregion
 
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private DevComponents.DotNetBar.LabelX labelX1;
+        private DevComponents.DotNetBar.LabelX lbResult;
     }
 }

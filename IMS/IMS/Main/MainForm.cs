@@ -12,6 +12,7 @@ using DevComponents.DotNetBar;
 using IMS.Collecter;
 using IMS.Common.Database;
 using log4net;
+using IMS.MainCtrl;
 
 namespace IMS
 {
@@ -69,6 +70,13 @@ namespace IMS
             set { iThreshold = value; }
         }
 
+        private int iBlackThreshold = 60;  //人脸识别黑名单阈值，默认60
+
+        public int IBlackThreshold
+        {
+            get { return iBlackThreshold; }
+            set { iBlackThreshold = value; }
+        }
       
         #endregion
 
@@ -115,17 +123,26 @@ namespace IMS
 
         void idCardCollect_IDCardEvent(object sender, IDCardEventArgs e)
         {
-            //throw new NotImplementedException();
+            if(e.IDCard!=null)
+            {
+                compareInfo1.LoadIDInfo(e.IDCard);
+            }
         }
 
         void accessCollect_AccessEvent(object sender, AccessEventArgs e)
         {
-            //throw new NotImplementedException();
+            if (e.StaffInfo != null)
+            {
+                compareInfo1.LoadAccessInfo(e.StaffInfo,e.PassTime);
+            }
         }
 
         void faceCollect_ValidateEvent(object sender, ValidateResultEventArgs e)
         {
-            MessageBox.Show("比对结果" + e.ValidateValue);
+            if (e.CaptruePic != null)
+            {
+                compareInfo1.LoadValidateResult(e);
+            }
         }
 
         private void FillDataGrid()
@@ -145,6 +162,7 @@ namespace IMS
                 iFaceMode = int.Parse(SysConfigClass.GetIMSConfig("IMS_CONFIG", "FaceMode"));
                 iBlackMode = int.Parse(SysConfigClass.GetIMSConfig("IMS_CONFIG", "IsBlackMode"));
                 iSwipeMode = int.Parse(SysConfigClass.GetIMSConfig("IMS_CONFIG", "SwipeMode"));
+                iBlackThreshold = int.Parse(SysConfigClass.GetIMSConfig("FACE_BLACK", "Threshold"));
 
                 switch (iFaceMode)
                 {
@@ -239,6 +257,16 @@ namespace IMS
         {
             SysConfig sysCfg = new SysConfig();
             sysCfg.ShowDialog();
+        }
+
+        private void btnCheckPerson_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnPersonRecord_Click(object sender, EventArgs e)
+        {
+
         }
 
        

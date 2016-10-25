@@ -14,9 +14,17 @@ namespace IMS.Collecter
             get { return _staffInfo; }
         }
 
-        public AccessEventArgs(Maticsoft.Model.SMT_STAFF_INFO staffInfo)
+        private string _passTime;
+
+        public string PassTime
+        {
+            get { return _passTime; }
+        }
+
+        public AccessEventArgs(Maticsoft.Model.SMT_STAFF_INFO staffInfo,string passTime)
         {
             _staffInfo = staffInfo;
+            _passTime = passTime;
         }
     }
 }

@@ -1,0 +1,131 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace IMS.Common.Data
+{
+    public class NationHelper
+    {
+        public static string GetNation(string nationCode)
+        {
+            switch (nationCode)
+            {
+                case "01":
+                    return "汉";
+                case "02":
+                    return "蒙古";
+                case "03":
+                    return "回";
+                case "04":
+                    return "藏";
+                case "05":
+                    return "维吾尔";
+                case "06":
+                    return "苗";
+                case "07":
+                    return "彝";
+                case "08":
+                    return "壮";
+                case "09":
+                    return "布依";
+                case "10":
+                    return "朝鲜";
+                case "11":
+                    return "满";
+                case "12":
+                    return "侗";
+                case "13":
+                    return "瑶";
+                case "14":
+                    return "白";
+                case "15":
+                    return "土家";
+                case "16":
+                    return "哈尼";
+                case "17":
+                    return "哈萨克";
+                case "18":
+                    return "傣";
+                case "19":
+                    return "黎";
+                case "20":
+                    return "傈僳";
+                case "21":
+                    return "佤";
+                case "22":
+                    return "畲";
+                case "23":
+                    return "高山";
+                case "24":
+                    return "拉祜";
+                case "25":
+                    return "水";
+                case "26":
+                    return "东乡";
+                case "27":
+                    return "纳西";
+                case "28":
+                    return "景颇";
+                case "29":
+                    return "柯尔克孜";
+                case "30":
+                    return "土";
+                case "31":
+                    return "达斡尔";
+                case "32":
+                    return "仫佬";
+                case "33":
+                    return "羌";
+                case "34":
+                    return "布朗";
+                case "35":
+                    return "撒拉";
+                case "36":
+                    return "毛南";
+                case "37":
+                    return "仡佬";
+                case "38":
+                    return "锡伯";
+                case "39":
+                    return "阿昌";
+                case "40":
+                    return "普米";
+                case "41":
+                    return "塔吉克";
+                case "42":
+                    return "怒";
+                case "43":
+                    return "乌孜别克";
+                case "44":
+                    return "俄罗斯";
+                case "45":
+                    return "鄂温克";
+                case "46":
+                    return "德昂";
+                case "47":
+                    return "保安";
+                case "48":
+                    return "裕固";
+                case "49":
+                    return "京";
+                case "50":
+                    return "塔塔尔";
+                case "51":
+                    return "独龙";
+                case "52":
+                    return "鄂伦春";
+                case "53":
+                    return "赫哲";
+                case "54":
+                    return "门巴";
+                case "55":
+                    return "珞巴";
+                case "56":
+                    return "基诺";
+                default:
+                    return "汉";
+            }
+        }
+    }
+}

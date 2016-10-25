@@ -8,6 +8,7 @@ using IMS.Common;
 using System.Drawing;
 using System.Drawing.Imaging;
 using FaceDll;
+using System.IO;
 
 namespace HikSDK
 {
@@ -202,6 +203,43 @@ namespace HikSDK
                 realPlayHandleWinHandle.Add(str, controlHandle);
             }
             return str;
+        }
+
+        public void CapturePicture(int playHandle,string sBmpPicFileName)
+        {
+            bool ret = CHCNetSDK.NET_DVR_CapturePicture(playHandle, sBmpPicFileName);
+            UpdateError(ret);
+        }
+
+        public void CaptureJPEGPicture(string sJpegPicFileName)
+        {
+            CHCNetSDK.NET_DVR_JPEGPARA lpJpegPara = new CHCNetSDK.NET_DVR_JPEGPARA();
+            lpJpegPara.wPicQuality = 0; //图像质量 Image quality
+            lpJpegPara.wPicSize = 0xff; //抓图分辨率 Picture size: 0xff-Auto(使用当前码流分辨率) 
+            //抓图分辨率需要设备支持，更多取值请参考SDK文档
+
+            //JPEG抓图保存成文件 Capture a JPEG picture
+
+
+            //JEPG抓图，数据保存在缓冲区中 Capture a JPEG picture and save in the buffer
+            uint iBuffSize = 400000; //缓冲区大小需要不小于一张图片数据的大小 The buffer size should not be less than the picture size
+            byte[] byJpegPicBuffer = new byte[iBuffSize];
+            uint dwSizeReturned = 0;
+
+            if (!CHCNetSDK.NET_DVR_CaptureJPEGPicture_NEW(userId, 0, ref lpJpegPara, byJpegPicBuffer, iBuffSize, ref dwSizeReturned))
+            {
+                return;
+            }
+            else
+            {
+                //将缓冲区里的JPEG图片数据写入文件 save the data into a file
+                FileStream fs = new FileStream(sJpegPicFileName, FileMode.Create);
+                int iLen = (int)dwSizeReturned;
+                fs.Write(byJpegPicBuffer, 0, iLen);
+                fs.Close();
+
+            }
+
         }
 
         private string RealPlayCallBack()

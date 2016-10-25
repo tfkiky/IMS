@@ -17,15 +17,9 @@ namespace test
 {
     public partial class Facetest : Form
     {
-        private bool m_bInitSDK = false;
-        private bool m_bRecord = false;
         private uint iLastErr = 0;
         private Int32 m_lUserID = -1;
         private Int32 m_lRealHandle = -1;
-        private string str1;
-        private string str2;
-        private Int32 i = 0;
-        private Int32 m_lTree = 0;
         private string str;
         private long iSelIndex = 0;
         private uint dwAChanTotalNum = 0;

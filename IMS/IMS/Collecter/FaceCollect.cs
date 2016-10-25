@@ -178,26 +178,54 @@ namespace IMS.Collecter
         /// <param name="state"></param>
         private void FaceValidate(object state)
         {
-            string capturePic = GetCameraPic();
-            string localPic=currentFacePic;
-            byte[] feature1 = new byte[3000], feature2 = new byte[3000];
-            int faceValue=0;
             if (isFaceLoad)
             {
+                string capturePic = GetCameraPic();
+                string localPic = currentFacePic;
+                string blackPic = "";
+                byte[] feature1 = new byte[3000], feature2 = new byte[3000];
+                int faceValue = 0;
+
+                if (MainForm.Instance.IBlackMode == 0)
+                {
+                    if (faceBlackList != null && !string.IsNullOrEmpty(capturePic))
+                    {
+                        foreach (string pic in faceBlackList)
+                        {
+                            int f1 = FaceService.face_get_feature_from_image(pic, feature1);
+                            int f2 = FaceService.face_get_feature_from_image(capturePic, feature2);
+                            faceValue = FaceService.face_comp_feature(feature1, feature2);
+                            if (faceValue > MainForm.Instance.IBlackThreshold)
+                            {
+                                blackPic = pic;
+                                break;
+                            }
+                        }
+                        if (!string.IsNullOrEmpty(blackPic))
+                        {
+                            if (ValidateEvent != null)
+                            {
+                                ValidateEvent(this, new ValidateResultEventArgs(capturePic, localPic, blackPic, faceValue, ValidateResult.Black));
+                            }
+                        }
+                    }
+                }
+
                 switch (MainForm.Instance.IFaceMode)
                 {
                     case 0: ///1:1验证
-                        if (!string.IsNullOrEmpty(localPic)&&!string.IsNullOrEmpty(capturePic))
+                        if (!string.IsNullOrEmpty(localPic) && !string.IsNullOrEmpty(capturePic))
                         {
                             int f1 = FaceService.face_get_feature_from_image(localPic, feature1);
                             int f2 = FaceService.face_get_feature_from_image(capturePic, feature2);
-                            faceValue= FaceService.face_comp_feature(feature1, feature2);
+                            faceValue = FaceService.face_comp_feature(feature1, feature2);
                         }
                         break;
                     case 1: ///1：N验证
-                        if (faceWhiteList!=null)
+                        if (faceWhiteList != null)
                         {
-                            foreach(string pic in faceWhiteList.Values)
+                            localPic = "";
+                            foreach (string pic in faceWhiteList.Values)
                             {
                                 int f1 = FaceService.face_get_feature_from_image(pic, feature1);
                                 int f2 = FaceService.face_get_feature_from_image(capturePic, feature2);
@@ -214,11 +242,11 @@ namespace IMS.Collecter
 
                         break;
                 }
-                if (faceValue>MainForm.Instance.IThreshold)
+                if (faceValue > MainForm.Instance.IThreshold && !string.IsNullOrEmpty(localPic))
                 {
-                    if (ValidateEvent!=null)
+                    if (ValidateEvent != null)
                     {
-                        ValidateEvent(this, new ValidateResultEventArgs(capturePic, localPic, faceValue, ValidateResult.Success));
+                        ValidateEvent(this, new ValidateResultEventArgs(capturePic, localPic, blackPic, faceValue, ValidateResult.Success));
                         using (IAccessCore access = new WGAccess())
                         {
                             ///控制开门
@@ -237,7 +265,7 @@ namespace IMS.Collecter
                 {
                     if (ValidateEvent != null)
                     {
-                        ValidateEvent(this, new ValidateResultEventArgs(capturePic, localPic, faceValue, ValidateResult.NoPerson));
+                        ValidateEvent(this, new ValidateResultEventArgs(capturePic, localPic, blackPic, faceValue, ValidateResult.NoPerson));
                         File.Delete(capturePic);
                     }
                 }
@@ -246,21 +274,29 @@ namespace IMS.Collecter
 
         private string GetCameraPic()
         {
-            string dir="./Faces/";
+            string dir=AppDomain.CurrentDomain.BaseDirectory+"Faces\\";
             if (!Directory.Exists(dir))
             {
                 Directory.CreateDirectory(dir);
             }
-            string sBmpPicFileName =dir+ DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")+".bmp";
+            string sBmpPicFileName =dir+ DateTime.Now.ToString("yyyyMMddHHmmssfff")+".bmp";
             if (!string.IsNullOrEmpty(MainForm.Instance.PlayHandle))
             {
                 MainForm.Instance.HikCam.CapturePicture(int.Parse(MainForm.Instance.PlayHandle), sBmpPicFileName);
             }
-            if (File.Exists(sBmpPicFileName)&&FaceService.face_exist(sBmpPicFileName).Equals(1))
+            if (File.Exists(sBmpPicFileName))
             {
-                return sBmpPicFileName;
+                if(FaceService.face_exist(sBmpPicFileName).Equals(1))
+                {
+                    return sBmpPicFileName;
+                }
+                else
+                {
+                    File.Delete(sBmpPicFileName);
+                    return null;
+                }
             }
-            else return null;
+            else  return null;
         }
     }
 }
