@@ -21,10 +21,19 @@ namespace IMS.Collecter
             get { return _passTime; }
         }
 
-        public AccessEventArgs(Maticsoft.Model.SMT_STAFF_INFO staffInfo,string passTime)
+        private bool _isAllow;
+
+        public bool IsAllow
+        {
+            get { return _isAllow; }
+            set { _isAllow = value; }
+        }
+
+        public AccessEventArgs(Maticsoft.Model.SMT_STAFF_INFO staffInfo,string passTime,bool isAllow)
         {
             _staffInfo = staffInfo;
             _passTime = passTime;
+            _isAllow = isAllow;
         }
     }
 }
