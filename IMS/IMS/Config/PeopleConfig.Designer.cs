@@ -29,12 +29,21 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.groupPanel2 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.groupPanel1 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.groupPanel2 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.labelX1 = new DevComponents.DotNetBar.LabelX();
+            this.comboBoxEx1 = new DevComponents.DotNetBar.Controls.ComboBoxEx();
+            this.labelX2 = new DevComponents.DotNetBar.LabelX();
+            this.comboBoxEx2 = new DevComponents.DotNetBar.Controls.ComboBoxEx();
+            this.textBoxX1 = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.buttonX1 = new DevComponents.DotNetBar.ButtonX();
+            this.buttonX2 = new DevComponents.DotNetBar.ButtonX();
+            this.buttonX3 = new DevComponents.DotNetBar.ButtonX();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.groupPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -56,6 +65,54 @@
             this.splitContainer1.SplitterDistance = 175;
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // groupPanel1
+            // 
+            this.groupPanel1.CanvasColor = System.Drawing.SystemColors.Control;
+            this.groupPanel1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.groupPanel1.Controls.Add(this.buttonX3);
+            this.groupPanel1.Controls.Add(this.buttonX2);
+            this.groupPanel1.Controls.Add(this.buttonX1);
+            this.groupPanel1.Controls.Add(this.textBoxX1);
+            this.groupPanel1.Controls.Add(this.comboBoxEx2);
+            this.groupPanel1.Controls.Add(this.labelX2);
+            this.groupPanel1.Controls.Add(this.comboBoxEx1);
+            this.groupPanel1.Controls.Add(this.labelX1);
+            this.groupPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupPanel1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.groupPanel1.Location = new System.Drawing.Point(0, 0);
+            this.groupPanel1.Name = "groupPanel1";
+            this.groupPanel1.Size = new System.Drawing.Size(494, 175);
+            // 
+            // 
+            // 
+            this.groupPanel1.Style.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
+            this.groupPanel1.Style.BackColorGradientAngle = 90;
+            this.groupPanel1.Style.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
+            this.groupPanel1.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel1.Style.BorderBottomWidth = 1;
+            this.groupPanel1.Style.BorderColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
+            this.groupPanel1.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel1.Style.BorderLeftWidth = 1;
+            this.groupPanel1.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel1.Style.BorderRightWidth = 1;
+            this.groupPanel1.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel1.Style.BorderTopWidth = 1;
+            this.groupPanel1.Style.CornerDiameter = 4;
+            this.groupPanel1.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            this.groupPanel1.Style.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center;
+            this.groupPanel1.Style.TextColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
+            this.groupPanel1.Style.TextLineAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Near;
+            // 
+            // 
+            // 
+            this.groupPanel1.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.groupPanel1.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.groupPanel1.TabIndex = 3;
+            this.groupPanel1.Text = "人员控制器配置";
             // 
             // groupPanel2
             // 
@@ -97,45 +154,101 @@
             this.groupPanel2.TabIndex = 2;
             this.groupPanel2.Text = "人脸摄像机配置";
             // 
-            // groupPanel1
+            // labelX1
             // 
-            this.groupPanel1.CanvasColor = System.Drawing.SystemColors.Control;
-            this.groupPanel1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
-            this.groupPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupPanel1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.groupPanel1.Location = new System.Drawing.Point(0, 0);
-            this.groupPanel1.Name = "groupPanel1";
-            this.groupPanel1.Size = new System.Drawing.Size(494, 175);
+            this.labelX1.BackColor = System.Drawing.Color.Transparent;
             // 
             // 
             // 
-            this.groupPanel1.Style.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
-            this.groupPanel1.Style.BackColorGradientAngle = 90;
-            this.groupPanel1.Style.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
-            this.groupPanel1.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.groupPanel1.Style.BorderBottomWidth = 1;
-            this.groupPanel1.Style.BorderColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
-            this.groupPanel1.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.groupPanel1.Style.BorderLeftWidth = 1;
-            this.groupPanel1.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.groupPanel1.Style.BorderRightWidth = 1;
-            this.groupPanel1.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.groupPanel1.Style.BorderTopWidth = 1;
-            this.groupPanel1.Style.CornerDiameter = 4;
-            this.groupPanel1.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
-            this.groupPanel1.Style.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center;
-            this.groupPanel1.Style.TextColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
-            this.groupPanel1.Style.TextLineAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Near;
+            this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX1.Location = new System.Drawing.Point(29, 18);
+            this.labelX1.Name = "labelX1";
+            this.labelX1.Size = new System.Drawing.Size(111, 23);
+            this.labelX1.TabIndex = 0;
+            this.labelX1.Text = "选择联动控制器：";
+            // 
+            // comboBoxEx1
+            // 
+            this.comboBoxEx1.DisplayMember = "Text";
+            this.comboBoxEx1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.comboBoxEx1.FormattingEnabled = true;
+            this.comboBoxEx1.ItemHeight = 17;
+            this.comboBoxEx1.Location = new System.Drawing.Point(146, 18);
+            this.comboBoxEx1.Name = "comboBoxEx1";
+            this.comboBoxEx1.Size = new System.Drawing.Size(121, 23);
+            this.comboBoxEx1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.comboBoxEx1.TabIndex = 1;
+            // 
+            // labelX2
+            // 
+            this.labelX2.BackColor = System.Drawing.Color.Transparent;
             // 
             // 
             // 
-            this.groupPanel1.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX2.Location = new System.Drawing.Point(29, 64);
+            this.labelX2.Name = "labelX2";
+            this.labelX2.Size = new System.Drawing.Size(111, 23);
+            this.labelX2.TabIndex = 0;
+            this.labelX2.Text = "选择联动门禁：";
+            // 
+            // comboBoxEx2
+            // 
+            this.comboBoxEx2.DisplayMember = "Text";
+            this.comboBoxEx2.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.comboBoxEx2.FormattingEnabled = true;
+            this.comboBoxEx2.ItemHeight = 17;
+            this.comboBoxEx2.Location = new System.Drawing.Point(146, 64);
+            this.comboBoxEx2.Name = "comboBoxEx2";
+            this.comboBoxEx2.Size = new System.Drawing.Size(121, 23);
+            this.comboBoxEx2.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.comboBoxEx2.TabIndex = 1;
+            // 
+            // textBoxX1
             // 
             // 
             // 
-            this.groupPanel1.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.groupPanel1.TabIndex = 3;
-            this.groupPanel1.Text = "人脸摄像机配置";
+            // 
+            this.textBoxX1.Border.Class = "TextBoxBorder";
+            this.textBoxX1.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.textBoxX1.Location = new System.Drawing.Point(301, 18);
+            this.textBoxX1.Multiline = true;
+            this.textBoxX1.Name = "textBoxX1";
+            this.textBoxX1.Size = new System.Drawing.Size(157, 68);
+            this.textBoxX1.TabIndex = 2;
+            // 
+            // buttonX1
+            // 
+            this.buttonX1.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.buttonX1.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.buttonX1.Location = new System.Drawing.Point(217, 106);
+            this.buttonX1.Name = "buttonX1";
+            this.buttonX1.Size = new System.Drawing.Size(75, 23);
+            this.buttonX1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.buttonX1.TabIndex = 3;
+            this.buttonX1.Text = "修改";
+            // 
+            // buttonX2
+            // 
+            this.buttonX2.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.buttonX2.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.buttonX2.Location = new System.Drawing.Point(298, 106);
+            this.buttonX2.Name = "buttonX2";
+            this.buttonX2.Size = new System.Drawing.Size(75, 23);
+            this.buttonX2.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.buttonX2.TabIndex = 3;
+            this.buttonX2.Text = "保存";
+            // 
+            // buttonX3
+            // 
+            this.buttonX3.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.buttonX3.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.buttonX3.Location = new System.Drawing.Point(383, 106);
+            this.buttonX3.Name = "buttonX3";
+            this.buttonX3.Size = new System.Drawing.Size(75, 23);
+            this.buttonX3.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.buttonX3.TabIndex = 3;
+            this.buttonX3.Text = "测试";
             // 
             // PeopleConfig
             // 
@@ -148,6 +261,7 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.groupPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -157,6 +271,14 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private DevComponents.DotNetBar.Controls.GroupPanel groupPanel2;
         private DevComponents.DotNetBar.Controls.GroupPanel groupPanel1;
+        private DevComponents.DotNetBar.ButtonX buttonX3;
+        private DevComponents.DotNetBar.ButtonX buttonX2;
+        private DevComponents.DotNetBar.ButtonX buttonX1;
+        private DevComponents.DotNetBar.Controls.TextBoxX textBoxX1;
+        private DevComponents.DotNetBar.Controls.ComboBoxEx comboBoxEx2;
+        private DevComponents.DotNetBar.LabelX labelX2;
+        private DevComponents.DotNetBar.Controls.ComboBoxEx comboBoxEx1;
+        private DevComponents.DotNetBar.LabelX labelX1;
 
     }
 }

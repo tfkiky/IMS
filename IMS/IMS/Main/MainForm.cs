@@ -12,7 +12,6 @@ using DevComponents.DotNetBar;
 using IMS.Collecter;
 using IMS.Common.Database;
 using log4net;
-using IMS.MainCtrl;
 
 namespace IMS
 {

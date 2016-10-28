@@ -94,12 +94,6 @@
     <Compile Include="MainCtrl\FaceVideo.Designer.cs">
       <DependentUpon>FaceVideo.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainCtrl\ThroughPerson.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="MainCtrl\ThroughPerson.Designer.cs">
-      <DependentUpon>ThroughPerson.cs</DependentUpon>
-    </Compile>
     <Compile Include="Main\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -159,8 +153,8 @@
     <EmbeddedResource Include="MainCtrl\CompareInfo.resx">
       <DependentUpon>CompareInfo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainCtrl\ThroughPerson.resx">
-      <DependentUpon>ThroughPerson.cs</DependentUpon>
+    <EmbeddedResource Include="MainCtrl\PeopleIDCard.resx">
+      <DependentUpon>PeopleIDCard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -226,6 +220,12 @@
       <Project>{c6ec28ef-301d-4be2-965f-a18bf6415269}</Project>
       <Name>IMS.DataBase</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\20130714112646646.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\01.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

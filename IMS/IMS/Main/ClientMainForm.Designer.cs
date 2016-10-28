@@ -34,9 +34,14 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
+            this.labelX1 = new DevComponents.DotNetBar.LabelX();
+            this.lbTime = new DevComponents.DotNetBar.LabelX();
+            this.labelX2 = new DevComponents.DotNetBar.LabelX();
+            this.lbConn = new DevComponents.DotNetBar.LabelX();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel2.SuspendLayout();
@@ -69,8 +74,15 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.Controls.Add(this.splitContainer2);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.lbTime);
+            this.splitContainer1.Panel2.Controls.Add(this.lbConn);
+            this.splitContainer1.Panel2.Controls.Add(this.labelX2);
+            this.splitContainer1.Panel2.Controls.Add(this.labelX1);
             this.splitContainer1.Size = new System.Drawing.Size(1024, 768);
-            this.splitContainer1.SplitterDistance = 681;
+            this.splitContainer1.SplitterDistance = 680;
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 1;
             // 
@@ -83,7 +95,7 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer4);
-            this.splitContainer2.Size = new System.Drawing.Size(1024, 681);
+            this.splitContainer2.Size = new System.Drawing.Size(1024, 680);
             this.splitContainer2.SplitterDistance = 510;
             this.splitContainer2.SplitterWidth = 1;
             this.splitContainer2.TabIndex = 0;
@@ -94,10 +106,62 @@
             this.splitContainer4.Location = new System.Drawing.Point(0, 0);
             this.splitContainer4.Name = "splitContainer4";
             this.splitContainer4.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            this.splitContainer4.Size = new System.Drawing.Size(513, 681);
-            this.splitContainer4.SplitterDistance = 359;
+            this.splitContainer4.Size = new System.Drawing.Size(513, 680);
+            this.splitContainer4.SplitterDistance = 324;
             this.splitContainer4.SplitterWidth = 1;
             this.splitContainer4.TabIndex = 0;
+            // 
+            // labelX1
+            // 
+            // 
+            // 
+            // 
+            this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labelX1.Location = new System.Drawing.Point(26, 31);
+            this.labelX1.Name = "labelX1";
+            this.labelX1.Size = new System.Drawing.Size(106, 23);
+            this.labelX1.TabIndex = 0;
+            this.labelX1.Text = "当前时间：";
+            // 
+            // lbTime
+            // 
+            // 
+            // 
+            // 
+            this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lbTime.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbTime.Location = new System.Drawing.Point(166, 31);
+            this.lbTime.Name = "lbTime";
+            this.lbTime.Size = new System.Drawing.Size(106, 23);
+            this.lbTime.TabIndex = 0;
+            this.lbTime.Text = "XX";
+            // 
+            // labelX2
+            // 
+            // 
+            // 
+            // 
+            this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labelX2.Location = new System.Drawing.Point(364, 31);
+            this.labelX2.Name = "labelX2";
+            this.labelX2.Size = new System.Drawing.Size(106, 23);
+            this.labelX2.TabIndex = 0;
+            this.labelX2.Text = "连接状态：";
+            // 
+            // lbConn
+            // 
+            // 
+            // 
+            // 
+            this.lbConn.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lbConn.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbConn.Location = new System.Drawing.Point(490, 31);
+            this.lbConn.Name = "lbConn";
+            this.lbConn.Size = new System.Drawing.Size(106, 23);
+            this.lbConn.TabIndex = 0;
+            this.lbConn.Text = "XX";
             // 
             // ClientMainForm
             // 
@@ -106,6 +170,7 @@
             this.ClientSize = new System.Drawing.Size(1024, 768);
             this.ContextMenuStrip = this.contextMenuStrip1;
             this.Controls.Add(this.splitContainer1);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "ClientMainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -113,6 +178,7 @@
             this.Load += new System.EventHandler(this.ClientMainForm_Load);
             this.contextMenuStrip1.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
@@ -131,6 +197,10 @@
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.SplitContainer splitContainer4;
         private System.Windows.Forms.ToolStripMenuItem tsmiExit;
+        private DevComponents.DotNetBar.LabelX labelX1;
+        private DevComponents.DotNetBar.LabelX lbTime;
+        private DevComponents.DotNetBar.LabelX labelX2;
+        private DevComponents.DotNetBar.LabelX lbConn;
     }
 }
 
