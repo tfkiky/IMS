@@ -133,6 +133,14 @@ namespace IMS
             if (e.StaffInfo != null)
             {
                 compareInfo1.LoadAccessInfo(e.StaffInfo,e.PassTime);
+                if (e.IsAllow)
+                {
+
+                }
+                else
+                {
+
+                }
             }
         }
 

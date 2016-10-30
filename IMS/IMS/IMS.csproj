@@ -82,6 +82,18 @@
     <Compile Include="Collecter\FaceCollect.cs" />
     <Compile Include="Collecter\IDCardClass.cs" />
     <Compile Include="Collecter\IDCardCollect.cs" />
+    <Compile Include="Config\DBConfig.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Config\DBConfig.Designer.cs">
+      <DependentUpon>DBConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Config\ValidateModeConfig.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Config\ValidateModeConfig.Designer.cs">
+      <DependentUpon>ValidateModeConfig.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainCtrl\CompareInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -93,6 +105,18 @@
     </Compile>
     <Compile Include="MainCtrl\FaceVideo.Designer.cs">
       <DependentUpon>FaceVideo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainCtrl\ManualInspect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainCtrl\ManualInspect.Designer.cs">
+      <DependentUpon>ManualInspect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainCtrl\ThroughPerson.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MainCtrl\ThroughPerson.Designer.cs">
+      <DependentUpon>ThroughPerson.cs</DependentUpon>
     </Compile>
     <Compile Include="Main\MainForm.cs">
       <SubType>Form</SubType>
@@ -150,11 +174,26 @@
     <Compile Include="MainCtrl\ValidateResult.Designer.cs">
       <DependentUpon>ValidateResult.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Config\DBConfig.resx">
+      <DependentUpon>DBConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Config\ValidateModeConfig.resx">
+      <DependentUpon>ValidateModeConfig.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainCtrl\CompareInfo.resx">
       <DependentUpon>CompareInfo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MainCtrl\ManualInspect.resx">
+      <DependentUpon>ManualInspect.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainCtrl\PeopleIDCard.resx">
       <DependentUpon>PeopleIDCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainCtrl\ThroughPerson.resx">
+      <DependentUpon>ThroughPerson.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainCtrl\ValidateResult.resx">
+      <DependentUpon>ValidateResult.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

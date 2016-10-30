@@ -1,21 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using DevComponents.DotNetBar;
 
-namespace IMS
+namespace IMS.MainCtrl
 {
-    public partial class PeopleConfig : UserControl
+    public partial class ManualInspect : Form
     {
-        public PeopleConfig()
+        public ManualInspect()
         {
             InitializeComponent();
-            StyleManager.Style = eStyle.Office2007Black;
         }
     }
 }

@@ -6,16 +6,14 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using DevComponents.DotNetBar;
 
-namespace IMS
+namespace IMS.Config
 {
-    public partial class PeopleConfig : UserControl
+    public partial class ValidateModeConfig : UserControl
     {
-        public PeopleConfig()
+        public ValidateModeConfig()
         {
             InitializeComponent();
-            StyleManager.Style = eStyle.Office2007Black;
         }
     }
 }

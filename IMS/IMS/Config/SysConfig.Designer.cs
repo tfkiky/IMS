@@ -32,20 +32,22 @@
             this.tabControl1 = new DevComponents.DotNetBar.TabControl();
             this.tabControlPanel1 = new DevComponents.DotNetBar.TabControlPanel();
             this.tabItem1 = new DevComponents.DotNetBar.TabItem(this.components);
+            this.tabControlPanel3 = new DevComponents.DotNetBar.TabControlPanel();
+            this.tabItem3 = new DevComponents.DotNetBar.TabItem(this.components);
             this.tabControlPanel2 = new DevComponents.DotNetBar.TabControlPanel();
             this.tabItem2 = new DevComponents.DotNetBar.TabItem(this.components);
             this.tabControlPanel5 = new DevComponents.DotNetBar.TabControlPanel();
             this.tabItem5 = new DevComponents.DotNetBar.TabItem(this.components);
             this.tabControlPanel6 = new DevComponents.DotNetBar.TabControlPanel();
             this.tabItem6 = new DevComponents.DotNetBar.TabItem(this.components);
-            this.tabControlPanel4 = new DevComponents.DotNetBar.TabControlPanel();
-            this.tabItem4 = new DevComponents.DotNetBar.TabItem(this.components);
-            this.tabControlPanel3 = new DevComponents.DotNetBar.TabControlPanel();
-            this.tabItem3 = new DevComponents.DotNetBar.TabItem(this.components);
+            this.validateModeConfig1 = new IMS.Config.ValidateModeConfig();
             this.peopleConfig1 = new IMS.PeopleConfig();
+            this.dbConfig1 = new IMS.Config.DBConfig();
             ((System.ComponentModel.ISupportInitialize)(this.tabControl1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabControlPanel1.SuspendLayout();
+            this.tabControlPanel3.SuspendLayout();
+            this.tabControlPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -60,14 +62,13 @@
             this.tabControl1.ColorScheme.TabItemSelectedBackground2 = System.Drawing.SystemColors.ControlDarkDark;
             this.tabControl1.ColorScheme.TabItemSelectedText = System.Drawing.Color.White;
             this.tabControl1.ColorScheme.TabItemText = System.Drawing.Color.White;
-            this.tabControl1.Controls.Add(this.tabControlPanel1);
             this.tabControl1.Controls.Add(this.tabControlPanel3);
+            this.tabControl1.Controls.Add(this.tabControlPanel1);
             this.tabControl1.Controls.Add(this.tabControlPanel2);
             this.tabControl1.Controls.Add(this.tabControlPanel5);
-            this.tabControl1.Controls.Add(this.tabControlPanel4);
             this.tabControl1.Controls.Add(this.tabControlPanel6);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.ForeColor = System.Drawing.Color.White;
+            this.tabControl1.ForeColor = System.Drawing.Color.Black;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabControl1.Name = "tabControl1";
@@ -78,7 +79,6 @@
             this.tabControl1.TabLayoutType = DevComponents.DotNetBar.eTabLayoutType.FixedWithNavigationBox;
             this.tabControl1.Tabs.Add(this.tabItem1);
             this.tabControl1.Tabs.Add(this.tabItem2);
-            this.tabControl1.Tabs.Add(this.tabItem4);
             this.tabControl1.Tabs.Add(this.tabItem5);
             this.tabControl1.Tabs.Add(this.tabItem6);
             this.tabControl1.Tabs.Add(this.tabItem3);
@@ -108,9 +108,37 @@
             this.tabItem1.AttachedControl = this.tabControlPanel1;
             this.tabItem1.Name = "tabItem1";
             this.tabItem1.Text = "人员配置";
+            this.tabItem1.TextColor = System.Drawing.Color.Black;
+            // 
+            // tabControlPanel3
+            // 
+            this.tabControlPanel3.Controls.Add(this.dbConfig1);
+            this.tabControlPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControlPanel3.Location = new System.Drawing.Point(0, 28);
+            this.tabControlPanel3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tabControlPanel3.Name = "tabControlPanel3";
+            this.tabControlPanel3.Padding = new System.Windows.Forms.Padding(1);
+            this.tabControlPanel3.Size = new System.Drawing.Size(645, 451);
+            this.tabControlPanel3.Style.BackColor1.Color = System.Drawing.SystemColors.ControlDarkDark;
+            this.tabControlPanel3.Style.BackColor2.Color = System.Drawing.SystemColors.AppWorkspace;
+            this.tabControlPanel3.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
+            this.tabControlPanel3.Style.BorderColor.Color = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(97)))), ((int)(((byte)(156)))));
+            this.tabControlPanel3.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right) 
+            | DevComponents.DotNetBar.eBorderSide.Bottom)));
+            this.tabControlPanel3.Style.GradientAngle = 90;
+            this.tabControlPanel3.TabIndex = 3;
+            this.tabControlPanel3.TabItem = this.tabItem3;
+            // 
+            // tabItem3
+            // 
+            this.tabItem3.AttachedControl = this.tabControlPanel3;
+            this.tabItem3.Name = "tabItem3";
+            this.tabItem3.Text = "数据库配置";
+            this.tabItem3.TextColor = System.Drawing.Color.Black;
             // 
             // tabControlPanel2
             // 
+            this.tabControlPanel2.Controls.Add(this.validateModeConfig1);
             this.tabControlPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControlPanel2.Location = new System.Drawing.Point(0, 28);
             this.tabControlPanel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -132,6 +160,7 @@
             this.tabItem2.AttachedControl = this.tabControlPanel2;
             this.tabItem2.Name = "tabItem2";
             this.tabItem2.Text = "验证模式";
+            this.tabItem2.TextColor = System.Drawing.Color.Black;
             // 
             // tabControlPanel5
             // 
@@ -156,15 +185,16 @@
             this.tabItem5.AttachedControl = this.tabControlPanel5;
             this.tabItem5.Name = "tabItem5";
             this.tabItem5.Text = "车辆配置";
+            this.tabItem5.TextColor = System.Drawing.Color.Black;
             // 
             // tabControlPanel6
             // 
             this.tabControlPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControlPanel6.Location = new System.Drawing.Point(0, 26);
+            this.tabControlPanel6.Location = new System.Drawing.Point(0, 28);
             this.tabControlPanel6.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabControlPanel6.Name = "tabControlPanel6";
             this.tabControlPanel6.Padding = new System.Windows.Forms.Padding(1);
-            this.tabControlPanel6.Size = new System.Drawing.Size(645, 453);
+            this.tabControlPanel6.Size = new System.Drawing.Size(645, 451);
             this.tabControlPanel6.Style.BackColor1.Color = System.Drawing.SystemColors.ControlDarkDark;
             this.tabControlPanel6.Style.BackColor2.Color = System.Drawing.SystemColors.AppWorkspace;
             this.tabControlPanel6.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
@@ -180,54 +210,16 @@
             this.tabItem6.AttachedControl = this.tabControlPanel6;
             this.tabItem6.Name = "tabItem6";
             this.tabItem6.Text = "LED配置";
+            this.tabItem6.TextColor = System.Drawing.Color.Black;
             // 
-            // tabControlPanel4
+            // validateModeConfig1
             // 
-            this.tabControlPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControlPanel4.Location = new System.Drawing.Point(0, 28);
-            this.tabControlPanel4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tabControlPanel4.Name = "tabControlPanel4";
-            this.tabControlPanel4.Padding = new System.Windows.Forms.Padding(1);
-            this.tabControlPanel4.Size = new System.Drawing.Size(645, 451);
-            this.tabControlPanel4.Style.BackColor1.Color = System.Drawing.SystemColors.ControlDarkDark;
-            this.tabControlPanel4.Style.BackColor2.Color = System.Drawing.SystemColors.AppWorkspace;
-            this.tabControlPanel4.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-            this.tabControlPanel4.Style.BorderColor.Color = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(97)))), ((int)(((byte)(156)))));
-            this.tabControlPanel4.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right) 
-            | DevComponents.DotNetBar.eBorderSide.Bottom)));
-            this.tabControlPanel4.Style.GradientAngle = 90;
-            this.tabControlPanel4.TabIndex = 4;
-            this.tabControlPanel4.TabItem = this.tabItem4;
-            // 
-            // tabItem4
-            // 
-            this.tabItem4.AttachedControl = this.tabControlPanel4;
-            this.tabItem4.Name = "tabItem4";
-            this.tabItem4.Text = "刷卡方式";
-            // 
-            // tabControlPanel3
-            // 
-            this.tabControlPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControlPanel3.Location = new System.Drawing.Point(0, 28);
-            this.tabControlPanel3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tabControlPanel3.Name = "tabControlPanel3";
-            this.tabControlPanel3.Padding = new System.Windows.Forms.Padding(1);
-            this.tabControlPanel3.Size = new System.Drawing.Size(645, 451);
-            this.tabControlPanel3.Style.BackColor1.Color = System.Drawing.SystemColors.ControlDarkDark;
-            this.tabControlPanel3.Style.BackColor2.Color = System.Drawing.SystemColors.AppWorkspace;
-            this.tabControlPanel3.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-            this.tabControlPanel3.Style.BorderColor.Color = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(97)))), ((int)(((byte)(156)))));
-            this.tabControlPanel3.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right) 
-            | DevComponents.DotNetBar.eBorderSide.Bottom)));
-            this.tabControlPanel3.Style.GradientAngle = 90;
-            this.tabControlPanel3.TabIndex = 3;
-            this.tabControlPanel3.TabItem = this.tabItem3;
-            // 
-            // tabItem3
-            // 
-            this.tabItem3.AttachedControl = this.tabControlPanel3;
-            this.tabItem3.Name = "tabItem3";
-            this.tabItem3.Text = "数据库配置";
+            this.validateModeConfig1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.validateModeConfig1.Location = new System.Drawing.Point(1, 1);
+            this.validateModeConfig1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.validateModeConfig1.Name = "validateModeConfig1";
+            this.validateModeConfig1.Size = new System.Drawing.Size(643, 449);
+            this.validateModeConfig1.TabIndex = 0;
             // 
             // peopleConfig1
             // 
@@ -238,11 +230,20 @@
             this.peopleConfig1.Size = new System.Drawing.Size(643, 449);
             this.peopleConfig1.TabIndex = 0;
             // 
+            // dbConfig1
+            // 
+            this.dbConfig1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dbConfig1.Location = new System.Drawing.Point(1, 1);
+            this.dbConfig1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dbConfig1.Name = "dbConfig1";
+            this.dbConfig1.Size = new System.Drawing.Size(643, 449);
+            this.dbConfig1.TabIndex = 0;
+            // 
             // SysConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.LightGray;
+            this.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.ClientSize = new System.Drawing.Size(645, 479);
             this.Controls.Add(this.tabControl1);
             this.DoubleBuffered = true;
@@ -258,6 +259,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.tabControl1)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabControlPanel1.ResumeLayout(false);
+            this.tabControlPanel3.ResumeLayout(false);
+            this.tabControlPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -269,8 +272,6 @@
         private DevComponents.DotNetBar.TabItem tabItem6;
         private DevComponents.DotNetBar.TabControlPanel tabControlPanel5;
         private DevComponents.DotNetBar.TabItem tabItem5;
-        private DevComponents.DotNetBar.TabControlPanel tabControlPanel4;
-        private DevComponents.DotNetBar.TabItem tabItem4;
         private DevComponents.DotNetBar.TabControlPanel tabControlPanel3;
         private DevComponents.DotNetBar.TabItem tabItem3;
         private DevComponents.DotNetBar.TabControlPanel tabControlPanel2;
@@ -278,5 +279,7 @@
         private DevComponents.DotNetBar.TabControlPanel tabControlPanel1;
         private DevComponents.DotNetBar.TabItem tabItem1;
         private PeopleConfig peopleConfig1;
+        private Config.ValidateModeConfig validateModeConfig1;
+        private Config.DBConfig dbConfig1;
     }
 }
