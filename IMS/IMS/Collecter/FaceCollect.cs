@@ -25,6 +25,14 @@ namespace IMS.Collecter
         private static Maticsoft.BLL.IMS_FACE_BLACKLIST blackListBll = new Maticsoft.BLL.IMS_FACE_BLACKLIST();
         private static System.Threading.Timer timer;
         private static string staffFacePath, blackFacePath, tempFacePath;
+
+        private static string staffName;
+
+        public static string StaffName
+        {
+            get { return FaceCollect.staffName; }
+            set { FaceCollect.staffName = value; }
+        }
        
         private static List<Maticsoft.Model.SMT_STAFF_INFO> staffList;
         private static List<Maticsoft.Model.IMS_FACE_BLACKLIST> blackList;
@@ -205,7 +213,7 @@ namespace IMS.Collecter
                         {
                             if (ValidateEvent != null)
                             {
-                                ValidateEvent(this, new ValidateResultEventArgs(capturePic, localPic, blackPic, faceValue, ValidateResult.Black));
+                                ValidateEvent(this, new ValidateResultEventArgs(staffName, capturePic, localPic, blackPic, faceValue, ValidateResult.Black));
                             }
                         }
                     }
@@ -246,7 +254,7 @@ namespace IMS.Collecter
                 {
                     if (ValidateEvent != null)
                     {
-                        ValidateEvent(this, new ValidateResultEventArgs(capturePic, localPic, blackPic, faceValue, ValidateResult.Success));
+                        ValidateEvent(this, new ValidateResultEventArgs(staffName,capturePic, localPic, blackPic, faceValue, ValidateResult.Success));
                         using (IAccessCore access = new WGAccess())
                         {
                             ///控制开门
@@ -265,7 +273,7 @@ namespace IMS.Collecter
                 {
                     if (ValidateEvent != null)
                     {
-                        ValidateEvent(this, new ValidateResultEventArgs(capturePic, localPic, blackPic, faceValue, ValidateResult.NoPerson));
+                        ValidateEvent(this, new ValidateResultEventArgs(staffName, capturePic, localPic, blackPic, faceValue, ValidateResult.NoPerson));
                         File.Delete(capturePic);
                     }
                 }

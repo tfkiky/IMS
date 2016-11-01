@@ -10,16 +10,25 @@ namespace IMS.Collecter
         private string _captruePic;
         private string _localPic;
         private string _blackPic;
+        private string _staffName;
+
+       
         private int _validateValue;
         private ValidateResult _validateResult;
 
-        public ValidateResultEventArgs(string captruePic, string localPic,string blackPic, int validateValue, ValidateResult validateResult)
+        public ValidateResultEventArgs(string staffName,string captruePic, string localPic,string blackPic, int validateValue, ValidateResult validateResult)
         {
+            _staffName = staffName;
             _captruePic = captruePic;
             _localPic = localPic;
             _blackPic = blackPic;
             _validateValue = validateValue;
             _validateResult = validateResult;
+        }
+
+        public string StaffName
+        {
+            get { return _staffName; }
         }
 
         public string CaptruePic

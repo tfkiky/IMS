@@ -77,6 +77,7 @@ namespace IMS.Collecter
                 if (FaceCollect.FaceWhiteList.ContainsKey((int)record.STAFF_ID))
                 {
                     FaceCollect.CurrentFacePic = FaceCollect.FaceWhiteList[(int)record.STAFF_ID];
+                    FaceCollect.StaffName = staffList[0].REAL_NAME;
                     if (AccessEvent != null)
                     {
                         AccessEvent(this, new AccessEventArgs(staffList[0],record.RECORD_DATE.Value.ToString("yyyy-MM-dd HH:mm:ss"),record.IS_ALLOW));

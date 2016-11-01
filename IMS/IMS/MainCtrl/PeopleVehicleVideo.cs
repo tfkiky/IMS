@@ -45,5 +45,13 @@ namespace IMS
                     
             }
         }
+
+        public void LoadAccessResult(bool isAllow)
+        {
+            if(!isAllow)
+            {
+                lbResult.Text = "姓名，无权限禁止通行！";
+            }
+        }
     }
 }

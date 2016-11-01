@@ -72,7 +72,8 @@ namespace IMS.Collecter
                     {
                         currentIDCard.PhotoFile = AppDomain.CurrentDomain.BaseDirectory+"zp.bmp";
                         FaceCollect.CurrentFacePic = currentIDCard.PhotoFile;
-                        if(IDCardEvent!=null)
+                        FaceCollect.StaffName = currentIDCard.Name;
+                        if (IDCardEvent != null)
                         {
                             IDCardEvent(this, new IDCardEventArgs(currentIDCard));
                         }

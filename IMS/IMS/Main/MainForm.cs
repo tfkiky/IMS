@@ -133,14 +133,7 @@ namespace IMS
             if (e.StaffInfo != null)
             {
                 compareInfo1.LoadAccessInfo(e.StaffInfo,e.PassTime);
-                if (e.IsAllow)
-                {
-
-                }
-                else
-                {
-
-                }
+                peopleVehicleVideo1.LoadAccessResult(e.IsAllow);
             }
         }
 
@@ -149,6 +142,7 @@ namespace IMS
             if (e.CaptruePic != null)
             {
                 compareInfo1.LoadValidateResult(e);
+                peopleVehicleVideo1.LoadValidateResult(e.ValidateResult);
             }
         }
 
