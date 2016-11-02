@@ -12,6 +12,7 @@ using DevComponents.DotNetBar;
 using IMS.Collecter;
 using IMS.Common.Database;
 using log4net;
+using IMS.MainCtrl;
 
 namespace IMS
 {
@@ -143,6 +144,10 @@ namespace IMS
             {
                 compareInfo1.LoadValidateResult(e);
                 peopleVehicleVideo1.LoadValidateResult(e.ValidateResult);
+                if (e.ValidateResult==IMS.Collecter.ValidateResult.Success)
+                {
+                    AddNewPerson(e.StaffName,e.LocalPic);
+                }
             }
         }
 
@@ -234,6 +239,11 @@ namespace IMS
                 hikCam.RealStop(playHandle);
                 hikCam.Logout();
             }
+        }
+
+        private void AddNewPerson(string name ,string photo)
+        {
+
         }
 
         private void tsmiExit_Click(object sender, EventArgs e)

@@ -300,7 +300,11 @@ namespace IMS.Collecter
                 }
                 else
                 {
-                    File.Delete(sBmpPicFileName);
+                    do 
+                    {
+                        File.Delete(sBmpPicFileName);
+                    } 
+                    while (File.Exists(sBmpPicFileName));
                     return null;
                 }
             }
