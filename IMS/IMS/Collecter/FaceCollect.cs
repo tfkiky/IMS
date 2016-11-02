@@ -164,9 +164,18 @@ namespace IMS.Collecter
         
         public void Start(int faceMode, int swipeMode, int threshold,int isBlackList)
         {
-            InitFacePath();
-            InitFaceStore();
-            timer = new System.Threading.Timer(new TimerCallback(FaceValidate), null, 1000, 2000);
+            int iret=FaceService.face_init();
+            if (iret == 0)
+            {
+                mlog.Info("人脸识别算法库初始化成功");
+                InitFacePath();
+                InitFaceStore();
+                timer = new System.Threading.Timer(new TimerCallback(FaceValidate), null, 1000, 2000);
+            }
+            else
+            {
+                mlog.Info("人脸识别算法库初始化失败");
+            }
         }
 
         public void Stop()
@@ -174,6 +183,7 @@ namespace IMS.Collecter
             try
             {
                 timer.Dispose();
+                FaceService.face_exit();
             }
             catch (System.Exception ex)
             {
@@ -287,15 +297,17 @@ namespace IMS.Collecter
             {
                 Directory.CreateDirectory(dir);
             }
-            string sBmpPicFileName =dir+ DateTime.Now.ToString("yyyyMMddHHmmssfff")+".bmp";
+            string sBmpPicFileName =dir+ DateTime.Now.ToString("yyyyMMddHHmmssfff")+".jpg";
             if (!string.IsNullOrEmpty(MainForm.Instance.PlayHandle))
             {
                 MainForm.Instance.HikCam.CapturePicture(int.Parse(MainForm.Instance.PlayHandle), sBmpPicFileName);
+                Thread.Sleep(100);
             }
             if (File.Exists(sBmpPicFileName))
             {
-                if(FaceService.face_exist(sBmpPicFileName).Equals(1))
+                if(FaceService.face_exist(sBmpPicFileName)==1)
                 {
+                    mlog.Info("当前图像中存在人脸！");
                     return sBmpPicFileName;
                 }
                 else

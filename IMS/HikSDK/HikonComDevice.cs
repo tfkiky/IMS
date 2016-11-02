@@ -205,9 +205,12 @@ namespace HikSDK
             return str;
         }
 
-        public void CapturePicture(int playHandle,string sBmpPicFileName)
+        public void CapturePicture(int playHandle,string sJpegPicFileName)
         {
-            bool ret = CHCNetSDK.NET_DVR_CapturePicture(playHandle, sBmpPicFileName);
+            CHCNetSDK.NET_DVR_JPEGPARA lpJpegPara = new CHCNetSDK.NET_DVR_JPEGPARA();
+            lpJpegPara.wPicQuality = 0; //图像质量 Image quality
+            lpJpegPara.wPicSize = 0xff; //抓图分辨率 Picture size: 0xff-Auto(使用当前码流分辨率) 
+            bool ret = CHCNetSDK.NET_DVR_CaptureJPEGPicture(userId, 1, ref lpJpegPara, sJpegPicFileName);
             UpdateError(ret);
         }
 

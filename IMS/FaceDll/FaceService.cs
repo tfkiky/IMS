@@ -26,6 +26,8 @@ namespace FaceDll
         [DllImport("face/TaiSDK.dll", EntryPoint = "face_exist", CallingConvention = CallingConvention.Cdecl)]
         public static extern int face_exist(string fname);
 
+        [DllImport("face/TaiSDK.dll", EntryPoint = "face_exit", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int face_exit();
 
         [DllImport("face/TaiSDK.dll", EntryPoint = "face_get_pos", CallingConvention = CallingConvention.Cdecl)]
         public static extern int face_get_pos(string fname, ref tagFaceCoord[] pFaceArr);

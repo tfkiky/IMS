@@ -41,6 +41,8 @@ namespace test
         public Facetest()
         {
             InitializeComponent();
+
+            int i = FaceService.face_exist(@"C:\查验系统\CH-HCNetSDK(Windows32)V5.2.1.3_build20160513\Demo示例\3- C# 开发示例\2-实时预览示例代码二\NVRCsharpDemo\bin\pic\20161102215810.jpg");
         }
 
         private void LoginCamera(string ip, int port, string user, string pwd)
@@ -229,6 +231,8 @@ namespace test
                 bitmap.UnlockBits(bmpData);
                 bitmap.Save(picFile, System.Drawing.Imaging.ImageFormat.Jpeg);
 
+
+                int i = FaceService.face_exist(picFile);
                 int f3 = FaceService.face_get_feature_from_image(picFile, feature1);
 
                 //string base64bmp = Convert.ToBase64String(rgbbuff);

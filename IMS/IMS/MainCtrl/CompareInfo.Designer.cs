@@ -40,23 +40,23 @@
             this.labelX7 = new DevComponents.DotNetBar.LabelX();
             this.labelX6 = new DevComponents.DotNetBar.LabelX();
             this.labelX5 = new DevComponents.DotNetBar.LabelX();
+            this.lbNation = new DevComponents.DotNetBar.LabelX();
+            this.lbValue = new DevComponents.DotNetBar.LabelX();
             this.labelX11 = new DevComponents.DotNetBar.LabelX();
             this.labelX13 = new DevComponents.DotNetBar.LabelX();
             this.labelX14 = new DevComponents.DotNetBar.LabelX();
             this.labelX12 = new DevComponents.DotNetBar.LabelX();
-            this.labelX10 = new DevComponents.DotNetBar.LabelX();
-            this.labelX1 = new DevComponents.DotNetBar.LabelX();
-            this.lbPersonCount = new DevComponents.DotNetBar.LabelX();
-            this.lbName = new DevComponents.DotNetBar.LabelX();
-            this.lbBirth = new DevComponents.DotNetBar.LabelX();
-            this.lbAddress = new DevComponents.DotNetBar.LabelX();
-            this.lbIDCard = new DevComponents.DotNetBar.LabelX();
-            this.lbThroughTime = new DevComponents.DotNetBar.LabelX();
-            this.lbTime = new DevComponents.DotNetBar.LabelX();
-            this.lbSex = new DevComponents.DotNetBar.LabelX();
             this.lbDepart = new DevComponents.DotNetBar.LabelX();
-            this.lbValue = new DevComponents.DotNetBar.LabelX();
-            this.lbNation = new DevComponents.DotNetBar.LabelX();
+            this.lbSex = new DevComponents.DotNetBar.LabelX();
+            this.lbTime = new DevComponents.DotNetBar.LabelX();
+            this.labelX10 = new DevComponents.DotNetBar.LabelX();
+            this.lbThroughTime = new DevComponents.DotNetBar.LabelX();
+            this.lbIDCard = new DevComponents.DotNetBar.LabelX();
+            this.lbAddress = new DevComponents.DotNetBar.LabelX();
+            this.lbBirth = new DevComponents.DotNetBar.LabelX();
+            this.lbName = new DevComponents.DotNetBar.LabelX();
+            this.lbPersonCount = new DevComponents.DotNetBar.LabelX();
+            this.labelX1 = new DevComponents.DotNetBar.LabelX();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -247,6 +247,32 @@
             this.labelX5.TabIndex = 0;
             this.labelX5.Text = "姓名：";
             // 
+            // lbNation
+            // 
+            // 
+            // 
+            // 
+            this.lbNation.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lbNation.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbNation.Location = new System.Drawing.Point(401, 53);
+            this.lbNation.Name = "lbNation";
+            this.lbNation.Size = new System.Drawing.Size(62, 23);
+            this.lbNation.TabIndex = 0;
+            this.lbNation.Text = "XX";
+            // 
+            // lbValue
+            // 
+            // 
+            // 
+            // 
+            this.lbValue.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lbValue.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbValue.Location = new System.Drawing.Point(401, 19);
+            this.lbValue.Name = "lbValue";
+            this.lbValue.Size = new System.Drawing.Size(62, 23);
+            this.lbValue.TabIndex = 0;
+            this.lbValue.Text = "XX";
+            // 
             // labelX11
             // 
             // 
@@ -299,122 +325,18 @@
             this.labelX12.TabIndex = 0;
             this.labelX12.Text = "性别：";
             // 
-            // labelX10
+            // lbDepart
             // 
             // 
             // 
             // 
-            this.labelX10.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX10.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelX10.Location = new System.Drawing.Point(184, 19);
-            this.labelX10.Name = "labelX10";
-            this.labelX10.Size = new System.Drawing.Size(75, 23);
-            this.labelX10.TabIndex = 0;
-            this.labelX10.Text = "验证耗时：";
-            // 
-            // labelX1
-            // 
-            // 
-            // 
-            // 
-            this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelX1.Location = new System.Drawing.Point(17, 19);
-            this.labelX1.Name = "labelX1";
-            this.labelX1.Size = new System.Drawing.Size(75, 23);
-            this.labelX1.TabIndex = 0;
-            this.labelX1.Text = "验证人数：";
-            // 
-            // lbPersonCount
-            // 
-            // 
-            // 
-            // 
-            this.lbPersonCount.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lbPersonCount.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbPersonCount.Location = new System.Drawing.Point(86, 19);
-            this.lbPersonCount.Name = "lbPersonCount";
-            this.lbPersonCount.Size = new System.Drawing.Size(75, 23);
-            this.lbPersonCount.TabIndex = 0;
-            this.lbPersonCount.Text = "XX";
-            // 
-            // lbName
-            // 
-            // 
-            // 
-            // 
-            this.lbName.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lbName.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbName.Location = new System.Drawing.Point(86, 53);
-            this.lbName.Name = "lbName";
-            this.lbName.Size = new System.Drawing.Size(75, 23);
-            this.lbName.TabIndex = 0;
-            this.lbName.Text = "XX";
-            // 
-            // lbBirth
-            // 
-            // 
-            // 
-            // 
-            this.lbBirth.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lbBirth.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbBirth.Location = new System.Drawing.Point(86, 87);
-            this.lbBirth.Name = "lbBirth";
-            this.lbBirth.Size = new System.Drawing.Size(75, 23);
-            this.lbBirth.TabIndex = 0;
-            this.lbBirth.Text = "XX";
-            // 
-            // lbAddress
-            // 
-            // 
-            // 
-            // 
-            this.lbAddress.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lbAddress.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbAddress.Location = new System.Drawing.Point(86, 121);
-            this.lbAddress.Name = "lbAddress";
-            this.lbAddress.Size = new System.Drawing.Size(75, 23);
-            this.lbAddress.TabIndex = 0;
-            this.lbAddress.Text = "XX";
-            // 
-            // lbIDCard
-            // 
-            // 
-            // 
-            // 
-            this.lbIDCard.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lbIDCard.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbIDCard.Location = new System.Drawing.Point(86, 155);
-            this.lbIDCard.Name = "lbIDCard";
-            this.lbIDCard.Size = new System.Drawing.Size(75, 23);
-            this.lbIDCard.TabIndex = 0;
-            this.lbIDCard.Text = "XX";
-            // 
-            // lbThroughTime
-            // 
-            // 
-            // 
-            // 
-            this.lbThroughTime.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lbThroughTime.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbThroughTime.Location = new System.Drawing.Point(86, 189);
-            this.lbThroughTime.Name = "lbThroughTime";
-            this.lbThroughTime.Size = new System.Drawing.Size(75, 23);
-            this.lbThroughTime.TabIndex = 0;
-            this.lbThroughTime.Text = "XX";
-            // 
-            // lbTime
-            // 
-            // 
-            // 
-            // 
-            this.lbTime.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lbTime.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbTime.Location = new System.Drawing.Point(247, 19);
-            this.lbTime.Name = "lbTime";
-            this.lbTime.Size = new System.Drawing.Size(75, 23);
-            this.lbTime.TabIndex = 0;
-            this.lbTime.Text = "XX";
+            this.lbDepart.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lbDepart.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbDepart.Location = new System.Drawing.Point(247, 87);
+            this.lbDepart.Name = "lbDepart";
+            this.lbDepart.Size = new System.Drawing.Size(75, 23);
+            this.lbDepart.TabIndex = 0;
+            this.lbDepart.Text = "XX";
             // 
             // lbSex
             // 
@@ -429,44 +351,123 @@
             this.lbSex.TabIndex = 0;
             this.lbSex.Text = "XX";
             // 
-            // lbDepart
+            // lbTime
             // 
             // 
             // 
             // 
-            this.lbDepart.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lbDepart.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbDepart.Location = new System.Drawing.Point(247, 87);
-            this.lbDepart.Name = "lbDepart";
-            this.lbDepart.Size = new System.Drawing.Size(75, 23);
-            this.lbDepart.TabIndex = 0;
-            this.lbDepart.Text = "XX";
+            this.lbTime.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lbTime.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbTime.Location = new System.Drawing.Point(247, 19);
+            this.lbTime.Name = "lbTime";
+            this.lbTime.Size = new System.Drawing.Size(75, 23);
+            this.lbTime.TabIndex = 0;
+            this.lbTime.Text = "XX";
             // 
-            // lbValue
-            // 
-            // 
-            // 
-            // 
-            this.lbValue.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lbValue.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbValue.Location = new System.Drawing.Point(401, 19);
-            this.lbValue.Name = "lbValue";
-            this.lbValue.Size = new System.Drawing.Size(62, 23);
-            this.lbValue.TabIndex = 0;
-            this.lbValue.Text = "XX";
-            // 
-            // lbNation
+            // labelX10
             // 
             // 
             // 
             // 
-            this.lbNation.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lbNation.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbNation.Location = new System.Drawing.Point(401, 53);
-            this.lbNation.Name = "lbNation";
-            this.lbNation.Size = new System.Drawing.Size(62, 23);
-            this.lbNation.TabIndex = 0;
-            this.lbNation.Text = "XX";
+            this.labelX10.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX10.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labelX10.Location = new System.Drawing.Point(184, 19);
+            this.labelX10.Name = "labelX10";
+            this.labelX10.Size = new System.Drawing.Size(75, 23);
+            this.labelX10.TabIndex = 0;
+            this.labelX10.Text = "验证耗时：";
+            // 
+            // lbThroughTime
+            // 
+            // 
+            // 
+            // 
+            this.lbThroughTime.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lbThroughTime.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbThroughTime.Location = new System.Drawing.Point(86, 189);
+            this.lbThroughTime.Name = "lbThroughTime";
+            this.lbThroughTime.Size = new System.Drawing.Size(188, 23);
+            this.lbThroughTime.TabIndex = 0;
+            this.lbThroughTime.Text = "XX";
+            // 
+            // lbIDCard
+            // 
+            // 
+            // 
+            // 
+            this.lbIDCard.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lbIDCard.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbIDCard.Location = new System.Drawing.Point(86, 155);
+            this.lbIDCard.Name = "lbIDCard";
+            this.lbIDCard.Size = new System.Drawing.Size(334, 23);
+            this.lbIDCard.TabIndex = 0;
+            this.lbIDCard.Text = "XX";
+            // 
+            // lbAddress
+            // 
+            // 
+            // 
+            // 
+            this.lbAddress.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lbAddress.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbAddress.Location = new System.Drawing.Point(86, 121);
+            this.lbAddress.Name = "lbAddress";
+            this.lbAddress.Size = new System.Drawing.Size(334, 28);
+            this.lbAddress.TabIndex = 0;
+            this.lbAddress.Text = "XX";
+            this.lbAddress.WordWrap = true;
+            // 
+            // lbBirth
+            // 
+            // 
+            // 
+            // 
+            this.lbBirth.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lbBirth.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbBirth.Location = new System.Drawing.Point(86, 87);
+            this.lbBirth.Name = "lbBirth";
+            this.lbBirth.Size = new System.Drawing.Size(75, 23);
+            this.lbBirth.TabIndex = 0;
+            this.lbBirth.Text = "XX";
+            // 
+            // lbName
+            // 
+            // 
+            // 
+            // 
+            this.lbName.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lbName.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbName.Location = new System.Drawing.Point(86, 53);
+            this.lbName.Name = "lbName";
+            this.lbName.Size = new System.Drawing.Size(75, 23);
+            this.lbName.TabIndex = 0;
+            this.lbName.Text = "XX";
+            // 
+            // lbPersonCount
+            // 
+            // 
+            // 
+            // 
+            this.lbPersonCount.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lbPersonCount.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbPersonCount.Location = new System.Drawing.Point(86, 19);
+            this.lbPersonCount.Name = "lbPersonCount";
+            this.lbPersonCount.Size = new System.Drawing.Size(75, 23);
+            this.lbPersonCount.TabIndex = 0;
+            this.lbPersonCount.Text = "XX";
+            // 
+            // labelX1
+            // 
+            // 
+            // 
+            // 
+            this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labelX1.Location = new System.Drawing.Point(17, 19);
+            this.labelX1.Name = "labelX1";
+            this.labelX1.Size = new System.Drawing.Size(75, 23);
+            this.labelX1.TabIndex = 0;
+            this.labelX1.Text = "验证人数：";
             // 
             // CompareInfo
             // 

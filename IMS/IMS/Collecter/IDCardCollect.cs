@@ -39,7 +39,10 @@ namespace IMS.Collecter
         private void CollectIDCard(object state)
         {
             iLastErrorCode = IDCardDll.IDCard.Authenticate();
-
+            if (iLastErrorCode!=1)
+            {
+                mlog.Info("未放卡或卡片放置不正确");
+            }
             try
             {
                 iLastErrorCode = IDCardDll.IDCard.Read_Content(1);
