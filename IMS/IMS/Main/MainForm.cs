@@ -13,6 +13,7 @@ using IMS.Collecter;
 using IMS.Common.Database;
 using log4net;
 using IMS.MainCtrl;
+using DevComponents.DotNetBar.Controls;
 
 namespace IMS
 {
@@ -22,6 +23,9 @@ namespace IMS
         private ILog mlog = LogManager.GetLogger("MainForm");
         private Maticsoft.BLL.IMS_FACE_CAMERA faceCameraBll = new Maticsoft.BLL.IMS_FACE_CAMERA();
         private Maticsoft.Model.IMS_FACE_CAMERA faceCamera;
+        private List<Maticsoft.Model.SMT_STAFF_INFO> staffList = new List<Maticsoft.Model.SMT_STAFF_INFO>();
+        private List<Maticsoft.Model.IMS_VEHICLE_RECORD> vehicleList = new List<Maticsoft.Model.IMS_VEHICLE_RECORD>();
+
         private HikSDK.HikonComDevice hikCam = new HikSDK.HikonComDevice();
 
         public HikSDK.HikonComDevice HikCam
@@ -94,7 +98,7 @@ namespace IMS
             instance = this;
             StyleManager.Style = eStyle.Office2007Black;
             FillDataGrid();
-            
+            AddNewPerson("tangfei", @"C:\Users\Tangfei\Pictures\pic\1.jpg");
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -243,7 +247,35 @@ namespace IMS
 
         private void AddNewPerson(string name ,string photo)
         {
+            if (imageList1.Images.Count>11)
+            {
+                imageList1.Images.RemoveAt(0);
+            }
+            imageList1.Images.Add(name, new Bitmap(photo));
+            LoadPerson();
+        }
 
+        private void LoadPerson()
+        {
+            for (int i = 0; i < dataGridViewX2.Rows.Count;i++ )
+            {
+                for (int j = 0; j < dataGridViewX2.ColumnCount;j++ )
+                {
+                    DataGridViewButtonCell cell = dataGridViewX2.Rows[i].Cells[j] as DataGridViewButtonCell;
+
+                    DataGridViewButtonXColumn lbColunm = dataGridViewX2.Columns[j] as DataGridViewButtonXColumn;
+                    if (i * dataGridViewX2.ColumnCount + j<imageList1.Images.Count)
+                    {
+                        lbColunm.Text = imageList1.Images.Keys[i * dataGridViewX2.ColumnCount + j];
+                        lbColunm.Image = imageList1.Images[i * dataGridViewX2.ColumnCount + j];
+                    }
+                    else
+                    {
+                        lbColunm.Text = "";
+                        lbColunm.Image = null;
+                    }
+                }
+            }
         }
 
         private void tsmiExit_Click(object sender, EventArgs e)
@@ -280,6 +312,11 @@ namespace IMS
         {
             PersonRecord pr = new PersonRecord();
             pr.ShowDialog();
+        }
+
+        private void dataGridViewX2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
 
        

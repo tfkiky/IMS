@@ -38,7 +38,7 @@ namespace IMS.MainCtrl
                     return;
                 }
                 dataGridView.Rows.Clear();
-                strSql.Append(" AND to_char(ThroughTime,'yyyy-MM-DD HH24:mm:ss') BETWEEN '" + dtiFromDate.Value.ToString("yyyy-MM-dd HH:mm:ss") + "' AND '" + dtiToDate.Value.ToString("yyyy-MM-dd HH:mm:ss") + "' ORDER BY ThroughTime DESC");
+                strSql.Append(" AND CONVERT(VARCHAR(24),ThroughTime,20) BETWEEN '" + dtiFromDate.Value.ToString("yyyy-MM-dd HH:mm:ss") + "' AND '" + dtiToDate.Value.ToString("yyyy-MM-dd HH:mm:ss") + "' ORDER BY ThroughTime DESC");
                 recordRowsCount = recordBll.GetRecordCount(strSql.ToString());
                 pageCtrlRecords.TotalRecords = recordRowsCount;
                 pageCtrlRecords.CurrentPage = 1;
@@ -86,7 +86,7 @@ namespace IMS.MainCtrl
                 for (int i = 0; i < recordList.Count; i++)
                 {
                     DataGridViewRow newRow = new DataGridViewRow();
-
+                   
                     newRow.CreateCells(dataGridView, new object[] { 
                     recordList[i].ID,
                     i+1,
