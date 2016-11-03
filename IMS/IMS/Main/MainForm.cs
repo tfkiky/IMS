@@ -272,12 +272,14 @@ namespace IMS
 
         private void btnCheckPerson_Click(object sender, EventArgs e)
         {
-
+            CheckPerson cp = new CheckPerson();
+            cp.ShowDialog();
         }
 
         private void btnPersonRecord_Click(object sender, EventArgs e)
         {
-
+            PersonRecord pr = new PersonRecord();
+            pr.ShowDialog();
         }
 
        

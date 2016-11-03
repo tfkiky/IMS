@@ -52,6 +52,9 @@
     <Reference Include="SunCreate.Common">
       <HintPath>..\dll\SunCreate.Common.dll</HintPath>
     </Reference>
+    <Reference Include="SunCreate.DotNetBar">
+      <HintPath>..\dll\SunCreate.DotNetBar.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -94,6 +97,12 @@
     <Compile Include="Config\ValidateModeConfig.Designer.cs">
       <DependentUpon>ValidateModeConfig.cs</DependentUpon>
     </Compile>
+    <Compile Include="MainCtrl\CheckPerson.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainCtrl\CheckPerson.Designer.cs">
+      <DependentUpon>CheckPerson.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainCtrl\CompareInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -111,6 +120,12 @@
     </Compile>
     <Compile Include="MainCtrl\ManualInspect.Designer.cs">
       <DependentUpon>ManualInspect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainCtrl\PersonRecord.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainCtrl\PersonRecord.Designer.cs">
+      <DependentUpon>PersonRecord.cs</DependentUpon>
     </Compile>
     <Compile Include="MainCtrl\ThroughPerson.cs">
       <SubType>UserControl</SubType>
@@ -180,6 +195,9 @@
     <EmbeddedResource Include="Config\ValidateModeConfig.resx">
       <DependentUpon>ValidateModeConfig.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MainCtrl\CheckPerson.resx">
+      <DependentUpon>CheckPerson.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainCtrl\CompareInfo.resx">
       <DependentUpon>CompareInfo.cs</DependentUpon>
     </EmbeddedResource>
@@ -188,6 +206,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainCtrl\PeopleIDCard.resx">
       <DependentUpon>PeopleIDCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainCtrl\PersonRecord.resx">
+      <DependentUpon>PersonRecord.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainCtrl\ThroughPerson.resx">
       <DependentUpon>ThroughPerson.cs</DependentUpon>
