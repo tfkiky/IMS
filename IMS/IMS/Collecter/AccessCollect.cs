@@ -112,6 +112,7 @@ namespace IMS.Collecter
                             bool ret = access.SetDoorControlStyle(c, (int)doorList[0].CTRL_DOOR_INDEX, DoorControlStyle.AlwaysClose, doorList[0].CTRL_DELAY_TIME);
                             if (!ret)
                             {
+                                mlog.Info("设置门禁常关模式失败");
                                 //WinInfoHelper.ShowInfoWindow(this, "上传门控制方式失败！");
                                 return;
                             }

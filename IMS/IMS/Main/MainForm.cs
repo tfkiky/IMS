@@ -23,6 +23,12 @@ namespace IMS
         private ILog mlog = LogManager.GetLogger("MainForm");
         private Maticsoft.BLL.IMS_FACE_CAMERA faceCameraBll = new Maticsoft.BLL.IMS_FACE_CAMERA();
         private Maticsoft.Model.IMS_FACE_CAMERA faceCamera;
+
+        public Maticsoft.Model.IMS_FACE_CAMERA FaceCamera
+        {
+            get { return faceCamera; }
+            set { faceCamera = value; }
+        }
         private List<Maticsoft.Model.SMT_STAFF_INFO> staffList = new List<Maticsoft.Model.SMT_STAFF_INFO>();
         private List<Maticsoft.Model.IMS_VEHICLE_RECORD> vehicleList = new List<Maticsoft.Model.IMS_VEHICLE_RECORD>();
 
@@ -45,22 +51,23 @@ namespace IMS
         private AccessCollect accessCollect = new AccessCollect();
         private IDCardCollect idCardCollect = new IDCardCollect();
 
-        private int iFaceMode = 0;  //人脸识别验证模式 0- 1:1验证、1- 1：N验证、2- 1：n验证
-
+        private int iFaceMode = 0;
+        //人脸识别验证模式 0- 1:1验证、1- 1：N验证、2- 1：n验证
         public int IFaceMode
         {
             get { return iFaceMode; }
             set { iFaceMode = value; }
         }
-        private int iBlackMode = 0;    //黑名单模式 0-开启；1：关闭
-
+        private int iBlackMode = 0;
+        //黑名单模式 0-开启；1：关闭
         public int IBlackMode
         {
             get { return iBlackMode; }
             set { iBlackMode = value; }
         }
-        private int iSwipeMode = 0;   //刷卡模式 0-门禁刷卡，1:-身份证刷卡
+        private int iSwipeMode = 0;
 
+        //刷卡模式 0-门禁刷卡，1:-身份证刷卡
         public int ISwipeMode
         {
             get { return iSwipeMode; }
@@ -98,7 +105,12 @@ namespace IMS
             instance = this;
             StyleManager.Style = eStyle.Office2007Black;
             FillDataGrid();
-            AddNewPerson("tangfei", @"C:\Users\Tangfei\Pictures\pic\1.jpg");
+            //AddNewPerson("tangfei", @"D:\6、个人\查验系统\IMS备份\IMS\IMS\IMS\bin\Debug\zp.bmp");
+            //AddNewPerson("tangfei", @"D:\6、个人\查验系统\IMS备份\IMS\IMS\IMS\bin\Debug\zp.bmp");
+            //AddNewPerson("tangfei", @"D:\6、个人\查验系统\IMS备份\IMS\IMS\IMS\bin\Debug\zp.bmp");
+            //AddNewPerson("tangfei", @"D:\6、个人\查验系统\IMS备份\IMS\IMS\IMS\bin\Debug\zp.bmp");
+            //AddNewPerson("tangfei", @"D:\6、个人\查验系统\IMS备份\IMS\IMS\IMS\bin\Debug\zp.bmp");
+            //AddNewPerson("tangfei", @"D:\6、个人\查验系统\IMS备份\IMS\IMS\IMS\bin\Debug\zp.bmp");
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -106,11 +118,13 @@ namespace IMS
             Maticsoft.DBUtility.DbHelperSQL.connectionString = SysConfigClass.GetSqlServerConnectString();
             if (!SysConfigClass.TestDBConn())
             {
+                ClientMainForm.Instance.LoadConnState(false);
                 MessageBox.Show("数据库连接失败，请检查网络或数据库配置");
-                this.Close();
+                //this.Close();
             }
             else
             {
+                ClientMainForm.Instance.LoadConnState(true);
                 LoadParams();
                 LoadCamera();
                 accessCollect.Start();
@@ -130,6 +144,7 @@ namespace IMS
             if(e.IDCard!=null)
             {
                 compareInfo1.LoadIDInfo(e.IDCard);
+                ClientMainForm.Instance.LoadIDCardInfo(e.IDCard);
             }
         }
 
@@ -161,6 +176,17 @@ namespace IMS
             dataGridViewX1.Rows.Add(3);
             dataGridViewX2.RowTemplate.Height = dataGridViewX1.Height / 3-2;
             dataGridViewX2.Rows.Add(3);
+            column1.BeforeCellPaint += column_BeforeCellPaint;
+            column2.BeforeCellPaint += column_BeforeCellPaint;
+            column3.BeforeCellPaint += column_BeforeCellPaint;
+            column4.BeforeCellPaint += column_BeforeCellPaint;
+        }
+
+        void column_BeforeCellPaint(object sender, BeforeCellPaintEventArgs e)
+        {
+            DataGridViewButtonXColumn bcx = sender as DataGridViewButtonXColumn;
+            if (bcx != null)
+                bcx.Image = imageList1.Images[bcx.Text];
         }
         /// <summary>
         /// 加载参数
@@ -263,17 +289,11 @@ namespace IMS
                 {
                     DataGridViewButtonCell cell = dataGridViewX2.Rows[i].Cells[j] as DataGridViewButtonCell;
 
-                    DataGridViewButtonXColumn lbColunm = dataGridViewX2.Columns[j] as DataGridViewButtonXColumn;
                     if (i * dataGridViewX2.ColumnCount + j<imageList1.Images.Count)
                     {
-                        lbColunm.Text = imageList1.Images.Keys[i * dataGridViewX2.ColumnCount + j];
-                        lbColunm.Image = imageList1.Images[i * dataGridViewX2.ColumnCount + j];
+                        cell.Value = imageList1.Images.Keys[i * dataGridViewX2.ColumnCount + j];
                     }
-                    else
-                    {
-                        lbColunm.Text = "";
-                        lbColunm.Image = null;
-                    }
+                    
                 }
             }
         }

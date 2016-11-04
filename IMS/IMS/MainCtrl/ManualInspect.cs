@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevComponents.DotNetBar;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,7 +10,7 @@ using System.Windows.Forms;
 
 namespace IMS.MainCtrl
 {
-    public partial class ManualInspect : Form
+    public partial class ManualInspect :  Office2007Form
     {
         public ManualInspect()
         {

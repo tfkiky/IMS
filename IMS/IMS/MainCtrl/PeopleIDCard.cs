@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using IMS.Collecter;
 
 namespace IMS
 {
@@ -15,6 +16,18 @@ namespace IMS
         public PeopleIDCard()
         {
             InitializeComponent();
+        }
+
+        public void LoadIDCard(IDCardClass idcard)
+        {
+            lbName.Text = idcard.Name;
+            lbSex.Text = idcard.Sex;
+            lbNation.Text = idcard.Nation;
+            lbBirth.Text = idcard.Birth;
+            lbAddr.Text = idcard.Address;
+            lbCardNo.Text = idcard.Id;
+            pbPhoto.ImageLocation = idcard.PhotoFile;
+
         }
     }
 }

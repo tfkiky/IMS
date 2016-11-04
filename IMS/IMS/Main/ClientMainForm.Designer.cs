@@ -39,6 +39,11 @@
             this.lbConn = new DevComponents.DotNetBar.LabelX();
             this.labelX2 = new DevComponents.DotNetBar.LabelX();
             this.labelX1 = new DevComponents.DotNetBar.LabelX();
+            this.lbValue = new DevComponents.DotNetBar.LabelX();
+            this.lbResult = new DevComponents.DotNetBar.LabelX();
+            this.labelX5 = new DevComponents.DotNetBar.LabelX();
+            this.labelX6 = new DevComponents.DotNetBar.LabelX();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.peopleIDCard1 = new IMS.PeopleIDCard();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -50,6 +55,7 @@
             this.splitContainer2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).BeginInit();
             this.splitContainer4.Panel1.SuspendLayout();
+            this.splitContainer4.Panel2.SuspendLayout();
             this.splitContainer4.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -113,6 +119,13 @@
             // splitContainer4.Panel1
             // 
             this.splitContainer4.Panel1.Controls.Add(this.peopleIDCard1);
+            // 
+            // splitContainer4.Panel2
+            // 
+            this.splitContainer4.Panel2.Controls.Add(this.lbValue);
+            this.splitContainer4.Panel2.Controls.Add(this.lbResult);
+            this.splitContainer4.Panel2.Controls.Add(this.labelX5);
+            this.splitContainer4.Panel2.Controls.Add(this.labelX6);
             this.splitContainer4.Size = new System.Drawing.Size(513, 680);
             this.splitContainer4.SplitterDistance = 324;
             this.splitContainer4.SplitterWidth = 1;
@@ -127,7 +140,7 @@
             this.lbTime.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbTime.Location = new System.Drawing.Point(166, 31);
             this.lbTime.Name = "lbTime";
-            this.lbTime.Size = new System.Drawing.Size(106, 23);
+            this.lbTime.Size = new System.Drawing.Size(220, 23);
             this.lbTime.TabIndex = 0;
             this.lbTime.Text = "XX";
             // 
@@ -138,9 +151,9 @@
             // 
             this.lbConn.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lbConn.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbConn.Location = new System.Drawing.Point(490, 31);
+            this.lbConn.Location = new System.Drawing.Point(564, 31);
             this.lbConn.Name = "lbConn";
-            this.lbConn.Size = new System.Drawing.Size(106, 23);
+            this.lbConn.Size = new System.Drawing.Size(186, 23);
             this.lbConn.TabIndex = 0;
             this.lbConn.Text = "XX";
             // 
@@ -151,7 +164,7 @@
             // 
             this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelX2.Location = new System.Drawing.Point(364, 31);
+            this.labelX2.Location = new System.Drawing.Point(438, 31);
             this.labelX2.Name = "labelX2";
             this.labelX2.Size = new System.Drawing.Size(106, 23);
             this.labelX2.TabIndex = 0;
@@ -169,6 +182,63 @@
             this.labelX1.Size = new System.Drawing.Size(106, 23);
             this.labelX1.TabIndex = 0;
             this.labelX1.Text = "当前时间：";
+            // 
+            // lbValue
+            // 
+            // 
+            // 
+            // 
+            this.lbValue.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lbValue.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbValue.Location = new System.Drawing.Point(185, 55);
+            this.lbValue.Name = "lbValue";
+            this.lbValue.Size = new System.Drawing.Size(106, 23);
+            this.lbValue.TabIndex = 1;
+            this.lbValue.Text = "XX";
+            // 
+            // lbResult
+            // 
+            // 
+            // 
+            // 
+            this.lbResult.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lbResult.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbResult.Location = new System.Drawing.Point(259, 193);
+            this.lbResult.Name = "lbResult";
+            this.lbResult.Size = new System.Drawing.Size(143, 23);
+            this.lbResult.TabIndex = 2;
+            this.lbResult.Text = "XX";
+            // 
+            // labelX5
+            // 
+            // 
+            // 
+            // 
+            this.labelX5.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX5.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labelX5.Location = new System.Drawing.Point(133, 193);
+            this.labelX5.Name = "labelX5";
+            this.labelX5.Size = new System.Drawing.Size(106, 23);
+            this.labelX5.TabIndex = 3;
+            this.labelX5.Text = "验证结果：";
+            // 
+            // labelX6
+            // 
+            // 
+            // 
+            // 
+            this.labelX6.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX6.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labelX6.Location = new System.Drawing.Point(45, 55);
+            this.labelX6.Name = "labelX6";
+            this.labelX6.Size = new System.Drawing.Size(106, 23);
+            this.labelX6.TabIndex = 4;
+            this.labelX6.Text = "相似度：";
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // peopleIDCard1
             // 
@@ -203,6 +273,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
             this.splitContainer4.Panel1.ResumeLayout(false);
+            this.splitContainer4.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).EndInit();
             this.splitContainer4.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -221,6 +292,11 @@
         private DevComponents.DotNetBar.LabelX labelX2;
         private DevComponents.DotNetBar.LabelX lbConn;
         private PeopleIDCard peopleIDCard1;
+        private DevComponents.DotNetBar.LabelX lbValue;
+        private DevComponents.DotNetBar.LabelX lbResult;
+        private DevComponents.DotNetBar.LabelX labelX5;
+        private DevComponents.DotNetBar.LabelX labelX6;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 

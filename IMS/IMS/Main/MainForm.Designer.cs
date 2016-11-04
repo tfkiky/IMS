@@ -59,12 +59,12 @@
             this.btnCheckPerson = new DevComponents.DotNetBar.ButtonX();
             this.dataGridViewX2 = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.peopleVehicleVideo1 = new IMS.PeopleVehicleVideo();
-            this.compareInfo1 = new IMS.CompareInfo();
             this.column1 = new DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn();
             this.column2 = new DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn();
             this.column3 = new DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn();
             this.column4 = new DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn();
+            this.peopleVehicleVideo1 = new IMS.PeopleVehicleVideo();
+            this.compareInfo1 = new IMS.CompareInfo();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -489,8 +489,48 @@
             // imageList1
             // 
             this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
-            this.imageList1.ImageSize = new System.Drawing.Size(32, 32);
+            this.imageList1.ImageSize = new System.Drawing.Size(48, 48);
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            // 
+            // column1
+            // 
+            this.column1.HeaderText = "Column1";
+            this.column1.ImagePosition = DevComponents.DotNetBar.eImagePosition.Right;
+            this.column1.Name = "column1";
+            this.column1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.column1.Text = null;
+            this.column1.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
+            // 
+            // column2
+            // 
+            this.column2.HeaderText = "Column2";
+            this.column2.ImagePosition = DevComponents.DotNetBar.eImagePosition.Right;
+            this.column2.Name = "column2";
+            this.column2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.column2.Text = null;
+            this.column2.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
+            // 
+            // column3
+            // 
+            this.column3.HeaderText = "Column3";
+            this.column3.ImagePosition = DevComponents.DotNetBar.eImagePosition.Right;
+            this.column3.Name = "column3";
+            this.column3.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.column3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.column3.Text = null;
+            this.column3.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
+            // 
+            // column4
+            // 
+            this.column4.HeaderText = "Column4";
+            this.column4.ImagePosition = DevComponents.DotNetBar.eImagePosition.Right;
+            this.column4.Name = "column4";
+            this.column4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.column4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.column4.Text = null;
+            this.column4.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
             // 
             // peopleVehicleVideo1
             // 
@@ -509,42 +549,6 @@
             this.compareInfo1.Name = "compareInfo1";
             this.compareInfo1.Size = new System.Drawing.Size(511, 443);
             this.compareInfo1.TabIndex = 0;
-            // 
-            // column1
-            // 
-            this.column1.HeaderText = "Column1";
-            this.column1.Name = "column1";
-            this.column1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.column1.Text = null;
-            this.column1.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
-            // 
-            // column2
-            // 
-            this.column2.HeaderText = "Column2";
-            this.column2.Name = "column2";
-            this.column2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.column2.Text = null;
-            this.column2.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
-            // 
-            // column3
-            // 
-            this.column3.HeaderText = "Column3";
-            this.column3.Name = "column3";
-            this.column3.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.column3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.column3.Text = null;
-            this.column3.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
-            // 
-            // column4
-            // 
-            this.column4.HeaderText = "Column4";
-            this.column4.Name = "column4";
-            this.column4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.column4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.column4.Text = null;
-            this.column4.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
             // 
             // MainForm
             // 

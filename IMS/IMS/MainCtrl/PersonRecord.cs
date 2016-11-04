@@ -124,5 +124,10 @@ namespace IMS.MainCtrl
             }
         }
 
+        private void dataGridView_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
     }
 }

@@ -49,7 +49,7 @@
             // 
             this.btnSave.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnSave.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnSave.Location = new System.Drawing.Point(320, 302);
+            this.btnSave.Location = new System.Drawing.Point(362, 255);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(91, 32);
             this.btnSave.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -61,7 +61,7 @@
             // 
             this.btnTestDataBase.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnTestDataBase.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnTestDataBase.Location = new System.Drawing.Point(223, 302);
+            this.btnTestDataBase.Location = new System.Drawing.Point(265, 255);
             this.btnTestDataBase.Name = "btnTestDataBase";
             this.btnTestDataBase.Size = new System.Drawing.Size(91, 32);
             this.btnTestDataBase.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -88,7 +88,7 @@
             // 
             // 
             this.labelX5.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX5.Location = new System.Drawing.Point(111, 227);
+            this.labelX5.Location = new System.Drawing.Point(111, 202);
             this.labelX5.Name = "labelX5";
             this.labelX5.Size = new System.Drawing.Size(75, 23);
             this.labelX5.TabIndex = 17;
@@ -104,7 +104,7 @@
             this.cbVerType.Items.AddRange(new object[] {
             this.comboItem1,
             this.comboItem2});
-            this.cbVerType.Location = new System.Drawing.Point(192, 104);
+            this.cbVerType.Location = new System.Drawing.Point(192, 79);
             this.cbVerType.Name = "cbVerType";
             this.cbVerType.Size = new System.Drawing.Size(227, 23);
             this.cbVerType.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -125,7 +125,7 @@
             // 
             // 
             this.labelX4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX4.Location = new System.Drawing.Point(111, 186);
+            this.labelX4.Location = new System.Drawing.Point(111, 161);
             this.labelX4.Name = "labelX4";
             this.labelX4.Size = new System.Drawing.Size(75, 23);
             this.labelX4.TabIndex = 12;
@@ -137,7 +137,7 @@
             // 
             // 
             this.labelX3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX3.Location = new System.Drawing.Point(111, 145);
+            this.labelX3.Location = new System.Drawing.Point(111, 120);
             this.labelX3.Name = "labelX3";
             this.labelX3.Size = new System.Drawing.Size(75, 23);
             this.labelX3.TabIndex = 13;
@@ -149,7 +149,7 @@
             // 
             // 
             this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX2.Location = new System.Drawing.Point(111, 104);
+            this.labelX2.Location = new System.Drawing.Point(111, 79);
             this.labelX2.Name = "labelX2";
             this.labelX2.Size = new System.Drawing.Size(75, 23);
             this.labelX2.TabIndex = 14;
@@ -162,7 +162,7 @@
             // 
             this.tbPwd.Border.Class = "TextBoxBorder";
             this.tbPwd.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.tbPwd.Location = new System.Drawing.Point(192, 184);
+            this.tbPwd.Location = new System.Drawing.Point(192, 159);
             this.tbPwd.Name = "tbPwd";
             this.tbPwd.PasswordChar = '*';
             this.tbPwd.Size = new System.Drawing.Size(227, 23);
@@ -176,7 +176,7 @@
             // 
             this.tbDatabase.Border.Class = "TextBoxBorder";
             this.tbDatabase.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.tbDatabase.Location = new System.Drawing.Point(192, 224);
+            this.tbDatabase.Location = new System.Drawing.Point(192, 199);
             this.tbDatabase.Name = "tbDatabase";
             this.tbDatabase.ReadOnly = true;
             this.tbDatabase.Size = new System.Drawing.Size(227, 21);
@@ -190,7 +190,7 @@
             // 
             this.tbUser.Border.Class = "TextBoxBorder";
             this.tbUser.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.tbUser.Location = new System.Drawing.Point(192, 144);
+            this.tbUser.Location = new System.Drawing.Point(192, 119);
             this.tbUser.Name = "tbUser";
             this.tbUser.Size = new System.Drawing.Size(227, 21);
             this.tbUser.TabIndex = 10;
@@ -203,7 +203,7 @@
             // 
             this.tbServerName.Border.Class = "TextBoxBorder";
             this.tbServerName.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.tbServerName.Location = new System.Drawing.Point(192, 64);
+            this.tbServerName.Location = new System.Drawing.Point(192, 39);
             this.tbServerName.Name = "tbServerName";
             this.tbServerName.Size = new System.Drawing.Size(227, 21);
             this.tbServerName.TabIndex = 11;
@@ -215,7 +215,7 @@
             // 
             // 
             this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX1.Location = new System.Drawing.Point(111, 63);
+            this.labelX1.Location = new System.Drawing.Point(111, 38);
             this.labelX1.Name = "labelX1";
             this.labelX1.Size = new System.Drawing.Size(75, 23);
             this.labelX1.TabIndex = 7;
@@ -239,7 +239,7 @@
             this.Controls.Add(this.tbServerName);
             this.Controls.Add(this.labelX1);
             this.Name = "DBConfig";
-            this.Size = new System.Drawing.Size(539, 400);
+            this.Size = new System.Drawing.Size(539, 300);
             this.Load += new System.EventHandler(this.DBConfig_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

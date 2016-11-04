@@ -30,17 +30,17 @@
         {
             this.pbPhoto = new System.Windows.Forms.PictureBox();
             this.labelX1 = new DevComponents.DotNetBar.LabelX();
-            this.labelX2 = new DevComponents.DotNetBar.LabelX();
+            this.lbName = new DevComponents.DotNetBar.LabelX();
             this.labelX3 = new DevComponents.DotNetBar.LabelX();
             this.labelX4 = new DevComponents.DotNetBar.LabelX();
             this.labelX5 = new DevComponents.DotNetBar.LabelX();
             this.labelX6 = new DevComponents.DotNetBar.LabelX();
-            this.labelX7 = new DevComponents.DotNetBar.LabelX();
-            this.labelX8 = new DevComponents.DotNetBar.LabelX();
-            this.labelX9 = new DevComponents.DotNetBar.LabelX();
-            this.labelX10 = new DevComponents.DotNetBar.LabelX();
+            this.lbSex = new DevComponents.DotNetBar.LabelX();
+            this.lbNation = new DevComponents.DotNetBar.LabelX();
+            this.lbBirth = new DevComponents.DotNetBar.LabelX();
+            this.lbAddr = new DevComponents.DotNetBar.LabelX();
             this.labelX11 = new DevComponents.DotNetBar.LabelX();
-            this.labelX12 = new DevComponents.DotNetBar.LabelX();
+            this.lbCardNo = new DevComponents.DotNetBar.LabelX();
             ((System.ComponentModel.ISupportInitialize)(this.pbPhoto)).BeginInit();
             this.SuspendLayout();
             // 
@@ -68,19 +68,19 @@
             this.labelX1.TabIndex = 1;
             this.labelX1.Text = "姓  名";
             // 
-            // labelX2
+            // lbName
             // 
-            this.labelX2.BackColor = System.Drawing.Color.Transparent;
+            this.lbName.BackColor = System.Drawing.Color.Transparent;
             // 
             // 
             // 
-            this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX2.Font = new System.Drawing.Font("宋体", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelX2.Location = new System.Drawing.Point(102, 30);
-            this.labelX2.Name = "labelX2";
-            this.labelX2.Size = new System.Drawing.Size(53, 23);
-            this.labelX2.TabIndex = 1;
-            this.labelX2.Text = "XX";
+            this.lbName.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lbName.Font = new System.Drawing.Font("宋体", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbName.Location = new System.Drawing.Point(102, 30);
+            this.lbName.Name = "lbName";
+            this.lbName.Size = new System.Drawing.Size(70, 23);
+            this.lbName.TabIndex = 1;
+            this.lbName.Text = "XX";
             // 
             // labelX3
             // 
@@ -104,7 +104,7 @@
             // 
             this.labelX4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX4.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelX4.Location = new System.Drawing.Point(161, 77);
+            this.labelX4.Location = new System.Drawing.Point(175, 77);
             this.labelX4.Name = "labelX4";
             this.labelX4.Size = new System.Drawing.Size(53, 23);
             this.labelX4.TabIndex = 1;
@@ -138,61 +138,62 @@
             this.labelX6.TabIndex = 1;
             this.labelX6.Text = "住  址";
             // 
-            // labelX7
+            // lbSex
             // 
-            this.labelX7.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.labelX7.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX7.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelX7.Location = new System.Drawing.Point(102, 74);
-            this.labelX7.Name = "labelX7";
-            this.labelX7.Size = new System.Drawing.Size(53, 23);
-            this.labelX7.TabIndex = 1;
-            this.labelX7.Text = "XX";
-            // 
-            // labelX8
-            // 
-            this.labelX8.BackColor = System.Drawing.Color.Transparent;
+            this.lbSex.BackColor = System.Drawing.Color.Transparent;
             // 
             // 
             // 
-            this.labelX8.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX8.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelX8.Location = new System.Drawing.Point(220, 74);
-            this.labelX8.Name = "labelX8";
-            this.labelX8.Size = new System.Drawing.Size(53, 23);
-            this.labelX8.TabIndex = 1;
-            this.labelX8.Text = "XX";
+            this.lbSex.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lbSex.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbSex.Location = new System.Drawing.Point(102, 74);
+            this.lbSex.Name = "lbSex";
+            this.lbSex.Size = new System.Drawing.Size(53, 23);
+            this.lbSex.TabIndex = 1;
+            this.lbSex.Text = "XX";
             // 
-            // labelX9
+            // lbNation
             // 
-            this.labelX9.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.labelX9.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX9.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelX9.Location = new System.Drawing.Point(102, 118);
-            this.labelX9.Name = "labelX9";
-            this.labelX9.Size = new System.Drawing.Size(53, 23);
-            this.labelX9.TabIndex = 1;
-            this.labelX9.Text = "XX";
-            // 
-            // labelX10
-            // 
-            this.labelX10.BackColor = System.Drawing.Color.Transparent;
+            this.lbNation.BackColor = System.Drawing.Color.Transparent;
             // 
             // 
             // 
-            this.labelX10.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX10.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelX10.Location = new System.Drawing.Point(102, 162);
-            this.labelX10.Name = "labelX10";
-            this.labelX10.Size = new System.Drawing.Size(53, 23);
-            this.labelX10.TabIndex = 1;
-            this.labelX10.Text = "XX";
+            this.lbNation.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lbNation.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbNation.Location = new System.Drawing.Point(234, 74);
+            this.lbNation.Name = "lbNation";
+            this.lbNation.Size = new System.Drawing.Size(53, 23);
+            this.lbNation.TabIndex = 1;
+            this.lbNation.Text = "XX";
+            // 
+            // lbBirth
+            // 
+            this.lbBirth.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.lbBirth.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lbBirth.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbBirth.Location = new System.Drawing.Point(102, 118);
+            this.lbBirth.Name = "lbBirth";
+            this.lbBirth.Size = new System.Drawing.Size(136, 23);
+            this.lbBirth.TabIndex = 1;
+            this.lbBirth.Text = "XX";
+            // 
+            // lbAddr
+            // 
+            this.lbAddr.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.lbAddr.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lbAddr.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbAddr.Location = new System.Drawing.Point(102, 162);
+            this.lbAddr.Name = "lbAddr";
+            this.lbAddr.Size = new System.Drawing.Size(209, 23);
+            this.lbAddr.TabIndex = 1;
+            this.lbAddr.Text = "XX";
+            this.lbAddr.WordWrap = true;
             // 
             // labelX11
             // 
@@ -208,19 +209,19 @@
             this.labelX11.TabIndex = 1;
             this.labelX11.Text = "公民身份号码";
             // 
-            // labelX12
+            // lbCardNo
             // 
-            this.labelX12.BackColor = System.Drawing.Color.Transparent;
+            this.lbCardNo.BackColor = System.Drawing.Color.Transparent;
             // 
             // 
             // 
-            this.labelX12.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX12.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelX12.Location = new System.Drawing.Point(169, 269);
-            this.labelX12.Name = "labelX12";
-            this.labelX12.Size = new System.Drawing.Size(92, 23);
-            this.labelX12.TabIndex = 1;
-            this.labelX12.Text = "XXXX";
+            this.lbCardNo.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lbCardNo.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbCardNo.Location = new System.Drawing.Point(169, 269);
+            this.lbCardNo.Name = "lbCardNo";
+            this.lbCardNo.Size = new System.Drawing.Size(310, 23);
+            this.lbCardNo.TabIndex = 1;
+            this.lbCardNo.Text = "XXXX";
             // 
             // PeopleIDCard
             // 
@@ -228,13 +229,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::IMS.Properties.Resources._01;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Controls.Add(this.labelX8);
-            this.Controls.Add(this.labelX10);
-            this.Controls.Add(this.labelX9);
-            this.Controls.Add(this.labelX7);
-            this.Controls.Add(this.labelX2);
+            this.Controls.Add(this.lbNation);
+            this.Controls.Add(this.lbAddr);
+            this.Controls.Add(this.lbBirth);
+            this.Controls.Add(this.lbSex);
+            this.Controls.Add(this.lbName);
             this.Controls.Add(this.labelX4);
-            this.Controls.Add(this.labelX12);
+            this.Controls.Add(this.lbCardNo);
             this.Controls.Add(this.labelX11);
             this.Controls.Add(this.labelX6);
             this.Controls.Add(this.labelX5);
@@ -253,16 +254,16 @@
 
         private System.Windows.Forms.PictureBox pbPhoto;
         private DevComponents.DotNetBar.LabelX labelX1;
-        private DevComponents.DotNetBar.LabelX labelX2;
+        private DevComponents.DotNetBar.LabelX lbName;
         private DevComponents.DotNetBar.LabelX labelX3;
         private DevComponents.DotNetBar.LabelX labelX4;
         private DevComponents.DotNetBar.LabelX labelX5;
         private DevComponents.DotNetBar.LabelX labelX6;
-        private DevComponents.DotNetBar.LabelX labelX7;
-        private DevComponents.DotNetBar.LabelX labelX8;
-        private DevComponents.DotNetBar.LabelX labelX9;
-        private DevComponents.DotNetBar.LabelX labelX10;
+        private DevComponents.DotNetBar.LabelX lbSex;
+        private DevComponents.DotNetBar.LabelX lbNation;
+        private DevComponents.DotNetBar.LabelX lbBirth;
+        private DevComponents.DotNetBar.LabelX lbAddr;
         private DevComponents.DotNetBar.LabelX labelX11;
-        private DevComponents.DotNetBar.LabelX labelX12;
+        private DevComponents.DotNetBar.LabelX lbCardNo;
     }
 }
