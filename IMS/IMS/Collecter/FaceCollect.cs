@@ -23,6 +23,7 @@ namespace IMS.Collecter
         private static Maticsoft.BLL.SMT_CONTROLLER_INFO ctrlBll = new Maticsoft.BLL.SMT_CONTROLLER_INFO();
         private static Maticsoft.BLL.SMT_STAFF_INFO staffInfoBll = new Maticsoft.BLL.SMT_STAFF_INFO();
         private static Maticsoft.BLL.IMS_FACE_BLACKLIST blackListBll = new Maticsoft.BLL.IMS_FACE_BLACKLIST();
+        private static Maticsoft.BLL.IMS_PEOPLE_RECORD recordBll = new Maticsoft.BLL.IMS_PEOPLE_RECORD();
         private static System.Threading.Timer timer;
         private static string staffFacePath, blackFacePath, tempFacePath;
 
@@ -33,7 +34,46 @@ namespace IMS.Collecter
             get { return FaceCollect.staffName; }
             set { FaceCollect.staffName = value; }
         }
-       
+
+        private static int cardType;
+
+        public static int CardType
+        {
+            get { return cardType; }
+            set { cardType = value; }
+        }
+
+        private static string cardNo;
+
+        public static string CardNo
+        {
+            get { return cardNo; }
+            set { cardNo = value; }
+        }
+
+        private static string staffDepart;
+
+        public static string StaffDepart
+        {
+            get { return staffDepart; }
+            set { staffDepart = value; }
+        }
+
+        private static int throughForward;
+
+        public static int ThroughForward
+        {
+            get { return throughForward; }
+            set { throughForward = value; }
+        }
+
+        private DateTime throughDatetime;
+
+        public DateTime ThroughDatetime
+        {
+            get { return throughDatetime; }
+            set { throughDatetime = value; }
+        }
         private static List<Maticsoft.Model.SMT_STAFF_INFO> staffList;
         private static List<Maticsoft.Model.IMS_FACE_BLACKLIST> blackList;
         private static bool isFaceLoad = false;
@@ -190,103 +230,133 @@ namespace IMS.Collecter
                 mlog.Error("Stop Error", ex);
             }
         }
+        int faceValue = 0;
+
         /// <summary>
         /// 人脸验证
         /// </summary>
         /// <param name="state"></param>
         private void FaceValidate(object state)
         {
-            if (isFaceLoad)
+            try
             {
-                string capturePic = GetCameraPic();
-                string localPic = currentFacePic;
-                string blackPic = "";
-                byte[] feature1 = new byte[3000], feature2 = new byte[3000];
-                int faceValue = 0;
-
-                if (MainForm.Instance.IBlackMode == 0)
+                if (isFaceLoad)
                 {
-                    if (faceBlackList != null && !string.IsNullOrEmpty(capturePic))
+                    string capturePic = GetCameraPic();
+                    string localPic = currentFacePic;
+                    string blackPic = "";
+                    byte[] feature1 = new byte[3000], feature2 = new byte[3000];
+
+                    if (MainForm.Instance.IBlackMode == 0)
                     {
-                        foreach (string pic in faceBlackList)
+                        if (faceBlackList != null && !string.IsNullOrEmpty(capturePic))
                         {
-                            int f1 = FaceService.face_get_feature_from_image(pic, feature1);
-                            int f2 = FaceService.face_get_feature_from_image(capturePic, feature2);
-                            faceValue = FaceService.face_comp_feature(feature1, feature2);
-                            if (faceValue > MainForm.Instance.IBlackThreshold)
-                            {
-                                blackPic = pic;
-                                break;
-                            }
-                        }
-                        if (!string.IsNullOrEmpty(blackPic))
-                        {
-                            if (ValidateEvent != null)
-                            {
-                                ValidateEvent(this, new ValidateResultEventArgs(staffName, capturePic, localPic, blackPic, faceValue, ValidateResult.Black));
-                            }
-                        }
-                    }
-                }
-
-                switch (MainForm.Instance.IFaceMode)
-                {
-                    case 0: ///1:1验证
-                        if (!string.IsNullOrEmpty(localPic) && !string.IsNullOrEmpty(capturePic))
-                        {
-                            int f1 = FaceService.face_get_feature_from_image(localPic, feature1);
-                            int f2 = FaceService.face_get_feature_from_image(capturePic, feature2);
-                            faceValue = FaceService.face_comp_feature(feature1, feature2);
-                        }
-                        break;
-                    case 1: ///1：N验证
-                        if (faceWhiteList != null)
-                        {
-                            localPic = "";
-                            foreach (string pic in faceWhiteList.Values)
+                            foreach (string pic in faceBlackList)
                             {
                                 int f1 = FaceService.face_get_feature_from_image(pic, feature1);
                                 int f2 = FaceService.face_get_feature_from_image(capturePic, feature2);
                                 faceValue = FaceService.face_comp_feature(feature1, feature2);
-                                if (faceValue > MainForm.Instance.IThreshold)
+                                if (faceValue > MainForm.Instance.IBlackThreshold)
                                 {
-                                    localPic = pic;
+                                    blackPic = pic;
                                     break;
                                 }
                             }
-                        }
-                        break;
-                    case 2:
-
-                        break;
-                }
-                if (faceValue > MainForm.Instance.IThreshold && !string.IsNullOrEmpty(localPic))
-                {
-                    if (ValidateEvent != null)
-                    {
-                        ValidateEvent(this, new ValidateResultEventArgs(staffName,capturePic, localPic, blackPic, faceValue, ValidateResult.Success));
-                        using (IAccessCore access = new WGAccess())
-                        {
-                            ///控制开门
-                            Maticsoft.Model.SMT_CONTROLLER_INFO _ctrlr = ctrlBll.GetModel(AccessCollect.Instance.FaceControllerID);
-                            Controller c = ControllerHelper.ToController(_ctrlr);
-                            bool ret = access.OpenRemoteControllerDoor(c, AccessCollect.Instance.FaceDoorIndex);
-                            if (!ret)
+                            if (!string.IsNullOrEmpty(blackPic))
                             {
-                                //WinInfoHelper.ShowInfoWindow(this, "上传门控制方式失败！");
-                                return;
+                                mlog.InfoFormat("黑名单验证结果：{0}！", blackPic);
+                                if (ValidateEvent != null)
+                                {
+                                    ValidateEvent(this, new ValidateResultEventArgs(staffName, capturePic, localPic, blackPic, faceValue, ValidateResult.Black));
+                                }
                             }
                         }
                     }
-                }
-                else
-                {
-                    if (ValidateEvent != null)
+
+                    switch (MainForm.Instance.IFaceMode)
                     {
-                        ValidateEvent(this, new ValidateResultEventArgs(staffName, capturePic, localPic, blackPic, faceValue, ValidateResult.NoPerson));
-                        File.Delete(capturePic);
+                        case 0: ///1:1验证
+                            if (!string.IsNullOrEmpty(localPic) && !string.IsNullOrEmpty(capturePic))
+                            {
+                                int f1 = FaceService.face_get_feature_from_image(localPic, feature1);
+                                int f2 = FaceService.face_get_feature_from_image(capturePic, feature2);
+                                faceValue = FaceService.face_comp_feature(feature1, feature2);
+                                mlog.InfoFormat("1:1验证得分：{0}", faceValue);
+                            }
+                            break;
+                        case 1: ///1：N验证
+                            if (faceWhiteList != null)
+                            {
+                                localPic = "";
+                                foreach (string pic in faceWhiteList.Values)
+                                {
+                                    int f1 = FaceService.face_get_feature_from_image(pic, feature1);
+                                    int f2 = FaceService.face_get_feature_from_image(capturePic, feature2);
+                                    faceValue = FaceService.face_comp_feature(feature1, feature2);
+                                    mlog.InfoFormat("1:N验证得分：{0}", faceValue);
+                                    if (faceValue > MainForm.Instance.IThreshold)
+                                    {
+                                        localPic = pic;
+                                        break;
+                                    }
+                                }
+                            }
+                            break;
+                        case 2:
+
+                            break;
+                    }
+                    if (faceValue > MainForm.Instance.IThreshold && !string.IsNullOrEmpty(localPic))
+                    {
+                        if (ValidateEvent != null)
+                        {
+                            mlog.InfoFormat("人脸验证结果：验证成功，员工{0},验证得分{1},阈值{2}", staffName, faceValue.ToString(), MainForm.Instance.IThreshold.ToString());
+                            ValidateEvent(this, new ValidateResultEventArgs(staffName, capturePic, localPic, blackPic, faceValue, ValidateResult.Success));
+
+                            Maticsoft.Model.IMS_PEOPLE_RECORD record = new Maticsoft.Model.IMS_PEOPLE_RECORD();
+                            record.Name = staffName;
+                            record.Similarity = faceValue;
+                            record.ThroughResult = 1;
+                            record.ThroughTime = DateTime.Now;
+                            record.OriginPic = localPic;
+                            record.CapturePic = capturePic;
+                            record.CompareResult = 1;
+                            record.CardNo = cardNo;
+
+                            recordBll.Add(record);
+
+                            using (IAccessCore access = new WGAccess())
+                            {
+                                ///控制开门
+                                Maticsoft.Model.SMT_CONTROLLER_INFO _ctrlr = ctrlBll.GetModel(AccessCollect.Instance.FaceControllerID);
+                                Controller c = ControllerHelper.ToController(_ctrlr);
+                                bool ret = access.OpenRemoteControllerDoor(c, AccessCollect.Instance.FaceDoorIndex);
+                                if (!ret)
+                                {
+                                    //WinInfoHelper.ShowInfoWindow(this, "上传门控制方式失败！");
+                                    return;
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (ValidateEvent != null)
+                        {
+                            mlog.InfoFormat("人脸验证结果：验证失败无此人");
+                            ValidateEvent(this, new ValidateResultEventArgs(staffName, capturePic, localPic, blackPic, faceValue, ValidateResult.NoPerson));
+                            if (File.Exists(capturePic))
+                            {
+                            File.Delete(capturePic);
+                        }
+                        }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                mlog.InfoFormat("验证异常", ex);
+
             }
         }
 

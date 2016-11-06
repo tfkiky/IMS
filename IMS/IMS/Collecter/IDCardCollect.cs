@@ -41,14 +41,17 @@ namespace IMS.Collecter
             iLastErrorCode = IDCardDll.IDCard.Authenticate();
             if (iLastErrorCode!=1)
             {
-                mlog.Info("未放卡或卡片放置不正确");
+               // mlog.Info("未放卡或卡片放置不正确");
             }
             try
             {
                 iLastErrorCode = IDCardDll.IDCard.Read_Content(1);
 
             }
-            catch { }
+            catch(Exception ex)
+            {
+                mlog.ErrorFormat("身份证读取异常:",ex);
+            }
             FileInfo fi = new FileInfo("./wz.txt");
             if (fi.Exists)
             {

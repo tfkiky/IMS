@@ -20,13 +20,16 @@ namespace IMS
 
         public void LoadIDCard(IDCardClass idcard)
         {
-            lbName.Text = idcard.Name;
-            lbSex.Text = idcard.Sex;
-            lbNation.Text = idcard.Nation;
-            lbBirth.Text = idcard.Birth;
-            lbAddr.Text = idcard.Address;
-            lbCardNo.Text = idcard.Id;
-            pbPhoto.ImageLocation = idcard.PhotoFile;
+            this.Invoke(new Action(() =>
+            {
+                lbName.Text = idcard.Name;
+                lbSex.Text = idcard.Sex;
+                lbNation.Text = idcard.Nation;
+                lbBirth.Text = idcard.Birth;
+                lbAddr.Text = idcard.Address;
+                lbCardNo.Text = idcard.Id;
+                pbPhoto.ImageLocation = idcard.PhotoFile;
+            }));
 
         }
     }

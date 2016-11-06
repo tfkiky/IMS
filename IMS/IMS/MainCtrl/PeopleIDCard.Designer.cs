@@ -190,7 +190,7 @@
             this.lbAddr.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbAddr.Location = new System.Drawing.Point(102, 162);
             this.lbAddr.Name = "lbAddr";
-            this.lbAddr.Size = new System.Drawing.Size(209, 23);
+            this.lbAddr.Size = new System.Drawing.Size(209, 59);
             this.lbAddr.TabIndex = 1;
             this.lbAddr.Text = "XX";
             this.lbAddr.WordWrap = true;

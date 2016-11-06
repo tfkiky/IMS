@@ -109,6 +109,12 @@
     <Compile Include="MainCtrl\CompareInfo.Designer.cs">
       <DependentUpon>CompareInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="MainCtrl\FaceRecord.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainCtrl\FaceRecord.Designer.cs">
+      <DependentUpon>FaceRecord.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainCtrl\FaceVideo.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -201,6 +207,9 @@
     <EmbeddedResource Include="MainCtrl\CompareInfo.resx">
       <DependentUpon>CompareInfo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MainCtrl\FaceRecord.resx">
+      <DependentUpon>FaceRecord.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainCtrl\ManualInspect.resx">
       <DependentUpon>ManualInspect.cs</DependentUpon>
     </EmbeddedResource>
@@ -289,6 +298,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

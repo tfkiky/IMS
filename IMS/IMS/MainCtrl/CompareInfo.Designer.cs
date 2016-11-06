@@ -32,9 +32,6 @@
             this.labelX4 = new DevComponents.DotNetBar.LabelX();
             this.labelX3 = new DevComponents.DotNetBar.LabelX();
             this.labelX2 = new DevComponents.DotNetBar.LabelX();
-            this.pbBlack = new System.Windows.Forms.PictureBox();
-            this.pbLocalPhoto = new System.Windows.Forms.PictureBox();
-            this.pbRealPhoto = new System.Windows.Forms.PictureBox();
             this.labelX9 = new DevComponents.DotNetBar.LabelX();
             this.labelX8 = new DevComponents.DotNetBar.LabelX();
             this.labelX7 = new DevComponents.DotNetBar.LabelX();
@@ -57,6 +54,9 @@
             this.lbName = new DevComponents.DotNetBar.LabelX();
             this.lbPersonCount = new DevComponents.DotNetBar.LabelX();
             this.labelX1 = new DevComponents.DotNetBar.LabelX();
+            this.pbBlack = new System.Windows.Forms.PictureBox();
+            this.pbLocalPhoto = new System.Windows.Forms.PictureBox();
+            this.pbRealPhoto = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -151,36 +151,6 @@
             this.labelX2.Size = new System.Drawing.Size(75, 23);
             this.labelX2.TabIndex = 0;
             this.labelX2.Text = "实时照片";
-            // 
-            // pbBlack
-            // 
-            this.pbBlack.BackgroundImage = global::IMS.Properties.Resources.zanwutupian;
-            this.pbBlack.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pbBlack.Location = new System.Drawing.Point(334, 31);
-            this.pbBlack.Name = "pbBlack";
-            this.pbBlack.Size = new System.Drawing.Size(149, 138);
-            this.pbBlack.TabIndex = 0;
-            this.pbBlack.TabStop = false;
-            // 
-            // pbLocalPhoto
-            // 
-            this.pbLocalPhoto.BackgroundImage = global::IMS.Properties.Resources.zanwutupian;
-            this.pbLocalPhoto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pbLocalPhoto.Location = new System.Drawing.Point(173, 31);
-            this.pbLocalPhoto.Name = "pbLocalPhoto";
-            this.pbLocalPhoto.Size = new System.Drawing.Size(149, 138);
-            this.pbLocalPhoto.TabIndex = 0;
-            this.pbLocalPhoto.TabStop = false;
-            // 
-            // pbRealPhoto
-            // 
-            this.pbRealPhoto.BackgroundImage = global::IMS.Properties.Resources.zanwutupian;
-            this.pbRealPhoto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pbRealPhoto.Location = new System.Drawing.Point(12, 31);
-            this.pbRealPhoto.Name = "pbRealPhoto";
-            this.pbRealPhoto.Size = new System.Drawing.Size(149, 138);
-            this.pbRealPhoto.TabIndex = 0;
-            this.pbRealPhoto.TabStop = false;
             // 
             // labelX9
             // 
@@ -468,6 +438,39 @@
             this.labelX1.Size = new System.Drawing.Size(75, 23);
             this.labelX1.TabIndex = 0;
             this.labelX1.Text = "验证人数：";
+            // 
+            // pbBlack
+            // 
+            this.pbBlack.BackgroundImage = global::IMS.Properties.Resources.zanwutupian;
+            this.pbBlack.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pbBlack.Location = new System.Drawing.Point(334, 31);
+            this.pbBlack.Name = "pbBlack";
+            this.pbBlack.Size = new System.Drawing.Size(149, 138);
+            this.pbBlack.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbBlack.TabIndex = 0;
+            this.pbBlack.TabStop = false;
+            // 
+            // pbLocalPhoto
+            // 
+            this.pbLocalPhoto.BackgroundImage = global::IMS.Properties.Resources.zanwutupian;
+            this.pbLocalPhoto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pbLocalPhoto.Location = new System.Drawing.Point(173, 31);
+            this.pbLocalPhoto.Name = "pbLocalPhoto";
+            this.pbLocalPhoto.Size = new System.Drawing.Size(149, 138);
+            this.pbLocalPhoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbLocalPhoto.TabIndex = 0;
+            this.pbLocalPhoto.TabStop = false;
+            // 
+            // pbRealPhoto
+            // 
+            this.pbRealPhoto.BackgroundImage = global::IMS.Properties.Resources.zanwutupian;
+            this.pbRealPhoto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pbRealPhoto.Location = new System.Drawing.Point(12, 31);
+            this.pbRealPhoto.Name = "pbRealPhoto";
+            this.pbRealPhoto.Size = new System.Drawing.Size(149, 138);
+            this.pbRealPhoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbRealPhoto.TabIndex = 0;
+            this.pbRealPhoto.TabStop = false;
             // 
             // CompareInfo
             // 

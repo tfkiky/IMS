@@ -105,12 +105,6 @@ namespace IMS
             instance = this;
             StyleManager.Style = eStyle.Office2007Black;
             FillDataGrid();
-            //AddNewPerson("tangfei", @"D:\6、个人\查验系统\IMS备份\IMS\IMS\IMS\bin\Debug\zp.bmp");
-            //AddNewPerson("tangfei", @"D:\6、个人\查验系统\IMS备份\IMS\IMS\IMS\bin\Debug\zp.bmp");
-            //AddNewPerson("tangfei", @"D:\6、个人\查验系统\IMS备份\IMS\IMS\IMS\bin\Debug\zp.bmp");
-            //AddNewPerson("tangfei", @"D:\6、个人\查验系统\IMS备份\IMS\IMS\IMS\bin\Debug\zp.bmp");
-            //AddNewPerson("tangfei", @"D:\6、个人\查验系统\IMS备份\IMS\IMS\IMS\bin\Debug\zp.bmp");
-            //AddNewPerson("tangfei", @"D:\6、个人\查验系统\IMS备份\IMS\IMS\IMS\bin\Debug\zp.bmp");
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -120,7 +114,7 @@ namespace IMS
             {
                 ClientMainForm.Instance.LoadConnState(false);
                 MessageBox.Show("数据库连接失败，请检查网络或数据库配置");
-                //this.Close();
+                this.Close();
             }
             else
             {
@@ -132,10 +126,10 @@ namespace IMS
                 idCardCollect.Start();
                 idCardCollect.IDCardEvent += idCardCollect_IDCardEvent;
                 faceCollect.Start(iFaceMode, iSwipeMode, iThreshold, iBlackMode);
-                if (FaceCollect.IsFaceLoad)
-                {
+                //if (FaceCollect.IsFaceLoad)
+                //{
                     faceCollect.ValidateEvent += faceCollect_ValidateEvent;
-                }
+                //}
             }
         }
 
