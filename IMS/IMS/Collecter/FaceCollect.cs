@@ -67,9 +67,9 @@ namespace IMS.Collecter
             set { throughForward = value; }
         }
 
-        private DateTime throughDatetime;
+        private static DateTime throughDatetime;
 
-        public DateTime ThroughDatetime
+        public static DateTime ThroughDatetime
         {
             get { return throughDatetime; }
             set { throughDatetime = value; }
@@ -317,12 +317,16 @@ namespace IMS.Collecter
                             record.Name = staffName;
                             record.Similarity = faceValue;
                             record.ThroughResult = 1;
+                            record.ThroughForward = throughForward;
                             record.ThroughTime = DateTime.Now;
                             record.OriginPic = localPic;
                             record.CapturePic = capturePic;
                             record.CompareResult = 1;
                             record.CardNo = cardNo;
-
+                            record.CardType = cardType;
+                            record.Depart = staffDepart;
+                            record.AccessChannel = AccessCollect.Instance.FaceControllerID.ToString();
+                            record.FacePosition = "";
                             recordBll.Add(record);
 
                             using (IAccessCore access = new WGAccess())
@@ -355,13 +359,14 @@ namespace IMS.Collecter
             }
             catch (Exception ex)
             {
-                mlog.InfoFormat("验证异常", ex);
-
+                mlog.InfoFormat("验证异常:{0}", ex);
             }
         }
 
         private string GetCameraPic()
         {
+            return @"C:\查验系统\Code\IMS\IMS\IMS\bin\Debug\Faces\20161106194611546.jpg";
+
             string dir=AppDomain.CurrentDomain.BaseDirectory+"Faces\\";
             if (!Directory.Exists(dir))
             {

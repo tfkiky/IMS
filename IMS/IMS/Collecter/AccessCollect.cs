@@ -78,6 +78,11 @@ namespace IMS.Collecter
                 {
                     FaceCollect.CurrentFacePic = FaceCollect.FaceWhiteList[(int)record.STAFF_ID];
                     FaceCollect.StaffName = staffList[0].REAL_NAME;
+                    FaceCollect.CardNo = record.CARD_NO;
+                    FaceCollect.CardType = 0;
+                    FaceCollect.StaffDepart = staffList[0].ORG_ID.ToString();
+                    FaceCollect.ThroughForward = (record.IS_ENTER==true)?1:0;
+                    FaceCollect.ThroughDatetime = record.RECORD_DATE.Value;
                     if (AccessEvent != null)
                     {
                         AccessEvent(this, new AccessEventArgs(staffList[0],record.RECORD_DATE.Value.ToString("yyyy-MM-dd HH:mm:ss"),record.IS_ALLOW));

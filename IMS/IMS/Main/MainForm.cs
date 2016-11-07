@@ -330,7 +330,9 @@ namespace IMS
 
         private void dataGridViewX2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            Maticsoft.Model.IMS_PEOPLE_RECORD record = new Maticsoft.Model.IMS_PEOPLE_RECORD(); ;
+            FaceRecord fr = new FaceRecord(record);
+            fr.ShowDialog();
         }
 
        

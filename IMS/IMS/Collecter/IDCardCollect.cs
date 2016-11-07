@@ -38,53 +38,61 @@ namespace IMS.Collecter
 
         private void CollectIDCard(object state)
         {
-            iLastErrorCode = IDCardDll.IDCard.Authenticate();
-            if (iLastErrorCode!=1)
-            {
-               // mlog.Info("未放卡或卡片放置不正确");
-            }
             try
             {
-                iLastErrorCode = IDCardDll.IDCard.Read_Content(1);
-
-            }
-            catch(Exception ex)
-            {
-                mlog.ErrorFormat("身份证读取异常:",ex);
-            }
-            FileInfo fi = new FileInfo("./wz.txt");
-            if (fi.Exists)
-            {
-                FileStream fsRead = fi.Open(FileMode.Open, FileAccess.Read, FileShare.Read);
-                int fsLen = (int)fsRead.Length;
-                byte[] heByte = new byte[fsLen];
-                int r = fsRead.Read(heByte, 0, heByte.Length);
-                string myStr = System.Text.Encoding.Unicode.GetString(heByte);
-                //唐飞             10119890130安徽省合肥市蜀山区科学大道１９号华地紫园１５幢１００２室       340122198901300018合肥市公安局蜀山分局     2016032120360321          
-                if (!string.IsNullOrEmpty(myStr))
+                iLastErrorCode = IDCardDll.IDCard.Authenticate();
+                if (iLastErrorCode != 1)
                 {
-                    string[] idInfo = myStr.Trim().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-                    currentIDCard = new IDCardClass();
-                    currentIDCard.Name = idInfo[0];
-                    currentIDCard.Sex = SexHelper.GetSex(idInfo[1].Substring(0,1));
-                    currentIDCard.Nation = NationHelper.GetNation(idInfo[1].Substring(1, 2));
-                    currentIDCard.Birth = idInfo[1].Substring(3, 8);
-                    currentIDCard.Address = idInfo[1].Substring(11);
-                    currentIDCard.Id = idInfo[2].Substring(0,18);
-                    currentIDCard.SignGov = idInfo[2].Substring(18);
-                    currentIDCard.StartDate = idInfo[3].Substring(0,8);
-                    currentIDCard.LimitDate = idInfo[3].Substring( 8);
-                    if (File.Exists("./zp.bmp"))
+                    // mlog.Info("未放卡或卡片放置不正确");
+                }
+                try 
+                {
+                    iLastErrorCode = IDCardDll.IDCard.Read_Content(1);
+                }
+                catch (Exception ex)
+                {
+                    mlog.ErrorFormat("身份证读取异常:", ex);
+                }
+                FileInfo fi = new FileInfo("./wz.txt");
+                if (fi.Exists)
+                {
+                    FileStream fsRead = fi.Open(FileMode.Open, FileAccess.Read, FileShare.Read);
+                    int fsLen = (int)fsRead.Length;
+                    byte[] heByte = new byte[fsLen];
+                    int r = fsRead.Read(heByte, 0, heByte.Length);
+                    string myStr = System.Text.Encoding.Unicode.GetString(heByte);
+                    //唐飞             10119890130安徽省合肥市蜀山区科学大道１９号华地紫园１５幢１００２室       340122198901300018合肥市公安局蜀山分局     2016032120360321          
+                    if (!string.IsNullOrEmpty(myStr))
                     {
-                        currentIDCard.PhotoFile = AppDomain.CurrentDomain.BaseDirectory+"zp.bmp";
-                        FaceCollect.CurrentFacePic = currentIDCard.PhotoFile;
-                        FaceCollect.StaffName = currentIDCard.Name;
-                        if (IDCardEvent != null)
+                        string[] idInfo = myStr.Trim().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                        currentIDCard = new IDCardClass();
+                        currentIDCard.Name = idInfo[0];
+                        currentIDCard.Sex = SexHelper.GetSex(idInfo[1].Substring(0, 1));
+                        currentIDCard.Nation = NationHelper.GetNation(idInfo[1].Substring(1, 2));
+                        currentIDCard.Birth = idInfo[1].Substring(3, 8);
+                        currentIDCard.Address = idInfo[1].Substring(11);
+                        currentIDCard.Id = idInfo[2].Substring(0, 18);
+                        currentIDCard.SignGov = idInfo[2].Substring(18);
+                        currentIDCard.StartDate = idInfo[3].Substring(0, 8);
+                        currentIDCard.LimitDate = idInfo[3].Substring(8);
+                        if (File.Exists("./zp.bmp"))
                         {
-                            IDCardEvent(this, new IDCardEventArgs(currentIDCard));
+                            currentIDCard.PhotoFile = AppDomain.CurrentDomain.BaseDirectory + "zp.bmp";
+                            FaceCollect.CurrentFacePic = currentIDCard.PhotoFile;
+                            FaceCollect.StaffName = currentIDCard.Name;
+                            FaceCollect.CardType = 1;
+                            FaceCollect.CardNo = currentIDCard.Id;
+                            if (IDCardEvent != null)
+                            {
+                                IDCardEvent(this, new IDCardEventArgs(currentIDCard));
+                            }
                         }
                     }
                 }
+            }
+            catch(Exception  ex)
+            {
+                mlog.ErrorFormat("CollectIDCard异常：", ex);
             }
         }
 

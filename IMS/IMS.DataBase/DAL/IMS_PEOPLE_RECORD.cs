@@ -53,11 +53,11 @@ namespace Maticsoft.DAL
 		{
 			StringBuilder strSql=new StringBuilder();
 			strSql.Append("insert into IMS_PEOPLE_RECORD(");
-			strSql.Append("ID,CardType,CardNo,Name,Depart,AccessChannel,ThroughForward,ThroughTime,ThroughResult,CapturePic,OriginPic,CompareResult,Similarity,FacePosition)");
+			strSql.Append("CardType,CardNo,Name,Depart,AccessChannel,ThroughForward,ThroughTime,ThroughResult,CapturePic,OriginPic,CompareResult,Similarity,FacePosition)");
 			strSql.Append(" values (");
 			strSql.Append("@ID,@CardType,@CardNo,@Name,@Depart,@AccessChannel,@ThroughForward,@ThroughTime,@ThroughResult,@CapturePic,@OriginPic,@CompareResult,@Similarity,@FacePosition)");
 			SqlParameter[] parameters = {
-					new SqlParameter("@ID", SqlDbType.Decimal,9),
+                    //new SqlParameter("@ID", SqlDbType.Decimal,9),
 					new SqlParameter("@CardType", SqlDbType.TinyInt,1),
 					new SqlParameter("@CardNo", SqlDbType.VarChar,100),
 					new SqlParameter("@Name", SqlDbType.NVarChar,100),
@@ -71,20 +71,20 @@ namespace Maticsoft.DAL
 					new SqlParameter("@CompareResult", SqlDbType.TinyInt,1),
 					new SqlParameter("@Similarity", SqlDbType.Decimal,9),
 					new SqlParameter("@FacePosition", SqlDbType.NVarChar,100)};
-			parameters[0].Value = model.ID;
-			parameters[1].Value = model.CardType;
-			parameters[2].Value = model.CardNo;
-			parameters[3].Value = model.Name;
-			parameters[4].Value = model.Depart;
-			parameters[5].Value = model.AccessChannel;
-			parameters[6].Value = model.ThroughForward;
-			parameters[7].Value = model.ThroughTime;
-			parameters[8].Value = model.ThroughResult;
-			parameters[9].Value = model.CapturePic;
-			parameters[10].Value = model.OriginPic;
-			parameters[11].Value = model.CompareResult;
-			parameters[12].Value = model.Similarity;
-			parameters[13].Value = model.FacePosition;
+            //parameters[0].Value = model.ID;
+			parameters[0].Value = model.CardType;
+			parameters[1].Value = model.CardNo;
+			parameters[2].Value = model.Name;
+			parameters[3].Value = model.Depart;
+			parameters[4].Value = model.AccessChannel;
+			parameters[5].Value = model.ThroughForward;
+			parameters[6].Value = model.ThroughTime;
+			parameters[7].Value = model.ThroughResult;
+			parameters[8].Value = model.CapturePic;
+			parameters[9].Value = model.OriginPic;
+			parameters[10].Value = model.CompareResult;
+			parameters[11].Value = model.Similarity;
+			parameters[12].Value = model.FacePosition;
 
 			int rows=DbHelperSQL.ExecuteSql(strSql.ToString(),parameters);
 			if (rows > 0)
