@@ -62,7 +62,7 @@ namespace IMS
 
         public void LoadValidateResult(ValidateResultEventArgs e)
         {
-            lbValue.Text = e.ValidateValue.ToString();
+            lbValue.Text = e.Record.Similarity.ToString();
             switch (e.ValidateResult)
             {
                 case IMS.Collecter.ValidateResult.Success:

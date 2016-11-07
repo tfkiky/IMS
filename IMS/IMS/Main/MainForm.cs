@@ -32,7 +32,7 @@ namespace IMS
         private List<Maticsoft.Model.SMT_STAFF_INFO> staffList = new List<Maticsoft.Model.SMT_STAFF_INFO>();
         private List<Maticsoft.Model.IMS_VEHICLE_RECORD> vehicleList = new List<Maticsoft.Model.IMS_VEHICLE_RECORD>();
 
-        private Dictionary<string, Bitmap> imageDic = new Dictionary<string, Bitmap>();
+        private List<Maticsoft.Model.IMS_PEOPLE_RECORD> recordList = new List<Maticsoft.Model.IMS_PEOPLE_RECORD>();
 
         private HikSDK.HikonComDevice hikCam = new HikSDK.HikonComDevice();
 
@@ -141,6 +141,7 @@ namespace IMS
             {
                 compareInfo1.LoadIDInfo(e.IDCard);
                 ClientMainForm.Instance.LoadIDCardInfo(e.IDCard);
+                peopleVehicleVideo1.LoadIDCardResult(e.StaffInfo, e.IsAllow);
             }
         }
 
@@ -148,8 +149,8 @@ namespace IMS
         {
             if (e.StaffInfo != null)
             {
-                compareInfo1.LoadAccessInfo(e.StaffInfo,e.PassTime);
-                peopleVehicleVideo1.LoadAccessResult(e.IsAllow);
+                compareInfo1.LoadAccessInfo(e.StaffInfo, e.CardRecord);
+                peopleVehicleVideo1.LoadAccessResult(e.StaffInfo,e.CardRecord);
             }
         }
 
@@ -157,13 +158,13 @@ namespace IMS
         {
             try
             {
-                if (e.CaptruePic != null)
+                if (e.Record.CapturePic != null)
                 {
                     compareInfo1.LoadValidateResult(e);
                     peopleVehicleVideo1.LoadValidateResult(e.ValidateResult);
                     if (e.ValidateResult == IMS.Collecter.ValidateResult.Success)
                     {
-                        AddNewPerson(e.StaffName, e.LocalPic);
+                        AddNewPerson(e.Record);
                     }
                 }
             }
@@ -188,11 +189,13 @@ namespace IMS
         void column_BeforeCellPaint(object sender, BeforeCellPaintEventArgs e)
         {
             DataGridViewButtonXColumn bcx = sender as DataGridViewButtonXColumn;
+            DataGridViewButtonCell cell = dataGridViewX2.Rows[e.RowIndex].Cells[e.ColumnIndex] as DataGridViewButtonCell;
             if (bcx != null)
             {
-                if (!string.IsNullOrEmpty(bcx.Text))
+                if (!string.IsNullOrEmpty(bcx.Text) && cell.Tag is Maticsoft.Model.IMS_PEOPLE_RECORD)
                 {
-                    bcx.Image = imageDic[bcx.Text];
+                    Bitmap bmp = new Bitmap(recordList.Find(rec => rec.Name == bcx.Text&&rec.ID==(cell.Tag as Maticsoft.Model.IMS_PEOPLE_RECORD).ID).OriginPic);
+                    bcx.Image = new Bitmap(bmp,48,48);
                     mlog.InfoFormat("加载图片：{0}", bcx.Text);
                 }
             }
@@ -280,22 +283,20 @@ namespace IMS
             }
         }
 
-        private void AddNewPerson(string name ,string photo)
+        private void AddNewPerson(Maticsoft.Model.IMS_PEOPLE_RECORD record)
         {
             try
             {
-                lock (imageDic)
+                lock (recordList)
                 {
-                    //if (imageList1.Images.Count > 11)
-                    //{
-                    //    imageList1.Images.RemoveAt(0);
-                    //}
-                    if (!imageDic.ContainsKey(name))
+                    if (recordList.Count > 11)
                     {
-                        Bitmap bmp = new Bitmap(photo);
-                        imageDic.Add(name, new Bitmap(bmp, 48, 48));
-                        mlog.InfoFormat("新进记录：{0}",name);
-                        bmp.Dispose();
+                        recordList.RemoveAt(0);
+                    }
+                    if (!recordList.Exists(rec=>rec.ID==record.ID))
+                    {
+                        recordList.Add(record);
+                        mlog.InfoFormat("新进记录：{0}", record.Name);
                     }
                     LoadPerson();
 
@@ -317,9 +318,10 @@ namespace IMS
                     {
                         DataGridViewButtonCell cell = dataGridViewX2.Rows[i].Cells[j] as DataGridViewButtonCell;
 
-                        if (i * dataGridViewX2.ColumnCount + j < imageDic.Count)
+                        if (i * dataGridViewX2.ColumnCount + j < recordList.Count)
                         {
-                            cell.Value = "唐飞";
+                            cell.Value = recordList[i * dataGridViewX2.ColumnCount + j].Name;
+                            cell.Tag = recordList[i * dataGridViewX2.ColumnCount + j];
                             mlog.InfoFormat("加载记录：{0}", cell.Value);
                         }
 

@@ -24,10 +24,10 @@ namespace IMS
             {
                 this.Invoke(new Action(() =>
                {
-                   pbRealPhoto.ImageLocation = e.CaptruePic;
-                   pbLocalPhoto.ImageLocation = e.LocalPic;
+                   pbRealPhoto.ImageLocation = e.Record.CapturePic;
+                   pbLocalPhoto.ImageLocation = e.Record.OriginPic;
                    pbBlack.ImageLocation = e.BlackPic;
-                   lbValue.Text = e.ValidateValue.ToString();
+                   lbValue.Text = e.Record.Similarity.ToString();
 
                }));
             }
@@ -36,7 +36,7 @@ namespace IMS
             }
         }
 
-        public void LoadAccessInfo(Maticsoft.Model.SMT_STAFF_INFO staffInfo, string passTime)
+        public void LoadAccessInfo(Maticsoft.Model.SMT_STAFF_INFO staffInfo, Maticsoft.Model.SMT_CARD_RECORDS cardRecord)
         {
             this.Invoke(new Action(() =>
            {
@@ -46,7 +46,7 @@ namespace IMS
                {
                    lbDepart.Text = orgList[0].ORG_NAME;
                }
-               lbTime.Text = passTime;
+               lbTime.Text = cardRecord.RECORD_DATE.Value.ToString("yyyy-MM-dd HH:mm:ss");
            }));
         }
 

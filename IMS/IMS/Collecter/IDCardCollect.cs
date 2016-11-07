@@ -15,6 +15,9 @@ namespace IMS.Collecter
         private ILog mlog = LogManager.GetLogger("IDCardCollect");
 
         public event EventHandler<IDCardEventArgs> IDCardEvent;
+        private Maticsoft.BLL.SMT_STAFF_INFO staffBll = new Maticsoft.BLL.SMT_STAFF_INFO();
+        private Maticsoft.BLL.SMT_STAFF_DOOR staffDorrBll = new Maticsoft.BLL.SMT_STAFF_DOOR();
+
         private IDCardClass currentIDCard;
 
         public IDCardClass CurrentIDCard
@@ -78,14 +81,48 @@ namespace IMS.Collecter
                         if (File.Exists("./zp.bmp"))
                         {
                             currentIDCard.PhotoFile = AppDomain.CurrentDomain.BaseDirectory + "zp.bmp";
-                            FaceCollect.CurrentFacePic = currentIDCard.PhotoFile;
-                            FaceCollect.StaffName = currentIDCard.Name;
-                            FaceCollect.CardType = 1;
-                            FaceCollect.CardNo = currentIDCard.Id;
-                            if (IDCardEvent != null)
+
+                            if (AccessCollect.Instance.FaceDoorID!=0)
                             {
-                                IDCardEvent(this, new IDCardEventArgs(currentIDCard));
+                                List<Maticsoft.Model.SMT_STAFF_INFO> staffList = new List<Maticsoft.Model.SMT_STAFF_INFO>();
+                                //通过姓名和身份证号码验证库中是否有此员工
+                                staffList = staffBll.GetModelList("REAL_NAME='" + currentIDCard.Name + "' AND CER_NO='" + currentIDCard.Id + "'");
+                                if (staffList!=null&&staffList.Count>0)
+                                {
+                                    //验证此员工是否有此门同行权限
+                                    List<Maticsoft.Model.SMT_STAFF_DOOR> staffDoorList=staffDorrBll.GetModelList("STAFF_ID="+staffList[0].ID+" AND DOOR_ID="+AccessCollect.Instance.FaceDoorID);
+                                    bool isAllow = false;
+                                    if (staffDoorList != null && staffDoorList.Count > 0)
+                                    {
+                                       if (staffDoorList[0].IS_UPLOAD)
+                                       {
+                                           FaceCollect.CardType = 1;
+                                           FaceCollect.StaffInfo = staffList[0];
+                                           FaceCollect.CurrentFacePic = currentIDCard.PhotoFile;
+
+                                           isAllow = true;
+                                       }
+                                       else
+                                        isAllow = false;
+                                    }
+                                    else
+                                    {
+                                        isAllow = false;
+                                    }
+                                    if (IDCardEvent != null)
+                                    {
+                                        IDCardEvent(this, new IDCardEventArgs(currentIDCard, staffList[0], isAllow));
+                                    }
+                                }
+                                else
+                                {
+                                    if (IDCardEvent != null)
+                                    {
+                                        IDCardEvent(this, new IDCardEventArgs(currentIDCard, null, false));
+                                    }
+                                }
                             }
+                            
                         }
                     }
                 }

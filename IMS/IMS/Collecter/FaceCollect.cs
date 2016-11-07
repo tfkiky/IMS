@@ -21,18 +21,35 @@ namespace IMS.Collecter
         private ILog mlog = LogManager.GetLogger("FaceCollect");
         private static Maticsoft.BLL.IMS_DATA_CONFIG imsConfigBll = new Maticsoft.BLL.IMS_DATA_CONFIG();
         private static Maticsoft.BLL.SMT_CONTROLLER_INFO ctrlBll = new Maticsoft.BLL.SMT_CONTROLLER_INFO();
+        private static Maticsoft.BLL.SMT_DOOR_INFO doorBll = new Maticsoft.BLL.SMT_DOOR_INFO();
         private static Maticsoft.BLL.SMT_STAFF_INFO staffInfoBll = new Maticsoft.BLL.SMT_STAFF_INFO();
         private static Maticsoft.BLL.IMS_FACE_BLACKLIST blackListBll = new Maticsoft.BLL.IMS_FACE_BLACKLIST();
         private static Maticsoft.BLL.IMS_PEOPLE_RECORD recordBll = new Maticsoft.BLL.IMS_PEOPLE_RECORD();
         private static System.Threading.Timer timer;
         private static string staffFacePath, blackFacePath, tempFacePath;
 
-        private static string staffName;
+        private static Maticsoft.Model.SMT_STAFF_INFO staffInfo;
 
-        public static string StaffName
+        public static Maticsoft.Model.SMT_STAFF_INFO StaffInfo
         {
-            get { return FaceCollect.staffName; }
-            set { FaceCollect.staffName = value; }
+            get { return FaceCollect.staffInfo; }
+            set { FaceCollect.staffInfo = value; }
+        }
+
+        private static Maticsoft.Model.SMT_CARD_RECORDS cardRecord;
+
+        public static Maticsoft.Model.SMT_CARD_RECORDS CardRecord
+        {
+            get { return FaceCollect.cardRecord; }
+            set { FaceCollect.cardRecord = value; }
+        }
+
+        private static IDCardClass idCard;
+
+        public static IDCardClass IdCard
+        {
+            get { return FaceCollect.idCard; }
+            set { FaceCollect.idCard = value; }
         }
 
         private static int cardType;
@@ -43,37 +60,6 @@ namespace IMS.Collecter
             set { cardType = value; }
         }
 
-        private static string cardNo;
-
-        public static string CardNo
-        {
-            get { return cardNo; }
-            set { cardNo = value; }
-        }
-
-        private static string staffDepart;
-
-        public static string StaffDepart
-        {
-            get { return staffDepart; }
-            set { staffDepart = value; }
-        }
-
-        private static int throughForward;
-
-        public static int ThroughForward
-        {
-            get { return throughForward; }
-            set { throughForward = value; }
-        }
-
-        private static DateTime throughDatetime;
-
-        public static DateTime ThroughDatetime
-        {
-            get { return throughDatetime; }
-            set { throughDatetime = value; }
-        }
         private static List<Maticsoft.Model.SMT_STAFF_INFO> staffList;
         private static List<Maticsoft.Model.IMS_FACE_BLACKLIST> blackList;
         private static bool isFaceLoad = false;
@@ -246,6 +232,8 @@ namespace IMS.Collecter
                     string localPic = currentFacePic;
                     string blackPic = "";
                     byte[] feature1 = new byte[3000], feature2 = new byte[3000];
+                    Maticsoft.Model.IMS_PEOPLE_RECORD record = new Maticsoft.Model.IMS_PEOPLE_RECORD();
+                    record.Name = staffInfo.REAL_NAME;
 
                     if (MainForm.Instance.IBlackMode == 0)
                     {
@@ -265,9 +253,27 @@ namespace IMS.Collecter
                             if (!string.IsNullOrEmpty(blackPic))
                             {
                                 mlog.InfoFormat("黑名单验证结果：{0}！", blackPic);
+
+                                //Maticsoft.Model.IMS_PEOPLE_RECORD record = new Maticsoft.Model.IMS_PEOPLE_RECORD();
+                                //record.Name = staffInfo.REAL_NAME;
+                                record.Similarity = faceValue;
+                                //record.ThroughResult = -1;
+                                //record.OriginPic = "";
+                                ////record.OriginPic = blackPic;
+                                record.CapturePic = capturePic;
+                                //record.CompareResult = 1;
+                                //record.CardType = -1;
+                                //record.Depart = staffInfo.ORG_ID.ToString();
+                                //record.ThroughForward = -1;
+                                //record.ThroughTime = DateTime.Now;
+                                //record.CardNo = "";
+                                //record.AccessChannel = AccessCollect.Instance.FaceControllerID.ToString();
+                                //record.FacePosition = "";
+                                //recordBll.Add(record);
+
                                 if (ValidateEvent != null)
                                 {
-                                    ValidateEvent(this, new ValidateResultEventArgs(staffName, capturePic, localPic, blackPic, faceValue, ValidateResult.Black));
+                                    ValidateEvent(this, new ValidateResultEventArgs(record, blackPic, ValidateResult.Black));
                                 }
                             }
                         }
@@ -309,21 +315,33 @@ namespace IMS.Collecter
                     if (faceValue > MainForm.Instance.IThreshold && !string.IsNullOrEmpty(localPic))
                     {
                         if (ValidateEvent != null)
-                        { 
+                        {
+                            if (cardType == 1)
+                            {
+                                File.Copy(localPic, staffFacePath + staffInfo.ID + ".jpg", true);
+                                localPic = staffFacePath + staffInfo.ID + ".jpg";
+                            }
                             try
                             {
-                                Maticsoft.Model.IMS_PEOPLE_RECORD record = new Maticsoft.Model.IMS_PEOPLE_RECORD();
-                                record.Name = staffName;
                                 record.Similarity = faceValue;
                                 record.ThroughResult = 1;
-                                record.ThroughForward = throughForward;
-                                record.ThroughTime = DateTime.Now;
                                 record.OriginPic = localPic;
                                 record.CapturePic = capturePic;
                                 record.CompareResult = 1;
-                                record.CardNo = cardNo;
                                 record.CardType = cardType;
-                                record.Depart = staffDepart;
+                                record.Depart = staffInfo.ORG_ID.ToString();
+                                if (cardType == 0)
+                                {
+                                    record.ThroughForward = (cardRecord.IS_ENTER == true) ? 0 : 1;
+                                    record.ThroughTime = cardRecord.RECORD_DATE.Value;
+                                    record.CardNo = cardRecord.CARD_NO;
+                                }
+                                else
+                                {
+                                    record.ThroughForward = -1;
+                                    record.ThroughTime = DateTime.Now;
+                                    record.CardNo = idCard.Id;
+                                }
                                 record.AccessChannel = AccessCollect.Instance.FaceControllerID.ToString();
                                 record.FacePosition = "";
                                 recordBll.Add(record);
@@ -333,21 +351,17 @@ namespace IMS.Collecter
                                 mlog.ErrorFormat("添加人脸通行记录：{0}",ex);
                             }
 
-                            if(cardType==1)
-                            {
-                                File.Copy(localPic, staffFacePath + staffName+".jpg",true);
-                                localPic = staffFacePath + staffName + ".jpg";
-                            }
-
-                            mlog.InfoFormat("人脸验证结果：验证成功，员工{0},验证得分{1},阈值{2}", staffName, faceValue.ToString(), MainForm.Instance.IThreshold.ToString());
-                            ValidateEvent(this, new ValidateResultEventArgs(staffName, capturePic, localPic, blackPic, faceValue, ValidateResult.Success));
+                            mlog.InfoFormat("人脸验证结果：验证成功，员工{0},验证得分{1},阈值{2}", staffInfo.REAL_NAME, faceValue.ToString(), MainForm.Instance.IThreshold.ToString());
+                            ValidateEvent(this, new ValidateResultEventArgs(record, blackPic, ValidateResult.Success));
 
                             using (IAccessCore access = new WGAccess())
                             {
                                 ///控制开门
                                 Maticsoft.Model.SMT_CONTROLLER_INFO _ctrlr = ctrlBll.GetModel(AccessCollect.Instance.FaceControllerID);
                                 Controller c = ControllerHelper.ToController(_ctrlr);
-                                bool ret = access.OpenRemoteControllerDoor(c, AccessCollect.Instance.FaceDoorIndex);
+                                Maticsoft.Model.SMT_DOOR_INFO _door = doorBll.GetModel(AccessCollect.Instance.FaceDoorID);
+
+                                bool ret = access.OpenRemoteControllerDoor(c, _door.CTRL_DOOR_INDEX.Value);
                                 if (!ret)
                                 {
                                     //WinInfoHelper.ShowInfoWindow(this, "上传门控制方式失败！");
@@ -358,15 +372,15 @@ namespace IMS.Collecter
                     }
                     else
                     {
-                        if (ValidateEvent != null)
-                        {
-                            mlog.InfoFormat("人脸验证结果：验证失败无此人");
-                            ValidateEvent(this, new ValidateResultEventArgs(staffName, capturePic, localPic, blackPic, faceValue, ValidateResult.NoPerson));
+                        //if (ValidateEvent != null)
+                        //{
+                        //    mlog.InfoFormat("人脸验证结果：验证失败无此人");
+                        //    ValidateEvent(this, new ValidateResultEventArgs(record,  blackPic, ValidateResult.NoPerson));
                             if (File.Exists(capturePic))
                             {
-                            File.Delete(capturePic);
-                        }
-                        }
+                                File.Delete(capturePic);
+                            }
+                        //}
                     }
                 }
             }

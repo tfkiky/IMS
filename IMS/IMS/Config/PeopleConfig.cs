@@ -62,7 +62,7 @@ namespace IMS
                 ci.Text = door.DOOR_NAME;
                 ci.Tag = door;
                 cbDoor.Items.Add(ci);
-                if (door.CTRL_DOOR_INDEX == AccessCollect.Instance.FaceDoorIndex)
+                if (door.ID == AccessCollect.Instance.FaceDoorID)
                 {
                     cbDoor.SelectedItem = ci;
                 }

@@ -53,12 +53,38 @@ namespace IMS
         }
 
 
-        public void LoadAccessResult(bool isAllow)
+        public void LoadAccessResult(Maticsoft.Model.SMT_STAFF_INFO staffInfo,Maticsoft.Model.SMT_CARD_RECORDS cardRecord)
         {
-            if(!isAllow)
+            if (staffInfo==null)
             {
-                lbResult.Text = "姓名，无权限禁止通行！";
+                lbResult.Text = "此卡无效，无此用户！";
             }
+            else
+            {
+                if (!cardRecord.IS_ALLOW)
+                {
+                    lbResult.Text = string.Format("{0}无权限,禁止通行！",staffInfo.REAL_NAME);
+                }
+
+            }
+            
+        }
+
+        public void LoadIDCardResult(Maticsoft.Model.SMT_STAFF_INFO staffInfo, bool isAllow)
+        {
+            if (staffInfo == null)
+            {
+                lbResult.Text = "此卡无效，无此用户！";
+            }
+            else
+            {
+                if (!isAllow)
+                {
+                    lbResult.Text = string.Format("{0}无权限,禁止通行！", staffInfo.REAL_NAME);
+                }
+
+            }
+
         }
     }
 }

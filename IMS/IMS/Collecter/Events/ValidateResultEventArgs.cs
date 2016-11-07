@@ -7,59 +7,32 @@ namespace IMS.Collecter
 {
     public class ValidateResultEventArgs : EventArgs
     {
-        private string _captruePic;
-        private string _localPic;
         private string _blackPic;
-        private string _staffName;
 
+        private Maticsoft.Model.IMS_PEOPLE_RECORD _record;
+
+        public Maticsoft.Model.IMS_PEOPLE_RECORD Record
+        {
+            get { return _record; }
+            set { _record = value; }
+        }
        
         private int _validateValue;
         private ValidateResult _validateResult;
 
-        public ValidateResultEventArgs(string staffName,string captruePic, string localPic,string blackPic, int validateValue, ValidateResult validateResult)
+        public ValidateResultEventArgs(Maticsoft.Model.IMS_PEOPLE_RECORD record,string blackPic, ValidateResult validateResult)
         {
-            _staffName = staffName;
-            _captruePic = captruePic;
-            _localPic = localPic;
+            _record = record;
             _blackPic = blackPic;
-            _validateValue = validateValue;
             _validateResult = validateResult;
         }
 
-        public string StaffName
-        {
-            get { return _staffName; }
-        }
-
-        public string CaptruePic
-        {
-            get
-            {
-                return _captruePic;
-            }
-        }
-
-        public string LocalPic
-        {
-            get
-            {
-                return _localPic;
-            }
-        }
-
+      
         public string BlackPic
         {
             get
             {
                 return _blackPic;
-            }
-        }
-
-        public int ValidateValue
-        {
-            get
-            {
-                return _validateValue;
             }
         }
 

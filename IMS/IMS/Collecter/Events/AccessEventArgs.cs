@@ -14,26 +14,17 @@ namespace IMS.Collecter
             get { return _staffInfo; }
         }
 
-        private string _passTime;
+        private Maticsoft.Model.SMT_CARD_RECORDS _cardRecord;
 
-        public string PassTime
+        public Maticsoft.Model.SMT_CARD_RECORDS CardRecord
         {
-            get { return _passTime; }
+            get { return _cardRecord; }
         }
 
-        private bool _isAllow;
-
-        public bool IsAllow
-        {
-            get { return _isAllow; }
-            set { _isAllow = value; }
-        }
-
-        public AccessEventArgs(Maticsoft.Model.SMT_STAFF_INFO staffInfo,string passTime,bool isAllow)
+        public AccessEventArgs(Maticsoft.Model.SMT_STAFF_INFO staffInfo, Maticsoft.Model.SMT_CARD_RECORDS cardRecord)
         {
             _staffInfo = staffInfo;
-            _passTime = passTime;
-            _isAllow = isAllow;
+            _cardRecord = cardRecord;
         }
     }
 }
