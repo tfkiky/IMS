@@ -97,6 +97,7 @@ namespace IMS.MainCtrl
                     recordList[i].CompareResult,
                     
                     });
+                    newRow.Tag = recordList[i];
                     dataGridView.Rows.Add(newRow);
                 }
                 if (recordRowsCount == 0)
@@ -126,7 +127,9 @@ namespace IMS.MainCtrl
 
         private void dataGridView_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            Maticsoft.Model.IMS_PEOPLE_RECORD record = dataGridView.SelectedRows[0].Tag as Maticsoft.Model.IMS_PEOPLE_RECORD ;
+            FaceRecord fr = new FaceRecord(record);
+            fr.ShowDialog();
         }
 
     }

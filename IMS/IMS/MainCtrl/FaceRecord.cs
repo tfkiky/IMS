@@ -7,6 +7,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using IDCardDll;
+using IMS.Collecter;
 
 namespace IMS.MainCtrl
 {
@@ -27,7 +29,13 @@ namespace IMS.MainCtrl
             lbSwipe.Text = (_peopleRecord.CardType == 0) ? "门禁刷卡" : "身份证刷卡";
             lbValue.Text = _peopleRecord.Similarity.ToString();
             pbCaptrue.ImageLocation = _peopleRecord.CapturePic;
-            //peopleIDCard1.LoadIDCard();
+
+
+            IDCardClass idcard = new IDCardClass();
+            idcard.Name = _peopleRecord.Name;
+            idcard.PhotoFile = _peopleRecord.OriginPic;
+
+            peopleIDCard1.LoadIDCard(idcard);
         }
 
     }

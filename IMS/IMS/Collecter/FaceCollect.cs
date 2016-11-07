@@ -309,25 +309,32 @@ namespace IMS.Collecter
                     if (faceValue > MainForm.Instance.IThreshold && !string.IsNullOrEmpty(localPic))
                     {
                         if (ValidateEvent != null)
-                        {
+                        { 
+                            try
+                            {
+                                Maticsoft.Model.IMS_PEOPLE_RECORD record = new Maticsoft.Model.IMS_PEOPLE_RECORD();
+                                record.Name = staffName;
+                                record.Similarity = faceValue;
+                                record.ThroughResult = 1;
+                                record.ThroughForward = throughForward;
+                                record.ThroughTime = DateTime.Now;
+                                record.OriginPic = localPic;
+                                record.CapturePic = capturePic;
+                                record.CompareResult = 1;
+                                record.CardNo = cardNo;
+                                record.CardType = cardType;
+                                record.Depart = staffDepart;
+                                record.AccessChannel = AccessCollect.Instance.FaceControllerID.ToString();
+                                record.FacePosition = "";
+                                recordBll.Add(record);
+                            }
+                            catch (System.Exception ex)
+                            {
+                            	
+                            }
+
                             mlog.InfoFormat("人脸验证结果：验证成功，员工{0},验证得分{1},阈值{2}", staffName, faceValue.ToString(), MainForm.Instance.IThreshold.ToString());
                             ValidateEvent(this, new ValidateResultEventArgs(staffName, capturePic, localPic, blackPic, faceValue, ValidateResult.Success));
-
-                            Maticsoft.Model.IMS_PEOPLE_RECORD record = new Maticsoft.Model.IMS_PEOPLE_RECORD();
-                            record.Name = staffName;
-                            record.Similarity = faceValue;
-                            record.ThroughResult = 1;
-                            record.ThroughForward = throughForward;
-                            record.ThroughTime = DateTime.Now;
-                            record.OriginPic = localPic;
-                            record.CapturePic = capturePic;
-                            record.CompareResult = 1;
-                            record.CardNo = cardNo;
-                            record.CardType = cardType;
-                            record.Depart = staffDepart;
-                            record.AccessChannel = AccessCollect.Instance.FaceControllerID.ToString();
-                            record.FacePosition = "";
-                            recordBll.Add(record);
 
                             using (IAccessCore access = new WGAccess())
                             {
@@ -365,7 +372,7 @@ namespace IMS.Collecter
 
         private string GetCameraPic()
         {
-            return @"C:\查验系统\Code\IMS\IMS\IMS\bin\Debug\Faces\20161106194611546.jpg";
+            return @"D:\6、个人\查验系统\IMS备份\IMS\IMS\IMS\bin\Debug\Faces\20161106194611546.jpg";
 
             string dir=AppDomain.CurrentDomain.BaseDirectory+"Faces\\";
             if (!Directory.Exists(dir))
