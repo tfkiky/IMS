@@ -234,7 +234,6 @@ namespace IMS.Collecter
                     byte[] feature1 = new byte[3000], feature2 = new byte[3000];
                     Maticsoft.Model.IMS_PEOPLE_RECORD record = new Maticsoft.Model.IMS_PEOPLE_RECORD();
                     record.Name = staffInfo.REAL_NAME;
-
                     if (MainForm.Instance.IBlackMode == 0)
                     {
                         if (faceBlackList != null && !string.IsNullOrEmpty(capturePic))
@@ -257,7 +256,7 @@ namespace IMS.Collecter
                                 //Maticsoft.Model.IMS_PEOPLE_RECORD record = new Maticsoft.Model.IMS_PEOPLE_RECORD();
                                 //record.Name = staffInfo.REAL_NAME;
                                 record.Similarity = faceValue;
-                                //record.ThroughResult = -1;
+                                //record.ThroughResult = 2;
                                 //record.OriginPic = "";
                                 ////record.OriginPic = blackPic;
                                 record.CapturePic = capturePic;
@@ -318,7 +317,10 @@ namespace IMS.Collecter
                         {
                             if (cardType == 1)
                             {
-                                File.Copy(localPic, staffFacePath + staffInfo.ID + ".jpg", true);
+                                if (!File.Exists(staffFacePath + staffInfo.ID + ".jpg"))
+                                {
+                                    File.Copy(localPic, staffFacePath + staffInfo.ID + ".jpg", true);
+                                }
                                 localPic = staffFacePath + staffInfo.ID + ".jpg";
                             }
                             try
@@ -329,7 +331,11 @@ namespace IMS.Collecter
                                 record.CapturePic = capturePic;
                                 record.CompareResult = 1;
                                 record.CardType = cardType;
-                                record.Depart = staffInfo.ORG_ID.ToString();
+                                if (staffInfo.ORG_ID!=null)
+                                {
+                                    record.Depart = staffInfo.ORG_ID.ToString();
+                                }
+                                else record.Depart = "";
                                 if (cardType == 0)
                                 {
                                     record.ThroughForward = (cardRecord.IS_ENTER == true) ? 0 : 1;
@@ -338,13 +344,20 @@ namespace IMS.Collecter
                                 }
                                 else
                                 {
-                                    record.ThroughForward = -1;
+                                    record.ThroughForward = 2;
                                     record.ThroughTime = DateTime.Now;
-                                    record.CardNo = idCard.Id;
+                                    if (idCard!=null&&!string.IsNullOrEmpty(idCard.Id))
+                                    {
+                                        record.CardNo = idCard.Id;
+                                    }
+                                    else record.CardNo = "";
+
                                 }
                                 record.AccessChannel = AccessCollect.Instance.FaceControllerID.ToString();
                                 record.FacePosition = "";
                                 recordBll.Add(record);
+
+                                record = recordBll.GetModelList("CardNo='" + record.CardNo + "' AND Name='" + record.Name+"'")[0];
                             }
                             catch (System.Exception ex)
                             {
@@ -392,7 +405,7 @@ namespace IMS.Collecter
 
         private string GetCameraPic()
         {
-            return @"C:\查验系统\Code\IMS\IMS\IMS\bin\Debug\Faces\20161106194611546.jpg";
+            //return @"C:\查验系统\Code\IMS\IMS\IMS\bin\Debug\Faces\20161106194611546.jpg";
 
             string dir=AppDomain.CurrentDomain.BaseDirectory+"Faces\\";
             if (!Directory.Exists(dir))

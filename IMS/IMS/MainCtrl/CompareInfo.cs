@@ -29,6 +29,14 @@ namespace IMS
                    pbBlack.ImageLocation = e.BlackPic;
                    lbValue.Text = e.Record.Similarity.ToString();
 
+                   Maticsoft.BLL.SMT_ORG_INFO orgBll = new Maticsoft.BLL.SMT_ORG_INFO();
+                   List<Maticsoft.Model.SMT_ORG_INFO> orgList = orgBll.GetModelList("ID=" + e.Record.Depart);
+                   if (orgList != null && orgList.Count > 0)
+                   {
+                       lbDepart.Text = orgList[0].ORG_NAME;
+                   }
+                   else
+                       lbDepart.Text = "";
                }));
             }
             catch (Exception ex)
@@ -46,6 +54,8 @@ namespace IMS
                {
                    lbDepart.Text = orgList[0].ORG_NAME;
                }
+               else
+                   lbDepart.Text = "";
                lbTime.Text = cardRecord.RECORD_DATE.Value.ToString("yyyy-MM-dd HH:mm:ss");
            }));
         }

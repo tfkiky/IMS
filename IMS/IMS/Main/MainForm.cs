@@ -293,7 +293,7 @@ namespace IMS
                     {
                         recordList.RemoveAt(0);
                     }
-                    if (!recordList.Exists(rec=>rec.ID==record.ID))
+                    if (recordList.Count==0||recordList.Last().ID != record.ID)
                     {
                         recordList.Add(record);
                         mlog.InfoFormat("新进记录：{0}", record.Name);

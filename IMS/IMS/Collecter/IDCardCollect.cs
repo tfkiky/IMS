@@ -35,6 +35,14 @@ namespace IMS.Collecter
 
         public void Start()
         {
+            if (File.Exists("./wz.txt"))
+            {
+                File.Delete("./wz.txt");
+            }
+            if (File.Exists("./zp.bmp"))
+            {
+                File.Delete("./zp.bmp");
+            }
             iLastErrorCode = IDCardDll.IDCard.InitCommExt();
             timer = new System.Threading.Timer(new TimerCallback(CollectIDCard), null, 1000, 1000);
         }
@@ -99,6 +107,7 @@ namespace IMS.Collecter
                                            FaceCollect.CardType = 1;
                                            FaceCollect.StaffInfo = staffList[0];
                                            FaceCollect.CurrentFacePic = currentIDCard.PhotoFile;
+                                           mlog.Info("通过身份证识别人员：" + staffList[0].REAL_NAME);
 
                                            isAllow = true;
                                        }
