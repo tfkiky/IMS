@@ -92,7 +92,7 @@ namespace IMS.Collecter
             }
             catch(Exception  ex)
             {
-                mlog.ErrorFormat("CollectIDCard异常：", ex);
+                mlog.ErrorFormat("CollectIDCard异常：{0}", ex);
             }
         }
 

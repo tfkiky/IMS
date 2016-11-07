@@ -6,7 +6,7 @@
 *
 * Ver    变更日期             负责人  变更内容
 * ───────────────────────────────────
-* V0.01  2016/10/17 21:30:18   N/A    初版
+* V0.01  2016/11/7 12:52:59   N/A    初版
 *
 * Copyright (c) 2012 Maticsoft Corporation. All rights reserved.
 *┌──────────────────────────────────┐
@@ -37,9 +37,10 @@ namespace Maticsoft.DAL
 		{
 			StringBuilder strSql=new StringBuilder();
 			strSql.Append("select count(1) from IMS_PEOPLE_RECORD");
-			strSql.Append(" where ID=@ID ");
+			strSql.Append(" where ID=@ID");
 			SqlParameter[] parameters = {
-					new SqlParameter("@ID", SqlDbType.Decimal,9)			};
+					new SqlParameter("@ID", SqlDbType.Decimal)
+			};
 			parameters[0].Value = ID;
 
 			return DbHelperSQL.Exists(strSql.ToString(),parameters);
@@ -49,15 +50,15 @@ namespace Maticsoft.DAL
 		/// <summary>
 		/// 增加一条数据
 		/// </summary>
-		public bool Add(Maticsoft.Model.IMS_PEOPLE_RECORD model)
+		public decimal Add(Maticsoft.Model.IMS_PEOPLE_RECORD model)
 		{
 			StringBuilder strSql=new StringBuilder();
 			strSql.Append("insert into IMS_PEOPLE_RECORD(");
 			strSql.Append("CardType,CardNo,Name,Depart,AccessChannel,ThroughForward,ThroughTime,ThroughResult,CapturePic,OriginPic,CompareResult,Similarity,FacePosition)");
 			strSql.Append(" values (");
-			strSql.Append("@ID,@CardType,@CardNo,@Name,@Depart,@AccessChannel,@ThroughForward,@ThroughTime,@ThroughResult,@CapturePic,@OriginPic,@CompareResult,@Similarity,@FacePosition)");
+			strSql.Append("@CardType,@CardNo,@Name,@Depart,@AccessChannel,@ThroughForward,@ThroughTime,@ThroughResult,@CapturePic,@OriginPic,@CompareResult,@Similarity,@FacePosition)");
+			strSql.Append(";select @@IDENTITY");
 			SqlParameter[] parameters = {
-                    //new SqlParameter("@ID", SqlDbType.Decimal,9),
 					new SqlParameter("@CardType", SqlDbType.TinyInt,1),
 					new SqlParameter("@CardNo", SqlDbType.VarChar,100),
 					new SqlParameter("@Name", SqlDbType.NVarChar,100),
@@ -71,7 +72,6 @@ namespace Maticsoft.DAL
 					new SqlParameter("@CompareResult", SqlDbType.TinyInt,1),
 					new SqlParameter("@Similarity", SqlDbType.Decimal,9),
 					new SqlParameter("@FacePosition", SqlDbType.NVarChar,100)};
-            //parameters[0].Value = model.ID;
 			parameters[0].Value = model.CardType;
 			parameters[1].Value = model.CardNo;
 			parameters[2].Value = model.Name;
@@ -86,14 +86,14 @@ namespace Maticsoft.DAL
 			parameters[11].Value = model.Similarity;
 			parameters[12].Value = model.FacePosition;
 
-			int rows=DbHelperSQL.ExecuteSql(strSql.ToString(),parameters);
-			if (rows > 0)
+			object obj = DbHelperSQL.GetSingle(strSql.ToString(),parameters);
+			if (obj == null)
 			{
-				return true;
+				return 0;
 			}
 			else
 			{
-				return false;
+				return Convert.ToDecimal(obj);
 			}
 		}
 		/// <summary>
@@ -116,7 +116,7 @@ namespace Maticsoft.DAL
 			strSql.Append("CompareResult=@CompareResult,");
 			strSql.Append("Similarity=@Similarity,");
 			strSql.Append("FacePosition=@FacePosition");
-			strSql.Append(" where ID=@ID ");
+			strSql.Append(" where ID=@ID");
 			SqlParameter[] parameters = {
 					new SqlParameter("@CardType", SqlDbType.TinyInt,1),
 					new SqlParameter("@CardNo", SqlDbType.VarChar,100),
@@ -166,9 +166,10 @@ namespace Maticsoft.DAL
 			
 			StringBuilder strSql=new StringBuilder();
 			strSql.Append("delete from IMS_PEOPLE_RECORD ");
-			strSql.Append(" where ID=@ID ");
+			strSql.Append(" where ID=@ID");
 			SqlParameter[] parameters = {
-					new SqlParameter("@ID", SqlDbType.Decimal,9)			};
+					new SqlParameter("@ID", SqlDbType.Decimal)
+			};
 			parameters[0].Value = ID;
 
 			int rows=DbHelperSQL.ExecuteSql(strSql.ToString(),parameters);
@@ -209,9 +210,10 @@ namespace Maticsoft.DAL
 			
 			StringBuilder strSql=new StringBuilder();
 			strSql.Append("select  top 1 ID,CardType,CardNo,Name,Depart,AccessChannel,ThroughForward,ThroughTime,ThroughResult,CapturePic,OriginPic,CompareResult,Similarity,FacePosition from IMS_PEOPLE_RECORD ");
-			strSql.Append(" where ID=@ID ");
+			strSql.Append(" where ID=@ID");
 			SqlParameter[] parameters = {
-					new SqlParameter("@ID", SqlDbType.Decimal,9)			};
+					new SqlParameter("@ID", SqlDbType.Decimal)
+			};
 			parameters[0].Value = ID;
 
 			Maticsoft.Model.IMS_PEOPLE_RECORD model=new Maticsoft.Model.IMS_PEOPLE_RECORD();

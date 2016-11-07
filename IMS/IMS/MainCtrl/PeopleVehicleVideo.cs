@@ -25,26 +25,33 @@ namespace IMS
 
         public void LoadValidateResult(IMS.Collecter.ValidateResult vr)
         {
-            switch (vr)
+            try
             {
-                case IMS.Collecter.ValidateResult.Success:
-                    lbResult.Text = "验证通过";
-                    break;
-                case IMS.Collecter.ValidateResult.NoPerson:
-                    lbResult.Text = "验证无此人";
-                    break;
-                case IMS.Collecter.ValidateResult.Black:
-                    lbResult.Text = "验证为黑名单成员";
-                    break;
-                case IMS.Collecter.ValidateResult.Error:
-                    lbResult.Text = "验证错误";
-                    break;
-                default:
-                    lbResult.Text = "人员/车辆查验结果显示区";
-                    break;
-                    
+                switch (vr)
+                {
+                    case IMS.Collecter.ValidateResult.Success:
+                        lbResult.Text = "验证通过";
+                        break;
+                    case IMS.Collecter.ValidateResult.NoPerson:
+                        lbResult.Text = "验证无此人";
+                        break;
+                    case IMS.Collecter.ValidateResult.Black:
+                        lbResult.Text = "验证为黑名单成员";
+                        break;
+                    case IMS.Collecter.ValidateResult.Error:
+                        lbResult.Text = "验证错误";
+                        break;
+                    default:
+                        lbResult.Text = "人员/车辆查验结果显示区";
+                        break;
+
+                }
+            }
+            catch(Exception ex)
+            {
             }
         }
+
 
         public void LoadAccessResult(bool isAllow)
         {

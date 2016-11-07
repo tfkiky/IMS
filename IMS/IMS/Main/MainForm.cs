@@ -32,6 +32,8 @@ namespace IMS
         private List<Maticsoft.Model.SMT_STAFF_INFO> staffList = new List<Maticsoft.Model.SMT_STAFF_INFO>();
         private List<Maticsoft.Model.IMS_VEHICLE_RECORD> vehicleList = new List<Maticsoft.Model.IMS_VEHICLE_RECORD>();
 
+        private Dictionary<string, Bitmap> imageDic = new Dictionary<string, Bitmap>();
+
         private HikSDK.HikonComDevice hikCam = new HikSDK.HikonComDevice();
 
         public HikSDK.HikonComDevice HikCam
@@ -153,14 +155,21 @@ namespace IMS
 
         void faceCollect_ValidateEvent(object sender, ValidateResultEventArgs e)
         {
-            if (e.CaptruePic != null)
+            try
             {
-                compareInfo1.LoadValidateResult(e);
-                peopleVehicleVideo1.LoadValidateResult(e.ValidateResult);
-                if (e.ValidateResult==IMS.Collecter.ValidateResult.Success)
+                if (e.CaptruePic != null)
                 {
-                    AddNewPerson(e.StaffName,e.LocalPic);
+                    compareInfo1.LoadValidateResult(e);
+                    peopleVehicleVideo1.LoadValidateResult(e.ValidateResult);
+                    if (e.ValidateResult == IMS.Collecter.ValidateResult.Success)
+                    {
+                        AddNewPerson(e.StaffName, e.LocalPic);
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                mlog.Error(ex);
             }
         }
 
@@ -180,7 +189,13 @@ namespace IMS
         {
             DataGridViewButtonXColumn bcx = sender as DataGridViewButtonXColumn;
             if (bcx != null)
-                bcx.Image = imageList1.Images[bcx.Text];
+            {
+                if (!string.IsNullOrEmpty(bcx.Text))
+                {
+                    bcx.Image = imageDic[bcx.Text];
+                    mlog.InfoFormat("加载图片：{0}", bcx.Text);
+                }
+            }
         }
         /// <summary>
         /// 加载参数
@@ -267,28 +282,53 @@ namespace IMS
 
         private void AddNewPerson(string name ,string photo)
         {
-            if (imageList1.Images.Count>11)
+            try
             {
-                imageList1.Images.RemoveAt(0);
+                lock (imageDic)
+                {
+                    //if (imageList1.Images.Count > 11)
+                    //{
+                    //    imageList1.Images.RemoveAt(0);
+                    //}
+                    if (!imageDic.ContainsKey(name))
+                    {
+                        Bitmap bmp = new Bitmap(photo);
+                        imageDic.Add(name, new Bitmap(bmp, 48, 48));
+                        mlog.InfoFormat("新进记录：{0}",name);
+                        bmp.Dispose();
+                    }
+                    LoadPerson();
+
+                }
             }
-            imageList1.Images.Add(name, new Bitmap(photo));
-            LoadPerson();
+            catch(Exception ex){
+                mlog.Error(ex);
+            }
         }
 
         private void LoadPerson()
         {
-            for (int i = 0; i < dataGridViewX2.Rows.Count;i++ )
+            try
             {
-                for (int j = 0; j < dataGridViewX2.ColumnCount;j++ )
-                {
-                    DataGridViewButtonCell cell = dataGridViewX2.Rows[i].Cells[j] as DataGridViewButtonCell;
 
-                    if (i * dataGridViewX2.ColumnCount + j<imageList1.Images.Count)
+                for (int i = 0; i < dataGridViewX2.Rows.Count; i++)
+                {
+                    for (int j = 0; j < dataGridViewX2.ColumnCount; j++)
                     {
-                        cell.Value = imageList1.Images.Keys[i * dataGridViewX2.ColumnCount + j];
+                        DataGridViewButtonCell cell = dataGridViewX2.Rows[i].Cells[j] as DataGridViewButtonCell;
+
+                        if (i * dataGridViewX2.ColumnCount + j < imageDic.Count)
+                        {
+                            cell.Value = "唐飞";
+                            mlog.InfoFormat("加载记录：{0}", cell.Value);
+                        }
+
                     }
-                    
                 }
+            }
+            catch (Exception ex)
+            {
+                mlog.Error(ex);
             }
         }
 

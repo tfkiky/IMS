@@ -20,14 +20,20 @@ namespace IMS
 
         public void LoadValidateResult(ValidateResultEventArgs e)
         {
-            this.Invoke(new Action(() =>
-           {
-               pbRealPhoto.ImageLocation = e.CaptruePic;
-               pbLocalPhoto.ImageLocation = e.LocalPic;
-               pbBlack.ImageLocation = e.BlackPic;
-               lbValue.Text = e.ValidateValue.ToString();
+            try
+            {
+                this.Invoke(new Action(() =>
+               {
+                   pbRealPhoto.ImageLocation = e.CaptruePic;
+                   pbLocalPhoto.ImageLocation = e.LocalPic;
+                   pbBlack.ImageLocation = e.BlackPic;
+                   lbValue.Text = e.ValidateValue.ToString();
 
-           }));
+               }));
+            }
+            catch (Exception ex)
+            {
+            }
         }
 
         public void LoadAccessInfo(Maticsoft.Model.SMT_STAFF_INFO staffInfo, string passTime)

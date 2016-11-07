@@ -6,7 +6,7 @@
 *
 * Ver    变更日期             负责人  变更内容
 * ───────────────────────────────────
-* V0.01  2016/10/17 21:30:18   N/A    初版
+* V0.01  2016/11/7 12:52:59   N/A    初版
 *
 * Copyright (c) 2012 Maticsoft Corporation. All rights reserved.
 *┌──────────────────────────────────┐
@@ -37,9 +37,10 @@ namespace Maticsoft.DAL
 		{
 			StringBuilder strSql=new StringBuilder();
 			strSql.Append("select count(1) from IMS_VEHICLE_INFO");
-			strSql.Append(" where ID=@ID ");
+			strSql.Append(" where ID=@ID");
 			SqlParameter[] parameters = {
-					new SqlParameter("@ID", SqlDbType.Decimal,9)			};
+					new SqlParameter("@ID", SqlDbType.Decimal)
+			};
 			parameters[0].Value = ID;
 
 			return DbHelperSQL.Exists(strSql.ToString(),parameters);
@@ -49,37 +50,36 @@ namespace Maticsoft.DAL
 		/// <summary>
 		/// 增加一条数据
 		/// </summary>
-		public bool Add(Maticsoft.Model.IMS_VEHICLE_INFO model)
+		public decimal Add(Maticsoft.Model.IMS_VEHICLE_INFO model)
 		{
 			StringBuilder strSql=new StringBuilder();
 			strSql.Append("insert into IMS_VEHICLE_INFO(");
-			strSql.Append("ID,PlateNo,Name,Depart,IsGrant,GrantAccess,ModifyTime)");
+			strSql.Append("PlateNo,Name,Depart,IsGrant,GrantAccess,ModifyTime)");
 			strSql.Append(" values (");
-			strSql.Append("@ID,@PlateNo,@Name,@Depart,@IsGrant,@GrantAccess,@ModifyTime)");
+			strSql.Append("@PlateNo,@Name,@Depart,@IsGrant,@GrantAccess,@ModifyTime)");
+			strSql.Append(";select @@IDENTITY");
 			SqlParameter[] parameters = {
-					new SqlParameter("@ID", SqlDbType.Decimal,9),
 					new SqlParameter("@PlateNo", SqlDbType.VarChar,50),
 					new SqlParameter("@Name", SqlDbType.VarChar,50),
 					new SqlParameter("@Depart", SqlDbType.VarChar,50),
 					new SqlParameter("@IsGrant", SqlDbType.TinyInt,1),
 					new SqlParameter("@GrantAccess", SqlDbType.VarChar,100),
 					new SqlParameter("@ModifyTime", SqlDbType.DateTime)};
-			parameters[0].Value = model.ID;
-			parameters[1].Value = model.PlateNo;
-			parameters[2].Value = model.Name;
-			parameters[3].Value = model.Depart;
-			parameters[4].Value = model.IsGrant;
-			parameters[5].Value = model.GrantAccess;
-			parameters[6].Value = model.ModifyTime;
+			parameters[0].Value = model.PlateNo;
+			parameters[1].Value = model.Name;
+			parameters[2].Value = model.Depart;
+			parameters[3].Value = model.IsGrant;
+			parameters[4].Value = model.GrantAccess;
+			parameters[5].Value = model.ModifyTime;
 
-			int rows=DbHelperSQL.ExecuteSql(strSql.ToString(),parameters);
-			if (rows > 0)
+			object obj = DbHelperSQL.GetSingle(strSql.ToString(),parameters);
+			if (obj == null)
 			{
-				return true;
+				return 0;
 			}
 			else
 			{
-				return false;
+				return Convert.ToDecimal(obj);
 			}
 		}
 		/// <summary>
@@ -95,7 +95,7 @@ namespace Maticsoft.DAL
 			strSql.Append("IsGrant=@IsGrant,");
 			strSql.Append("GrantAccess=@GrantAccess,");
 			strSql.Append("ModifyTime=@ModifyTime");
-			strSql.Append(" where ID=@ID ");
+			strSql.Append(" where ID=@ID");
 			SqlParameter[] parameters = {
 					new SqlParameter("@PlateNo", SqlDbType.VarChar,50),
 					new SqlParameter("@Name", SqlDbType.VarChar,50),
@@ -131,9 +131,10 @@ namespace Maticsoft.DAL
 			
 			StringBuilder strSql=new StringBuilder();
 			strSql.Append("delete from IMS_VEHICLE_INFO ");
-			strSql.Append(" where ID=@ID ");
+			strSql.Append(" where ID=@ID");
 			SqlParameter[] parameters = {
-					new SqlParameter("@ID", SqlDbType.Decimal,9)			};
+					new SqlParameter("@ID", SqlDbType.Decimal)
+			};
 			parameters[0].Value = ID;
 
 			int rows=DbHelperSQL.ExecuteSql(strSql.ToString(),parameters);
@@ -174,9 +175,10 @@ namespace Maticsoft.DAL
 			
 			StringBuilder strSql=new StringBuilder();
 			strSql.Append("select  top 1 ID,PlateNo,Name,Depart,IsGrant,GrantAccess,ModifyTime from IMS_VEHICLE_INFO ");
-			strSql.Append(" where ID=@ID ");
+			strSql.Append(" where ID=@ID");
 			SqlParameter[] parameters = {
-					new SqlParameter("@ID", SqlDbType.Decimal,9)			};
+					new SqlParameter("@ID", SqlDbType.Decimal)
+			};
 			parameters[0].Value = ID;
 
 			Maticsoft.Model.IMS_VEHICLE_INFO model=new Maticsoft.Model.IMS_VEHICLE_INFO();

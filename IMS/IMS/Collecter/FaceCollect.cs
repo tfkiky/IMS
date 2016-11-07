@@ -330,7 +330,13 @@ namespace IMS.Collecter
                             }
                             catch (System.Exception ex)
                             {
-                            	
+                                mlog.ErrorFormat("添加人脸通行记录：{0}",ex);
+                            }
+
+                            if(cardType==1)
+                            {
+                                File.Copy(localPic, staffFacePath + staffName+".jpg",true);
+                                localPic = staffFacePath + staffName + ".jpg";
                             }
 
                             mlog.InfoFormat("人脸验证结果：验证成功，员工{0},验证得分{1},阈值{2}", staffName, faceValue.ToString(), MainForm.Instance.IThreshold.ToString());
@@ -372,7 +378,7 @@ namespace IMS.Collecter
 
         private string GetCameraPic()
         {
-            return @"D:\6、个人\查验系统\IMS备份\IMS\IMS\IMS\bin\Debug\Faces\20161106194611546.jpg";
+            return @"C:\查验系统\Code\IMS\IMS\IMS\bin\Debug\Faces\20161106194611546.jpg";
 
             string dir=AppDomain.CurrentDomain.BaseDirectory+"Faces\\";
             if (!Directory.Exists(dir))

@@ -6,7 +6,7 @@
 *
 * Ver    变更日期             负责人  变更内容
 * ───────────────────────────────────
-* V0.01  2016/10/20 13:41:17   N/A    初版
+* V0.01  2016/11/7 12:52:59   N/A    初版
 *
 * Copyright (c) 2012 Maticsoft Corporation. All rights reserved.
 *┌──────────────────────────────────┐
@@ -41,7 +41,7 @@ namespace Maticsoft.BLL
 		/// <summary>
 		/// 增加一条数据
 		/// </summary>
-		public bool Add(Maticsoft.Model.IMS_FACE_CAMERA model)
+		public decimal Add(Maticsoft.Model.IMS_FACE_CAMERA model)
 		{
 			return dal.Add(model);
 		}

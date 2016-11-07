@@ -6,7 +6,7 @@
 *
 * Ver    变更日期             负责人  变更内容
 * ───────────────────────────────────
-* V0.01  2016/10/20 13:41:17   N/A    初版
+* V0.01  2016/11/7 12:52:59   N/A    初版
 *
 * Copyright (c) 2012 Maticsoft Corporation. All rights reserved.
 *┌──────────────────────────────────┐
@@ -37,9 +37,10 @@ namespace Maticsoft.DAL
 		{
 			StringBuilder strSql=new StringBuilder();
 			strSql.Append("select count(1) from IMS_FACE_CAMERA");
-			strSql.Append(" where ID=@ID ");
+			strSql.Append(" where ID=@ID");
 			SqlParameter[] parameters = {
-					new SqlParameter("@ID", SqlDbType.Decimal,9)			};
+					new SqlParameter("@ID", SqlDbType.Decimal)
+			};
 			parameters[0].Value = ID;
 
 			return DbHelperSQL.Exists(strSql.ToString(),parameters);
@@ -49,35 +50,34 @@ namespace Maticsoft.DAL
 		/// <summary>
 		/// 增加一条数据
 		/// </summary>
-		public bool Add(Maticsoft.Model.IMS_FACE_CAMERA model)
+		public decimal Add(Maticsoft.Model.IMS_FACE_CAMERA model)
 		{
 			StringBuilder strSql=new StringBuilder();
 			strSql.Append("insert into IMS_FACE_CAMERA(");
-			strSql.Append("ID,CameraName,CameraIP,CameraPort,CameraUser,CameraPwd)");
+			strSql.Append("CameraName,CameraIP,CameraPort,CameraUser,CameraPwd)");
 			strSql.Append(" values (");
-			strSql.Append("@ID,@CameraName,@CameraIP,@CameraPort,@CameraUser,@CameraPwd)");
+			strSql.Append("@CameraName,@CameraIP,@CameraPort,@CameraUser,@CameraPwd)");
+			strSql.Append(";select @@IDENTITY");
 			SqlParameter[] parameters = {
-					new SqlParameter("@ID", SqlDbType.Decimal,9),
 					new SqlParameter("@CameraName", SqlDbType.VarChar,50),
 					new SqlParameter("@CameraIP", SqlDbType.VarChar,50),
 					new SqlParameter("@CameraPort", SqlDbType.VarChar,50),
 					new SqlParameter("@CameraUser", SqlDbType.VarChar,50),
 					new SqlParameter("@CameraPwd", SqlDbType.VarChar,50)};
-			parameters[0].Value = model.ID;
-			parameters[1].Value = model.CameraName;
-			parameters[2].Value = model.CameraIP;
-			parameters[3].Value = model.CameraPort;
-			parameters[4].Value = model.CameraUser;
-			parameters[5].Value = model.CameraPwd;
+			parameters[0].Value = model.CameraName;
+			parameters[1].Value = model.CameraIP;
+			parameters[2].Value = model.CameraPort;
+			parameters[3].Value = model.CameraUser;
+			parameters[4].Value = model.CameraPwd;
 
-			int rows=DbHelperSQL.ExecuteSql(strSql.ToString(),parameters);
-			if (rows > 0)
+			object obj = DbHelperSQL.GetSingle(strSql.ToString(),parameters);
+			if (obj == null)
 			{
-				return true;
+				return 0;
 			}
 			else
 			{
-				return false;
+				return Convert.ToDecimal(obj);
 			}
 		}
 		/// <summary>
@@ -92,7 +92,7 @@ namespace Maticsoft.DAL
 			strSql.Append("CameraPort=@CameraPort,");
 			strSql.Append("CameraUser=@CameraUser,");
 			strSql.Append("CameraPwd=@CameraPwd");
-			strSql.Append(" where ID=@ID ");
+			strSql.Append(" where ID=@ID");
 			SqlParameter[] parameters = {
 					new SqlParameter("@CameraName", SqlDbType.VarChar,50),
 					new SqlParameter("@CameraIP", SqlDbType.VarChar,50),
@@ -126,9 +126,10 @@ namespace Maticsoft.DAL
 			
 			StringBuilder strSql=new StringBuilder();
 			strSql.Append("delete from IMS_FACE_CAMERA ");
-			strSql.Append(" where ID=@ID ");
+			strSql.Append(" where ID=@ID");
 			SqlParameter[] parameters = {
-					new SqlParameter("@ID", SqlDbType.Decimal,9)			};
+					new SqlParameter("@ID", SqlDbType.Decimal)
+			};
 			parameters[0].Value = ID;
 
 			int rows=DbHelperSQL.ExecuteSql(strSql.ToString(),parameters);
@@ -169,9 +170,10 @@ namespace Maticsoft.DAL
 			
 			StringBuilder strSql=new StringBuilder();
 			strSql.Append("select  top 1 ID,CameraName,CameraIP,CameraPort,CameraUser,CameraPwd from IMS_FACE_CAMERA ");
-			strSql.Append(" where ID=@ID ");
+			strSql.Append(" where ID=@ID");
 			SqlParameter[] parameters = {
-					new SqlParameter("@ID", SqlDbType.Decimal,9)			};
+					new SqlParameter("@ID", SqlDbType.Decimal)
+			};
 			parameters[0].Value = ID;
 
 			Maticsoft.Model.IMS_FACE_CAMERA model=new Maticsoft.Model.IMS_FACE_CAMERA();
