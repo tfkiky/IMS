@@ -56,7 +56,28 @@ namespace IMS
                }
                else
                    lbDepart.Text = "";
-               lbTime.Text = cardRecord.RECORD_DATE.Value.ToString("yyyy-MM-dd HH:mm:ss");
+               lbThroughTime.Text = cardRecord.RECORD_DATE.Value.ToString("yyyy-MM-dd HH:mm:ss");
+               lbName.Text = staffInfo.REAL_NAME;
+
+               switch (staffInfo.SEX)
+               {
+                   case 0:
+                       lbSex.Text = "未知";
+                       break;
+                   case 1:
+                       lbSex.Text = "男";
+                       break;
+                   case 2:
+                       lbSex.Text = "女";
+                       break;
+                   default:
+                       lbSex.Text = "未知";
+                       break;
+               }
+               lbIDCard.Text = staffInfo.CER_NO;
+               lbBirth.Text = staffInfo.BIRTHDAY.Value.ToString("yyyy-MM-dd HH:mm:ss");
+               lbAddress.Text = staffInfo.ADDRESS;
+               lbNation.Text = staffInfo.NATION;
            }));
         }
 

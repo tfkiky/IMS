@@ -25,6 +25,7 @@ namespace IMS
         {
             InitializeComponent();
             StyleManager.Style = eStyle.Office2007Black;
+            LoadComboBox();
         }
 
         private void LoadComboBox()
@@ -45,7 +46,7 @@ namespace IMS
             cameraList = cameraBll.GetModelList("1=1");
             foreach (Maticsoft.Model.IMS_FACE_CAMERA cam in cameraList)
             {
-                ipAddressInput1.Text = cameraList[0].CameraIP;
+                ipAddressInput1.Value = cameraList[0].CameraIP;
                 tbPort.Text = cameraList[0].CameraPort;
                 tbUserName.Text = cameraList[0].CameraUser;
                 tbPwd.Text = cameraList[0].CameraPwd;
@@ -55,6 +56,7 @@ namespace IMS
 
         private void cbCtrl_SelectedIndexChanged(object sender, EventArgs e)
         {
+            cbDoor.Items.Clear();
             doorList = doorBll.GetModelList("CTRL_ID=" + ((cbCtrl.SelectedItem as ComboItem).Tag as Maticsoft.Model.SMT_CONTROLLER_INFO).ID);
             foreach (Maticsoft.Model.SMT_DOOR_INFO door in doorList)
             {

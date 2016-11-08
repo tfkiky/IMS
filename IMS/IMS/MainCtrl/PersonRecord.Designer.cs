@@ -41,16 +41,14 @@
             this.tbName = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.labelX2 = new DevComponents.DotNetBar.LabelX();
             this.dataGridView = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.pageCtrlRecords = new SunCreate.DotNetBar.PageCtrl();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewImageColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pageCtrlRecords = new SunCreate.DotNetBar.PageCtrl();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -181,11 +179,9 @@
             this.Column7,
             this.Column1,
             this.Column2,
-            this.Column6,
             this.Column4,
             this.Column9,
             this.Column3,
-            this.Column5,
             this.Column8});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -199,6 +195,7 @@
             this.dataGridView.EnableHeadersVisualStyles = false;
             this.dataGridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dataGridView.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView.MultiSelect = false;
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -215,10 +212,25 @@
             dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.DarkGray;
             this.dataGridView.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView.RowTemplate.Height = 23;
-            this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView.Size = new System.Drawing.Size(743, 336);
             this.dataGridView.TabIndex = 11;
-            this.dataGridView.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellContentDoubleClick);
+            this.dataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellDoubleClick);
+            // 
+            // pageCtrlRecords
+            // 
+            this.pageCtrlRecords.CurrentPage = 1;
+            this.pageCtrlRecords.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pageCtrlRecords.ExportButtonVisible = false;
+            this.pageCtrlRecords.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.pageCtrlRecords.Location = new System.Drawing.Point(0, 336);
+            this.pageCtrlRecords.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.pageCtrlRecords.Name = "pageCtrlRecords";
+            this.pageCtrlRecords.RecordsPerPage = 30;
+            this.pageCtrlRecords.Size = new System.Drawing.Size(743, 31);
+            this.pageCtrlRecords.TabIndex = 10;
+            this.pageCtrlRecords.TotalRecords = 0;
+            this.pageCtrlRecords.PageChanged += new SunCreate.DotNetBar.PageCtrl.PageEventHandle(this.pageCtrlRecords_PageChanged);
             // 
             // Column7
             // 
@@ -241,12 +253,6 @@
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
             // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "部门";
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            // 
             // Column4
             // 
             this.Column4.FillWeight = 90F;
@@ -266,34 +272,11 @@
             this.Column3.Name = "Column3";
             this.Column3.ReadOnly = true;
             // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "抓拍图片";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            this.Column5.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Column5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
             // Column8
             // 
             this.Column8.HeaderText = "比对结果";
             this.Column8.Name = "Column8";
             this.Column8.ReadOnly = true;
-            // 
-            // pageCtrlRecords
-            // 
-            this.pageCtrlRecords.CurrentPage = 1;
-            this.pageCtrlRecords.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pageCtrlRecords.ExportButtonVisible = false;
-            this.pageCtrlRecords.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.pageCtrlRecords.Location = new System.Drawing.Point(0, 336);
-            this.pageCtrlRecords.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.pageCtrlRecords.Name = "pageCtrlRecords";
-            this.pageCtrlRecords.RecordsPerPage = 30;
-            this.pageCtrlRecords.Size = new System.Drawing.Size(743, 31);
-            this.pageCtrlRecords.TabIndex = 10;
-            this.pageCtrlRecords.TotalRecords = 0;
-            this.pageCtrlRecords.PageChanged += new SunCreate.DotNetBar.PageCtrl.PageEventHandle(this.pageCtrlRecords_PageChanged);
             // 
             // PersonRecord
             // 
@@ -328,15 +311,13 @@
         private System.Windows.Forms.DateTimePicker dtiToDate;
         private System.Windows.Forms.DateTimePicker dtiFromDate;
         private DevComponents.DotNetBar.Controls.DataGridViewX dataGridView;
+        private DevComponents.DotNetBar.LabelX labelX1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewImageColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
-        private DevComponents.DotNetBar.LabelX labelX1;
     }
 }

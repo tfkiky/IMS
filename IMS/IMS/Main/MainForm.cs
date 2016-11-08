@@ -150,7 +150,32 @@ namespace IMS
             if (e.StaffInfo != null)
             {
                 compareInfo1.LoadAccessInfo(e.StaffInfo, e.CardRecord);
-                peopleVehicleVideo1.LoadAccessResult(e.StaffInfo,e.CardRecord);
+                IDCardClass idcard = new IDCardClass();
+                idcard.Name = e.StaffInfo.REAL_NAME;
+                switch (e.StaffInfo.SEX)
+                {
+                    case 0:
+                        idcard.Sex = "未知";
+                        break;
+                    case 1:
+                        idcard.Sex = "男";
+                        break;
+                    case 2:
+                        idcard.Sex = "女";
+                        break;
+                    default:
+                        idcard.Sex = "未知";
+                        break;
+                }
+
+                idcard.Id = e.StaffInfo.CER_NO;
+                idcard.Birth = e.StaffInfo.BIRTHDAY.Value.ToString("yyyy-MM-dd HH:mm:ss");
+                idcard.Address = e.StaffInfo.ADDRESS;
+                idcard.Nation = e.StaffInfo.NATION;
+                idcard.PhotoFile = FaceCollect.FaceWhiteList[(int)e.StaffInfo.ID];
+
+                ClientMainForm.Instance.LoadIDCardInfo(idcard);
+                peopleVehicleVideo1.LoadAccessResult(e.StaffInfo, e.CardRecord);
             }
         }
 
@@ -161,6 +186,8 @@ namespace IMS
                 if (e.Record.CapturePic != null)
                 {
                     compareInfo1.LoadValidateResult(e);
+                    ClientMainForm.Instance.LoadValidateResult(e);
+
                     peopleVehicleVideo1.LoadValidateResult(e.ValidateResult);
                     if (e.ValidateResult == IMS.Collecter.ValidateResult.Success)
                     {
@@ -372,9 +399,13 @@ namespace IMS
 
         private void dataGridViewX2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            Maticsoft.Model.IMS_PEOPLE_RECORD record = new Maticsoft.Model.IMS_PEOPLE_RECORD(); ;
-            FaceRecord fr = new FaceRecord(record);
-            fr.ShowDialog();
+            DataGridViewButtonCell cell = dataGridViewX2.Rows[e.RowIndex].Cells[e.ColumnIndex] as DataGridViewButtonCell;
+            if (cell.Tag is Maticsoft.Model.IMS_PEOPLE_RECORD)
+            {
+                Maticsoft.Model.IMS_PEOPLE_RECORD record = cell.Tag as Maticsoft.Model.IMS_PEOPLE_RECORD;
+                FaceRecord fr = new FaceRecord(record);
+                fr.ShowDialog();
+            }
         }
 
        

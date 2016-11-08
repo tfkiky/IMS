@@ -102,17 +102,22 @@ namespace IMS.Collecter
                                     bool isAllow = false;
                                     if (staffDoorList != null && staffDoorList.Count > 0)
                                     {
-                                       if (staffDoorList[0].IS_UPLOAD)
-                                       {
-                                           FaceCollect.CardType = 1;
-                                           FaceCollect.StaffInfo = staffList[0];
-                                           FaceCollect.CurrentFacePic = currentIDCard.PhotoFile;
-                                           mlog.Info("通过身份证识别人员：" + staffList[0].REAL_NAME);
+                                        if (staffDoorList[0].IS_UPLOAD)
+                                        {
 
-                                           isAllow = true;
-                                       }
-                                       else
-                                        isAllow = false;
+                                            if (!FaceCollect.FaceWhiteList.ContainsKey((int)staffList[0].ID))
+                                            {
+                                                File.Copy(currentIDCard.PhotoFile, FaceCollect.StaffFacePath + staffList[0].ID + ".jpg", true);
+                                            }
+                                            FaceCollect.CardType = 1;
+                                            FaceCollect.StaffInfo = staffList[0];
+                                            FaceCollect.CurrentFacePic = FaceCollect.StaffFacePath + staffList[0].ID + ".jpg";
+                                            mlog.Info("通过身份证识别人员：" + staffList[0].REAL_NAME);
+
+                                            isAllow = true;
+                                        }
+                                        else
+                                            isAllow = false;
                                     }
                                     else
                                     {
@@ -121,6 +126,15 @@ namespace IMS.Collecter
                                     if (IDCardEvent != null)
                                     {
                                         IDCardEvent(this, new IDCardEventArgs(currentIDCard, staffList[0], isAllow));
+
+                                        if (File.Exists("./wz.txt"))
+                                        {
+                                            File.Delete("./wz.txt");
+                                        }
+                                        if (File.Exists("./zp.bmp"))
+                                        {
+                                            File.Delete("./zp.bmp");
+                                        }
                                     }
                                 }
                                 else
@@ -128,6 +142,15 @@ namespace IMS.Collecter
                                     if (IDCardEvent != null)
                                     {
                                         IDCardEvent(this, new IDCardEventArgs(currentIDCard, null, false));
+                                    }
+
+                                    if (File.Exists("./wz.txt"))
+                                    {
+                                        File.Delete("./wz.txt");
+                                    }
+                                    if (File.Exists("./zp.bmp"))
+                                    {
+                                        File.Delete("./zp.bmp");
                                     }
                                 }
                             }

@@ -95,11 +95,11 @@ namespace IMS.Collecter
             Thread.Sleep(500);
             try
             {
-                List<Maticsoft.Model.SMT_CARD_RECORDS> recordList = recordBll.GetModelList(" ORDER BY  RECORD_INDEX DESC ");
-                if (recordList.Count > 0 && recordList.Exists(record=>record.RECORD_INDEX.Value>AccessCollect.Instance.LastAccessIndex))
+                List<Maticsoft.Model.SMT_CARD_RECORDS> recordList = recordBll.GetModelList(" DOOR_ID="+AccessCollect.Instance.FaceDoorID+" ORDER BY  ID DESC ");
+                if (recordList.Count > 0 && recordList.Exists(record => record.ID > AccessCollect.Instance.LastAccessIndex))
                 {
                     //Console.WriteLine("有新数据............."+alarmEventList.Count.ToString());
-                    onDataRead(recordList.Find(record => record.RECORD_INDEX.Value > AccessCollect.Instance.LastAccessIndex));
+                    onDataRead(recordList.Find(record => record.ID > AccessCollect.Instance.LastAccessIndex));
                 }
             }
             catch (Exception ex)

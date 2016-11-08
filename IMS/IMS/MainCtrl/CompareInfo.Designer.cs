@@ -32,6 +32,9 @@
             this.labelX4 = new DevComponents.DotNetBar.LabelX();
             this.labelX3 = new DevComponents.DotNetBar.LabelX();
             this.labelX2 = new DevComponents.DotNetBar.LabelX();
+            this.pbBlack = new System.Windows.Forms.PictureBox();
+            this.pbLocalPhoto = new System.Windows.Forms.PictureBox();
+            this.pbRealPhoto = new System.Windows.Forms.PictureBox();
             this.labelX9 = new DevComponents.DotNetBar.LabelX();
             this.labelX8 = new DevComponents.DotNetBar.LabelX();
             this.labelX7 = new DevComponents.DotNetBar.LabelX();
@@ -54,9 +57,6 @@
             this.lbName = new DevComponents.DotNetBar.LabelX();
             this.lbPersonCount = new DevComponents.DotNetBar.LabelX();
             this.labelX1 = new DevComponents.DotNetBar.LabelX();
-            this.pbBlack = new System.Windows.Forms.PictureBox();
-            this.pbLocalPhoto = new System.Windows.Forms.PictureBox();
-            this.pbRealPhoto = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -152,6 +152,39 @@
             this.labelX2.TabIndex = 0;
             this.labelX2.Text = "实时照片";
             // 
+            // pbBlack
+            // 
+            this.pbBlack.BackgroundImage = global::IMS.Properties.Resources.zanwutupian;
+            this.pbBlack.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pbBlack.Location = new System.Drawing.Point(334, 31);
+            this.pbBlack.Name = "pbBlack";
+            this.pbBlack.Size = new System.Drawing.Size(149, 138);
+            this.pbBlack.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbBlack.TabIndex = 0;
+            this.pbBlack.TabStop = false;
+            // 
+            // pbLocalPhoto
+            // 
+            this.pbLocalPhoto.BackgroundImage = global::IMS.Properties.Resources.zanwutupian;
+            this.pbLocalPhoto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pbLocalPhoto.Location = new System.Drawing.Point(173, 31);
+            this.pbLocalPhoto.Name = "pbLocalPhoto";
+            this.pbLocalPhoto.Size = new System.Drawing.Size(149, 138);
+            this.pbLocalPhoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbLocalPhoto.TabIndex = 0;
+            this.pbLocalPhoto.TabStop = false;
+            // 
+            // pbRealPhoto
+            // 
+            this.pbRealPhoto.BackgroundImage = global::IMS.Properties.Resources.zanwutupian;
+            this.pbRealPhoto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pbRealPhoto.Location = new System.Drawing.Point(12, 31);
+            this.pbRealPhoto.Name = "pbRealPhoto";
+            this.pbRealPhoto.Size = new System.Drawing.Size(149, 138);
+            this.pbRealPhoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbRealPhoto.TabIndex = 0;
+            this.pbRealPhoto.TabStop = false;
+            // 
             // labelX9
             // 
             // 
@@ -224,7 +257,7 @@
             // 
             this.lbNation.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lbNation.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbNation.Location = new System.Drawing.Point(401, 53);
+            this.lbNation.Location = new System.Drawing.Point(404, 53);
             this.lbNation.Name = "lbNation";
             this.lbNation.Size = new System.Drawing.Size(62, 23);
             this.lbNation.TabIndex = 0;
@@ -237,7 +270,7 @@
             // 
             this.lbValue.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lbValue.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbValue.Location = new System.Drawing.Point(401, 19);
+            this.lbValue.Location = new System.Drawing.Point(404, 19);
             this.lbValue.Name = "lbValue";
             this.lbValue.Size = new System.Drawing.Size(62, 23);
             this.lbValue.TabIndex = 0;
@@ -250,7 +283,7 @@
             // 
             this.labelX11.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX11.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelX11.Location = new System.Drawing.Point(344, 19);
+            this.labelX11.Location = new System.Drawing.Point(347, 19);
             this.labelX11.Name = "labelX11";
             this.labelX11.Size = new System.Drawing.Size(62, 23);
             this.labelX11.TabIndex = 0;
@@ -263,7 +296,7 @@
             // 
             this.labelX13.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX13.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelX13.Location = new System.Drawing.Point(184, 87);
+            this.labelX13.Location = new System.Drawing.Point(347, 87);
             this.labelX13.Name = "labelX13";
             this.labelX13.Size = new System.Drawing.Size(57, 23);
             this.labelX13.TabIndex = 0;
@@ -276,7 +309,7 @@
             // 
             this.labelX14.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX14.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelX14.Location = new System.Drawing.Point(344, 53);
+            this.labelX14.Location = new System.Drawing.Point(347, 53);
             this.labelX14.Name = "labelX14";
             this.labelX14.Size = new System.Drawing.Size(46, 23);
             this.labelX14.TabIndex = 0;
@@ -289,7 +322,7 @@
             // 
             this.labelX12.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX12.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelX12.Location = new System.Drawing.Point(184, 53);
+            this.labelX12.Location = new System.Drawing.Point(187, 53);
             this.labelX12.Name = "labelX12";
             this.labelX12.Size = new System.Drawing.Size(57, 23);
             this.labelX12.TabIndex = 0;
@@ -302,7 +335,7 @@
             // 
             this.lbDepart.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lbDepart.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbDepart.Location = new System.Drawing.Point(247, 87);
+            this.lbDepart.Location = new System.Drawing.Point(410, 87);
             this.lbDepart.Name = "lbDepart";
             this.lbDepart.Size = new System.Drawing.Size(75, 23);
             this.lbDepart.TabIndex = 0;
@@ -315,7 +348,7 @@
             // 
             this.lbSex.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lbSex.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbSex.Location = new System.Drawing.Point(247, 53);
+            this.lbSex.Location = new System.Drawing.Point(250, 53);
             this.lbSex.Name = "lbSex";
             this.lbSex.Size = new System.Drawing.Size(75, 23);
             this.lbSex.TabIndex = 0;
@@ -328,7 +361,7 @@
             // 
             this.lbTime.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lbTime.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbTime.Location = new System.Drawing.Point(247, 19);
+            this.lbTime.Location = new System.Drawing.Point(250, 19);
             this.lbTime.Name = "lbTime";
             this.lbTime.Size = new System.Drawing.Size(75, 23);
             this.lbTime.TabIndex = 0;
@@ -341,7 +374,7 @@
             // 
             this.labelX10.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX10.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelX10.Location = new System.Drawing.Point(184, 19);
+            this.labelX10.Location = new System.Drawing.Point(187, 19);
             this.labelX10.Name = "labelX10";
             this.labelX10.Size = new System.Drawing.Size(75, 23);
             this.labelX10.TabIndex = 0;
@@ -396,7 +429,7 @@
             this.lbBirth.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbBirth.Location = new System.Drawing.Point(86, 87);
             this.lbBirth.Name = "lbBirth";
-            this.lbBirth.Size = new System.Drawing.Size(75, 23);
+            this.lbBirth.Size = new System.Drawing.Size(158, 23);
             this.lbBirth.TabIndex = 0;
             this.lbBirth.Text = "XX";
             // 
@@ -438,39 +471,6 @@
             this.labelX1.Size = new System.Drawing.Size(75, 23);
             this.labelX1.TabIndex = 0;
             this.labelX1.Text = "验证人数：";
-            // 
-            // pbBlack
-            // 
-            this.pbBlack.BackgroundImage = global::IMS.Properties.Resources.zanwutupian;
-            this.pbBlack.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pbBlack.Location = new System.Drawing.Point(334, 31);
-            this.pbBlack.Name = "pbBlack";
-            this.pbBlack.Size = new System.Drawing.Size(149, 138);
-            this.pbBlack.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbBlack.TabIndex = 0;
-            this.pbBlack.TabStop = false;
-            // 
-            // pbLocalPhoto
-            // 
-            this.pbLocalPhoto.BackgroundImage = global::IMS.Properties.Resources.zanwutupian;
-            this.pbLocalPhoto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pbLocalPhoto.Location = new System.Drawing.Point(173, 31);
-            this.pbLocalPhoto.Name = "pbLocalPhoto";
-            this.pbLocalPhoto.Size = new System.Drawing.Size(149, 138);
-            this.pbLocalPhoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbLocalPhoto.TabIndex = 0;
-            this.pbLocalPhoto.TabStop = false;
-            // 
-            // pbRealPhoto
-            // 
-            this.pbRealPhoto.BackgroundImage = global::IMS.Properties.Resources.zanwutupian;
-            this.pbRealPhoto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pbRealPhoto.Location = new System.Drawing.Point(12, 31);
-            this.pbRealPhoto.Name = "pbRealPhoto";
-            this.pbRealPhoto.Size = new System.Drawing.Size(149, 138);
-            this.pbRealPhoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbRealPhoto.TabIndex = 0;
-            this.pbRealPhoto.TabStop = false;
             // 
             // CompareInfo
             // 

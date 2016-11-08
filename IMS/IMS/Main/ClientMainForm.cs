@@ -102,7 +102,6 @@ namespace IMS
             MainForm main = new MainForm();
             main.Show();
             LoadCamera();
-            
         }
 
         private void timer1_Tick(object sender, EventArgs e)

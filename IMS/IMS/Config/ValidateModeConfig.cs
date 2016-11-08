@@ -16,6 +16,7 @@ namespace IMS.Config
         public ValidateModeConfig()
         {
             InitializeComponent();
+            LoadMode();
         }
 
         private void LoadMode()

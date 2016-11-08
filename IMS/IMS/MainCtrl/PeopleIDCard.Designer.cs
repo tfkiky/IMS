@@ -176,7 +176,7 @@
             this.lbBirth.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbBirth.Location = new System.Drawing.Point(102, 118);
             this.lbBirth.Name = "lbBirth";
-            this.lbBirth.Size = new System.Drawing.Size(136, 23);
+            this.lbBirth.Size = new System.Drawing.Size(185, 23);
             this.lbBirth.TabIndex = 1;
             this.lbBirth.Text = "XX";
             // 

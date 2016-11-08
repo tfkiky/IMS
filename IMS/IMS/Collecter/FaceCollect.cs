@@ -28,6 +28,12 @@ namespace IMS.Collecter
         private static System.Threading.Timer timer;
         private static string staffFacePath, blackFacePath, tempFacePath;
 
+        public static string StaffFacePath
+        {
+            get { return FaceCollect.staffFacePath; }
+            set { FaceCollect.staffFacePath = value; }
+        }
+
         private static Maticsoft.Model.SMT_STAFF_INFO staffInfo;
 
         public static Maticsoft.Model.SMT_STAFF_INFO StaffInfo
@@ -157,6 +163,7 @@ namespace IMS.Collecter
                 {
                     ImageHelper.ImageSave(staffFacePath + staff.ID + ".jpg", staff.PHOTO);
                 }
+                mlog.InfoFormat("下载人员库白名单图片:人数{0}", staffList.Count);
             }
             //加载黑名单
             
@@ -175,6 +182,8 @@ namespace IMS.Collecter
                 {
                     faceWhiteList.Add((int)staff.ID, staffFacePath + staff.ID + ".jpg");
                 }
+                mlog.InfoFormat("加载人员库白名单:人数{0}", staffList.Count);
+          
             }
             //加载黑名单
             blackList = blackListBll.GetModelList(" FacePic is not null");
@@ -184,6 +193,7 @@ namespace IMS.Collecter
                 {
                     faceBlackList.Add(black.FacePic);
                 }
+                mlog.InfoFormat("加载黑名单:人数{0}", blackList.Count);
             }
 
         }
@@ -226,7 +236,7 @@ namespace IMS.Collecter
         {
             try
             {
-                if (isFaceLoad)
+                if (isFaceLoad&&!string.IsNullOrEmpty(currentFacePic))
                 {
                     string capturePic = GetCameraPic();
                     string localPic = currentFacePic;
@@ -286,7 +296,7 @@ namespace IMS.Collecter
                                 int f1 = FaceService.face_get_feature_from_image(localPic, feature1);
                                 int f2 = FaceService.face_get_feature_from_image(capturePic, feature2);
                                 faceValue = FaceService.face_comp_feature(feature1, feature2);
-                                mlog.InfoFormat("1:1验证得分：{0}", faceValue);
+                                mlog.InfoFormat("1:1验证得分：{0},验证目标{1},{2}", faceValue, staffInfo.REAL_NAME, localPic);
                             }
                             break;
                         case 1: ///1：N验证
@@ -315,14 +325,7 @@ namespace IMS.Collecter
                     {
                         if (ValidateEvent != null)
                         {
-                            if (cardType == 1)
-                            {
-                                if (!File.Exists(staffFacePath + staffInfo.ID + ".jpg"))
-                                {
-                                    File.Copy(localPic, staffFacePath + staffInfo.ID + ".jpg", true);
-                                }
-                                localPic = staffFacePath + staffInfo.ID + ".jpg";
-                            }
+                            
                             try
                             {
                                 record.Similarity = faceValue;
@@ -385,15 +388,15 @@ namespace IMS.Collecter
                     }
                     else
                     {
-                        //if (ValidateEvent != null)
-                        //{
-                        //    mlog.InfoFormat("人脸验证结果：验证失败无此人");
-                        //    ValidateEvent(this, new ValidateResultEventArgs(record,  blackPic, ValidateResult.NoPerson));
-                            if (File.Exists(capturePic))
-                            {
-                                File.Delete(capturePic);
-                            }
-                        //}
+                        if (ValidateEvent != null)
+                        {
+                            mlog.InfoFormat("人脸验证结果：验证失败无此人");
+                            ValidateEvent(this, new ValidateResultEventArgs(record,  blackPic, ValidateResult.NoPerson));
+                            //if (File.Exists(capturePic))
+                            //{
+                            //    File.Delete(capturePic);
+                            //}
+                        }
                     }
                 }
             }
