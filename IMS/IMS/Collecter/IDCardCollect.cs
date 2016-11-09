@@ -126,6 +126,7 @@ namespace IMS.Collecter
                                     if (IDCardEvent != null)
                                     {
                                         IDCardEvent(this, new IDCardEventArgs(currentIDCard, staffList[0], isAllow));
+                                        fsRead.Close();
 
                                         if (File.Exists("./wz.txt"))
                                         {
@@ -143,6 +144,7 @@ namespace IMS.Collecter
                                     {
                                         IDCardEvent(this, new IDCardEventArgs(currentIDCard, null, false));
                                     }
+                                    fsRead.Close();
 
                                     if (File.Exists("./wz.txt"))
                                     {

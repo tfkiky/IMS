@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiSysConfig = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiExit = new System.Windows.Forms.ToolStripMenuItem();
@@ -47,24 +47,24 @@
             this.labelX1 = new DevComponents.DotNetBar.LabelX();
             this.buttonX2 = new DevComponents.DotNetBar.ButtonX();
             this.buttonX1 = new DevComponents.DotNetBar.ButtonX();
+            this.dataGridViewX1 = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.dataGridViewButtonXColumn1 = new DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn();
+            this.dataGridViewButtonXColumn2 = new DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn();
+            this.dataGridViewButtonXColumn3 = new DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn();
+            this.dataGridViewButtonXColumn4 = new DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
             this.splitContainer5 = new System.Windows.Forms.SplitContainer();
             this.labelX2 = new DevComponents.DotNetBar.LabelX();
             this.btnPersonRecord = new DevComponents.DotNetBar.ButtonX();
             this.btnCheckPerson = new DevComponents.DotNetBar.ButtonX();
             this.dataGridViewX2 = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.peopleVehicleVideo1 = new IMS.PeopleVehicleVideo();
+            this.compareInfo1 = new IMS.CompareInfo();
             this.column1 = new DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn();
             this.column2 = new DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn();
             this.column3 = new DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn();
             this.column4 = new DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.dataGridViewX1 = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.dataGridViewButtonXColumn1 = new DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn();
-            this.dataGridViewButtonXColumn2 = new DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn();
-            this.dataGridViewButtonXColumn3 = new DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn();
-            this.dataGridViewButtonXColumn4 = new DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn();
-            this.peopleVehicleVideo1 = new IMS.PeopleVehicleVideo();
-            this.compareInfo1 = new IMS.CompareInfo();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -82,6 +82,7 @@
             this.splitContainer6.Panel1.SuspendLayout();
             this.splitContainer6.Panel2.SuspendLayout();
             this.splitContainer6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewX1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).BeginInit();
             this.splitContainer4.Panel1.SuspendLayout();
             this.splitContainer4.Panel2.SuspendLayout();
@@ -91,7 +92,6 @@
             this.splitContainer5.Panel2.SuspendLayout();
             this.splitContainer5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewX2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewX1)).BeginInit();
             this.SuspendLayout();
             // 
             // contextMenuStrip1
@@ -322,6 +322,75 @@
             this.buttonX1.Text = "人工查验";
             this.buttonX1.TextColor = System.Drawing.Color.Black;
             // 
+            // dataGridViewX1
+            // 
+            this.dataGridViewX1.AllowUserToAddRows = false;
+            this.dataGridViewX1.AllowUserToDeleteRows = false;
+            this.dataGridViewX1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewX1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewX1.ColumnHeadersVisible = false;
+            this.dataGridViewX1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewButtonXColumn1,
+            this.dataGridViewButtonXColumn2,
+            this.dataGridViewButtonXColumn3,
+            this.dataGridViewButtonXColumn4});
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewX1.DefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridViewX1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewX1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
+            this.dataGridViewX1.Location = new System.Drawing.Point(0, 0);
+            this.dataGridViewX1.Name = "dataGridViewX1";
+            this.dataGridViewX1.RowHeadersVisible = false;
+            this.dataGridViewX1.RowTemplate.Height = 23;
+            this.dataGridViewX1.Size = new System.Drawing.Size(512, 205);
+            this.dataGridViewX1.TabIndex = 3;
+            // 
+            // dataGridViewButtonXColumn1
+            // 
+            this.dataGridViewButtonXColumn1.HeaderText = "Column1";
+            this.dataGridViewButtonXColumn1.ImagePosition = DevComponents.DotNetBar.eImagePosition.Right;
+            this.dataGridViewButtonXColumn1.Name = "dataGridViewButtonXColumn1";
+            this.dataGridViewButtonXColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewButtonXColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewButtonXColumn1.Text = null;
+            this.dataGridViewButtonXColumn1.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
+            // 
+            // dataGridViewButtonXColumn2
+            // 
+            this.dataGridViewButtonXColumn2.HeaderText = "Column2";
+            this.dataGridViewButtonXColumn2.ImagePosition = DevComponents.DotNetBar.eImagePosition.Right;
+            this.dataGridViewButtonXColumn2.Name = "dataGridViewButtonXColumn2";
+            this.dataGridViewButtonXColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewButtonXColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewButtonXColumn2.Text = null;
+            this.dataGridViewButtonXColumn2.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
+            // 
+            // dataGridViewButtonXColumn3
+            // 
+            this.dataGridViewButtonXColumn3.HeaderText = "Column3";
+            this.dataGridViewButtonXColumn3.ImagePosition = DevComponents.DotNetBar.eImagePosition.Right;
+            this.dataGridViewButtonXColumn3.Name = "dataGridViewButtonXColumn3";
+            this.dataGridViewButtonXColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewButtonXColumn3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewButtonXColumn3.Text = null;
+            this.dataGridViewButtonXColumn3.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
+            // 
+            // dataGridViewButtonXColumn4
+            // 
+            this.dataGridViewButtonXColumn4.HeaderText = "Column4";
+            this.dataGridViewButtonXColumn4.ImagePosition = DevComponents.DotNetBar.eImagePosition.Right;
+            this.dataGridViewButtonXColumn4.Name = "dataGridViewButtonXColumn4";
+            this.dataGridViewButtonXColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewButtonXColumn4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewButtonXColumn4.Text = null;
+            this.dataGridViewButtonXColumn4.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
+            // 
             // splitContainer4
             // 
             this.splitContainer4.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -437,6 +506,30 @@
             this.dataGridViewX2.TabIndex = 2;
             this.dataGridViewX2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewX2_CellContentClick);
             // 
+            // imageList1
+            // 
+            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.imageList1.ImageSize = new System.Drawing.Size(48, 48);
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            // 
+            // peopleVehicleVideo1
+            // 
+            this.peopleVehicleVideo1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.peopleVehicleVideo1.Location = new System.Drawing.Point(0, 0);
+            this.peopleVehicleVideo1.Margin = new System.Windows.Forms.Padding(4);
+            this.peopleVehicleVideo1.Name = "peopleVehicleVideo1";
+            this.peopleVehicleVideo1.Size = new System.Drawing.Size(512, 467);
+            this.peopleVehicleVideo1.TabIndex = 0;
+            // 
+            // compareInfo1
+            // 
+            this.compareInfo1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.compareInfo1.Location = new System.Drawing.Point(0, 0);
+            this.compareInfo1.Margin = new System.Windows.Forms.Padding(4);
+            this.compareInfo1.Name = "compareInfo1";
+            this.compareInfo1.Size = new System.Drawing.Size(511, 467);
+            this.compareInfo1.TabIndex = 0;
+            // 
             // column1
             // 
             this.column1.HeaderText = "Column1";
@@ -445,7 +538,6 @@
             this.column1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.column1.Text = null;
-            this.column1.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
             // 
             // column2
             // 
@@ -476,99 +568,6 @@
             this.column4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.column4.Text = null;
             this.column4.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
-            // 
-            // imageList1
-            // 
-            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
-            this.imageList1.ImageSize = new System.Drawing.Size(48, 48);
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            // 
-            // dataGridViewX1
-            // 
-            this.dataGridViewX1.AllowUserToAddRows = false;
-            this.dataGridViewX1.AllowUserToDeleteRows = false;
-            this.dataGridViewX1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridViewX1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewX1.ColumnHeadersVisible = false;
-            this.dataGridViewX1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewButtonXColumn1,
-            this.dataGridViewButtonXColumn2,
-            this.dataGridViewButtonXColumn3,
-            this.dataGridViewButtonXColumn4});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewX1.DefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridViewX1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridViewX1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
-            this.dataGridViewX1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridViewX1.Name = "dataGridViewX1";
-            this.dataGridViewX1.RowHeadersVisible = false;
-            this.dataGridViewX1.RowTemplate.Height = 23;
-            this.dataGridViewX1.Size = new System.Drawing.Size(512, 205);
-            this.dataGridViewX1.TabIndex = 3;
-            // 
-            // dataGridViewButtonXColumn1
-            // 
-            this.dataGridViewButtonXColumn1.HeaderText = "Column1";
-            this.dataGridViewButtonXColumn1.ImagePosition = DevComponents.DotNetBar.eImagePosition.Right;
-            this.dataGridViewButtonXColumn1.Name = "dataGridViewButtonXColumn1";
-            this.dataGridViewButtonXColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewButtonXColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewButtonXColumn1.Text = null;
-            this.dataGridViewButtonXColumn1.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
-            // 
-            // dataGridViewButtonXColumn2
-            // 
-            this.dataGridViewButtonXColumn2.HeaderText = "Column2";
-            this.dataGridViewButtonXColumn2.ImagePosition = DevComponents.DotNetBar.eImagePosition.Right;
-            this.dataGridViewButtonXColumn2.Name = "dataGridViewButtonXColumn2";
-            this.dataGridViewButtonXColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewButtonXColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewButtonXColumn2.Text = null;
-            this.dataGridViewButtonXColumn2.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
-            // 
-            // dataGridViewButtonXColumn3
-            // 
-            this.dataGridViewButtonXColumn3.HeaderText = "Column3";
-            this.dataGridViewButtonXColumn3.ImagePosition = DevComponents.DotNetBar.eImagePosition.Right;
-            this.dataGridViewButtonXColumn3.Name = "dataGridViewButtonXColumn3";
-            this.dataGridViewButtonXColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewButtonXColumn3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewButtonXColumn3.Text = null;
-            this.dataGridViewButtonXColumn3.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
-            // 
-            // dataGridViewButtonXColumn4
-            // 
-            this.dataGridViewButtonXColumn4.HeaderText = "Column4";
-            this.dataGridViewButtonXColumn4.ImagePosition = DevComponents.DotNetBar.eImagePosition.Right;
-            this.dataGridViewButtonXColumn4.Name = "dataGridViewButtonXColumn4";
-            this.dataGridViewButtonXColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewButtonXColumn4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewButtonXColumn4.Text = null;
-            this.dataGridViewButtonXColumn4.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
-            // 
-            // peopleVehicleVideo1
-            // 
-            this.peopleVehicleVideo1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.peopleVehicleVideo1.Location = new System.Drawing.Point(0, 0);
-            this.peopleVehicleVideo1.Margin = new System.Windows.Forms.Padding(4);
-            this.peopleVehicleVideo1.Name = "peopleVehicleVideo1";
-            this.peopleVehicleVideo1.Size = new System.Drawing.Size(512, 467);
-            this.peopleVehicleVideo1.TabIndex = 0;
-            // 
-            // compareInfo1
-            // 
-            this.compareInfo1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.compareInfo1.Location = new System.Drawing.Point(0, 0);
-            this.compareInfo1.Margin = new System.Windows.Forms.Padding(4);
-            this.compareInfo1.Name = "compareInfo1";
-            this.compareInfo1.Size = new System.Drawing.Size(511, 467);
-            this.compareInfo1.TabIndex = 0;
             // 
             // MainForm
             // 
@@ -601,6 +600,7 @@
             this.splitContainer6.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer6)).EndInit();
             this.splitContainer6.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewX1)).EndInit();
             this.splitContainer4.Panel1.ResumeLayout(false);
             this.splitContainer4.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).EndInit();
@@ -610,7 +610,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer5)).EndInit();
             this.splitContainer5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewX2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewX1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -642,15 +641,15 @@
         private DevComponents.DotNetBar.LabelX labelX3;
         private DevComponents.DotNetBar.LabelX lbBlackList;
         private System.Windows.Forms.ImageList imageList1;
-        private DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn column1;
-        private DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn column2;
-        private DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn column3;
-        private DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn column4;
         private DevComponents.DotNetBar.Controls.DataGridViewX dataGridViewX1;
         private DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn dataGridViewButtonXColumn1;
         private DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn dataGridViewButtonXColumn2;
         private DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn dataGridViewButtonXColumn3;
         private DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn dataGridViewButtonXColumn4;
+        private DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn column1;
+        private DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn column2;
+        private DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn column3;
+        private DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn column4;
     }
 }
 

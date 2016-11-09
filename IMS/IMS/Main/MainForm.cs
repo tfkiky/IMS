@@ -140,6 +140,7 @@ namespace IMS
             if(e.IDCard!=null)
             {
                 compareInfo1.LoadIDInfo(e.IDCard);
+                e.IDCard.PhotoFile = FaceCollect.FaceWhiteList[(int)e.StaffInfo.ID];
                 ClientMainForm.Instance.LoadIDCardInfo(e.IDCard);
                 peopleVehicleVideo1.LoadIDCardResult(e.StaffInfo, e.IsAllow);
             }
@@ -185,6 +186,7 @@ namespace IMS
             {
                 if (e.Record.CapturePic != null)
                 {
+                    mlog.InfoFormat("抓拍图片：{0}", e.Record.CapturePic);
                     compareInfo1.LoadValidateResult(e);
                     ClientMainForm.Instance.LoadValidateResult(e);
 
@@ -223,7 +225,7 @@ namespace IMS
                 {
                     Bitmap bmp = new Bitmap(recordList.Find(rec => rec.Name == bcx.Text&&rec.ID==(cell.Tag as Maticsoft.Model.IMS_PEOPLE_RECORD).ID).OriginPic);
                     bcx.Image = new Bitmap(bmp,48,48);
-                    mlog.InfoFormat("加载图片：{0}", bcx.Text);
+                    mlog.InfoFormat("加载图片：{0},行{1},列{2}", bcx.Text, e.RowIndex, e.ColumnIndex);
                 }
             }
         }
@@ -320,11 +322,11 @@ namespace IMS
                     {
                         recordList.RemoveAt(0);
                     }
-                    if (recordList.Count==0||recordList.Last().ID != record.ID)
-                    {
+                    //if (recordList.Count==0||recordList.Last().ID != record.ID)
+                    //{
                         recordList.Add(record);
                         mlog.InfoFormat("新进记录：{0}", record.Name);
-                    }
+                    //}
                     LoadPerson();
 
                 }
@@ -349,7 +351,7 @@ namespace IMS
                         {
                             cell.Value = recordList[i * dataGridViewX2.ColumnCount + j].Name;
                             cell.Tag = recordList[i * dataGridViewX2.ColumnCount + j];
-                            mlog.InfoFormat("加载记录：{0}", cell.Value);
+                            mlog.InfoFormat("加载记录：{0},行{1},列{2}", cell.Value,i,j);
                         }
 
                     }

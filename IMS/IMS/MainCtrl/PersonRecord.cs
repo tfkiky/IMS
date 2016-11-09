@@ -71,22 +71,22 @@ namespace IMS.MainCtrl
                 {
                     if (startIndex == 0)
                     {
-                        recordList = recordBll.GetModelListByPageEx(strSql.ToString(), "ThroughTime", startIndex, startIndex + pageCtrlRecords.RecordsPerPage);
+                        recordList = recordBll.GetModelListByPageEx(strSql.ToString(), "", startIndex, startIndex + pageCtrlRecords.RecordsPerPage);
                     }
                     else
                     {
-                        recordList = recordBll.GetModelListByPageEx(strSql.ToString(), "ThroughTime", startIndex + 1, startIndex + pageCtrlRecords.RecordsPerPage);
+                        recordList = recordBll.GetModelListByPageEx(strSql.ToString(), "", startIndex + 1, startIndex + pageCtrlRecords.RecordsPerPage);
                     }
                 }
                 else
                 {
                     if (startIndex == 0)
                     {
-                        recordList = recordBll.GetModelListByPageEx(strSql.ToString(), "ThroughTime", startIndex, recordRowsCount);
+                        recordList = recordBll.GetModelListByPageEx(strSql.ToString(), "", startIndex, recordRowsCount);
                     }
                     else
                     {
-                        recordList = recordBll.GetModelListByPageEx(strSql.ToString(), "ThroughTime", startIndex + 1, recordRowsCount);
+                        recordList = recordBll.GetModelListByPageEx(strSql.ToString(), "", startIndex + 1, recordRowsCount);
                     }
                 }
                 for (int i = 0; i < recordList.Count; i++)

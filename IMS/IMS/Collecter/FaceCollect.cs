@@ -236,166 +236,173 @@ namespace IMS.Collecter
         {
             try
             {
-                if (isFaceLoad&&!string.IsNullOrEmpty(currentFacePic))
+                if (isFaceLoad && !string.IsNullOrEmpty(currentFacePic))
                 {
-                    string capturePic = GetCameraPic();
-                    string localPic = currentFacePic;
-                    string blackPic = "";
-                    byte[] feature1 = new byte[3000], feature2 = new byte[3000];
-                    Maticsoft.Model.IMS_PEOPLE_RECORD record = new Maticsoft.Model.IMS_PEOPLE_RECORD();
-                    record.Name = staffInfo.REAL_NAME;
-                    if (MainForm.Instance.IBlackMode == 0)
+                    lock (currentFacePic)
                     {
-                        if (faceBlackList != null && !string.IsNullOrEmpty(capturePic))
+                        string capturePic = GetCameraPic();
+                        string localPic = currentFacePic;
+                        string blackPic = "";
+                        byte[] feature1 = new byte[3000], feature2 = new byte[3000];
+                        Maticsoft.Model.IMS_PEOPLE_RECORD record = new Maticsoft.Model.IMS_PEOPLE_RECORD();
+                        record.Name = staffInfo.REAL_NAME;
+                        if (MainForm.Instance.IBlackMode == 0)
                         {
-                            foreach (string pic in faceBlackList)
+                            if (faceBlackList != null && !string.IsNullOrEmpty(capturePic))
                             {
-                                int f1 = FaceService.face_get_feature_from_image(pic, feature1);
-                                int f2 = FaceService.face_get_feature_from_image(capturePic, feature2);
-                                faceValue = FaceService.face_comp_feature(feature1, feature2);
-                                if (faceValue > MainForm.Instance.IBlackThreshold)
-                                {
-                                    blackPic = pic;
-                                    break;
-                                }
-                            }
-                            if (!string.IsNullOrEmpty(blackPic))
-                            {
-                                mlog.InfoFormat("黑名单验证结果：{0}！", blackPic);
-
-                                //Maticsoft.Model.IMS_PEOPLE_RECORD record = new Maticsoft.Model.IMS_PEOPLE_RECORD();
-                                //record.Name = staffInfo.REAL_NAME;
-                                record.Similarity = faceValue;
-                                //record.ThroughResult = 2;
-                                //record.OriginPic = "";
-                                ////record.OriginPic = blackPic;
-                                record.CapturePic = capturePic;
-                                //record.CompareResult = 1;
-                                //record.CardType = -1;
-                                //record.Depart = staffInfo.ORG_ID.ToString();
-                                //record.ThroughForward = -1;
-                                //record.ThroughTime = DateTime.Now;
-                                //record.CardNo = "";
-                                //record.AccessChannel = AccessCollect.Instance.FaceControllerID.ToString();
-                                //record.FacePosition = "";
-                                //recordBll.Add(record);
-
-                                if (ValidateEvent != null)
-                                {
-                                    ValidateEvent(this, new ValidateResultEventArgs(record, blackPic, ValidateResult.Black));
-                                }
-                            }
-                        }
-                    }
-
-                    switch (MainForm.Instance.IFaceMode)
-                    {
-                        case 0: ///1:1验证
-                            if (!string.IsNullOrEmpty(localPic) && !string.IsNullOrEmpty(capturePic))
-                            {
-                                int f1 = FaceService.face_get_feature_from_image(localPic, feature1);
-                                int f2 = FaceService.face_get_feature_from_image(capturePic, feature2);
-                                faceValue = FaceService.face_comp_feature(feature1, feature2);
-                                mlog.InfoFormat("1:1验证得分：{0},验证目标{1},{2}", faceValue, staffInfo.REAL_NAME, localPic);
-                            }
-                            break;
-                        case 1: ///1：N验证
-                            if (faceWhiteList != null)
-                            {
-                                localPic = "";
-                                foreach (string pic in faceWhiteList.Values)
+                                foreach (string pic in faceBlackList)
                                 {
                                     int f1 = FaceService.face_get_feature_from_image(pic, feature1);
                                     int f2 = FaceService.face_get_feature_from_image(capturePic, feature2);
                                     faceValue = FaceService.face_comp_feature(feature1, feature2);
-                                    mlog.InfoFormat("1:N验证得分：{0}", faceValue);
-                                    if (faceValue > MainForm.Instance.IThreshold)
+                                    if (faceValue > MainForm.Instance.IBlackThreshold)
                                     {
-                                        localPic = pic;
+                                        blackPic = pic;
                                         break;
                                     }
                                 }
-                            }
-                            break;
-                        case 2:
+                                if (!string.IsNullOrEmpty(blackPic))
+                                {
+                                    mlog.InfoFormat("黑名单验证结果：{0}！", blackPic);
 
-                            break;
-                    }
-                    if (faceValue > MainForm.Instance.IThreshold && !string.IsNullOrEmpty(localPic))
-                    {
-                        if (ValidateEvent != null)
-                        {
-                            
-                            try
-                            {
-                                record.Similarity = faceValue;
-                                record.ThroughResult = 1;
-                                record.OriginPic = localPic;
-                                record.CapturePic = capturePic;
-                                record.CompareResult = 1;
-                                record.CardType = cardType;
-                                if (staffInfo.ORG_ID!=null)
-                                {
-                                    record.Depart = staffInfo.ORG_ID.ToString();
-                                }
-                                else record.Depart = "";
-                                if (cardType == 0)
-                                {
-                                    record.ThroughForward = (cardRecord.IS_ENTER == true) ? 0 : 1;
-                                    record.ThroughTime = cardRecord.RECORD_DATE.Value;
-                                    record.CardNo = cardRecord.CARD_NO;
-                                }
-                                else
-                                {
-                                    record.ThroughForward = 2;
-                                    record.ThroughTime = DateTime.Now;
-                                    if (idCard!=null&&!string.IsNullOrEmpty(idCard.Id))
+                                    //Maticsoft.Model.IMS_PEOPLE_RECORD record = new Maticsoft.Model.IMS_PEOPLE_RECORD();
+                                    //record.Name = staffInfo.REAL_NAME;
+                                    record.Similarity = faceValue;
+                                    //record.ThroughResult = 2;
+                                    //record.OriginPic = "";
+                                    ////record.OriginPic = blackPic;
+                                    record.CapturePic = capturePic;
+                                    //record.CompareResult = 1;
+                                    //record.CardType = -1;
+                                    //record.Depart = staffInfo.ORG_ID.ToString();
+                                    //record.ThroughForward = -1;
+                                    //record.ThroughTime = DateTime.Now;
+                                    //record.CardNo = "";
+                                    //record.AccessChannel = AccessCollect.Instance.FaceControllerID.ToString();
+                                    //record.FacePosition = "";
+                                    //recordBll.Add(record);
+
+                                    if (ValidateEvent != null)
                                     {
-                                        record.CardNo = idCard.Id;
+                                        ValidateEvent(this, new ValidateResultEventArgs(record, blackPic, ValidateResult.Black));
                                     }
-                                    else record.CardNo = "";
+                                    currentFacePic = "";
 
-                                }
-                                record.AccessChannel = AccessCollect.Instance.FaceControllerID.ToString();
-                                record.FacePosition = "";
-                                recordBll.Add(record);
-
-                                record = recordBll.GetModelList("CardNo='" + record.CardNo + "' AND Name='" + record.Name+"'")[0];
-                            }
-                            catch (System.Exception ex)
-                            {
-                                mlog.ErrorFormat("添加人脸通行记录：{0}",ex);
-                            }
-
-                            mlog.InfoFormat("人脸验证结果：验证成功，员工{0},验证得分{1},阈值{2}", staffInfo.REAL_NAME, faceValue.ToString(), MainForm.Instance.IThreshold.ToString());
-                            ValidateEvent(this, new ValidateResultEventArgs(record, blackPic, ValidateResult.Success));
-
-                            using (IAccessCore access = new WGAccess())
-                            {
-                                ///控制开门
-                                Maticsoft.Model.SMT_CONTROLLER_INFO _ctrlr = ctrlBll.GetModel(AccessCollect.Instance.FaceControllerID);
-                                Controller c = ControllerHelper.ToController(_ctrlr);
-                                Maticsoft.Model.SMT_DOOR_INFO _door = doorBll.GetModel(AccessCollect.Instance.FaceDoorID);
-
-                                bool ret = access.OpenRemoteControllerDoor(c, _door.CTRL_DOOR_INDEX.Value);
-                                if (!ret)
-                                {
-                                    //WinInfoHelper.ShowInfoWindow(this, "上传门控制方式失败！");
-                                    return;
                                 }
                             }
                         }
-                    }
-                    else
-                    {
-                        if (ValidateEvent != null)
+
+                        switch (MainForm.Instance.IFaceMode)
                         {
-                            mlog.InfoFormat("人脸验证结果：验证失败无此人");
-                            ValidateEvent(this, new ValidateResultEventArgs(record,  blackPic, ValidateResult.NoPerson));
-                            //if (File.Exists(capturePic))
-                            //{
-                            //    File.Delete(capturePic);
-                            //}
+                            case 0: ///1:1验证
+                                if (!string.IsNullOrEmpty(localPic) && !string.IsNullOrEmpty(capturePic))
+                                {
+                                    int f1 = FaceService.face_get_feature_from_image(localPic, feature1);
+                                    int f2 = FaceService.face_get_feature_from_image(capturePic, feature2);
+                                    faceValue = FaceService.face_comp_feature(feature1, feature2);
+                                    mlog.InfoFormat("1:1验证得分：{0},验证目标{1},{2},{3}", faceValue, staffInfo.REAL_NAME, localPic, capturePic);
+                                }
+                                break;
+                            case 1: ///1：N验证
+                                if (faceWhiteList != null)
+                                {
+                                    localPic = "";
+                                    foreach (string pic in faceWhiteList.Values)
+                                    {
+                                        int f1 = FaceService.face_get_feature_from_image(pic, feature1);
+                                        int f2 = FaceService.face_get_feature_from_image(capturePic, feature2);
+                                        faceValue = FaceService.face_comp_feature(feature1, feature2);
+                                        mlog.InfoFormat("1:N验证得分：{0}", faceValue);
+                                        if (faceValue > MainForm.Instance.IThreshold)
+                                        {
+                                            localPic = pic;
+                                            break;
+                                        }
+                                    }
+                                }
+                                break;
+                            case 2:
+
+                                break;
+                        }
+                        if (faceValue > MainForm.Instance.IThreshold && !string.IsNullOrEmpty(localPic))
+                        {
+                            if (ValidateEvent != null)
+                            {
+
+                                try
+                                {
+                                    record.Similarity = faceValue;
+                                    record.ThroughResult = 1;
+                                    record.OriginPic = localPic;
+                                    record.CapturePic = capturePic;
+                                    record.CompareResult = 1;
+                                    record.CardType = cardType;
+                                    if (staffInfo.ORG_ID != null)
+                                    {
+                                        record.Depart = staffInfo.ORG_ID.ToString();
+                                    }
+                                    else record.Depart = "";
+                                    if (cardType == 0)
+                                    {
+                                        record.ThroughForward = (cardRecord.IS_ENTER == true) ? 0 : 1;
+                                        record.ThroughTime = cardRecord.RECORD_DATE.Value;
+                                        record.CardNo = cardRecord.CARD_NO;
+                                    }
+                                    else
+                                    {
+                                        record.ThroughForward = 2;
+                                        record.ThroughTime = DateTime.Now;
+                                        if (idCard != null && !string.IsNullOrEmpty(idCard.Id))
+                                        {
+                                            record.CardNo = idCard.Id;
+                                        }
+                                        else record.CardNo = "";
+
+                                    }
+                                    record.AccessChannel = AccessCollect.Instance.FaceControllerID.ToString();
+                                    record.FacePosition = "";
+                                    recordBll.Add(record);
+
+                                    record = recordBll.GetModelList("CardNo='" + record.CardNo + "' AND Name='" + record.Name + "' AND CONVERT(VARCHAR(24),ThroughTime,20) ='" + record.ThroughTime.Value.ToString("yyyy-MM-dd HH:mm:ss") + "'")[0];
+                                }
+                                catch (System.Exception ex)
+                                {
+                                    mlog.ErrorFormat("添加人脸通行记录：{0}", ex);
+                                }
+
+                                mlog.InfoFormat("人脸验证结果：验证成功，员工{0},验证得分{1},阈值{2}", staffInfo.REAL_NAME, faceValue.ToString(), MainForm.Instance.IThreshold.ToString());
+                                ValidateEvent(this, new ValidateResultEventArgs(record, blackPic, ValidateResult.Success));
+                                currentFacePic = "";
+
+                                using (IAccessCore access = new WGAccess())
+                                {
+                                    ///控制开门
+                                    Maticsoft.Model.SMT_CONTROLLER_INFO _ctrlr = ctrlBll.GetModel(AccessCollect.Instance.FaceControllerID);
+                                    Controller c = ControllerHelper.ToController(_ctrlr);
+                                    Maticsoft.Model.SMT_DOOR_INFO _door = doorBll.GetModel(AccessCollect.Instance.FaceDoorID);
+
+                                    bool ret = access.OpenRemoteControllerDoor(c, _door.CTRL_DOOR_INDEX.Value);
+                                    if (!ret)
+                                    {
+                                        //WinInfoHelper.ShowInfoWindow(this, "上传门控制方式失败！");
+                                        return;
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (ValidateEvent != null)
+                            {
+                                mlog.InfoFormat("人脸验证结果：验证失败无此人");
+                                ValidateEvent(this, new ValidateResultEventArgs(record, blackPic, ValidateResult.NoPerson));
+                                currentFacePic = "";
+                                //if (File.Exists(capturePic))
+                                //{
+                                //    File.Delete(capturePic);
+                                //}
+                            }
                         }
                     }
                 }
@@ -408,7 +415,7 @@ namespace IMS.Collecter
 
         private string GetCameraPic()
         {
-            //return @"C:\查验系统\Code\IMS\IMS\IMS\bin\Debug\Faces\20161106194611546.jpg";
+            return @"C:\查验系统\Code\IMS\IMS\IMS\bin\Debug\Faces\20161109124927324.jpg";
 
             string dir=AppDomain.CurrentDomain.BaseDirectory+"Faces\\";
             if (!Directory.Exists(dir))
