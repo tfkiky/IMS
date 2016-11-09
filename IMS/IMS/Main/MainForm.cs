@@ -223,10 +223,13 @@ namespace IMS
             {
                 if (!string.IsNullOrEmpty(bcx.Text) && cell.Tag is Maticsoft.Model.IMS_PEOPLE_RECORD)
                 {
-                    Bitmap bmp = new Bitmap(recordList.Find(rec => rec.Name == bcx.Text&&rec.ID==(cell.Tag as Maticsoft.Model.IMS_PEOPLE_RECORD).ID).OriginPic);
-                    bcx.Image = new Bitmap(bmp,48,48);
+                    Bitmap bmp = new Bitmap(recordList.Find(rec => rec.Name == bcx.Text && rec.ID == (cell.Tag as Maticsoft.Model.IMS_PEOPLE_RECORD).ID).OriginPic);
+                    bcx.Image = new Bitmap(bmp, 48, 48);
                     mlog.InfoFormat("加载图片：{0},行{1},列{2}", bcx.Text, e.RowIndex, e.ColumnIndex);
+                    bmp.Dispose();
                 }
+                else
+                    bcx.Image = null;
             }
         }
         /// <summary>

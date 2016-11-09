@@ -415,7 +415,7 @@ namespace IMS.Collecter
 
         private string GetCameraPic()
         {
-            return @"C:\查验系统\Code\IMS\IMS\IMS\bin\Debug\Faces\20161109124927324.jpg";
+            //return @"C:\查验系统\Code\IMS\IMS\IMS\bin\Debug\Faces\20161109124927324.jpg";
 
             string dir=AppDomain.CurrentDomain.BaseDirectory+"Faces\\";
             if (!Directory.Exists(dir))
