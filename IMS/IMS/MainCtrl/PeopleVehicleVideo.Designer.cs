@@ -62,11 +62,11 @@
             // 
             // 
             this.lbResult.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lbResult.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbResult.ForeColor = System.Drawing.Color.White;
-            this.lbResult.Location = new System.Drawing.Point(125, 20);
+            this.lbResult.Font = new System.Drawing.Font("微软雅黑", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbResult.ForeColor = System.Drawing.Color.Red;
+            this.lbResult.Location = new System.Drawing.Point(75, 20);
             this.lbResult.Name = "lbResult";
-            this.lbResult.Size = new System.Drawing.Size(204, 23);
+            this.lbResult.Size = new System.Drawing.Size(314, 23);
             this.lbResult.TabIndex = 0;
             this.lbResult.Text = "人员/车辆查验结果显示区";
             // 

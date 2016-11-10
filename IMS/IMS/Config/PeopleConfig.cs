@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevComponents.Editors;
 using IMS.Collecter;
+using IMS.Common.Config;
 
 namespace IMS
 {
@@ -37,7 +38,7 @@ namespace IMS
                 ci.Text=ctrl.NAME;
                 ci.Tag=ctrl;
                 cbCtrl.Items.Add(ci);
-                if (ctrl.ID == AccessCollect.Instance.FaceControllerID)
+                if (ctrl.ID == decimal.Parse(SysConfigClass.GetIMSConfig("IMS_CONFIG", "Controller")))
                 {
                     cbCtrl.SelectedItem = ci;
                 }
@@ -64,7 +65,7 @@ namespace IMS
                 ci.Text = door.DOOR_NAME;
                 ci.Tag = door;
                 cbDoor.Items.Add(ci);
-                if (door.ID == AccessCollect.Instance.FaceDoorID)
+                if (door.ID == decimal.Parse(SysConfigClass.GetIMSConfig("IMS_CONFIG", "Door")))
                 {
                     cbDoor.SelectedItem = ci;
                 }
@@ -80,7 +81,20 @@ namespace IMS
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            if ((cbCtrl.SelectedItem as ComboItem).Tag is Maticsoft.Model.SMT_CONTROLLER_INFO)
+            {
+                Maticsoft.Model.SMT_CONTROLLER_INFO ctrl = (cbCtrl.SelectedItem as ComboItem).Tag as Maticsoft.Model.SMT_CONTROLLER_INFO;
+                SysConfigClass.SetIMSConfig("IMS_CONFIG", "Controller", ctrl.ID.ToString());
+                AccessCollect.Instance.FaceControllerID = (int)ctrl.ID;
+            }
+            if ((cbDoor.SelectedItem as ComboItem).Tag is Maticsoft.Model.SMT_DOOR_INFO)
+            {
+                Maticsoft.Model.SMT_DOOR_INFO door = (cbDoor.SelectedItem as ComboItem).Tag as Maticsoft.Model.SMT_DOOR_INFO;
+                SysConfigClass.SetIMSConfig("IMS_CONFIG", "Door", door.ID.ToString());
+                AccessCollect.Instance.FaceDoorID = (int)door.ID;
+            }
 
+            MessageBox.Show("保存成功");
             cbCtrl.Enabled = false;
             cbDoor.Enabled = false;
         }
@@ -100,7 +114,17 @@ namespace IMS
 
         private void btnSave1_Click(object sender, EventArgs e)
         {
+            
+            Maticsoft.BLL.IMS_FACE_CAMERA cameraBll=new Maticsoft.BLL.IMS_FACE_CAMERA();
+            Maticsoft.Model.IMS_FACE_CAMERA camera=cameraBll.GetModel(1);
+            camera.CameraIP=ipAddressInput1.Value;
+            camera.CameraPort=tbPort.Text;
+            camera.CameraUser=tbUserName.Text;
+            camera.CameraPwd=tbPwd.Text;
+            cameraBll.Update(camera);
+            MainForm.Instance.FaceCamera = camera;
 
+            MessageBox.Show("保存成功");
             ipAddressInput1.Enabled = false;
             tbPort.Enabled = false;
             tbUserName.Enabled = false;

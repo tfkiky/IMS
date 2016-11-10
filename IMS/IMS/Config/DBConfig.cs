@@ -119,6 +119,8 @@ namespace IMS.Config
                     MessageBox.Show("保存失败！");
                     return;
                 }
+                else
+                    MessageBox.Show("保存成功！");
             }
         }
 

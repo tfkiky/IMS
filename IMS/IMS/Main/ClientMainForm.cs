@@ -92,7 +92,19 @@ namespace IMS
                 lbConn.Text = "数据库连接正常";
             }
             else{
-                lbConn.Text = "数据库连接异常";
+                lbConn.Text = "数据库连接异常，请检查网络或数据库配置";
+            }
+        }
+
+        public void LoadCtrlState(bool isConn)
+        {
+            if (isConn)
+            {
+                lbConn.Text = "门禁控制器连接正常";
+            }
+            else
+            {
+                lbConn.Text = "门禁控制器连接失败，请检查门禁控制器配置";
             }
         }
 

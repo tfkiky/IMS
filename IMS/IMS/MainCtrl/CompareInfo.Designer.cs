@@ -269,10 +269,11 @@
             // 
             // 
             this.lbValue.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lbValue.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbValue.Font = new System.Drawing.Font("微软雅黑", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbValue.ForeColor = System.Drawing.Color.Red;
             this.lbValue.Location = new System.Drawing.Point(404, 19);
             this.lbValue.Name = "lbValue";
-            this.lbValue.Size = new System.Drawing.Size(62, 23);
+            this.lbValue.Size = new System.Drawing.Size(79, 23);
             this.lbValue.TabIndex = 0;
             this.lbValue.Text = "XX";
             // 

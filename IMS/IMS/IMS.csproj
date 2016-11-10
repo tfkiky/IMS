@@ -32,10 +32,14 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>1.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevComponents.DotNetBar2, Version=10.7.0.3, Culture=neutral, PublicKeyToken=c39c3242a43eee2b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\dll\dotnetbar\DevComponents.DotNetBar2.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Li.Access.Core">
       <HintPath>..\dll\Li.Access.Core.dll</HintPath>
@@ -301,6 +305,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="1.ico" />
+    <Content Include="2.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

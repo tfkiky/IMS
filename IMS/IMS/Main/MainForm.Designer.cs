@@ -43,6 +43,7 @@
             this.labelX3 = new DevComponents.DotNetBar.LabelX();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
+            this.peopleVehicleVideo1 = new IMS.PeopleVehicleVideo();
             this.splitContainer6 = new System.Windows.Forms.SplitContainer();
             this.labelX1 = new DevComponents.DotNetBar.LabelX();
             this.buttonX2 = new DevComponents.DotNetBar.ButtonX();
@@ -53,18 +54,17 @@
             this.dataGridViewButtonXColumn3 = new DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn();
             this.dataGridViewButtonXColumn4 = new DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
+            this.compareInfo1 = new IMS.CompareInfo();
             this.splitContainer5 = new System.Windows.Forms.SplitContainer();
             this.labelX2 = new DevComponents.DotNetBar.LabelX();
             this.btnPersonRecord = new DevComponents.DotNetBar.ButtonX();
             this.btnCheckPerson = new DevComponents.DotNetBar.ButtonX();
             this.dataGridViewX2 = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.peopleVehicleVideo1 = new IMS.PeopleVehicleVideo();
-            this.compareInfo1 = new IMS.CompareInfo();
             this.column1 = new DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn();
             this.column2 = new DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn();
             this.column3 = new DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn();
             this.column4 = new DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -158,7 +158,7 @@
             this.lbBlackList.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lbBlackList.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbBlackList.ForeColor = System.Drawing.Color.White;
-            this.lbBlackList.Location = new System.Drawing.Point(648, 8);
+            this.lbBlackList.Location = new System.Drawing.Point(683, 8);
             this.lbBlackList.Name = "lbBlackList";
             this.lbBlackList.Size = new System.Drawing.Size(92, 23);
             this.lbBlackList.TabIndex = 3;
@@ -174,7 +174,7 @@
             this.lbSwipeMode.ForeColor = System.Drawing.Color.White;
             this.lbSwipeMode.Location = new System.Drawing.Point(550, 8);
             this.lbSwipeMode.Name = "lbSwipeMode";
-            this.lbSwipeMode.Size = new System.Drawing.Size(92, 23);
+            this.lbSwipeMode.Size = new System.Drawing.Size(127, 23);
             this.lbSwipeMode.TabIndex = 2;
             // 
             // labelX4
@@ -259,6 +259,15 @@
             this.splitContainer3.SplitterDistance = 467;
             this.splitContainer3.SplitterWidth = 1;
             this.splitContainer3.TabIndex = 0;
+            // 
+            // peopleVehicleVideo1
+            // 
+            this.peopleVehicleVideo1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.peopleVehicleVideo1.Location = new System.Drawing.Point(0, 0);
+            this.peopleVehicleVideo1.Margin = new System.Windows.Forms.Padding(4);
+            this.peopleVehicleVideo1.Name = "peopleVehicleVideo1";
+            this.peopleVehicleVideo1.Size = new System.Drawing.Size(512, 467);
+            this.peopleVehicleVideo1.TabIndex = 0;
             // 
             // splitContainer6
             // 
@@ -411,6 +420,15 @@
             this.splitContainer4.SplitterWidth = 1;
             this.splitContainer4.TabIndex = 0;
             // 
+            // compareInfo1
+            // 
+            this.compareInfo1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.compareInfo1.Location = new System.Drawing.Point(0, 0);
+            this.compareInfo1.Margin = new System.Windows.Forms.Padding(4);
+            this.compareInfo1.Name = "compareInfo1";
+            this.compareInfo1.Size = new System.Drawing.Size(511, 467);
+            this.compareInfo1.TabIndex = 0;
+            // 
             // splitContainer5
             // 
             this.splitContainer5.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -506,30 +524,6 @@
             this.dataGridViewX2.TabIndex = 2;
             this.dataGridViewX2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewX2_CellContentClick);
             // 
-            // imageList1
-            // 
-            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
-            this.imageList1.ImageSize = new System.Drawing.Size(48, 48);
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            // 
-            // peopleVehicleVideo1
-            // 
-            this.peopleVehicleVideo1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.peopleVehicleVideo1.Location = new System.Drawing.Point(0, 0);
-            this.peopleVehicleVideo1.Margin = new System.Windows.Forms.Padding(4);
-            this.peopleVehicleVideo1.Name = "peopleVehicleVideo1";
-            this.peopleVehicleVideo1.Size = new System.Drawing.Size(512, 467);
-            this.peopleVehicleVideo1.TabIndex = 0;
-            // 
-            // compareInfo1
-            // 
-            this.compareInfo1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.compareInfo1.Location = new System.Drawing.Point(0, 0);
-            this.compareInfo1.Margin = new System.Windows.Forms.Padding(4);
-            this.compareInfo1.Name = "compareInfo1";
-            this.compareInfo1.Size = new System.Drawing.Size(511, 467);
-            this.compareInfo1.TabIndex = 0;
-            // 
             // column1
             // 
             this.column1.HeaderText = "Column1";
@@ -568,6 +562,12 @@
             this.column4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.column4.Text = null;
             this.column4.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
+            // 
+            // imageList1
+            // 
+            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.imageList1.ImageSize = new System.Drawing.Size(48, 48);
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             // 
             // MainForm
             // 

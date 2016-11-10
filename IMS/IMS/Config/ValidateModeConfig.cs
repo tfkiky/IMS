@@ -21,6 +21,7 @@ namespace IMS.Config
 
         private void LoadMode()
         {
+            
             if (MainForm.Instance.IFaceMode==0)
             {
                 radioButton1.Checked = true;
@@ -58,7 +59,43 @@ namespace IMS.Config
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            if (cbBlackList.Checked)
+            {
+                SysConfigClass.SetIMSConfig("IMS_CONFIG", "IsBlackMode", "0");
+            }
+            else
+                SysConfigClass.SetIMSConfig("IMS_CONFIG", "IsBlackMode", "1");
 
+            if (rbAccessMode.Checked)
+            {
+                SysConfigClass.SetIMSConfig("IMS_CONFIG", "SwipeMode", "0");
+            }
+            else
+                SysConfigClass.SetIMSConfig("IMS_CONFIG", "SwipeMode", "1");
+
+            if (radioButton1.Checked)
+            {
+                SysConfigClass.SetIMSConfig("IMS_CONFIG", "FaceMode", "0");
+            }
+            else if (radioButton2.Checked)
+            {
+                SysConfigClass.SetIMSConfig("IMS_CONFIG", "FaceMode", "1");
+            }
+            else if (radioButton3.Checked)
+            {
+                SysConfigClass.SetIMSConfig("IMS_CONFIG", "FaceMode", "2");
+            }
+
+            SysConfigClass.SetIMSConfig("FACE_1_1", "Threshold", tbThreshold11.Text);
+            SysConfigClass.SetIMSConfig("FACE_1_N", "Threshold", tbThreshold1N.Text);
+            SysConfigClass.SetIMSConfig("FACE_1_LN", "Threshold", tbThreshold1ln.Text);
+            SysConfigClass.SetIMSConfig("FACE_1_LN", "Threshold", tbThreshold1ln.Text);
+            SysConfigClass.SetIMSConfig("FACE_1_LN", "STORELENGTH",tbStoreLength.Text);
+            SysConfigClass.SetIMSConfig("FACE_1_LN", "DELETETICK", tbDeleteTick.Text);
+
+            MainForm.Instance.LoadParams();
+            MainForm.Instance.LoadSwipeMode();
+            MessageBox.Show("保存成功");
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

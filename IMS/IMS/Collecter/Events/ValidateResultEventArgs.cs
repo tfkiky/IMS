@@ -17,7 +17,6 @@ namespace IMS.Collecter
             set { _record = value; }
         }
        
-        private int _validateValue;
         private ValidateResult _validateResult;
 
         public ValidateResultEventArgs(Maticsoft.Model.IMS_PEOPLE_RECORD record,string blackPic, ValidateResult validateResult)

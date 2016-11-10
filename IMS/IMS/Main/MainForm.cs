@@ -116,23 +116,45 @@ namespace IMS
             {
                 ClientMainForm.Instance.LoadConnState(false);
                 MessageBox.Show("数据库连接失败，请检查网络或数据库配置");
-                this.Close();
+            }
+            if (!SysConfigClass.TestController())
+            {
+                ClientMainForm.Instance.LoadCtrlState(false);
+                MessageBox.Show("门禁控制器连接失败，请检查门禁控制器配置");
             }
             else
             {
                 ClientMainForm.Instance.LoadConnState(true);
                 LoadParams();
                 LoadCamera();
+                LoadSwipeMode();
                 accessCollect.Start();
-                accessCollect.AccessEvent += accessCollect_AccessEvent;
                 idCardCollect.Start();
-                idCardCollect.IDCardEvent += idCardCollect_IDCardEvent;
                 faceCollect.Start(iFaceMode, iSwipeMode, iThreshold, iBlackMode);
                 //if (FaceCollect.IsFaceLoad)
                 //{
                     faceCollect.ValidateEvent += faceCollect_ValidateEvent;
                 //}
             }
+        }
+
+        public void LoadSwipeMode()
+        {
+            try
+            {
+                if (iSwipeMode == 0)
+                {
+                    idCardCollect.IDCardEvent -= idCardCollect_IDCardEvent;
+                    accessCollect.AccessEvent += accessCollect_AccessEvent;
+                }
+                else
+                {
+
+                    accessCollect.AccessEvent -= accessCollect_AccessEvent;
+                    idCardCollect.IDCardEvent += idCardCollect_IDCardEvent;
+                }
+            }
+            catch { }
         }
 
         void idCardCollect_IDCardEvent(object sender, IDCardEventArgs e)
@@ -221,11 +243,12 @@ namespace IMS
             DataGridViewButtonCell cell = dataGridViewX2.Rows[e.RowIndex].Cells[e.ColumnIndex] as DataGridViewButtonCell;
             if (bcx != null)
             {
-                if (!string.IsNullOrEmpty(bcx.Text) && cell.Tag is Maticsoft.Model.IMS_PEOPLE_RECORD)
+                if (cell.Tag is Maticsoft.Model.IMS_PEOPLE_RECORD)
                 {
-                    Bitmap bmp = new Bitmap(recordList.Find(rec => rec.Name == bcx.Text && rec.ID == (cell.Tag as Maticsoft.Model.IMS_PEOPLE_RECORD).ID).OriginPic);
+                    Maticsoft.Model.IMS_PEOPLE_RECORD record = cell.Tag as Maticsoft.Model.IMS_PEOPLE_RECORD;
+                    Bitmap bmp = new Bitmap(recordList.Find(rec => rec.ID == record.ID).OriginPic);
                     bcx.Image = new Bitmap(bmp, 48, 48);
-                    mlog.InfoFormat("加载图片：{0},行{1},列{2}", bcx.Text, e.RowIndex, e.ColumnIndex);
+                    mlog.InfoFormat("加载图片：{0},行{1},列{2}", record.Name, e.RowIndex, e.ColumnIndex);
                     bmp.Dispose();
                 }
                 else
@@ -235,7 +258,7 @@ namespace IMS
         /// <summary>
         /// 加载参数
         /// </summary>
-        private void LoadParams()
+        public void LoadParams()
         {
             try
             {

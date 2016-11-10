@@ -29,6 +29,12 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.lbValidate = new DevComponents.DotNetBar.LabelX();
+            this.lbIsAllow = new DevComponents.DotNetBar.LabelX();
+            this.labelX6 = new DevComponents.DotNetBar.LabelX();
+            this.labelX8 = new DevComponents.DotNetBar.LabelX();
+            this.lbForward = new DevComponents.DotNetBar.LabelX();
+            this.labelX12 = new DevComponents.DotNetBar.LabelX();
             this.lbValue = new DevComponents.DotNetBar.LabelX();
             this.lbSwipe = new DevComponents.DotNetBar.LabelX();
             this.labelX7 = new DevComponents.DotNetBar.LabelX();
@@ -40,12 +46,6 @@
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.pbCaptrue = new System.Windows.Forms.PictureBox();
             this.pbOrigin = new System.Windows.Forms.PictureBox();
-            this.lbValidate = new DevComponents.DotNetBar.LabelX();
-            this.lbIsAllow = new DevComponents.DotNetBar.LabelX();
-            this.labelX6 = new DevComponents.DotNetBar.LabelX();
-            this.labelX8 = new DevComponents.DotNetBar.LabelX();
-            this.lbForward = new DevComponents.DotNetBar.LabelX();
-            this.labelX12 = new DevComponents.DotNetBar.LabelX();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -90,6 +90,84 @@
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 0;
             // 
+            // lbValidate
+            // 
+            // 
+            // 
+            // 
+            this.lbValidate.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lbValidate.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbValidate.Location = new System.Drawing.Point(828, 85);
+            this.lbValidate.Name = "lbValidate";
+            this.lbValidate.Size = new System.Drawing.Size(90, 23);
+            this.lbValidate.TabIndex = 1;
+            this.lbValidate.Text = "60";
+            // 
+            // lbIsAllow
+            // 
+            // 
+            // 
+            // 
+            this.lbIsAllow.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lbIsAllow.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbIsAllow.Location = new System.Drawing.Point(591, 85);
+            this.lbIsAllow.Name = "lbIsAllow";
+            this.lbIsAllow.Size = new System.Drawing.Size(90, 23);
+            this.lbIsAllow.TabIndex = 2;
+            this.lbIsAllow.Text = "门禁刷卡";
+            // 
+            // labelX6
+            // 
+            // 
+            // 
+            // 
+            this.labelX6.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX6.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labelX6.Location = new System.Drawing.Point(732, 85);
+            this.labelX6.Name = "labelX6";
+            this.labelX6.Size = new System.Drawing.Size(90, 23);
+            this.labelX6.TabIndex = 3;
+            this.labelX6.Text = "验证结果：";
+            // 
+            // labelX8
+            // 
+            // 
+            // 
+            // 
+            this.labelX8.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX8.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labelX8.Location = new System.Drawing.Point(495, 85);
+            this.labelX8.Name = "labelX8";
+            this.labelX8.Size = new System.Drawing.Size(90, 23);
+            this.labelX8.TabIndex = 4;
+            this.labelX8.Text = "通行结果：";
+            // 
+            // lbForward
+            // 
+            // 
+            // 
+            // 
+            this.lbForward.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lbForward.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbForward.Location = new System.Drawing.Point(296, 85);
+            this.lbForward.Name = "lbForward";
+            this.lbForward.Size = new System.Drawing.Size(167, 23);
+            this.lbForward.TabIndex = 6;
+            this.lbForward.Text = "XXXX";
+            // 
+            // labelX12
+            // 
+            // 
+            // 
+            // 
+            this.labelX12.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX12.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labelX12.Location = new System.Drawing.Point(200, 85);
+            this.labelX12.Name = "labelX12";
+            this.labelX12.Size = new System.Drawing.Size(90, 23);
+            this.labelX12.TabIndex = 8;
+            this.labelX12.Text = "通行方向：";
+            // 
             // lbValue
             // 
             // 
@@ -97,7 +175,7 @@
             // 
             this.lbValue.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lbValue.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbValue.Location = new System.Drawing.Point(802, 34);
+            this.lbValue.Location = new System.Drawing.Point(828, 34);
             this.lbValue.Name = "lbValue";
             this.lbValue.Size = new System.Drawing.Size(90, 23);
             this.lbValue.TabIndex = 0;
@@ -110,7 +188,7 @@
             // 
             this.lbSwipe.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lbSwipe.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbSwipe.Location = new System.Drawing.Point(565, 34);
+            this.lbSwipe.Location = new System.Drawing.Point(591, 34);
             this.lbSwipe.Name = "lbSwipe";
             this.lbSwipe.Size = new System.Drawing.Size(90, 23);
             this.lbSwipe.TabIndex = 0;
@@ -123,7 +201,7 @@
             // 
             this.labelX7.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX7.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelX7.Location = new System.Drawing.Point(706, 34);
+            this.labelX7.Location = new System.Drawing.Point(732, 34);
             this.labelX7.Name = "labelX7";
             this.labelX7.Size = new System.Drawing.Size(90, 23);
             this.labelX7.TabIndex = 0;
@@ -136,7 +214,7 @@
             // 
             this.labelX3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX3.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelX3.Location = new System.Drawing.Point(469, 34);
+            this.labelX3.Location = new System.Drawing.Point(495, 34);
             this.labelX3.Name = "labelX3";
             this.labelX3.Size = new System.Drawing.Size(90, 23);
             this.labelX3.TabIndex = 0;
@@ -164,7 +242,7 @@
             this.lbTime.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbTime.Location = new System.Drawing.Point(296, 34);
             this.lbTime.Name = "lbTime";
-            this.lbTime.Size = new System.Drawing.Size(167, 23);
+            this.lbTime.Size = new System.Drawing.Size(193, 23);
             this.lbTime.TabIndex = 0;
             this.lbTime.Text = "XXXX";
             // 
@@ -235,84 +313,6 @@
             this.pbOrigin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbOrigin.TabIndex = 1;
             this.pbOrigin.TabStop = false;
-            // 
-            // lbValidate
-            // 
-            // 
-            // 
-            // 
-            this.lbValidate.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lbValidate.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbValidate.Location = new System.Drawing.Point(802, 85);
-            this.lbValidate.Name = "lbValidate";
-            this.lbValidate.Size = new System.Drawing.Size(90, 23);
-            this.lbValidate.TabIndex = 1;
-            this.lbValidate.Text = "60";
-            // 
-            // lbIsAllow
-            // 
-            // 
-            // 
-            // 
-            this.lbIsAllow.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lbIsAllow.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbIsAllow.Location = new System.Drawing.Point(565, 85);
-            this.lbIsAllow.Name = "lbIsAllow";
-            this.lbIsAllow.Size = new System.Drawing.Size(90, 23);
-            this.lbIsAllow.TabIndex = 2;
-            this.lbIsAllow.Text = "门禁刷卡";
-            // 
-            // labelX6
-            // 
-            // 
-            // 
-            // 
-            this.labelX6.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX6.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelX6.Location = new System.Drawing.Point(706, 85);
-            this.labelX6.Name = "labelX6";
-            this.labelX6.Size = new System.Drawing.Size(90, 23);
-            this.labelX6.TabIndex = 3;
-            this.labelX6.Text = "验证结果：";
-            // 
-            // labelX8
-            // 
-            // 
-            // 
-            // 
-            this.labelX8.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX8.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelX8.Location = new System.Drawing.Point(469, 85);
-            this.labelX8.Name = "labelX8";
-            this.labelX8.Size = new System.Drawing.Size(90, 23);
-            this.labelX8.TabIndex = 4;
-            this.labelX8.Text = "通行结果：";
-            // 
-            // lbForward
-            // 
-            // 
-            // 
-            // 
-            this.lbForward.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lbForward.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbForward.Location = new System.Drawing.Point(296, 85);
-            this.lbForward.Name = "lbForward";
-            this.lbForward.Size = new System.Drawing.Size(167, 23);
-            this.lbForward.TabIndex = 6;
-            this.lbForward.Text = "XXXX";
-            // 
-            // labelX12
-            // 
-            // 
-            // 
-            // 
-            this.labelX12.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX12.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelX12.Location = new System.Drawing.Point(200, 85);
-            this.labelX12.Name = "labelX12";
-            this.labelX12.Size = new System.Drawing.Size(90, 23);
-            this.labelX12.TabIndex = 8;
-            this.labelX12.Text = "通行方向：";
             // 
             // FaceRecord
             // 

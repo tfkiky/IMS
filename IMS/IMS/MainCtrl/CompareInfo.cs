@@ -8,11 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using IMS.Collecter;
+using log4net;
 
 namespace IMS
 {
     public partial class CompareInfo : UserControl
     {
+        private ILog mlog = LogManager.GetLogger("CompareInfo");
         public CompareInfo()
         {
             InitializeComponent();
@@ -41,6 +43,7 @@ namespace IMS
             }
             catch (Exception ex)
             {
+                mlog.Error(ex);
             }
         }
 

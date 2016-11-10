@@ -33,6 +33,14 @@ namespace IMS.Collecter
             set { iLastErrorCode = value; }
         }
 
+        private bool bStarted=false;
+
+        public bool BStarted
+        {
+            get { return bStarted; }
+            set { bStarted = value; }
+        }
+
         public void Start()
         {
             if (File.Exists("./wz.txt"))
@@ -45,6 +53,7 @@ namespace IMS.Collecter
             }
             iLastErrorCode = IDCardDll.IDCard.InitCommExt();
             timer = new System.Threading.Timer(new TimerCallback(CollectIDCard), null, 1000, 1000);
+            bStarted = true;
         }
 
         private void CollectIDCard(object state)
@@ -169,9 +178,12 @@ namespace IMS.Collecter
 
         public void Stop()
         {
-            iLastErrorCode = IDCardDll.IDCard.CloseComm();
-            timer.Dispose();
-
+            if (bStarted)
+            {
+                iLastErrorCode = IDCardDll.IDCard.CloseComm();
+                timer.Dispose();
+                bStarted = false;
+            }
         }
     }
 }

@@ -63,6 +63,20 @@ namespace IMS.Common.Config
             else return null;
         }
 
+
+        public static bool SetIMSConfig(string DataType, string DataKey,string DataValue)
+        {
+            Maticsoft.BLL.IMS_DATA_CONFIG imsConfigBll = new Maticsoft.BLL.IMS_DATA_CONFIG();
+            List<Maticsoft.Model.IMS_DATA_CONFIG> imsConfigModelList = new List<Maticsoft.Model.IMS_DATA_CONFIG>();
+            imsConfigModelList = imsConfigBll.GetModelList("DataType='" + DataType + "' AND DataKey='" + DataKey + "'");
+            if (imsConfigModelList != null && imsConfigModelList.Count > 0)
+            {
+                imsConfigModelList[0].DataValue = DataValue;
+                return imsConfigBll.Update(imsConfigModelList[0]);
+            }
+            else return false;
+        }
+
         public static bool TestDBConn()
         {
             try
@@ -82,6 +96,28 @@ namespace IMS.Common.Config
             }
         }
 
+
+        public static bool TestController()
+        {
+            try
+            {
+                decimal ctrlid=decimal.Parse(SysConfigClass.GetIMSConfig("IMS_CONFIG", "Controller"));
+                Maticsoft.BLL.SMT_CONTROLLER_INFO ctrlBll = new Maticsoft.BLL.SMT_CONTROLLER_INFO();
+                Maticsoft.Model.SMT_CONTROLLER_INFO ctrl = ctrlBll.GetModel(ctrlid);
+                decimal doorid = decimal.Parse(SysConfigClass.GetIMSConfig("IMS_CONFIG", "Door"));
+                Maticsoft.BLL.SMT_DOOR_INFO doorBll = new Maticsoft.BLL.SMT_DOOR_INFO();
+                Maticsoft.Model.SMT_DOOR_INFO door = doorBll.GetModel(doorid);
+                if (ctrl != null && door != null)
+                {
+                    return true;
+                }
+                else
+                    return false;
+            }
+            catch {
+                return false;
+            }
+        }
     }
 
    

@@ -30,6 +30,14 @@ namespace IMS.Collecter
             set { instance = value; }
         }
 
+        private bool bStarted = false;
+
+        public bool BStarted
+        {
+            get { return bStarted; }
+            set { bStarted = value; }
+        }
+
         public int FaceDoorID
         {
             get { return faceDoorID; }
@@ -65,11 +73,17 @@ namespace IMS.Collecter
             accessReader = new AccessReader();
             accessReader.DataRead += new DataReadHandler(dataReader_DataRead);
             accessReader.start();
+            bStarted = true;
         }
 
         public void Stop()
         {
+            if (bStarted)
+            {
             accessReader.stop();
+            bStarted = false;
+            }
+
         }
 
         /// <summary>

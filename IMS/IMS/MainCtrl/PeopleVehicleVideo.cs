@@ -7,11 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using log4net;
 
 namespace IMS
 {
     public partial class PeopleVehicleVideo : UserControl
     {
+        private ILog mlog = LogManager.GetLogger("PeopleVehicleVideo");
         public PeopleVehicleVideo()
         {
             InitializeComponent();
@@ -49,6 +51,7 @@ namespace IMS
             }
             catch(Exception ex)
             {
+                mlog.Error(ex);
             }
         }
 
