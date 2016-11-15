@@ -31,28 +31,34 @@ namespace IMS
 
         private void LoadComboBox()
         {
-            ctrlList = ctrlBll.GetModelList("1=1");
-            foreach (Maticsoft.Model.SMT_CONTROLLER_INFO ctrl in ctrlList)
+            try
             {
-                ComboItem ci=new ComboItem();
-                ci.Text=ctrl.NAME;
-                ci.Tag=ctrl;
-                cbCtrl.Items.Add(ci);
-                if (ctrl.ID == decimal.Parse(SysConfigClass.GetIMSConfig("IMS_CONFIG", "Controller")))
+                ctrlList = ctrlBll.GetModelList("1=1");
+                foreach (Maticsoft.Model.SMT_CONTROLLER_INFO ctrl in ctrlList)
                 {
-                    cbCtrl.SelectedItem = ci;
+                    ComboItem ci = new ComboItem();
+                    ci.Text = ctrl.NAME;
+                    ci.Tag = ctrl;
+                    cbCtrl.Items.Add(ci);
+                    if (ctrl.ID == decimal.Parse(SysConfigClass.GetIMSConfig("IMS_CONFIG", "Controller")))
+                    {
+                        cbCtrl.SelectedItem = ci;
+                    }
+                }
+
+                cameraList = cameraBll.GetModelList("1=1");
+                foreach (Maticsoft.Model.IMS_FACE_CAMERA cam in cameraList)
+                {
+                    ipAddressInput1.Value = cameraList[0].CameraIP;
+                    tbPort.Text = cameraList[0].CameraPort;
+                    tbUserName.Text = cameraList[0].CameraUser;
+                    tbPwd.Text = cameraList[0].CameraPwd;
                 }
             }
-            
-            cameraList = cameraBll.GetModelList("1=1");
-            foreach (Maticsoft.Model.IMS_FACE_CAMERA cam in cameraList)
+            catch (System.Exception ex)
             {
-                ipAddressInput1.Value = cameraList[0].CameraIP;
-                tbPort.Text = cameraList[0].CameraPort;
-                tbUserName.Text = cameraList[0].CameraUser;
-                tbPwd.Text = cameraList[0].CameraPwd;
+            	
             }
-            
         }
 
         private void cbCtrl_SelectedIndexChanged(object sender, EventArgs e)
@@ -81,22 +87,30 @@ namespace IMS
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if ((cbCtrl.SelectedItem as ComboItem).Tag is Maticsoft.Model.SMT_CONTROLLER_INFO)
+            try
             {
-                Maticsoft.Model.SMT_CONTROLLER_INFO ctrl = (cbCtrl.SelectedItem as ComboItem).Tag as Maticsoft.Model.SMT_CONTROLLER_INFO;
-                SysConfigClass.SetIMSConfig("IMS_CONFIG", "Controller", ctrl.ID.ToString());
-                AccessCollect.Instance.FaceControllerID = (int)ctrl.ID;
+                if ((cbCtrl.SelectedItem as ComboItem).Tag is Maticsoft.Model.SMT_CONTROLLER_INFO)
+                {
+                    Maticsoft.Model.SMT_CONTROLLER_INFO ctrl = (cbCtrl.SelectedItem as ComboItem).Tag as Maticsoft.Model.SMT_CONTROLLER_INFO;
+                    SysConfigClass.SetIMSConfig("IMS_CONFIG", "Controller", ctrl.ID.ToString());
+                    AccessCollect.Instance.FaceControllerID = (int)ctrl.ID;
+                }
+                if ((cbDoor.SelectedItem as ComboItem).Tag is Maticsoft.Model.SMT_DOOR_INFO)
+                {
+                    Maticsoft.Model.SMT_DOOR_INFO door = (cbDoor.SelectedItem as ComboItem).Tag as Maticsoft.Model.SMT_DOOR_INFO;
+                    SysConfigClass.SetIMSConfig("IMS_CONFIG", "Door", door.ID.ToString());
+                    AccessCollect.Instance.FaceDoorID = (int)door.ID;
+                }
+
+                MessageBox.Show("保存成功");
+                cbCtrl.Enabled = false;
+                cbDoor.Enabled = false;
             }
-            if ((cbDoor.SelectedItem as ComboItem).Tag is Maticsoft.Model.SMT_DOOR_INFO)
+            catch (Exception ex)
             {
-                Maticsoft.Model.SMT_DOOR_INFO door = (cbDoor.SelectedItem as ComboItem).Tag as Maticsoft.Model.SMT_DOOR_INFO;
-                SysConfigClass.SetIMSConfig("IMS_CONFIG", "Door", door.ID.ToString());
-                AccessCollect.Instance.FaceDoorID = (int)door.ID;
+
             }
 
-            MessageBox.Show("保存成功");
-            cbCtrl.Enabled = false;
-            cbDoor.Enabled = false;
         }
 
         private void btnTest_Click(object sender, EventArgs e)

@@ -116,11 +116,15 @@ namespace IMS
             {
                 ClientMainForm.Instance.LoadConnState(false);
                 MessageBox.Show("数据库连接失败，请检查网络或数据库配置");
+                SysConfig config = new SysConfig();
+                config.ShowDialog();
             }
-            if (!SysConfigClass.TestController())
+            else if (!SysConfigClass.TestController())
             {
                 ClientMainForm.Instance.LoadCtrlState(false);
                 MessageBox.Show("门禁控制器连接失败，请检查门禁控制器配置");
+                SysConfig config = new SysConfig();
+                config.ShowDialog();
             }
             else
             {

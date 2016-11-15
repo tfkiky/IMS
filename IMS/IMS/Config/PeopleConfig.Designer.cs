@@ -83,7 +83,7 @@
             // groupPanel1
             // 
             this.groupPanel1.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.groupPanel1.CanvasColor = System.Drawing.SystemColors.Control;
+            this.groupPanel1.CanvasColor = System.Drawing.SystemColors.AppWorkspace;
             this.groupPanel1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.groupPanel1.Controls.Add(this.btnTest);
             this.groupPanel1.Controls.Add(this.btnSave);
@@ -236,7 +236,7 @@
             // groupPanel2
             // 
             this.groupPanel2.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.groupPanel2.CanvasColor = System.Drawing.SystemColors.Control;
+            this.groupPanel2.CanvasColor = System.Drawing.SystemColors.AppWorkspace;
             this.groupPanel2.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.groupPanel2.Controls.Add(this.tbPwd);
             this.groupPanel2.Controls.Add(this.labelX6);

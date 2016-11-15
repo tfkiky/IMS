@@ -120,7 +120,10 @@ namespace IMS.Config
                     return;
                 }
                 else
+                {
                     MessageBox.Show("保存成功！");
+                    Maticsoft.DBUtility.DbHelperSQL.connectionString = SysConfigClass.GetSqlServerConnectString();
+                }
             }
         }
 

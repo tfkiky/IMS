@@ -77,7 +77,7 @@
             // 
             this.lbMsg.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lbMsg.ForeColor = System.Drawing.Color.Red;
-            this.lbMsg.Location = new System.Drawing.Point(192, 261);
+            this.lbMsg.Location = new System.Drawing.Point(192, 240);
             this.lbMsg.Name = "lbMsg";
             this.lbMsg.Size = new System.Drawing.Size(0, 0);
             this.lbMsg.TabIndex = 16;
@@ -225,6 +225,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnTestDataBase);
             this.Controls.Add(this.lbMsg);

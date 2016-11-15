@@ -80,8 +80,8 @@ namespace IMS.Collecter
         {
             if (bStarted)
             {
-            accessReader.stop();
-            bStarted = false;
+                accessReader.stop();
+                bStarted = false;
             }
 
         }

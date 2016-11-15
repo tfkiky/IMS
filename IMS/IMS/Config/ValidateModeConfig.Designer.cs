@@ -42,22 +42,27 @@
             this.tbThreshold11 = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.labelX1 = new DevComponents.DotNetBar.LabelX();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.groupPanel2 = new DevComponents.DotNetBar.Controls.GroupPanel();
-            this.rbIDCardMode = new System.Windows.Forms.RadioButton();
-            this.rbAccessMode = new System.Windows.Forms.RadioButton();
             this.btnSave = new DevComponents.DotNetBar.ButtonX();
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
             this.groupPanel3 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.cbBlackList = new DevComponents.DotNetBar.Controls.CheckBoxX();
+            this.btnSwipe1 = new DevComponents.DotNetBar.ButtonX();
+            this.btnSwipe2 = new DevComponents.DotNetBar.ButtonX();
+            this.labelX6 = new DevComponents.DotNetBar.LabelX();
+            this.labelX7 = new DevComponents.DotNetBar.LabelX();
+            this.labelX8 = new DevComponents.DotNetBar.LabelX();
+            this.labelX9 = new DevComponents.DotNetBar.LabelX();
             this.groupPanel1.SuspendLayout();
-            this.groupPanel2.SuspendLayout();
             this.groupPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupPanel1
             // 
-            this.groupPanel1.CanvasColor = System.Drawing.SystemColors.Control;
+            this.groupPanel1.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.groupPanel1.CanvasColor = System.Drawing.SystemColors.AppWorkspace;
             this.groupPanel1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.groupPanel1.Controls.Add(this.btnSwipe2);
+            this.groupPanel1.Controls.Add(this.btnSwipe1);
             this.groupPanel1.Controls.Add(this.tbDeleteTick);
             this.groupPanel1.Controls.Add(this.tbStoreLength);
             this.groupPanel1.Controls.Add(this.labelX5);
@@ -69,12 +74,15 @@
             this.groupPanel1.Controls.Add(this.labelX2);
             this.groupPanel1.Controls.Add(this.radioButton2);
             this.groupPanel1.Controls.Add(this.tbThreshold11);
+            this.groupPanel1.Controls.Add(this.labelX8);
+            this.groupPanel1.Controls.Add(this.labelX7);
+            this.groupPanel1.Controls.Add(this.labelX6);
             this.groupPanel1.Controls.Add(this.labelX1);
             this.groupPanel1.Controls.Add(this.radioButton1);
             this.groupPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupPanel1.Location = new System.Drawing.Point(0, 0);
             this.groupPanel1.Name = "groupPanel1";
-            this.groupPanel1.Size = new System.Drawing.Size(566, 192);
+            this.groupPanel1.Size = new System.Drawing.Size(566, 264);
             // 
             // 
             // 
@@ -113,7 +121,7 @@
             // 
             this.tbDeleteTick.Border.Class = "TextBoxBorder";
             this.tbDeleteTick.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.tbDeleteTick.Location = new System.Drawing.Point(458, 106);
+            this.tbDeleteTick.Location = new System.Drawing.Point(458, 139);
             this.tbDeleteTick.Name = "tbDeleteTick";
             this.tbDeleteTick.Size = new System.Drawing.Size(72, 21);
             this.tbDeleteTick.TabIndex = 19;
@@ -126,7 +134,7 @@
             // 
             this.tbStoreLength.Border.Class = "TextBoxBorder";
             this.tbStoreLength.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.tbStoreLength.Location = new System.Drawing.Point(281, 135);
+            this.tbStoreLength.Location = new System.Drawing.Point(281, 168);
             this.tbStoreLength.Name = "tbStoreLength";
             this.tbStoreLength.Size = new System.Drawing.Size(68, 21);
             this.tbStoreLength.TabIndex = 20;
@@ -139,7 +147,7 @@
             // 
             // 
             this.labelX5.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX5.Location = new System.Drawing.Point(366, 106);
+            this.labelX5.Location = new System.Drawing.Point(366, 139);
             this.labelX5.Name = "labelX5";
             this.labelX5.Size = new System.Drawing.Size(103, 23);
             this.labelX5.TabIndex = 17;
@@ -152,7 +160,7 @@
             // 
             // 
             this.labelX4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX4.Location = new System.Drawing.Point(178, 135);
+            this.labelX4.Location = new System.Drawing.Point(178, 168);
             this.labelX4.Name = "labelX4";
             this.labelX4.Size = new System.Drawing.Size(89, 23);
             this.labelX4.TabIndex = 18;
@@ -165,7 +173,7 @@
             // 
             this.tbThreshold1ln.Border.Class = "TextBoxBorder";
             this.tbThreshold1ln.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.tbThreshold1ln.Location = new System.Drawing.Point(281, 106);
+            this.tbThreshold1ln.Location = new System.Drawing.Point(281, 138);
             this.tbThreshold1ln.Name = "tbThreshold1ln";
             this.tbThreshold1ln.Size = new System.Drawing.Size(68, 21);
             this.tbThreshold1ln.TabIndex = 16;
@@ -178,7 +186,7 @@
             // 
             // 
             this.labelX3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX3.Location = new System.Drawing.Point(178, 106);
+            this.labelX3.Location = new System.Drawing.Point(178, 138);
             this.labelX3.Name = "labelX3";
             this.labelX3.Size = new System.Drawing.Size(75, 23);
             this.labelX3.TabIndex = 15;
@@ -188,7 +196,7 @@
             // 
             this.radioButton3.AutoSize = true;
             this.radioButton3.BackColor = System.Drawing.Color.Transparent;
-            this.radioButton3.Location = new System.Drawing.Point(41, 106);
+            this.radioButton3.Location = new System.Drawing.Point(41, 138);
             this.radioButton3.Name = "radioButton3";
             this.radioButton3.Size = new System.Drawing.Size(77, 16);
             this.radioButton3.TabIndex = 14;
@@ -203,7 +211,7 @@
             // 
             this.tbThreshold1N.Border.Class = "TextBoxBorder";
             this.tbThreshold1N.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.tbThreshold1N.Location = new System.Drawing.Point(281, 62);
+            this.tbThreshold1N.Location = new System.Drawing.Point(281, 76);
             this.tbThreshold1N.Name = "tbThreshold1N";
             this.tbThreshold1N.Size = new System.Drawing.Size(68, 21);
             this.tbThreshold1N.TabIndex = 13;
@@ -216,7 +224,7 @@
             // 
             // 
             this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX2.Location = new System.Drawing.Point(178, 62);
+            this.labelX2.Location = new System.Drawing.Point(178, 76);
             this.labelX2.Name = "labelX2";
             this.labelX2.Size = new System.Drawing.Size(75, 23);
             this.labelX2.TabIndex = 12;
@@ -226,7 +234,7 @@
             // 
             this.radioButton2.AutoSize = true;
             this.radioButton2.BackColor = System.Drawing.Color.Transparent;
-            this.radioButton2.Location = new System.Drawing.Point(41, 62);
+            this.radioButton2.Location = new System.Drawing.Point(41, 76);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(77, 16);
             this.radioButton2.TabIndex = 11;
@@ -273,75 +281,11 @@
             this.radioButton1.Text = "1：1 验证";
             this.radioButton1.UseVisualStyleBackColor = false;
             // 
-            // groupPanel2
-            // 
-            this.groupPanel2.CanvasColor = System.Drawing.SystemColors.Control;
-            this.groupPanel2.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
-            this.groupPanel2.Controls.Add(this.rbIDCardMode);
-            this.groupPanel2.Controls.Add(this.rbAccessMode);
-            this.groupPanel2.Location = new System.Drawing.Point(4, 198);
-            this.groupPanel2.Name = "groupPanel2";
-            this.groupPanel2.Size = new System.Drawing.Size(278, 84);
-            // 
-            // 
-            // 
-            this.groupPanel2.Style.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
-            this.groupPanel2.Style.BackColorGradientAngle = 90;
-            this.groupPanel2.Style.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
-            this.groupPanel2.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.groupPanel2.Style.BorderBottomWidth = 1;
-            this.groupPanel2.Style.BorderColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
-            this.groupPanel2.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.groupPanel2.Style.BorderLeftWidth = 1;
-            this.groupPanel2.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.groupPanel2.Style.BorderRightWidth = 1;
-            this.groupPanel2.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.groupPanel2.Style.BorderTopWidth = 1;
-            this.groupPanel2.Style.CornerDiameter = 4;
-            this.groupPanel2.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
-            this.groupPanel2.Style.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center;
-            this.groupPanel2.Style.TextColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
-            this.groupPanel2.Style.TextLineAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Near;
-            // 
-            // 
-            // 
-            this.groupPanel2.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.groupPanel2.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.groupPanel2.TabIndex = 1;
-            this.groupPanel2.Text = "刷卡方式";
-            // 
-            // rbIDCardMode
-            // 
-            this.rbIDCardMode.AutoSize = true;
-            this.rbIDCardMode.BackColor = System.Drawing.Color.Transparent;
-            this.rbIDCardMode.Location = new System.Drawing.Point(146, 22);
-            this.rbIDCardMode.Name = "rbIDCardMode";
-            this.rbIDCardMode.Size = new System.Drawing.Size(83, 16);
-            this.rbIDCardMode.TabIndex = 4;
-            this.rbIDCardMode.Text = "身份证刷卡";
-            this.rbIDCardMode.UseVisualStyleBackColor = false;
-            // 
-            // rbAccessMode
-            // 
-            this.rbAccessMode.AutoSize = true;
-            this.rbAccessMode.BackColor = System.Drawing.Color.Transparent;
-            this.rbAccessMode.Checked = true;
-            this.rbAccessMode.Location = new System.Drawing.Point(39, 22);
-            this.rbAccessMode.Name = "rbAccessMode";
-            this.rbAccessMode.Size = new System.Drawing.Size(71, 16);
-            this.rbAccessMode.TabIndex = 4;
-            this.rbAccessMode.TabStop = true;
-            this.rbAccessMode.Text = "门禁刷卡";
-            this.rbAccessMode.UseVisualStyleBackColor = false;
-            // 
             // btnSave
             // 
             this.btnSave.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnSave.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnSave.Location = new System.Drawing.Point(347, 294);
+            this.btnSave.Location = new System.Drawing.Point(347, 372);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 30);
             this.btnSave.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -353,7 +297,7 @@
             // 
             this.btnCancel.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnCancel.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnCancel.Location = new System.Drawing.Point(446, 294);
+            this.btnCancel.Location = new System.Drawing.Point(446, 372);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 30);
             this.btnCancel.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -363,12 +307,15 @@
             // 
             // groupPanel3
             // 
-            this.groupPanel3.CanvasColor = System.Drawing.SystemColors.Control;
+            this.groupPanel3.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.groupPanel3.CanvasColor = System.Drawing.SystemColors.AppWorkspace;
             this.groupPanel3.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.groupPanel3.Controls.Add(this.cbBlackList);
-            this.groupPanel3.Location = new System.Drawing.Point(288, 198);
+            this.groupPanel3.Controls.Add(this.labelX9);
+            this.groupPanel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupPanel3.Location = new System.Drawing.Point(0, 264);
             this.groupPanel3.Name = "groupPanel3";
-            this.groupPanel3.Size = new System.Drawing.Size(278, 84);
+            this.groupPanel3.Size = new System.Drawing.Size(566, 84);
             // 
             // 
             // 
@@ -407,12 +354,87 @@
             // 
             // 
             this.cbBlackList.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.cbBlackList.Location = new System.Drawing.Point(87, 15);
+            this.cbBlackList.Location = new System.Drawing.Point(41, 3);
             this.cbBlackList.Name = "cbBlackList";
             this.cbBlackList.Size = new System.Drawing.Size(100, 23);
             this.cbBlackList.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.cbBlackList.TabIndex = 0;
             this.cbBlackList.Text = "黑名单验证";
+            // 
+            // btnSwipe1
+            // 
+            this.btnSwipe1.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnSwipe1.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btnSwipe1.Location = new System.Drawing.Point(425, 16);
+            this.btnSwipe1.Name = "btnSwipe1";
+            this.btnSwipe1.Size = new System.Drawing.Size(75, 23);
+            this.btnSwipe1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btnSwipe1.TabIndex = 21;
+            this.btnSwipe1.Text = "刷卡方式";
+            // 
+            // btnSwipe2
+            // 
+            this.btnSwipe2.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnSwipe2.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btnSwipe2.Location = new System.Drawing.Point(425, 168);
+            this.btnSwipe2.Name = "btnSwipe2";
+            this.btnSwipe2.Size = new System.Drawing.Size(75, 23);
+            this.btnSwipe2.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btnSwipe2.TabIndex = 21;
+            this.btnSwipe2.Text = "刷卡方式";
+            // 
+            // labelX6
+            // 
+            this.labelX6.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.labelX6.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX6.Location = new System.Drawing.Point(41, 49);
+            this.labelX6.Name = "labelX6";
+            this.labelX6.Size = new System.Drawing.Size(345, 23);
+            this.labelX6.TabIndex = 8;
+            this.labelX6.Text = "（当身份证刷卡、非接触刷卡时，适用近距离抓拍）";
+            // 
+            // labelX7
+            // 
+            this.labelX7.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.labelX7.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX7.Location = new System.Drawing.Point(41, 105);
+            this.labelX7.Name = "labelX7";
+            this.labelX7.Size = new System.Drawing.Size(428, 23);
+            this.labelX7.TabIndex = 8;
+            this.labelX7.Text = "（当无障碍通行时，适用远距离抓拍，建立增长型人脸特征库）";
+            // 
+            // labelX8
+            // 
+            this.labelX8.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.labelX8.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX8.Location = new System.Drawing.Point(41, 193);
+            this.labelX8.Name = "labelX8";
+            this.labelX8.Size = new System.Drawing.Size(428, 41);
+            this.labelX8.TabIndex = 8;
+            this.labelX8.Text = "（人脸预识别，提前抓拍人脸，存入人脸特征库，根据时间先后顺序，自动删除人脸特征，保持最小特征库，提高效率，适用刷卡、无障碍通行）";
+            this.labelX8.WordWrap = true;
+            // 
+            // labelX9
+            // 
+            this.labelX9.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.labelX9.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX9.Location = new System.Drawing.Point(41, 27);
+            this.labelX9.Name = "labelX9";
+            this.labelX9.Size = new System.Drawing.Size(428, 23);
+            this.labelX9.TabIndex = 8;
+            this.labelX9.Text = "（再次验证，提前预警）";
             // 
             // ValidateModeConfig
             // 
@@ -421,14 +443,11 @@
             this.Controls.Add(this.groupPanel3);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.groupPanel2);
             this.Controls.Add(this.groupPanel1);
             this.Name = "ValidateModeConfig";
-            this.Size = new System.Drawing.Size(566, 328);
+            this.Size = new System.Drawing.Size(566, 424);
             this.groupPanel1.ResumeLayout(false);
             this.groupPanel1.PerformLayout();
-            this.groupPanel2.ResumeLayout(false);
-            this.groupPanel2.PerformLayout();
             this.groupPanel3.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -437,11 +456,8 @@
         #endregion
 
         private DevComponents.DotNetBar.Controls.GroupPanel groupPanel1;
-        private DevComponents.DotNetBar.Controls.GroupPanel groupPanel2;
         private DevComponents.DotNetBar.ButtonX btnSave;
         private DevComponents.DotNetBar.ButtonX btnCancel;
-        private System.Windows.Forms.RadioButton rbIDCardMode;
-        private System.Windows.Forms.RadioButton rbAccessMode;
         private DevComponents.DotNetBar.Controls.GroupPanel groupPanel3;
         private DevComponents.DotNetBar.Controls.CheckBoxX cbBlackList;
         private DevComponents.DotNetBar.Controls.TextBoxX tbDeleteTick;
@@ -457,5 +473,11 @@
         private DevComponents.DotNetBar.Controls.TextBoxX tbThreshold11;
         private DevComponents.DotNetBar.LabelX labelX1;
         private System.Windows.Forms.RadioButton radioButton1;
+        private DevComponents.DotNetBar.ButtonX btnSwipe1;
+        private DevComponents.DotNetBar.ButtonX btnSwipe2;
+        private DevComponents.DotNetBar.LabelX labelX8;
+        private DevComponents.DotNetBar.LabelX labelX7;
+        private DevComponents.DotNetBar.LabelX labelX6;
+        private DevComponents.DotNetBar.LabelX labelX9;
     }
 }
