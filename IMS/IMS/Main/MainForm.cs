@@ -21,6 +21,14 @@ namespace IMS
     {
         #region 定义全局变量
         private ILog mlog = LogManager.GetLogger("MainForm");
+
+        private bool isDBConn = true;
+
+        public bool IsDBConn
+        {
+            get { return isDBConn; }
+            set { isDBConn = value; }
+        }
         private Maticsoft.BLL.IMS_FACE_CAMERA faceCameraBll = new Maticsoft.BLL.IMS_FACE_CAMERA();
         private Maticsoft.Model.IMS_FACE_CAMERA faceCamera;
 
@@ -116,6 +124,7 @@ namespace IMS
             {
                 ClientMainForm.Instance.LoadConnState(false);
                 MessageBox.Show("数据库连接失败，请检查网络或数据库配置");
+                isDBConn = false;
                 SysConfig config = new SysConfig();
                 config.ShowDialog();
             }

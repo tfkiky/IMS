@@ -16,7 +16,10 @@ namespace IMS.Config
         public ValidateModeConfig()
         {
             InitializeComponent();
-            LoadMode();
+            if (MainForm.Instance.IsDBConn)
+            {
+                LoadMode();
+            }
         }
 
         private void LoadMode()
@@ -116,6 +119,11 @@ namespace IMS.Config
         private void btnCancel_Click(object sender, EventArgs e)
         {
             LoadMode();
+        }
+
+        private void btnSwipe1_Click(object sender, EventArgs e)
+        {
+
         }
 
     }

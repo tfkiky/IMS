@@ -331,11 +331,18 @@ namespace IMS.Collecter
 
                             break;
                     }
+
+                    tagFaceCoord[] position = new tagFaceCoord[15];
+                    int iret = FaceService.face_get_pos(capturePic, ref position);
+                    for (int i = 0; i < iret; i++)
+                    {
+                        record.FacePosition += ";" + position[i].x1 + "," + position[i].x2 + "," + position[i].y1 + "," + position[i].y2 + ";";
+                    }
+
                     if (faceValue > MainForm.Instance.IThreshold && !string.IsNullOrEmpty(localPic))
                     {
                         if (ValidateEvent != null)
                         {
-
                             try
                             {
                                 record.Similarity = faceValue;

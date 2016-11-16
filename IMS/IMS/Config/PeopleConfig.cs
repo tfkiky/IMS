@@ -10,11 +10,13 @@ using DevComponents.DotNetBar;
 using DevComponents.Editors;
 using IMS.Collecter;
 using IMS.Common.Config;
+using log4net;
 
 namespace IMS
 {
     public partial class PeopleConfig : UserControl
     {
+        private ILog mlog = LogManager.GetLogger("PeopleConfig");
         private Maticsoft.BLL.SMT_CONTROLLER_INFO ctrlBll = new Maticsoft.BLL.SMT_CONTROLLER_INFO();
         private List<Maticsoft.Model.SMT_CONTROLLER_INFO> ctrlList = new List<Maticsoft.Model.SMT_CONTROLLER_INFO>();
         private Maticsoft.BLL.SMT_DOOR_INFO doorBll = new Maticsoft.BLL.SMT_DOOR_INFO();
@@ -26,7 +28,10 @@ namespace IMS
         {
             InitializeComponent();
             StyleManager.Style = eStyle.Office2007Black;
-            LoadComboBox();
+            if (MainForm.Instance.IsDBConn)
+            {
+                LoadComboBox();
+            }
         }
 
         private void LoadComboBox()
@@ -57,24 +62,31 @@ namespace IMS
             }
             catch (System.Exception ex)
             {
-            	
+                mlog.Error(ex);
             }
         }
 
         private void cbCtrl_SelectedIndexChanged(object sender, EventArgs e)
         {
-            cbDoor.Items.Clear();
-            doorList = doorBll.GetModelList("CTRL_ID=" + ((cbCtrl.SelectedItem as ComboItem).Tag as Maticsoft.Model.SMT_CONTROLLER_INFO).ID);
-            foreach (Maticsoft.Model.SMT_DOOR_INFO door in doorList)
+            try
             {
-                ComboItem ci = new ComboItem();
-                ci.Text = door.DOOR_NAME;
-                ci.Tag = door;
-                cbDoor.Items.Add(ci);
-                if (door.ID == decimal.Parse(SysConfigClass.GetIMSConfig("IMS_CONFIG", "Door")))
+                cbDoor.Items.Clear();
+                doorList = doorBll.GetModelList("CTRL_ID=" + ((cbCtrl.SelectedItem as ComboItem).Tag as Maticsoft.Model.SMT_CONTROLLER_INFO).ID);
+                foreach (Maticsoft.Model.SMT_DOOR_INFO door in doorList)
                 {
-                    cbDoor.SelectedItem = ci;
+                    ComboItem ci = new ComboItem();
+                    ci.Text = door.DOOR_NAME;
+                    ci.Tag = door;
+                    cbDoor.Items.Add(ci);
+                    if (door.ID == decimal.Parse(SysConfigClass.GetIMSConfig("IMS_CONFIG", "Door")))
+                    {
+                        cbDoor.SelectedItem = ci;
+                    }
                 }
+            }
+            catch (System.Exception ex)
+            {
+                mlog.Error(ex);
             }
         }
 
@@ -108,7 +120,7 @@ namespace IMS
             }
             catch (Exception ex)
             {
-
+                mlog.Error(ex);
             }
 
         }

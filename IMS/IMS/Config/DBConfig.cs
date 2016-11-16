@@ -123,6 +123,18 @@ namespace IMS.Config
                 {
                     MessageBox.Show("保存成功！");
                     Maticsoft.DBUtility.DbHelperSQL.connectionString = SysConfigClass.GetSqlServerConnectString();
+                    try
+                    {
+                        using (SqlConnection conn = DatabaseHelper.ConnectDatabase(GetInputConfig().ToString()))
+                        {
+                            MainForm.Instance.IsDBConn = true;
+                        }
+                    }
+                    catch (System.Exception ex)
+                    {
+                        MainForm.Instance.IsDBConn = false;
+                    }
+                  
                 }
             }
         }

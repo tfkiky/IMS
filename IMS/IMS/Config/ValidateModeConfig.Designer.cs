@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupPanel1 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.btnSwipe2 = new DevComponents.DotNetBar.ButtonX();
+            this.btnSwipe1 = new DevComponents.DotNetBar.ButtonX();
             this.tbDeleteTick = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.tbStoreLength = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.labelX5 = new DevComponents.DotNetBar.LabelX();
@@ -40,17 +42,15 @@
             this.labelX2 = new DevComponents.DotNetBar.LabelX();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.tbThreshold11 = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.labelX8 = new DevComponents.DotNetBar.LabelX();
+            this.labelX7 = new DevComponents.DotNetBar.LabelX();
+            this.labelX6 = new DevComponents.DotNetBar.LabelX();
             this.labelX1 = new DevComponents.DotNetBar.LabelX();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.btnSave = new DevComponents.DotNetBar.ButtonX();
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
             this.groupPanel3 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.cbBlackList = new DevComponents.DotNetBar.Controls.CheckBoxX();
-            this.btnSwipe1 = new DevComponents.DotNetBar.ButtonX();
-            this.btnSwipe2 = new DevComponents.DotNetBar.ButtonX();
-            this.labelX6 = new DevComponents.DotNetBar.LabelX();
-            this.labelX7 = new DevComponents.DotNetBar.LabelX();
-            this.labelX8 = new DevComponents.DotNetBar.LabelX();
             this.labelX9 = new DevComponents.DotNetBar.LabelX();
             this.groupPanel1.SuspendLayout();
             this.groupPanel3.SuspendLayout();
@@ -113,6 +113,30 @@
             this.groupPanel1.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.groupPanel1.TabIndex = 0;
             this.groupPanel1.Text = "验证模式";
+            // 
+            // btnSwipe2
+            // 
+            this.btnSwipe2.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnSwipe2.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btnSwipe2.Location = new System.Drawing.Point(425, 168);
+            this.btnSwipe2.Name = "btnSwipe2";
+            this.btnSwipe2.Size = new System.Drawing.Size(75, 23);
+            this.btnSwipe2.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btnSwipe2.TabIndex = 21;
+            this.btnSwipe2.Text = "刷卡方式";
+            this.btnSwipe2.Click += new System.EventHandler(this.btnSwipe1_Click);
+            // 
+            // btnSwipe1
+            // 
+            this.btnSwipe1.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnSwipe1.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btnSwipe1.Location = new System.Drawing.Point(425, 16);
+            this.btnSwipe1.Name = "btnSwipe1";
+            this.btnSwipe1.Size = new System.Drawing.Size(75, 23);
+            this.btnSwipe1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btnSwipe1.TabIndex = 21;
+            this.btnSwipe1.Text = "刷卡方式";
+            this.btnSwipe1.Click += new System.EventHandler(this.btnSwipe1_Click);
             // 
             // tbDeleteTick
             // 
@@ -255,6 +279,46 @@
             this.tbThreshold11.TabIndex = 9;
             this.tbThreshold11.Text = "60";
             // 
+            // labelX8
+            // 
+            this.labelX8.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.labelX8.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX8.Location = new System.Drawing.Point(41, 193);
+            this.labelX8.Name = "labelX8";
+            this.labelX8.Size = new System.Drawing.Size(428, 41);
+            this.labelX8.TabIndex = 8;
+            this.labelX8.Text = "（人脸预识别，提前抓拍人脸，存入人脸特征库，根据时间先后顺序，自动删除人脸特征，保持最小特征库，提高效率，适用刷卡、无障碍通行）";
+            this.labelX8.WordWrap = true;
+            // 
+            // labelX7
+            // 
+            this.labelX7.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.labelX7.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX7.Location = new System.Drawing.Point(41, 105);
+            this.labelX7.Name = "labelX7";
+            this.labelX7.Size = new System.Drawing.Size(428, 23);
+            this.labelX7.TabIndex = 8;
+            this.labelX7.Text = "（当无障碍通行时，适用远距离抓拍，建立增长型人脸特征库）";
+            // 
+            // labelX6
+            // 
+            this.labelX6.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.labelX6.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX6.Location = new System.Drawing.Point(41, 49);
+            this.labelX6.Name = "labelX6";
+            this.labelX6.Size = new System.Drawing.Size(345, 23);
+            this.labelX6.TabIndex = 8;
+            this.labelX6.Text = "（当身份证刷卡、非接触刷卡时，适用近距离抓拍）";
+            // 
             // labelX1
             // 
             this.labelX1.BackColor = System.Drawing.Color.Transparent;
@@ -361,68 +425,6 @@
             this.cbBlackList.TabIndex = 0;
             this.cbBlackList.Text = "黑名单验证";
             // 
-            // btnSwipe1
-            // 
-            this.btnSwipe1.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnSwipe1.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnSwipe1.Location = new System.Drawing.Point(425, 16);
-            this.btnSwipe1.Name = "btnSwipe1";
-            this.btnSwipe1.Size = new System.Drawing.Size(75, 23);
-            this.btnSwipe1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.btnSwipe1.TabIndex = 21;
-            this.btnSwipe1.Text = "刷卡方式";
-            // 
-            // btnSwipe2
-            // 
-            this.btnSwipe2.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnSwipe2.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnSwipe2.Location = new System.Drawing.Point(425, 168);
-            this.btnSwipe2.Name = "btnSwipe2";
-            this.btnSwipe2.Size = new System.Drawing.Size(75, 23);
-            this.btnSwipe2.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.btnSwipe2.TabIndex = 21;
-            this.btnSwipe2.Text = "刷卡方式";
-            // 
-            // labelX6
-            // 
-            this.labelX6.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.labelX6.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX6.Location = new System.Drawing.Point(41, 49);
-            this.labelX6.Name = "labelX6";
-            this.labelX6.Size = new System.Drawing.Size(345, 23);
-            this.labelX6.TabIndex = 8;
-            this.labelX6.Text = "（当身份证刷卡、非接触刷卡时，适用近距离抓拍）";
-            // 
-            // labelX7
-            // 
-            this.labelX7.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.labelX7.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX7.Location = new System.Drawing.Point(41, 105);
-            this.labelX7.Name = "labelX7";
-            this.labelX7.Size = new System.Drawing.Size(428, 23);
-            this.labelX7.TabIndex = 8;
-            this.labelX7.Text = "（当无障碍通行时，适用远距离抓拍，建立增长型人脸特征库）";
-            // 
-            // labelX8
-            // 
-            this.labelX8.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.labelX8.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX8.Location = new System.Drawing.Point(41, 193);
-            this.labelX8.Name = "labelX8";
-            this.labelX8.Size = new System.Drawing.Size(428, 41);
-            this.labelX8.TabIndex = 8;
-            this.labelX8.Text = "（人脸预识别，提前抓拍人脸，存入人脸特征库，根据时间先后顺序，自动删除人脸特征，保持最小特征库，提高效率，适用刷卡、无障碍通行）";
-            this.labelX8.WordWrap = true;
-            // 
             // labelX9
             // 
             this.labelX9.BackColor = System.Drawing.Color.Transparent;
@@ -440,6 +442,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.Controls.Add(this.groupPanel3);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
