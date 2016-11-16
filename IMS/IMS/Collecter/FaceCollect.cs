@@ -334,8 +334,10 @@ namespace IMS.Collecter
 
                     tagFaceCoord[] position = new tagFaceCoord[15];
                     int iret = FaceService.face_get_pos(capturePic, ref position);
+                    mlog.InfoFormat("图像中有{0}个人脸", iret);
                     for (int i = 0; i < iret; i++)
                     {
+                        mlog.InfoFormat("图像中人脸坐标{0}，{1}，{2}，{3}", position[i].x1, position[i].x2, position[i].y1, position[i].y2);
                         record.FacePosition += ";" + position[i].x1 + "," + position[i].x2 + "," + position[i].y1 + "," + position[i].y2 + ";";
                     }
 
@@ -414,7 +416,7 @@ namespace IMS.Collecter
                     {
                         if (ValidateEvent != null)
                         {
-                            mlog.InfoFormat("人脸验证结果：验证失败无此人");
+                            //mlog.InfoFormat("人脸验证结果：验证失败无此人");
                             ValidateEvent(this, new ValidateResultEventArgs(record, blackPic, ValidateResult.NoPerson));
                             currentFacePic = "";
                             //if (File.Exists(capturePic))
