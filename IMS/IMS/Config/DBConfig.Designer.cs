@@ -49,7 +49,7 @@
             // 
             this.btnSave.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnSave.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnSave.Location = new System.Drawing.Point(362, 255);
+            this.btnSave.Location = new System.Drawing.Point(364, 286);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(91, 32);
             this.btnSave.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -61,7 +61,7 @@
             // 
             this.btnTestDataBase.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnTestDataBase.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnTestDataBase.Location = new System.Drawing.Point(265, 255);
+            this.btnTestDataBase.Location = new System.Drawing.Point(267, 286);
             this.btnTestDataBase.Name = "btnTestDataBase";
             this.btnTestDataBase.Size = new System.Drawing.Size(91, 32);
             this.btnTestDataBase.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -71,16 +71,16 @@
             // 
             // lbMsg
             // 
-            this.lbMsg.AutoSize = true;
             // 
             // 
             // 
             this.lbMsg.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lbMsg.ForeColor = System.Drawing.Color.Red;
-            this.lbMsg.Location = new System.Drawing.Point(192, 240);
+            this.lbMsg.Location = new System.Drawing.Point(73, 240);
             this.lbMsg.Name = "lbMsg";
-            this.lbMsg.Size = new System.Drawing.Size(0, 0);
+            this.lbMsg.Size = new System.Drawing.Size(399, 40);
             this.lbMsg.TabIndex = 16;
+            this.lbMsg.WordWrap = true;
             // 
             // labelX5
             // 
@@ -240,10 +240,9 @@
             this.Controls.Add(this.tbServerName);
             this.Controls.Add(this.labelX1);
             this.Name = "DBConfig";
-            this.Size = new System.Drawing.Size(539, 300);
+            this.Size = new System.Drawing.Size(539, 342);
             this.Load += new System.EventHandler(this.DBConfig_Load);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

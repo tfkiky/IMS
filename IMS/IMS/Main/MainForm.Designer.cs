@@ -422,6 +422,7 @@
             // 
             // compareInfo1
             // 
+            this.compareInfo1.ContextMenuStrip = this.contextMenuStrip1;
             this.compareInfo1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.compareInfo1.Location = new System.Drawing.Point(0, 0);
             this.compareInfo1.Margin = new System.Windows.Forms.Padding(4);
@@ -575,7 +576,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.ClientSize = new System.Drawing.Size(1024, 768);
-            this.ContextMenuStrip = this.contextMenuStrip1;
             this.Controls.Add(this.splitContainer1);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

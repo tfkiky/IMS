@@ -108,8 +108,8 @@
             this.splitContainer1.Panel2.Controls.Add(this.lbName);
             this.splitContainer1.Panel2.Controls.Add(this.lbPersonCount);
             this.splitContainer1.Panel2.Controls.Add(this.labelX1);
-            this.splitContainer1.Size = new System.Drawing.Size(500, 429);
-            this.splitContainer1.SplitterDistance = 185;
+            this.splitContainer1.Size = new System.Drawing.Size(511, 467);
+            this.splitContainer1.SplitterDistance = 227;
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -120,7 +120,7 @@
             // 
             this.labelX4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX4.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelX4.Location = new System.Drawing.Point(376, 3);
+            this.labelX4.Location = new System.Drawing.Point(382, 3);
             this.labelX4.Name = "labelX4";
             this.labelX4.Size = new System.Drawing.Size(75, 23);
             this.labelX4.TabIndex = 0;
@@ -133,7 +133,7 @@
             // 
             this.labelX3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX3.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelX3.Location = new System.Drawing.Point(216, 3);
+            this.labelX3.Location = new System.Drawing.Point(221, 3);
             this.labelX3.Name = "labelX3";
             this.labelX3.Size = new System.Drawing.Size(75, 23);
             this.labelX3.TabIndex = 0;
@@ -156,9 +156,9 @@
             // 
             this.pbBlack.BackgroundImage = global::IMS.Properties.Resources.zanwutupian;
             this.pbBlack.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pbBlack.Location = new System.Drawing.Point(334, 31);
+            this.pbBlack.Location = new System.Drawing.Point(333, 24);
             this.pbBlack.Name = "pbBlack";
-            this.pbBlack.Size = new System.Drawing.Size(149, 138);
+            this.pbBlack.Size = new System.Drawing.Size(150, 200);
             this.pbBlack.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbBlack.TabIndex = 0;
             this.pbBlack.TabStop = false;
@@ -167,9 +167,9 @@
             // 
             this.pbLocalPhoto.BackgroundImage = global::IMS.Properties.Resources.zanwutupian;
             this.pbLocalPhoto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pbLocalPhoto.Location = new System.Drawing.Point(173, 31);
+            this.pbLocalPhoto.Location = new System.Drawing.Point(175, 24);
             this.pbLocalPhoto.Name = "pbLocalPhoto";
-            this.pbLocalPhoto.Size = new System.Drawing.Size(149, 138);
+            this.pbLocalPhoto.Size = new System.Drawing.Size(150, 200);
             this.pbLocalPhoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbLocalPhoto.TabIndex = 0;
             this.pbLocalPhoto.TabStop = false;
@@ -178,9 +178,9 @@
             // 
             this.pbRealPhoto.BackgroundImage = global::IMS.Properties.Resources.zanwutupian;
             this.pbRealPhoto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pbRealPhoto.Location = new System.Drawing.Point(12, 31);
+            this.pbRealPhoto.Location = new System.Drawing.Point(17, 24);
             this.pbRealPhoto.Name = "pbRealPhoto";
-            this.pbRealPhoto.Size = new System.Drawing.Size(149, 138);
+            this.pbRealPhoto.Size = new System.Drawing.Size(150, 200);
             this.pbRealPhoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbRealPhoto.TabIndex = 0;
             this.pbRealPhoto.TabStop = false;
@@ -192,7 +192,7 @@
             // 
             this.labelX9.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX9.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelX9.Location = new System.Drawing.Point(17, 189);
+            this.labelX9.Location = new System.Drawing.Point(17, 193);
             this.labelX9.Name = "labelX9";
             this.labelX9.Size = new System.Drawing.Size(68, 23);
             this.labelX9.TabIndex = 0;
@@ -205,7 +205,7 @@
             // 
             this.labelX8.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX8.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelX8.Location = new System.Drawing.Point(17, 155);
+            this.labelX8.Location = new System.Drawing.Point(17, 159);
             this.labelX8.Name = "labelX8";
             this.labelX8.Size = new System.Drawing.Size(68, 23);
             this.labelX8.TabIndex = 0;
@@ -218,7 +218,7 @@
             // 
             this.labelX7.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX7.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelX7.Location = new System.Drawing.Point(17, 121);
+            this.labelX7.Location = new System.Drawing.Point(17, 125);
             this.labelX7.Name = "labelX7";
             this.labelX7.Size = new System.Drawing.Size(63, 23);
             this.labelX7.TabIndex = 0;
@@ -231,7 +231,7 @@
             // 
             this.labelX6.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX6.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelX6.Location = new System.Drawing.Point(17, 87);
+            this.labelX6.Location = new System.Drawing.Point(17, 91);
             this.labelX6.Name = "labelX6";
             this.labelX6.Size = new System.Drawing.Size(68, 23);
             this.labelX6.TabIndex = 0;
@@ -244,7 +244,7 @@
             // 
             this.labelX5.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX5.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelX5.Location = new System.Drawing.Point(17, 53);
+            this.labelX5.Location = new System.Drawing.Point(17, 57);
             this.labelX5.Name = "labelX5";
             this.labelX5.Size = new System.Drawing.Size(57, 23);
             this.labelX5.TabIndex = 0;
@@ -257,7 +257,7 @@
             // 
             this.lbNation.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lbNation.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbNation.Location = new System.Drawing.Point(404, 53);
+            this.lbNation.Location = new System.Drawing.Point(404, 57);
             this.lbNation.Name = "lbNation";
             this.lbNation.Size = new System.Drawing.Size(62, 23);
             this.lbNation.TabIndex = 0;
@@ -271,7 +271,7 @@
             this.lbValue.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lbValue.Font = new System.Drawing.Font("微软雅黑", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbValue.ForeColor = System.Drawing.Color.Red;
-            this.lbValue.Location = new System.Drawing.Point(404, 19);
+            this.lbValue.Location = new System.Drawing.Point(404, 23);
             this.lbValue.Name = "lbValue";
             this.lbValue.Size = new System.Drawing.Size(79, 23);
             this.lbValue.TabIndex = 0;
@@ -284,7 +284,7 @@
             // 
             this.labelX11.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX11.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelX11.Location = new System.Drawing.Point(347, 19);
+            this.labelX11.Location = new System.Drawing.Point(347, 23);
             this.labelX11.Name = "labelX11";
             this.labelX11.Size = new System.Drawing.Size(62, 23);
             this.labelX11.TabIndex = 0;
@@ -297,7 +297,7 @@
             // 
             this.labelX13.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX13.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelX13.Location = new System.Drawing.Point(347, 87);
+            this.labelX13.Location = new System.Drawing.Point(347, 91);
             this.labelX13.Name = "labelX13";
             this.labelX13.Size = new System.Drawing.Size(57, 23);
             this.labelX13.TabIndex = 0;
@@ -310,7 +310,7 @@
             // 
             this.labelX14.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX14.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelX14.Location = new System.Drawing.Point(347, 53);
+            this.labelX14.Location = new System.Drawing.Point(347, 57);
             this.labelX14.Name = "labelX14";
             this.labelX14.Size = new System.Drawing.Size(46, 23);
             this.labelX14.TabIndex = 0;
@@ -323,7 +323,7 @@
             // 
             this.labelX12.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX12.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelX12.Location = new System.Drawing.Point(187, 53);
+            this.labelX12.Location = new System.Drawing.Point(187, 57);
             this.labelX12.Name = "labelX12";
             this.labelX12.Size = new System.Drawing.Size(57, 23);
             this.labelX12.TabIndex = 0;
@@ -336,7 +336,7 @@
             // 
             this.lbDepart.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lbDepart.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbDepart.Location = new System.Drawing.Point(410, 87);
+            this.lbDepart.Location = new System.Drawing.Point(410, 91);
             this.lbDepart.Name = "lbDepart";
             this.lbDepart.Size = new System.Drawing.Size(75, 23);
             this.lbDepart.TabIndex = 0;
@@ -349,7 +349,7 @@
             // 
             this.lbSex.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lbSex.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbSex.Location = new System.Drawing.Point(250, 53);
+            this.lbSex.Location = new System.Drawing.Point(250, 57);
             this.lbSex.Name = "lbSex";
             this.lbSex.Size = new System.Drawing.Size(75, 23);
             this.lbSex.TabIndex = 0;
@@ -362,7 +362,7 @@
             // 
             this.lbTime.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lbTime.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbTime.Location = new System.Drawing.Point(250, 19);
+            this.lbTime.Location = new System.Drawing.Point(250, 23);
             this.lbTime.Name = "lbTime";
             this.lbTime.Size = new System.Drawing.Size(75, 23);
             this.lbTime.TabIndex = 0;
@@ -375,7 +375,7 @@
             // 
             this.labelX10.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX10.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelX10.Location = new System.Drawing.Point(187, 19);
+            this.labelX10.Location = new System.Drawing.Point(187, 23);
             this.labelX10.Name = "labelX10";
             this.labelX10.Size = new System.Drawing.Size(75, 23);
             this.labelX10.TabIndex = 0;
@@ -388,7 +388,7 @@
             // 
             this.lbThroughTime.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lbThroughTime.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbThroughTime.Location = new System.Drawing.Point(86, 189);
+            this.lbThroughTime.Location = new System.Drawing.Point(86, 193);
             this.lbThroughTime.Name = "lbThroughTime";
             this.lbThroughTime.Size = new System.Drawing.Size(188, 23);
             this.lbThroughTime.TabIndex = 0;
@@ -401,7 +401,7 @@
             // 
             this.lbIDCard.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lbIDCard.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbIDCard.Location = new System.Drawing.Point(86, 155);
+            this.lbIDCard.Location = new System.Drawing.Point(86, 159);
             this.lbIDCard.Name = "lbIDCard";
             this.lbIDCard.Size = new System.Drawing.Size(334, 23);
             this.lbIDCard.TabIndex = 0;
@@ -414,7 +414,7 @@
             // 
             this.lbAddress.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lbAddress.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbAddress.Location = new System.Drawing.Point(86, 121);
+            this.lbAddress.Location = new System.Drawing.Point(86, 125);
             this.lbAddress.Name = "lbAddress";
             this.lbAddress.Size = new System.Drawing.Size(334, 28);
             this.lbAddress.TabIndex = 0;
@@ -428,7 +428,7 @@
             // 
             this.lbBirth.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lbBirth.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbBirth.Location = new System.Drawing.Point(86, 87);
+            this.lbBirth.Location = new System.Drawing.Point(86, 91);
             this.lbBirth.Name = "lbBirth";
             this.lbBirth.Size = new System.Drawing.Size(158, 23);
             this.lbBirth.TabIndex = 0;
@@ -441,7 +441,7 @@
             // 
             this.lbName.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lbName.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbName.Location = new System.Drawing.Point(86, 53);
+            this.lbName.Location = new System.Drawing.Point(86, 57);
             this.lbName.Name = "lbName";
             this.lbName.Size = new System.Drawing.Size(75, 23);
             this.lbName.TabIndex = 0;
@@ -454,7 +454,7 @@
             // 
             this.lbPersonCount.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lbPersonCount.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbPersonCount.Location = new System.Drawing.Point(86, 19);
+            this.lbPersonCount.Location = new System.Drawing.Point(86, 23);
             this.lbPersonCount.Name = "lbPersonCount";
             this.lbPersonCount.Size = new System.Drawing.Size(75, 23);
             this.lbPersonCount.TabIndex = 0;
@@ -467,7 +467,7 @@
             // 
             this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelX1.Location = new System.Drawing.Point(17, 19);
+            this.labelX1.Location = new System.Drawing.Point(17, 23);
             this.labelX1.Name = "labelX1";
             this.labelX1.Size = new System.Drawing.Size(75, 23);
             this.labelX1.TabIndex = 0;
@@ -479,7 +479,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.splitContainer1);
             this.Name = "CompareInfo";
-            this.Size = new System.Drawing.Size(500, 429);
+            this.Size = new System.Drawing.Size(511, 467);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();

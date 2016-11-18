@@ -428,14 +428,20 @@ namespace IMS
 
         private void btnCheckPerson_Click(object sender, EventArgs e)
         {
-            CheckPerson cp = new CheckPerson();
-            cp.ShowDialog();
+            if (CheckPwd())
+            {
+                CheckPerson cp = new CheckPerson();
+                cp.ShowDialog();
+            }
         }
 
         private void btnPersonRecord_Click(object sender, EventArgs e)
         {
-            PersonRecord pr = new PersonRecord();
-            pr.ShowDialog();
+            if (CheckPwd())
+            {
+                PersonRecord pr = new PersonRecord();
+                pr.ShowDialog();
+            }
         }
 
         private void dataGridViewX2_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -447,6 +453,27 @@ namespace IMS
                 FaceRecord fr = new FaceRecord(record);
                 fr.ShowDialog();
             }
+        }
+
+        private bool CheckPwd()
+        {
+            bool bRet = false;
+            string pwd = SysConfigClass.GetIMSConfig("IMS_CONFIG", "Password");
+            CheckPwd check = new CheckPwd();
+            check.ShowDialog();
+            if (!string.IsNullOrEmpty(check.Password))
+            {
+                if (pwd==check.Password)
+                {
+                    bRet= true;
+                }
+                else
+                    bRet = false;
+            }
+            else
+                bRet = false;
+
+            return bRet;
         }
 
        
