@@ -18,6 +18,9 @@ namespace IMS.Collecter
         private Maticsoft.BLL.SMT_STAFF_INFO staffBll = new Maticsoft.BLL.SMT_STAFF_INFO();
         private Maticsoft.BLL.SMT_STAFF_DOOR staffDorrBll = new Maticsoft.BLL.SMT_STAFF_DOOR();
 
+        private string lastIDCard="";
+        private DateTime lastDateTime=DateTime.Now;
+
         private IDCardClass currentIDCard;
 
         public IDCardClass CurrentIDCard
@@ -41,7 +44,7 @@ namespace IMS.Collecter
             set { bStarted = value; }
         }
 
-        public void Start()
+        public bool Start()
         {
             if (File.Exists("./wz.txt"))
             {
@@ -54,6 +57,7 @@ namespace IMS.Collecter
             iLastErrorCode = IDCardDll.IDCard.InitCommExt();
             timer = new System.Threading.Timer(new TimerCallback(CollectIDCard), null, 1000, 1000);
             bStarted = true;
+            return iLastErrorCode == 0 ? false : true;
         }
 
         private void CollectIDCard(object state)
@@ -95,25 +99,36 @@ namespace IMS.Collecter
                         currentIDCard.SignGov = idInfo[2].Substring(18);
                         currentIDCard.StartDate = idInfo[3].Substring(0, 8);
                         currentIDCard.LimitDate = idInfo[3].Substring(8);
+                        if (lastIDCard == "")
+                        {
+                            lastIDCard = currentIDCard.Id;
+                            lastDateTime = DateTime.Now;
+                        }
+                        else
+                        {
+                            if (lastIDCard == currentIDCard.Id && DateTime.Now.AddSeconds(-5) < lastDateTime)
+                            {
+                                return;
+                            }
+                        }
                         if (File.Exists("./zp.bmp"))
                         {
                             currentIDCard.PhotoFile = AppDomain.CurrentDomain.BaseDirectory + "zp.bmp";
 
-                            if (AccessCollect.Instance.FaceDoorID!=0)
+                            if (AccessCollect.Instance.FaceDoorID != 0)
                             {
                                 List<Maticsoft.Model.SMT_STAFF_INFO> staffList = new List<Maticsoft.Model.SMT_STAFF_INFO>();
                                 //通过姓名和身份证号码验证库中是否有此员工
                                 staffList = staffBll.GetModelList("REAL_NAME='" + currentIDCard.Name + "' AND CER_NO='" + currentIDCard.Id + "'");
-                                if (staffList!=null&&staffList.Count>0)
+                                if (staffList != null && staffList.Count > 0)
                                 {
                                     //验证此员工是否有此门同行权限
-                                    List<Maticsoft.Model.SMT_STAFF_DOOR> staffDoorList=staffDorrBll.GetModelList("STAFF_ID="+staffList[0].ID+" AND DOOR_ID="+AccessCollect.Instance.FaceDoorID);
+                                    List<Maticsoft.Model.SMT_STAFF_DOOR> staffDoorList = staffDorrBll.GetModelList("STAFF_ID=" + staffList[0].ID + " AND DOOR_ID=" + AccessCollect.Instance.FaceDoorID);
                                     bool isAllow = false;
                                     if (staffDoorList != null && staffDoorList.Count > 0)
                                     {
                                         if (staffDoorList[0].IS_UPLOAD)
                                         {
-
                                             if (!FaceCollect.FaceWhiteList.ContainsKey((int)staffList[0].ID))
                                             {
                                                 File.Copy(currentIDCard.PhotoFile, FaceCollect.StaffFacePath + staffList[0].ID + ".jpg", true);
@@ -165,7 +180,23 @@ namespace IMS.Collecter
                                     }
                                 }
                             }
-                            
+                            else
+                            {
+                                if (IDCardEvent != null)
+                                {
+                                    IDCardEvent(this, new IDCardEventArgs(currentIDCard, null, false));
+                                }
+                                fsRead.Close();
+
+                                if (File.Exists("./wz.txt"))
+                                {
+                                    File.Delete("./wz.txt");
+                                }
+                                if (File.Exists("./zp.bmp"))
+                                {
+                                    File.Delete("./zp.bmp");
+                                }
+                            }
                         }
                     }
                 }
@@ -178,12 +209,12 @@ namespace IMS.Collecter
 
         public void Stop()
         {
-            if (bStarted)
+            iLastErrorCode = IDCardDll.IDCard.CloseComm();
+            if (timer != null)
             {
-                iLastErrorCode = IDCardDll.IDCard.CloseComm();
                 timer.Dispose();
-                bStarted = false;
             }
+            bStarted = false;
         }
     }
 }

@@ -60,11 +60,14 @@ namespace IMS.Collecter
         public AccessCollect()
         {
             instance = this;
+
         }
 
         public void Start()
         {
-            SetControlType();
+            faceDoorID = int.Parse(SysConfigClass.GetIMSConfig("IMS_CONFIG", "Door"));
+            faceControllerID = int.Parse(SysConfigClass.GetIMSConfig("IMS_CONFIG", "Controller"));
+
             recordList = recordBll.GetModelList(" DOOR_ID="+AccessCollect.Instance.FaceDoorID+" ORDER BY  ID DESC ");
             if (recordList != null && recordList.Count > 0)
             {
@@ -78,12 +81,11 @@ namespace IMS.Collecter
 
         public void Stop()
         {
-            if (bStarted)
+            if (accessReader != null)
             {
                 accessReader.stop();
                 bStarted = false;
             }
-
         }
 
         /// <summary>
@@ -136,42 +138,6 @@ namespace IMS.Collecter
                 mlog.ErrorFormat("dataReader_DataRead :{0}", ex);
             }
         }
-        /// <summary>
-        /// 设置所有门禁为常关模式
-        /// </summary>
-        private void SetControlType()
-        {
-            faceControllerID = int.Parse(SysConfigClass.GetIMSConfig("IMS_CONFIG", "Controller"));
-            faceDoorID = int.Parse(SysConfigClass.GetIMSConfig("IMS_CONFIG", "Door"));
-
-            Maticsoft.BLL.SMT_CONTROLLER_INFO ctrlBll=new Maticsoft.BLL.SMT_CONTROLLER_INFO();
-            List<Maticsoft.Model.SMT_CONTROLLER_INFO> ctrlList = ctrlBll.GetModelList("ID=" + faceControllerID);
-            Maticsoft.BLL.SMT_DOOR_INFO doorBll = new Maticsoft.BLL.SMT_DOOR_INFO();
-            Maticsoft.Model.SMT_DOOR_INFO door = new Maticsoft.Model.SMT_DOOR_INFO();
-            if (ctrlList != null && ctrlList.Count > 0)
-            {
-                foreach (Maticsoft.Model.SMT_CONTROLLER_INFO ctrl in ctrlList)
-                {
-                    Controller c = ControllerHelper.ToController(ctrl);
-                    door = doorBll.GetModel((decimal)faceDoorID);
-
-                    if (door != null )
-                    {
-                        //设置门控制方式
-                        using (IAccessCore access = new WGAccess())
-                        {
-                            bool ret = access.SetDoorControlStyle(c, (int)door.CTRL_DOOR_INDEX, DoorControlStyle.AlwaysClose, door.CTRL_DELAY_TIME);
-                            if (!ret)
-                            {
-                                mlog.Info("设置门禁常关模式失败");
-                                //WinInfoHelper.ShowInfoWindow(this, "上传门控制方式失败！");
-                                return;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
+        
     }
 }

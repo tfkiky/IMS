@@ -29,22 +29,28 @@ namespace IMS
                    pbRealPhoto.ImageLocation = e.Record.CapturePic;
                    pbLocalPhoto.ImageLocation = e.Record.OriginPic;
                    pbBlack.ImageLocation = e.BlackPic;
-                   lbValue.Text = e.Record.Similarity.ToString();
+                   //lbValue.Text = e.Record.Similarity.ToString();
 
                    Maticsoft.BLL.SMT_ORG_INFO orgBll = new Maticsoft.BLL.SMT_ORG_INFO();
                    List<Maticsoft.Model.SMT_ORG_INFO> orgList = orgBll.GetModelList("ID=" + e.Record.Depart);
                    if (orgList != null && orgList.Count > 0)
                    {
-                       lbDepart.Text = orgList[0].ORG_NAME;
+                       tbDepart.Text = orgList[0].ORG_NAME;
                    }
                    else
-                       lbDepart.Text = "";
+                       tbDepart.Text = "";
                }));
             }
             catch (Exception ex)
             {
                 mlog.Error(ex);
             }
+        }
+
+        public void LoadStaffInfo(string staffPic)
+        {
+            pbLocalPhoto.ImageLocation = staffPic;
+
         }
 
         public void LoadAccessInfo(Maticsoft.Model.SMT_STAFF_INFO staffInfo, Maticsoft.Model.SMT_CARD_RECORDS cardRecord)
@@ -55,32 +61,32 @@ namespace IMS
                List<Maticsoft.Model.SMT_ORG_INFO> orgList = orgBll.GetModelList("ID=" + staffInfo.ORG_ID);
                if (orgList != null && orgList.Count > 0)
                {
-                   lbDepart.Text = orgList[0].ORG_NAME;
+                   tbDepart.Text = orgList[0].ORG_NAME;
                }
                else
-                   lbDepart.Text = "";
-               lbThroughTime.Text = cardRecord.RECORD_DATE.Value.ToString("yyyy-MM-dd HH:mm:ss");
-               lbName.Text = staffInfo.REAL_NAME;
+                   tbDepart.Text = "";
+               tbPassTime.Text = cardRecord.RECORD_DATE.Value.ToString("yyyy-MM-dd HH:mm:ss");
+               tbName.Text = staffInfo.REAL_NAME;
 
                switch (staffInfo.SEX)
                {
                    case 0:
-                       lbSex.Text = "未知";
+                       tbSex.Text = "未知";
                        break;
                    case 1:
-                       lbSex.Text = "男";
+                       tbSex.Text = "男";
                        break;
                    case 2:
-                       lbSex.Text = "女";
+                       tbSex.Text = "女";
                        break;
                    default:
-                       lbSex.Text = "未知";
+                       tbSex.Text = "未知";
                        break;
                }
-               lbIDCard.Text = staffInfo.CER_NO;
-               lbBirth.Text = staffInfo.BIRTHDAY.Value.ToString("yyyy-MM-dd HH:mm:ss");
-               lbAddress.Text = staffInfo.ADDRESS;
-               lbNation.Text = staffInfo.NATION;
+               tbIDCard.Text = staffInfo.CER_NO;
+               tbBirth.Text = staffInfo.BIRTHDAY.Value.ToString("yyyy-MM-dd HH:mm:ss");
+               tbAddress.Text = staffInfo.ADDRESS;
+               tbNation.Text = staffInfo.NATION;
            }));
         }
 
@@ -88,12 +94,14 @@ namespace IMS
         {
             this.Invoke(new Action(() =>
             {
-                lbName.Text = idcard.Name;
-                lbSex.Text = idcard.Sex;
-                lbNation.Text = idcard.Nation;
-                lbBirth.Text = idcard.Birth;
-                lbAddress.Text = idcard.Address;
-                lbIDCard.Text = idcard.Id;
+                tbName.Text = idcard.Name;
+                tbSex.Text = idcard.Sex;
+                tbNation.Text = idcard.Nation;
+                tbBirth.Text = idcard.Birth;
+                tbAddress.Text = idcard.Address;
+                tbIDCard.Text = idcard.Id;
+                tbPassTime.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+
             }));
         }
     }

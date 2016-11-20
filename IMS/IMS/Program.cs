@@ -1,6 +1,8 @@
-﻿using Microsoft.Win32;
+﻿using IMS.Main;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -24,9 +26,9 @@ namespace IMS
             RegistryKey rk2 = rk.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run");
             rk2.SetValue("IMS", path);
 
-
-            Application.Run(new ClientMainForm());
-
+            Application.Run(new MainForm());
+            
         }
+      
     }
 }

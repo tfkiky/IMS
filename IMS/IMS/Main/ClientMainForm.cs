@@ -39,7 +39,14 @@ namespace IMS
         {
             timer1.Stop();
             CloseCamera();
-            this.Close();
+            if (MainForm.Instance != null)
+            {
+                MainForm.Instance.CloseIMS();
+            }
+            else
+            {
+                this.Close();
+            }
         }
 
         private void LoadCamera()
@@ -47,7 +54,7 @@ namespace IMS
             if (MainForm.Instance.FaceCamera != null && !string.IsNullOrEmpty(MainForm.Instance.FaceCamera.CameraIP))
             {
                 MainForm.Instance.HikCam.Login(MainForm.Instance.FaceCamera.CameraIP, int.Parse(MainForm.Instance.FaceCamera.CameraPort), MainForm.Instance.FaceCamera.CameraUser, MainForm.Instance.FaceCamera.CameraPwd);
-                playHandle = MainForm.Instance.HikCam.RealPlay("0", (int)splitContainer2.Panel1.Handle, 1, 1, 2);
+                playHandle = MainForm.Instance.HikCam.RealPlay("0", (int)splitContainer5.Panel1.Handle, 1, 1, 2);
             }
         }
 
@@ -62,7 +69,7 @@ namespace IMS
 
         public void LoadValidateResult(ValidateResultEventArgs e)
         {
-            lbValue.Text = e.Record.Similarity.ToString();
+            //lbValue.Text = e.Record.Similarity.ToString();
             switch (e.ValidateResult)
             {
                 case IMS.Collecter.ValidateResult.Success:
@@ -85,34 +92,42 @@ namespace IMS
             peopleIDCard1.LoadIDCard(idcard);
         }
 
+        public void LoadRealPic(string realPic)
+        {
+            pbRealPhoto.ImageLocation = realPic;
+        }
+
+        public void LoadBlackPic(string blackPic)
+        {
+            pbBlack.ImageLocation = blackPic;
+        }
+
         public void LoadConnState(bool isConn)
         {
-            if(isConn)
-            {
-                lbConn.Text = "数据库连接正常";
-            }
-            else{
-                lbConn.Text = "数据库连接异常，请检查网络或数据库配置";
-            }
+            //if(isConn)
+            //{
+            //    lbConn.Text = "数据库连接正常";
+            //}
+            //else{
+            //    lbConn.Text = "数据库连接异常，请检查网络或数据库配置";
+            //}
         }
 
         public void LoadCtrlState(bool isConn)
         {
-            if (isConn)
-            {
-                lbConn.Text = "门禁控制器连接正常";
-            }
-            else
-            {
-                lbConn.Text = "门禁控制器连接失败，请检查门禁控制器配置";
-            }
+            //if (isConn)
+            //{
+            //    lbConn.Text = "门禁控制器连接正常";
+            //}
+            //else
+            //{
+            //    lbConn.Text = "门禁控制器连接失败，请检查门禁控制器配置";
+            //}
         }
 
         private void ClientMainForm_Load(object sender, EventArgs e)
         {
             timer1.Start();
-            MainForm main = new MainForm();
-            main.Show();
             LoadCamera();
         }
 

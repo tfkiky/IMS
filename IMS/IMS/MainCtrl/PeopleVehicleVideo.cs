@@ -25,14 +25,14 @@ namespace IMS
             get { return splitContainer1.Panel1; }
         }
 
-        public void LoadValidateResult(IMS.Collecter.ValidateResult vr)
+        public void LoadValidateResult(IMS.Collecter.ValidateResult vr,string similarity)
         {
             try
             {
                 switch (vr)
                 {
                     case IMS.Collecter.ValidateResult.Success:
-                        lbResult.Text = "验证通过";
+                        lbResult.Text = "验证通过，相似度"+similarity;
                         break;
                     case IMS.Collecter.ValidateResult.NoPerson:
                         lbResult.Text = "验证无此人";

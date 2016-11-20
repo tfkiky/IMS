@@ -120,8 +120,8 @@
   <metadata name="contextMenuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>1211, 17</value>
   </metadata>
-  <metadata name="splitContainer2.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
+  <metadata name="imageList1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>47, 17</value>
   </metadata>
   <metadata name="dataGridViewButtonXColumn1.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -147,7 +147,47 @@
   <metadata name="column4.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="imageList1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>47, 17</value>
+  <metadata name="imageList2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>1376, 17</value>
   </metadata>
+  <data name="imageList2.ImageStream" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
+        LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
+        ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAB8
+        BwAAAk1TRnQBSQFMAgEBAgIAAQIBAAECASABAAEgAQAE/wEZAQAI/wFCAU0BNgcAATYDAAEoAwABgAMA
+        ASADAAEBAQABGAYAATBdAAPpA9ID6RsAOe7/ACQAA9IDlgPSGwAD7jP/A+7/AB4AA94DugOSA2YDkgO6
+        A94PAAPeA7oDpgOjLaADowOmA7oD3v8AGAADugw5A0IDug8AA7oGOQNCLTkDQgY5A7r/ABIAA94DugOF
+        DDkDQgO6DwADuj85A7r/ABIAA7oSOQNCA7oPAAO6PzkDuv8ADAAD4wHBAr8Dhg85A4UDugPeDwADuj85
+        A6YD7gPYCboD3vkAAcECvwNVA0MPOQO6FQADuj85A6AD/wOjCUIDuvMABu4DqgNRAz4JOQNoA6AD1hUA
+        A9YDoANoMzkDaASVApMDoANsCTkDuvMAA+4D/wOjA0IMOQOgA/8D7hUAA+4D/wOgMzkDlQPxA5UPOQO6
+        1QAD6APSAcYCxRW6A6YDoANsCTkDaAOVAcgCxwbuFQAD7gP/AbECsANmA1UnOQNDA0wDmwPqA5cPOQO6
+        1QAD0gOGA2sDQgk5A0IVOQNCA5kD8QPuGwAD7gP/A88DlgNmJzkDTANfA5wD4wOZA0IJOQNCA7rPAAPe
+        A7oDkgNmA1gDQgNNA1YDaAOAA2MSOQNCA6YG7hsABu4D4gPSAcYCxQO6A4UbOQNoA6ABlgKVBosDmQNo
+        CTkDhQO6A97PAAO6A0IJOQNCA1YDZgGVApMDwAOAEjkDQgO6MwADugNCGDkDoAP/A9sDsgN+A0IMOQO6
+        zwAD3gO6A4UDOQM4AzMDgwO6AcECvwPIA9UD4QPOCboDhQk5A7ozAAPeA7oDjQNWA0MJOQOFA7oD1gPu
+        A+kD4QOcAzkDaAOgA6YDugPezwADugk5BjMDuhsAA7oJOQO6OQADyANmA1YJOQO6DwADugM5A6AD/wPu
+        1QADugk5A4IDugPeGwAD0gGFAoMDZQM5AZkCmAPhA+szAAG+Ar0DVgNDCTkDugkAA+gDywORAzkBggKB
+        Ab4CvAPg1QADugNCBjkDuiEAA+cD3QGFAoMDOQN2A7ID4TMAA7oDQgk5A0IDugkAA8sDdwNeAzkDXgN3
+        A8vVAAO6A0IDTQNWAb4CvSEAA+wD5wOeAzkDXgN2A88tAAPrA+EDngNCDDkDjQHBAr8D4wMAAcYCxQNe
+        A08DOQNPA14BxgLF1QADugNCA1YDZgPIJwADugk5A7otAAPhA7IDfgNCDDkDTANfAcECvwMAA7oPOQO6
+        1QADugM5A1YDZgPIJwADugk5A7otAAPPA3YDYQ85A0MDTAO7AwADug85A7rVAAO6AzkDTANfAcECvycA
+        A7oJOQO6LQADuhs5A7oDAAO6DzkDutUAA7oDOQNDA0wDuyEAA+sD4QOeAzkDZQGFAoMD0i0AA7obOQO6
+        AwADug85A7rVAAO6A0IGOQO6IQAD4QPAA4ADOQGFAoMD3QPnLQADugNCFTkDQgO6AwADug85A7rVAAHG
+        AsUDXgNPAzkDhQO6A94VAAbuA8EDgANjAzkDnAPnA+wtAAO6GzkDugMAA7oPOQO61QADywN3A14JOQO6
+        FQAD7gP/A6AJOQO6MwADuhs5A7oDAAO6DzkDutUAA+gDywORCTkDhRW6A6YDowNsAzkDhQO6A94zAAO6
+        GzkDugMAA94PugPe2wADug85BjMDNgNCCTkDQgY5A7o5AAO6A0IYOQO68wAD3gO6A54BhQKDA2YDOQM4
+        AzMDOA85A4UDugPeOQAD2wOjA2wPOQNoA6AD1vkAA+oD4wOZA0IYOQO6PwAD7gP/A6APOQOgA/8D7vkA
+        A+wD6gPUG7oD3j8ABu4D1gO6A4UDOQOFA7oD1gbu/wBsAAO6A0IDuvAAAUIBTQE+BwABPgMAASgDAAGA
+        AwABIAMAAQEBAAEBBgABAhYAA/8BAAP/AY8B+AIAAf8IAAP/AY8B+AIAAf8IAAL/Af4BAwHgAgABPwgA
+        Av8B/gEDAeACAAE/CAAC/wH4AQMB4AIAAT8IAAL/AfgBAwHgAgABPwgAAv8B4AEDAeALAAL/AeABDwHg
+        CwAC/wGAAQ8B4AsAAv8BgAEPAeALAAH+AgABDwHgCwAB/gIAAT8B4AsAAfgCAAE/AeALAAH4AgAC/wGA
+        AQABAwgAAeACAAL/AYABAAEDCAAB4AE/AeAC/wHgAT4BDwgAAeABPwHgAT8B/wHgATgBDwgAAeAB/wHg
+        AT8B/wHgATgBDwgAAeAB/wHgAT8B/wGAAQgBDwgAAeAB/wH4AT8B/wGAAQgBDwgAAeAB/wH4AT8B/wGA
+        AQgBDwgAAeAB/wH4AT8B/wGAAQgBDwgAAeAB/wHgAT8B/wGAAQgBDwgAAeAB/wHgAT8B/wGAAQgBDwgA
+        AeABPwGAAT8B/wGAAQgBDwgAAeABPwGAAv8BgAEIAQ8IAAHgAgAC/wGAAQgBDwgAAfgBAAEDAv8BgAEP
+        Af8IAAH4AQABAwL/AYABDwH/CAAB/gEAAQ8C/wGAAQ8B/wgAAf4BAAEPAv8BgAEPAf8IAAX/AfgC/wgA
+        Cw==
+</value>
+  </data>
 </root>

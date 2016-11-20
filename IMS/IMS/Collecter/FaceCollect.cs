@@ -198,19 +198,28 @@ namespace IMS.Collecter
 
         }
         
-        public void Start(int faceMode, int swipeMode, int threshold,int isBlackList)
+        public bool Start(int faceMode, int swipeMode, int threshold,int isBlackList)
         {
-            int iret=FaceService.face_init();
-            if (iret == 0)
+            try
             {
-                mlog.Info("人脸识别算法库初始化成功");
-                InitFacePath();
-                InitFaceStore();
-                timer = new System.Threading.Timer(new TimerCallback(FaceValidate), null, 1000, 2000);
+                int iret = FaceService.face_init();
+                if (iret == 0)
+                {
+                    mlog.Info("人脸识别算法库初始化成功");
+                    InitFacePath();
+                    InitFaceStore();
+                    timer = new System.Threading.Timer(new TimerCallback(FaceValidate), null, 1000, 2000);
+                    return true;
+                }
+                else
+                {
+                    mlog.Info("人脸识别算法库初始化失败");
+                    return false;
+                }
             }
-            else
+            catch
             {
-                mlog.Info("人脸识别算法库初始化失败");
+                return false;
             }
         }
 
@@ -337,8 +346,8 @@ namespace IMS.Collecter
                     mlog.InfoFormat("图像中有{0}个人脸", iret);
                     for (int i = 0; i < iret; i++)
                     {
-                        mlog.InfoFormat("图像中人脸坐标{0}，{1}，{2}，{3}", position[i].x1, position[i].x2, position[i].y1, position[i].y2);
-                        record.FacePosition += ";" + position[i].x1 + "," + position[i].x2 + "," + position[i].y1 + "," + position[i].y2 + ";";
+                        //mlog.InfoFormat("图像中人脸坐标{0}，{1}，{2}，{3}", position[i].x1, position[i].x2, position[i].y1, position[i].y2);
+                        //record.FacePosition += ";" + position[i].x1 + "," + position[i].x2 + "," + position[i].y1 + "," + position[i].y2 + ";";
                     }
 
                     if (faceValue > MainForm.Instance.IThreshold && !string.IsNullOrEmpty(localPic))

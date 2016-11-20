@@ -118,6 +118,24 @@ namespace IMS.Common.Config
                 return false;
             }
         }
+
+        public static bool TestCamera()
+        {
+            try
+            {
+                 Maticsoft.BLL.IMS_FACE_CAMERA faceCameraBll = new Maticsoft.BLL.IMS_FACE_CAMERA();
+                Maticsoft.Model.IMS_FACE_CAMERA faceCamera;
+                int faceCameraID = int.Parse(SysConfigClass.GetIMSConfig("IMS_CONFIG", "FaceCamera"));
+                faceCamera = faceCameraBll.GetModelList("ID=" + faceCameraID)[0];
+                HikSDK.HikonComDevice hikCam = new HikSDK.HikonComDevice();
+                bool bRet=hikCam.Login(faceCamera.CameraIP, int.Parse(faceCamera.CameraPort), faceCamera.CameraUser, faceCamera.CameraPwd);
+                return bRet;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 
    

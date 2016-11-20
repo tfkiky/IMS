@@ -27,8 +27,7 @@ namespace IMS
         public PeopleConfig()
         {
             InitializeComponent();
-            StyleManager.Style = eStyle.Office2007Black;
-            if (MainForm.Instance.IsDBConn)
+            if (MainForm.Instance != null && MainForm.Instance.IsDBConn)
             {
                 LoadComboBox();
             }

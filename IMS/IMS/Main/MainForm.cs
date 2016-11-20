@@ -14,6 +14,9 @@ using IMS.Common.Database;
 using log4net;
 using IMS.MainCtrl;
 using DevComponents.DotNetBar.Controls;
+using IMS.Main;
+using System.Threading;
+using Li.Access.Core;
 
 namespace IMS
 {
@@ -22,7 +25,13 @@ namespace IMS
         #region 定义全局变量
         private ILog mlog = LogManager.GetLogger("MainForm");
 
-        private bool isDBConn = true;
+        private System.Threading.Timer timer;
+        private SplashForm splash;
+
+        private bool isCamConn = false;
+        private bool isCarConn = false;
+        private bool isCtrlConn = false;
+        private bool isDBConn = false;
 
         public bool IsDBConn
         {
@@ -111,44 +120,91 @@ namespace IMS
 
         public MainForm()
         {
+            splash = new SplashForm();
+            splash.Show(this);
+            //splash.SetText("初始化主窗体...");
+
             InitializeComponent();
-            instance = this;
-            StyleManager.Style = eStyle.Office2007Black;
+            btnPersonRecord.Image = imageList2.Images[0];
+            btnCheckPerson.Image = imageList2.Images[1];
             FillDataGrid();
+
+            instance = this;
+           
+            StyleManager.Style = eStyle.Office2007Black;
+            InitMain();
+        }
+
+        private void InitMain()
+        {
+            Maticsoft.DBUtility.DbHelperSQL.connectionString = SysConfigClass.GetSqlServerConnectString();
+            //splash.SetText("正在检查数据库连接，请稍后");
+            bool bRet = SysConfigClass.TestDBConn();
+            if (!bRet)
+            {
+                //ClientMainForm.Instance.LoadConnState(false);
+                splash.SetText("数据库连接失败，请检查网络或数据库配置");
+                isDBConn = false;
+            }
+            else
+            {
+                isDBConn = true;
+            }
+            //splash.SetText("正在检查门禁控制器连接，请稍后");
+            bRet = SysConfigClass.TestController();
+            if (!bRet)
+            {
+                //ClientMainForm.Instance.LoadCtrlState(false);
+                splash.SetText("门禁控制器连接失败，请检查门禁控制器配置");
+                isCtrlConn = false;
+            }
+            else
+                isCtrlConn = true;
+            //splash.SetText("正在检查摄像机连接，请稍后");
+            bRet = SysConfigClass.TestCamera();
+            if (!bRet)
+            {
+                //ClientMainForm.Instance.LoadCtrlState(false);
+                splash.SetText("摄像机连接失败，请检查摄像机配置");
+                isCamConn = false;
+            }
+            else
+                isCamConn = true;
+            deviceState1.LoadState(isDBConn, isCamConn, isCtrlConn,isCarConn);
+            //ClientMainForm.Instance.LoadConnState(true);
+            LoadParams();
+            LoadCamera();
+            LoadSwipeMode();
+            accessCollect.Start();
+            accessCollect.AccessEvent += accessCollect_AccessEvent;
+            //splash.SetText("初始化身份证读卡器连接，请稍后");
+            bRet = idCardCollect.Start();
+            if (!bRet)
+            {
+                //ClientMainForm.Instance.LoadCtrlState(false);
+                splash.SetText("身份证读卡器连接失败，请检查读卡器连接");
+                return;
+            }
+            idCardCollect.IDCardEvent += idCardCollect_IDCardEvent;
+            //splash.SetText("初始化人脸识别，请稍后");
+            bRet = faceCollect.Start(iFaceMode, iSwipeMode, iThreshold, iBlackMode);
+            if (!bRet)
+            {
+                //ClientMainForm.Instance.LoadCtrlState(false);
+                splash.SetText("人脸识别连接失败，请检查加密狗连接");
+                return;
+            }
+            faceCollect.ValidateEvent += faceCollect_ValidateEvent;
+            //splash.SetText("初始化完成");
+            Thread.Sleep(2000);
+            splash.Close();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            Maticsoft.DBUtility.DbHelperSQL.connectionString = SysConfigClass.GetSqlServerConnectString();
-            if (!SysConfigClass.TestDBConn())
-            {
-                ClientMainForm.Instance.LoadConnState(false);
-                MessageBox.Show("数据库连接失败，请检查网络或数据库配置");
-                isDBConn = false;
-                SysConfig config = new SysConfig();
-                config.ShowDialog();
-            }
-            else if (!SysConfigClass.TestController())
-            {
-                ClientMainForm.Instance.LoadCtrlState(false);
-                MessageBox.Show("门禁控制器连接失败，请检查门禁控制器配置");
-                SysConfig config = new SysConfig();
-                config.ShowDialog();
-            }
-            else
-            {
-                ClientMainForm.Instance.LoadConnState(true);
-                LoadParams();
-                LoadCamera();
-                LoadSwipeMode();
-                accessCollect.Start();
-                idCardCollect.Start();
-                faceCollect.Start(iFaceMode, iSwipeMode, iThreshold, iBlackMode);
-                //if (FaceCollect.IsFaceLoad)
-                //{
-                    faceCollect.ValidateEvent += faceCollect_ValidateEvent;
-                //}
-            }
+            ClientMainForm client = new ClientMainForm();
+            client.Show();
+            
         }
 
         public void LoadSwipeMode()
@@ -210,6 +266,7 @@ namespace IMS
                 idcard.Nation = e.StaffInfo.NATION;
                 idcard.PhotoFile = FaceCollect.FaceWhiteList[(int)e.StaffInfo.ID];
 
+                compareInfo1.LoadStaffInfo(idcard.PhotoFile);
                 ClientMainForm.Instance.LoadIDCardInfo(idcard);
                 peopleVehicleVideo1.LoadAccessResult(e.StaffInfo, e.CardRecord);
             }
@@ -224,8 +281,9 @@ namespace IMS
                     mlog.InfoFormat("抓拍图片：{0}", e.Record.CapturePic);
                     compareInfo1.LoadValidateResult(e);
                     ClientMainForm.Instance.LoadValidateResult(e);
-
-                    peopleVehicleVideo1.LoadValidateResult(e.ValidateResult);
+                    ClientMainForm.Instance.LoadRealPic(e.Record.CapturePic);
+                    ClientMainForm.Instance.LoadBlackPic(e.BlackPic);
+                    peopleVehicleVideo1.LoadValidateResult(e.ValidateResult,e.Record.Similarity.ToString());
                     if (e.ValidateResult == IMS.Collecter.ValidateResult.Success)
                     {
                         AddNewPerson(e.Record);
@@ -285,18 +343,27 @@ namespace IMS
                     case 0:
                         lbInspectMode.Text = "1:1模式";
                         iThreshold = int.Parse(SysConfigClass.GetIMSConfig("FACE_1_1", "Threshold"));
+                        DoorHelper.SetControlType(DoorControlStyle.Online);
                         break;
                     case 1:
                         lbInspectMode.Text = "1:N模式";
                         iThreshold = int.Parse(SysConfigClass.GetIMSConfig("FACE_1_N", "Threshold"));
+                        DoorHelper.SetControlType(DoorControlStyle.AlwaysClose);
                         break;
                     case 2:
                         lbInspectMode.Text = "1:n模式";
                         iThreshold = int.Parse(SysConfigClass.GetIMSConfig("FACE_1_LN", "Threshold"));
+                        DoorHelper.SetControlType(DoorControlStyle.AlwaysClose);
+                        break;
+                    case 3:
+                        lbInspectMode.Text = "常规模式";
+                        DoorHelper.SetControlType(DoorControlStyle.Online);
+                        //iThreshold = int.Parse(SysConfigClass.GetIMSConfig("FACE_1_LN", "Threshold"));
                         break;
                     default:
                         lbInspectMode.Text = "1:1模式";
                         iThreshold = int.Parse(SysConfigClass.GetIMSConfig("FACE_1_1", "Threshold"));
+                        DoorHelper.SetControlType(DoorControlStyle.AlwaysClose);
                         break;
                 }
                 switch (iBlackMode)
@@ -405,19 +472,23 @@ namespace IMS
         private void tsmiExit_Click(object sender, EventArgs e)
         {
             CloseIMS();
-            CloseCamera();
         }
 
-        private void CloseIMS()
+        public void CloseIMS()
         {
-            if(ClientMainForm.Instance!=null)
+            CloseCamera();
+            if (ClientMainForm.Instance != null)
             {
-                ClientMainForm.Instance.CloseClient();
+                ClientMainForm.Instance.Close();
             }
-            this.Close();
+            if(SplashForm.Instance!=null)
+            {
+                SplashForm.Instance.Close();
+            }
             faceCollect.Stop();
             accessCollect.Stop();
             idCardCollect.Stop();
+            this.Close();
         }
 
         private void tsmiSysConfig_Click(object sender, EventArgs e)
@@ -428,7 +499,7 @@ namespace IMS
 
         private void btnCheckPerson_Click(object sender, EventArgs e)
         {
-            if (CheckPwd())
+            //if (CheckPwd())
             {
                 CheckPerson cp = new CheckPerson();
                 cp.ShowDialog();
@@ -437,7 +508,7 @@ namespace IMS
 
         private void btnPersonRecord_Click(object sender, EventArgs e)
         {
-            if (CheckPwd())
+            //if (CheckPwd())
             {
                 PersonRecord pr = new PersonRecord();
                 pr.ShowDialog();

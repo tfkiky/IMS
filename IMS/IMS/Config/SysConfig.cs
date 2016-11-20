@@ -16,6 +16,7 @@ namespace IMS
         {
             InitializeComponent();
 
+            StyleManager.Style = eStyle.Office2007Black;
         }
     }
 }

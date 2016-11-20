@@ -81,8 +81,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(1039, 481);
-            this.splitContainer1.SplitterDistance = 150;
+            this.splitContainer1.Size = new System.Drawing.Size(934, 441);
+            this.splitContainer1.SplitterDistance = 137;
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -255,8 +255,8 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.peopleIDCard1);
-            this.splitContainer2.Size = new System.Drawing.Size(1039, 330);
-            this.splitContainer2.SplitterDistance = 518;
+            this.splitContainer2.Size = new System.Drawing.Size(934, 303);
+            this.splitContainer2.SplitterDistance = 465;
             this.splitContainer2.SplitterWidth = 1;
             this.splitContainer2.TabIndex = 1;
             // 
@@ -265,9 +265,10 @@
             this.pbCaptrue.BackgroundImage = global::IMS.Properties.Resources.zanwutupian;
             this.pbCaptrue.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pbCaptrue.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pbCaptrue.Image = global::IMS.Properties.Resources.暂无图片;
             this.pbCaptrue.Location = new System.Drawing.Point(0, 0);
             this.pbCaptrue.Name = "pbCaptrue";
-            this.pbCaptrue.Size = new System.Drawing.Size(518, 330);
+            this.pbCaptrue.Size = new System.Drawing.Size(465, 303);
             this.pbCaptrue.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbCaptrue.TabIndex = 0;
             this.pbCaptrue.TabStop = false;
@@ -278,14 +279,14 @@
             this.peopleIDCard1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.peopleIDCard1.Location = new System.Drawing.Point(5, 3);
             this.peopleIDCard1.Name = "peopleIDCard1";
-            this.peopleIDCard1.Size = new System.Drawing.Size(513, 324);
+            this.peopleIDCard1.Size = new System.Drawing.Size(460, 297);
             this.peopleIDCard1.TabIndex = 0;
             // 
             // FaceRecord
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1039, 481);
+            this.ClientSize = new System.Drawing.Size(934, 441);
             this.Controls.Add(this.splitContainer1);
             this.DoubleBuffered = true;
             this.MaximizeBox = false;

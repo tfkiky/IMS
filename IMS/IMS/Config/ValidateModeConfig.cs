@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using IMS.Common.Config;
+using IMS.MainCtrl;
 
 namespace IMS.Config
 {
@@ -16,7 +17,7 @@ namespace IMS.Config
         public ValidateModeConfig()
         {
             InitializeComponent();
-            if (MainForm.Instance.IsDBConn)
+            if (MainForm.Instance!=null&&MainForm.Instance.IsDBConn)
             {
                 LoadMode();
             }
@@ -29,14 +30,26 @@ namespace IMS.Config
                 if (MainForm.Instance.IFaceMode == 0)
                 {
                     radioButton1.Checked = true;
+                    btnSwipe1.Enabled = true;
+                    btnSwipe2.Enabled = false;
                 }
                 else if (MainForm.Instance.IFaceMode == 1)
                 {
                     radioButton2.Checked = true;
+                    btnSwipe1.Enabled = false;
+                    btnSwipe2.Enabled = false;
                 }
                 else if (MainForm.Instance.IFaceMode == 2)
                 {
                     radioButton3.Checked = true;
+                    btnSwipe2.Enabled = true;
+                    btnSwipe1.Enabled = false;
+                }
+                else if (MainForm.Instance.IFaceMode == 3)
+                {
+                    radioButton4.Checked = true;
+                    btnSwipe1.Enabled = false;
+                    btnSwipe2.Enabled = false;
                 }
                 tbThreshold11.Text = SysConfigClass.GetIMSConfig("FACE_1_1", "Threshold");
                 tbThreshold1N.Text = SysConfigClass.GetIMSConfig("FACE_1_N", "Threshold");
@@ -97,6 +110,11 @@ namespace IMS.Config
                 {
                     SysConfigClass.SetIMSConfig("IMS_CONFIG", "FaceMode", "2");
                 }
+                else if (radioButton4.Checked)
+                {
+                    SysConfigClass.SetIMSConfig("IMS_CONFIG", "FaceMode", "3");
+                }
+
 
                 SysConfigClass.SetIMSConfig("FACE_1_1", "Threshold", tbThreshold11.Text);
                 SysConfigClass.SetIMSConfig("FACE_1_N", "Threshold", tbThreshold1N.Text);
@@ -123,7 +141,32 @@ namespace IMS.Config
 
         private void btnSwipe1_Click(object sender, EventArgs e)
         {
+            SwipeMode swipe = new SwipeMode();
+            swipe.ShowDialog();
+        }
 
+        private void radioButton4_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton1.Checked)
+            {
+                btnSwipe1.Enabled = true;
+                btnSwipe2.Enabled = false;
+            }
+            if (radioButton2.Checked)
+            {
+                btnSwipe1.Enabled = false;
+                btnSwipe2.Enabled = false;
+            }
+            if (radioButton3.Checked)
+            {
+                btnSwipe2.Enabled = true;
+                btnSwipe1.Enabled = false;
+            }
+            if (radioButton4.Checked)
+            {
+                btnSwipe1.Enabled = false;
+                btnSwipe2.Enabled = false;
+            }
         }
 
     }

@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.groupPanel1 = new DevComponents.DotNetBar.Controls.GroupPanel();
-            this.btnSwipe2 = new DevComponents.DotNetBar.ButtonX();
             this.btnSwipe1 = new DevComponents.DotNetBar.ButtonX();
             this.tbDeleteTick = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.tbStoreLength = new DevComponents.DotNetBar.Controls.TextBoxX();
@@ -46,14 +45,18 @@
             this.labelX7 = new DevComponents.DotNetBar.LabelX();
             this.labelX6 = new DevComponents.DotNetBar.LabelX();
             this.labelX1 = new DevComponents.DotNetBar.LabelX();
+            this.radioButton4 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btnSave = new DevComponents.DotNetBar.ButtonX();
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
             this.groupPanel3 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.cbBlackList = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.labelX9 = new DevComponents.DotNetBar.LabelX();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
-            this.labelX10 = new DevComponents.DotNetBar.LabelX();
+            this.btnSwipe2 = new DevComponents.DotNetBar.ButtonX();
             this.groupPanel1.SuspendLayout();
             this.groupPanel3.SuspendLayout();
             this.SuspendLayout();
@@ -63,7 +66,6 @@
             this.groupPanel1.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.groupPanel1.CanvasColor = System.Drawing.SystemColors.AppWorkspace;
             this.groupPanel1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
-            this.groupPanel1.Controls.Add(this.labelX10);
             this.groupPanel1.Controls.Add(this.btnSwipe2);
             this.groupPanel1.Controls.Add(this.btnSwipe1);
             this.groupPanel1.Controls.Add(this.tbDeleteTick);
@@ -83,6 +85,10 @@
             this.groupPanel1.Controls.Add(this.labelX1);
             this.groupPanel1.Controls.Add(this.radioButton4);
             this.groupPanel1.Controls.Add(this.radioButton1);
+            this.groupPanel1.Controls.Add(this.groupBox1);
+            this.groupPanel1.Controls.Add(this.groupBox2);
+            this.groupPanel1.Controls.Add(this.groupBox3);
+            this.groupPanel1.Controls.Add(this.groupBox4);
             this.groupPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupPanel1.Location = new System.Drawing.Point(0, 0);
             this.groupPanel1.Name = "groupPanel1";
@@ -118,23 +124,12 @@
             this.groupPanel1.TabIndex = 0;
             this.groupPanel1.Text = "验证模式";
             // 
-            // btnSwipe2
-            // 
-            this.btnSwipe2.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnSwipe2.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnSwipe2.Location = new System.Drawing.Point(425, 178);
-            this.btnSwipe2.Name = "btnSwipe2";
-            this.btnSwipe2.Size = new System.Drawing.Size(75, 23);
-            this.btnSwipe2.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.btnSwipe2.TabIndex = 21;
-            this.btnSwipe2.Text = "刷卡方式";
-            this.btnSwipe2.Click += new System.EventHandler(this.btnSwipe1_Click);
-            // 
             // btnSwipe1
             // 
             this.btnSwipe1.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnSwipe1.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnSwipe1.Location = new System.Drawing.Point(425, 54);
+            this.btnSwipe1.Enabled = false;
+            this.btnSwipe1.Location = new System.Drawing.Point(425, 49);
             this.btnSwipe1.Name = "btnSwipe1";
             this.btnSwipe1.Size = new System.Drawing.Size(75, 23);
             this.btnSwipe1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -149,7 +144,7 @@
             // 
             this.tbDeleteTick.Border.Class = "TextBoxBorder";
             this.tbDeleteTick.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.tbDeleteTick.Location = new System.Drawing.Point(458, 149);
+            this.tbDeleteTick.Location = new System.Drawing.Point(458, 170);
             this.tbDeleteTick.Name = "tbDeleteTick";
             this.tbDeleteTick.Size = new System.Drawing.Size(72, 21);
             this.tbDeleteTick.TabIndex = 19;
@@ -162,7 +157,7 @@
             // 
             this.tbStoreLength.Border.Class = "TextBoxBorder";
             this.tbStoreLength.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.tbStoreLength.Location = new System.Drawing.Point(281, 178);
+            this.tbStoreLength.Location = new System.Drawing.Point(281, 193);
             this.tbStoreLength.Name = "tbStoreLength";
             this.tbStoreLength.Size = new System.Drawing.Size(68, 21);
             this.tbStoreLength.TabIndex = 20;
@@ -175,7 +170,7 @@
             // 
             // 
             this.labelX5.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX5.Location = new System.Drawing.Point(366, 149);
+            this.labelX5.Location = new System.Drawing.Point(366, 170);
             this.labelX5.Name = "labelX5";
             this.labelX5.Size = new System.Drawing.Size(103, 23);
             this.labelX5.TabIndex = 17;
@@ -188,7 +183,7 @@
             // 
             // 
             this.labelX4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX4.Location = new System.Drawing.Point(178, 178);
+            this.labelX4.Location = new System.Drawing.Point(178, 193);
             this.labelX4.Name = "labelX4";
             this.labelX4.Size = new System.Drawing.Size(89, 23);
             this.labelX4.TabIndex = 18;
@@ -201,7 +196,7 @@
             // 
             this.tbThreshold1ln.Border.Class = "TextBoxBorder";
             this.tbThreshold1ln.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.tbThreshold1ln.Location = new System.Drawing.Point(281, 148);
+            this.tbThreshold1ln.Location = new System.Drawing.Point(281, 169);
             this.tbThreshold1ln.Name = "tbThreshold1ln";
             this.tbThreshold1ln.Size = new System.Drawing.Size(68, 21);
             this.tbThreshold1ln.TabIndex = 16;
@@ -214,7 +209,7 @@
             // 
             // 
             this.labelX3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX3.Location = new System.Drawing.Point(178, 148);
+            this.labelX3.Location = new System.Drawing.Point(178, 169);
             this.labelX3.Name = "labelX3";
             this.labelX3.Size = new System.Drawing.Size(75, 23);
             this.labelX3.TabIndex = 15;
@@ -224,12 +219,13 @@
             // 
             this.radioButton3.AutoSize = true;
             this.radioButton3.BackColor = System.Drawing.Color.Transparent;
-            this.radioButton3.Location = new System.Drawing.Point(41, 148);
+            this.radioButton3.Location = new System.Drawing.Point(41, 169);
             this.radioButton3.Name = "radioButton3";
             this.radioButton3.Size = new System.Drawing.Size(77, 16);
             this.radioButton3.TabIndex = 14;
             this.radioButton3.Text = "1：n 验证";
             this.radioButton3.UseVisualStyleBackColor = false;
+            this.radioButton3.CheckedChanged += new System.EventHandler(this.radioButton4_CheckedChanged);
             // 
             // tbThreshold1N
             // 
@@ -238,7 +234,7 @@
             // 
             this.tbThreshold1N.Border.Class = "TextBoxBorder";
             this.tbThreshold1N.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.tbThreshold1N.Location = new System.Drawing.Point(281, 102);
+            this.tbThreshold1N.Location = new System.Drawing.Point(281, 110);
             this.tbThreshold1N.Name = "tbThreshold1N";
             this.tbThreshold1N.Size = new System.Drawing.Size(68, 21);
             this.tbThreshold1N.TabIndex = 13;
@@ -251,7 +247,7 @@
             // 
             // 
             this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX2.Location = new System.Drawing.Point(178, 102);
+            this.labelX2.Location = new System.Drawing.Point(178, 110);
             this.labelX2.Name = "labelX2";
             this.labelX2.Size = new System.Drawing.Size(75, 23);
             this.labelX2.TabIndex = 12;
@@ -261,12 +257,13 @@
             // 
             this.radioButton2.AutoSize = true;
             this.radioButton2.BackColor = System.Drawing.Color.Transparent;
-            this.radioButton2.Location = new System.Drawing.Point(41, 102);
+            this.radioButton2.Location = new System.Drawing.Point(41, 110);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(77, 16);
             this.radioButton2.TabIndex = 11;
             this.radioButton2.Text = "1：N 验证";
             this.radioButton2.UseVisualStyleBackColor = false;
+            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton4_CheckedChanged);
             // 
             // tbThreshold11
             // 
@@ -275,7 +272,7 @@
             // 
             this.tbThreshold11.Border.Class = "TextBoxBorder";
             this.tbThreshold11.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.tbThreshold11.Location = new System.Drawing.Point(281, 56);
+            this.tbThreshold11.Location = new System.Drawing.Point(281, 51);
             this.tbThreshold11.Name = "tbThreshold11";
             this.tbThreshold11.Size = new System.Drawing.Size(68, 21);
             this.tbThreshold11.TabIndex = 9;
@@ -288,7 +285,7 @@
             // 
             // 
             this.labelX8.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX8.Location = new System.Drawing.Point(41, 203);
+            this.labelX8.Location = new System.Drawing.Point(41, 211);
             this.labelX8.Name = "labelX8";
             this.labelX8.Size = new System.Drawing.Size(428, 41);
             this.labelX8.TabIndex = 8;
@@ -302,7 +299,7 @@
             // 
             // 
             this.labelX7.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX7.Location = new System.Drawing.Point(41, 125);
+            this.labelX7.Location = new System.Drawing.Point(41, 129);
             this.labelX7.Name = "labelX7";
             this.labelX7.Size = new System.Drawing.Size(428, 23);
             this.labelX7.TabIndex = 8;
@@ -315,7 +312,7 @@
             // 
             // 
             this.labelX6.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX6.Location = new System.Drawing.Point(41, 80);
+            this.labelX6.Location = new System.Drawing.Point(41, 73);
             this.labelX6.Name = "labelX6";
             this.labelX6.Size = new System.Drawing.Size(345, 23);
             this.labelX6.TabIndex = 8;
@@ -328,23 +325,73 @@
             // 
             // 
             this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX1.Location = new System.Drawing.Point(178, 56);
+            this.labelX1.Location = new System.Drawing.Point(178, 51);
             this.labelX1.Name = "labelX1";
             this.labelX1.Size = new System.Drawing.Size(75, 23);
             this.labelX1.TabIndex = 8;
             this.labelX1.Text = "最低阈值：";
+            // 
+            // radioButton4
+            // 
+            this.radioButton4.AutoSize = true;
+            this.radioButton4.BackColor = System.Drawing.Color.Transparent;
+            this.radioButton4.Location = new System.Drawing.Point(41, 12);
+            this.radioButton4.Name = "radioButton4";
+            this.radioButton4.Size = new System.Drawing.Size(71, 16);
+            this.radioButton4.TabIndex = 7;
+            this.radioButton4.Text = "常规模式";
+            this.radioButton4.UseVisualStyleBackColor = false;
+            this.radioButton4.CheckedChanged += new System.EventHandler(this.radioButton4_CheckedChanged);
             // 
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
             this.radioButton1.BackColor = System.Drawing.Color.Transparent;
             this.radioButton1.Checked = true;
-            this.radioButton1.Location = new System.Drawing.Point(41, 56);
+            this.radioButton1.Location = new System.Drawing.Point(41, 51);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(77, 16);
             this.radioButton1.TabIndex = 7;
+            this.radioButton1.TabStop = true;
             this.radioButton1.Text = "1：1 验证";
             this.radioButton1.UseVisualStyleBackColor = false;
+            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton4_CheckedChanged);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox1.Location = new System.Drawing.Point(0, 0);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(557, 39);
+            this.groupBox1.TabIndex = 23;
+            this.groupBox1.TabStop = false;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox2.Location = new System.Drawing.Point(0, 37);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(557, 62);
+            this.groupBox2.TabIndex = 24;
+            this.groupBox2.TabStop = false;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox3.Location = new System.Drawing.Point(0, 95);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(557, 62);
+            this.groupBox3.TabIndex = 25;
+            this.groupBox3.TabStop = false;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox4.Location = new System.Drawing.Point(0, 158);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(557, 97);
+            this.groupBox4.TabIndex = 26;
+            this.groupBox4.TabStop = false;
             // 
             // btnSave
             // 
@@ -439,35 +486,25 @@
             this.labelX9.TabIndex = 8;
             this.labelX9.Text = "（再次验证，提前预警）";
             // 
-            // radioButton4
+            // btnSwipe2
             // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.BackColor = System.Drawing.Color.Transparent;
-            this.radioButton4.Location = new System.Drawing.Point(41, 12);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(71, 16);
-            this.radioButton4.TabIndex = 7;
-            this.radioButton4.Text = "常规模式";
-            this.radioButton4.UseVisualStyleBackColor = false;
-            // 
-            // labelX10
-            // 
-            this.labelX10.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.labelX10.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX10.Location = new System.Drawing.Point(41, 31);
-            this.labelX10.Name = "labelX10";
-            this.labelX10.Size = new System.Drawing.Size(345, 23);
-            this.labelX10.TabIndex = 22;
-            this.labelX10.Text = "（无人脸验证）";
+            this.btnSwipe2.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnSwipe2.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btnSwipe2.Enabled = false;
+            this.btnSwipe2.Location = new System.Drawing.Point(425, 193);
+            this.btnSwipe2.Name = "btnSwipe2";
+            this.btnSwipe2.Size = new System.Drawing.Size(75, 23);
+            this.btnSwipe2.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btnSwipe2.TabIndex = 21;
+            this.btnSwipe2.Text = "刷卡方式";
+            this.btnSwipe2.Click += new System.EventHandler(this.btnSwipe1_Click);
             // 
             // ValidateModeConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.BackgroundImage = global::IMS.Properties.Resources.背景2;
             this.Controls.Add(this.groupPanel3);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
@@ -502,12 +539,15 @@
         private DevComponents.DotNetBar.LabelX labelX1;
         private System.Windows.Forms.RadioButton radioButton1;
         private DevComponents.DotNetBar.ButtonX btnSwipe1;
-        private DevComponents.DotNetBar.ButtonX btnSwipe2;
         private DevComponents.DotNetBar.LabelX labelX8;
         private DevComponents.DotNetBar.LabelX labelX7;
         private DevComponents.DotNetBar.LabelX labelX6;
         private DevComponents.DotNetBar.LabelX labelX9;
-        private DevComponents.DotNetBar.LabelX labelX10;
         private System.Windows.Forms.RadioButton radioButton4;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private DevComponents.DotNetBar.ButtonX btnSwipe2;
     }
 }

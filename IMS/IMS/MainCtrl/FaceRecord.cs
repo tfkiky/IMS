@@ -9,11 +9,13 @@ using System.Text;
 using System.Windows.Forms;
 using IDCardDll;
 using IMS.Collecter;
+using log4net;
 
 namespace IMS.MainCtrl
 {
     public partial class FaceRecord : Office2007Form
     {
+        private ILog mlog = LogManager.GetLogger("FaceRecord");
         Maticsoft.BLL.SMT_CARD_INFO cardBll = new Maticsoft.BLL.SMT_CARD_INFO();
         Maticsoft.BLL.SMT_STAFF_CARD scardBll = new Maticsoft.BLL.SMT_STAFF_CARD();
         Maticsoft.BLL.SMT_STAFF_INFO staffBll = new Maticsoft.BLL.SMT_STAFF_INFO();
@@ -137,7 +139,7 @@ namespace IMS.MainCtrl
             }
             catch (System.Exception ex)
             {
-            	
+                mlog.Error(ex);
             }
            
         }

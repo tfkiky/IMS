@@ -72,6 +72,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Collecter\AccessCollect.cs" />
+    <Compile Include="Collecter\DoorHelper.cs" />
     <Compile Include="Collecter\Events\AccessEventArgs.cs" />
     <Compile Include="Collecter\AccessReader.cs" />
     <Compile Include="Collecter\Events\IDCardEventArgs.cs" />
@@ -119,6 +120,12 @@
     <Compile Include="MainCtrl\CompareInfo.Designer.cs">
       <DependentUpon>CompareInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="MainCtrl\DeviceState.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MainCtrl\DeviceState.Designer.cs">
+      <DependentUpon>DeviceState.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainCtrl\FaceRecord.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -149,6 +156,12 @@
     <Compile Include="MainCtrl\ThroughPerson.Designer.cs">
       <DependentUpon>ThroughPerson.cs</DependentUpon>
     </Compile>
+    <Compile Include="MainCtrl\SwipeMode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainCtrl\SwipeMode.Designer.cs">
+      <DependentUpon>SwipeMode.cs</DependentUpon>
+    </Compile>
     <Compile Include="Main\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -172,6 +185,12 @@
     </Compile>
     <Compile Include="MainCtrl\PeopleVehicleVideo.Designer.cs">
       <DependentUpon>PeopleVehicleVideo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\SplashForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\SplashForm.Designer.cs">
+      <DependentUpon>SplashForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -220,6 +239,9 @@
     <EmbeddedResource Include="MainCtrl\CompareInfo.resx">
       <DependentUpon>CompareInfo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MainCtrl\DeviceState.resx">
+      <DependentUpon>DeviceState.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainCtrl\FaceRecord.resx">
       <DependentUpon>FaceRecord.cs</DependentUpon>
     </EmbeddedResource>
@@ -238,6 +260,9 @@
     <EmbeddedResource Include="MainCtrl\ValidateResult.resx">
       <DependentUpon>ValidateResult.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MainCtrl\SwipeMode.resx">
+      <DependentUpon>SwipeMode.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Main\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -246,6 +271,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainCtrl\PeopleVehicleVideo.resx">
       <DependentUpon>PeopleVehicleVideo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\SplashForm.resx">
+      <DependentUpon>SplashForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -314,6 +342,23 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="1.ico" />
+    <None Include="Resources\header2.png" />
+    <None Include="Resources\LED红.png" />
+    <None Include="Resources\header1.png" />
+    <None Include="Resources\hed1.png" />
+    <None Include="Resources\人工查验.png" />
+    <None Include="Resources\LED绿.png" />
+    <None Include="Resources\车1.png" />
+    <None Include="Resources\暂无图片.png" />
+    <None Include="Resources\车辆.png" />
+    <None Include="Resources\控制器管理.png" />
+    <None Include="Resources\数据库配置.png" />
+    <None Include="Resources\摄像头.png" />
+    <None Include="Resources\企业logo2.png" />
+    <None Include="Resources\logo.png" />
+    <None Include="Resources\背景2.png" />
+    <None Include="Resources\背景.png" />
+    <None Include="Resources\欢迎界面.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

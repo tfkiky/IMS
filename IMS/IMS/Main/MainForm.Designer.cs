@@ -31,20 +31,28 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiSysConfig = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiExit = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiCloseComputer = new System.Windows.Forms.ToolStripMenuItem();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.splitContainer7 = new System.Windows.Forms.SplitContainer();
+            this.panelEx1 = new DevComponents.DotNetBar.PanelEx();
+            this.labelX4 = new DevComponents.DotNetBar.LabelX();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.panelEx2 = new DevComponents.DotNetBar.PanelEx();
             this.lbBlackList = new DevComponents.DotNetBar.LabelX();
             this.lbSwipeMode = new DevComponents.DotNetBar.LabelX();
-            this.labelX4 = new DevComponents.DotNetBar.LabelX();
             this.lbInspectMode = new DevComponents.DotNetBar.LabelX();
             this.labelX3 = new DevComponents.DotNetBar.LabelX();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
-            this.peopleVehicleVideo1 = new IMS.PeopleVehicleVideo();
             this.splitContainer6 = new System.Windows.Forms.SplitContainer();
+            this.labelX7 = new DevComponents.DotNetBar.LabelX();
+            this.labelX8 = new DevComponents.DotNetBar.LabelX();
             this.labelX1 = new DevComponents.DotNetBar.LabelX();
             this.buttonX2 = new DevComponents.DotNetBar.ButtonX();
             this.buttonX1 = new DevComponents.DotNetBar.ButtonX();
@@ -54,8 +62,9 @@
             this.dataGridViewButtonXColumn3 = new DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn();
             this.dataGridViewButtonXColumn4 = new DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
-            this.compareInfo1 = new IMS.CompareInfo();
             this.splitContainer5 = new System.Windows.Forms.SplitContainer();
+            this.labelX6 = new DevComponents.DotNetBar.LabelX();
+            this.labelX5 = new DevComponents.DotNetBar.LabelX();
             this.labelX2 = new DevComponents.DotNetBar.LabelX();
             this.btnPersonRecord = new DevComponents.DotNetBar.ButtonX();
             this.btnCheckPerson = new DevComponents.DotNetBar.ButtonX();
@@ -64,12 +73,23 @@
             this.column2 = new DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn();
             this.column3 = new DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn();
             this.column4 = new DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.imageList2 = new System.Windows.Forms.ImageList(this.components);
+            this.deviceState1 = new IMS.MainCtrl.DeviceState();
+            this.peopleVehicleVideo1 = new IMS.PeopleVehicleVideo();
+            this.compareInfo1 = new IMS.CompareInfo();
             this.contextMenuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer7)).BeginInit();
+            this.splitContainer7.Panel1.SuspendLayout();
+            this.splitContainer7.Panel2.SuspendLayout();
+            this.splitContainer7.SuspendLayout();
+            this.panelEx1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.panelEx2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
@@ -123,9 +143,80 @@
             this.tsmiCloseComputer.Size = new System.Drawing.Size(124, 22);
             this.tsmiCloseComputer.Text = "关机";
             // 
+            // imageList1
+            // 
+            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.imageList1.ImageSize = new System.Drawing.Size(48, 48);
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            // 
+            // splitContainer7
+            // 
+            this.splitContainer7.BackColor = System.Drawing.Color.Transparent;
+            this.splitContainer7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer7.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer7.Name = "splitContainer7";
+            this.splitContainer7.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer7.Panel1
+            // 
+            this.splitContainer7.Panel1.Controls.Add(this.panelEx1);
+            // 
+            // splitContainer7.Panel2
+            // 
+            this.splitContainer7.Panel2.Controls.Add(this.splitContainer1);
+            this.splitContainer7.Size = new System.Drawing.Size(1024, 768);
+            this.splitContainer7.SplitterDistance = 44;
+            this.splitContainer7.TabIndex = 2;
+            // 
+            // panelEx1
+            // 
+            this.panelEx1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panelEx1.CanvasColor = System.Drawing.SystemColors.Control;
+            this.panelEx1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2010;
+            this.panelEx1.Controls.Add(this.labelX4);
+            this.panelEx1.Controls.Add(this.pictureBox2);
+            this.panelEx1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelEx1.Location = new System.Drawing.Point(0, 0);
+            this.panelEx1.Name = "panelEx1";
+            this.panelEx1.Size = new System.Drawing.Size(1024, 44);
+            this.panelEx1.Style.Alignment = System.Drawing.StringAlignment.Center;
+            this.panelEx1.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
+            this.panelEx1.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
+            this.panelEx1.Style.BackgroundImage = global::IMS.Properties.Resources.header2;
+            this.panelEx1.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
+            this.panelEx1.Style.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
+            this.panelEx1.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
+            this.panelEx1.Style.GradientAngle = 90;
+            this.panelEx1.TabIndex = 0;
+            // 
+            // labelX4
+            // 
+            this.labelX4.AutoSize = true;
+            // 
+            // 
+            // 
+            this.labelX4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX4.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labelX4.ForeColor = System.Drawing.Color.White;
+            this.labelX4.Location = new System.Drawing.Point(87, 12);
+            this.labelX4.Name = "labelX4";
+            this.labelX4.Size = new System.Drawing.Size(206, 26);
+            this.labelX4.TabIndex = 1;
+            this.labelX4.Text = "智能人脸识别查验管理系统";
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::IMS.Properties.Resources.企业logo2;
+            this.pictureBox2.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(53, 40);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 0;
+            this.pictureBox2.TabStop = false;
+            // 
             // splitContainer1
             // 
-            this.splitContainer1.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.splitContainer1.BackColor = System.Drawing.Color.Transparent;
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.IsSplitterFixed = true;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
@@ -134,98 +225,112 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.BackgroundImage = global::IMS.Properties.Resources.header;
-            this.splitContainer1.Panel1.Controls.Add(this.lbBlackList);
-            this.splitContainer1.Panel1.Controls.Add(this.lbSwipeMode);
-            this.splitContainer1.Panel1.Controls.Add(this.labelX4);
-            this.splitContainer1.Panel1.Controls.Add(this.lbInspectMode);
-            this.splitContainer1.Panel1.Controls.Add(this.labelX3);
+            this.splitContainer1.Panel1.Controls.Add(this.panelEx2);
+            this.splitContainer1.Panel1.Controls.Add(this.pictureBox1);
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(1024, 768);
-            this.splitContainer1.SplitterDistance = 39;
+            this.splitContainer1.Size = new System.Drawing.Size(1024, 720);
+            this.splitContainer1.SplitterDistance = 35;
             this.splitContainer1.SplitterWidth = 1;
-            this.splitContainer1.TabIndex = 1;
+            this.splitContainer1.TabIndex = 2;
+            // 
+            // panelEx2
+            // 
+            this.panelEx2.CanvasColor = System.Drawing.Color.Transparent;
+            this.panelEx2.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.panelEx2.Controls.Add(this.deviceState1);
+            this.panelEx2.Controls.Add(this.lbBlackList);
+            this.panelEx2.Controls.Add(this.lbSwipeMode);
+            this.panelEx2.Controls.Add(this.lbInspectMode);
+            this.panelEx2.Controls.Add(this.labelX3);
+            this.panelEx2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelEx2.Location = new System.Drawing.Point(0, 0);
+            this.panelEx2.Name = "panelEx2";
+            this.panelEx2.Size = new System.Drawing.Size(1024, 35);
+            this.panelEx2.Style.Alignment = System.Drawing.StringAlignment.Center;
+            this.panelEx2.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
+            this.panelEx2.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
+            this.panelEx2.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
+            this.panelEx2.Style.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
+            this.panelEx2.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
+            this.panelEx2.Style.GradientAngle = 90;
+            this.panelEx2.TabIndex = 5;
             // 
             // lbBlackList
             // 
+            this.lbBlackList.AutoSize = true;
             this.lbBlackList.BackColor = System.Drawing.Color.Transparent;
             // 
             // 
             // 
             this.lbBlackList.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lbBlackList.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbBlackList.ForeColor = System.Drawing.Color.White;
-            this.lbBlackList.Location = new System.Drawing.Point(683, 8);
+            this.lbBlackList.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbBlackList.ForeColor = System.Drawing.Color.Black;
+            this.lbBlackList.Location = new System.Drawing.Point(310, 9);
             this.lbBlackList.Name = "lbBlackList";
-            this.lbBlackList.Size = new System.Drawing.Size(92, 23);
-            this.lbBlackList.TabIndex = 3;
+            this.lbBlackList.Size = new System.Drawing.Size(0, 0);
+            this.lbBlackList.TabIndex = 8;
             // 
             // lbSwipeMode
             // 
+            this.lbSwipeMode.AutoSize = true;
             this.lbSwipeMode.BackColor = System.Drawing.Color.Transparent;
             // 
             // 
             // 
             this.lbSwipeMode.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lbSwipeMode.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbSwipeMode.ForeColor = System.Drawing.Color.White;
-            this.lbSwipeMode.Location = new System.Drawing.Point(550, 8);
+            this.lbSwipeMode.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbSwipeMode.ForeColor = System.Drawing.Color.Black;
+            this.lbSwipeMode.Location = new System.Drawing.Point(222, 9);
             this.lbSwipeMode.Name = "lbSwipeMode";
-            this.lbSwipeMode.Size = new System.Drawing.Size(127, 23);
-            this.lbSwipeMode.TabIndex = 2;
-            // 
-            // labelX4
-            // 
-            this.labelX4.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.labelX4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX4.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelX4.ForeColor = System.Drawing.Color.White;
-            this.labelX4.Location = new System.Drawing.Point(522, 8);
-            this.labelX4.Name = "labelX4";
-            this.labelX4.Size = new System.Drawing.Size(22, 23);
-            this.labelX4.TabIndex = 1;
-            this.labelX4.Text = "+";
+            this.lbSwipeMode.Size = new System.Drawing.Size(0, 0);
+            this.lbSwipeMode.TabIndex = 7;
             // 
             // lbInspectMode
             // 
+            this.lbInspectMode.AutoSize = true;
             this.lbInspectMode.BackColor = System.Drawing.Color.Transparent;
             // 
             // 
             // 
             this.lbInspectMode.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lbInspectMode.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbInspectMode.ForeColor = System.Drawing.Color.White;
-            this.lbInspectMode.Location = new System.Drawing.Point(427, 8);
+            this.lbInspectMode.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbInspectMode.ForeColor = System.Drawing.Color.Black;
+            this.lbInspectMode.Location = new System.Drawing.Point(138, 9);
             this.lbInspectMode.Name = "lbInspectMode";
-            this.lbInspectMode.Size = new System.Drawing.Size(92, 23);
-            this.lbInspectMode.TabIndex = 0;
+            this.lbInspectMode.Size = new System.Drawing.Size(0, 0);
+            this.lbInspectMode.TabIndex = 5;
             // 
             // labelX3
             // 
+            this.labelX3.AutoSize = true;
             this.labelX3.BackColor = System.Drawing.Color.Transparent;
             // 
             // 
             // 
             this.labelX3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX3.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelX3.ForeColor = System.Drawing.Color.White;
-            this.labelX3.Location = new System.Drawing.Point(266, 8);
+            this.labelX3.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labelX3.ForeColor = System.Drawing.Color.Black;
+            this.labelX3.Location = new System.Drawing.Point(15, 9);
             this.labelX3.Name = "labelX3";
-            this.labelX3.Size = new System.Drawing.Size(162, 23);
-            this.labelX3.TabIndex = 0;
+            this.labelX3.Size = new System.Drawing.Size(123, 26);
+            this.labelX3.TabIndex = 6;
             this.labelX3.Text = "当前查验模式：";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(30, -45);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(100, 47);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
             // splitContainer2
             // 
-            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer2.IsSplitterFixed = true;
-            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer2.Location = new System.Drawing.Point(10, 10);
             this.splitContainer2.Name = "splitContainer2";
             // 
             // splitContainer2.Panel1
@@ -235,9 +340,9 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer4);
-            this.splitContainer2.Size = new System.Drawing.Size(1024, 728);
-            this.splitContainer2.SplitterDistance = 512;
-            this.splitContainer2.SplitterWidth = 1;
+            this.splitContainer2.Size = new System.Drawing.Size(1004, 660);
+            this.splitContainer2.SplitterDistance = 502;
+            this.splitContainer2.SplitterWidth = 10;
             this.splitContainer2.TabIndex = 0;
             // 
             // splitContainer3
@@ -255,22 +360,14 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.splitContainer6);
-            this.splitContainer3.Size = new System.Drawing.Size(512, 728);
-            this.splitContainer3.SplitterDistance = 467;
-            this.splitContainer3.SplitterWidth = 1;
+            this.splitContainer3.Size = new System.Drawing.Size(502, 660);
+            this.splitContainer3.SplitterDistance = 422;
+            this.splitContainer3.SplitterWidth = 10;
             this.splitContainer3.TabIndex = 0;
-            // 
-            // peopleVehicleVideo1
-            // 
-            this.peopleVehicleVideo1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.peopleVehicleVideo1.Location = new System.Drawing.Point(0, 0);
-            this.peopleVehicleVideo1.Margin = new System.Windows.Forms.Padding(4);
-            this.peopleVehicleVideo1.Name = "peopleVehicleVideo1";
-            this.peopleVehicleVideo1.Size = new System.Drawing.Size(512, 467);
-            this.peopleVehicleVideo1.TabIndex = 0;
             // 
             // splitContainer6
             // 
+            this.splitContainer6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.splitContainer6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer6.IsSplitterFixed = true;
             this.splitContainer6.Location = new System.Drawing.Point(0, 0);
@@ -279,7 +376,9 @@
             // 
             // splitContainer6.Panel1
             // 
-            this.splitContainer6.Panel1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.splitContainer6.Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.splitContainer6.Panel1.Controls.Add(this.labelX7);
+            this.splitContainer6.Panel1.Controls.Add(this.labelX8);
             this.splitContainer6.Panel1.Controls.Add(this.labelX1);
             this.splitContainer6.Panel1.Controls.Add(this.buttonX2);
             this.splitContainer6.Panel1.Controls.Add(this.buttonX1);
@@ -289,10 +388,38 @@
             // splitContainer6.Panel2
             // 
             this.splitContainer6.Panel2.Controls.Add(this.dataGridViewX1);
-            this.splitContainer6.Size = new System.Drawing.Size(512, 260);
-            this.splitContainer6.SplitterDistance = 54;
+            this.splitContainer6.Size = new System.Drawing.Size(502, 228);
+            this.splitContainer6.SplitterDistance = 45;
             this.splitContainer6.SplitterWidth = 1;
             this.splitContainer6.TabIndex = 1;
+            // 
+            // labelX7
+            // 
+            this.labelX7.AutoSize = true;
+            // 
+            // 
+            // 
+            this.labelX7.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX7.ForeColor = System.Drawing.Color.White;
+            this.labelX7.Location = new System.Drawing.Point(199, 16);
+            this.labelX7.Name = "labelX7";
+            this.labelX7.Size = new System.Drawing.Size(18, 26);
+            this.labelX7.TabIndex = 5;
+            this.labelX7.Text = "0";
+            // 
+            // labelX8
+            // 
+            this.labelX8.AutoSize = true;
+            // 
+            // 
+            // 
+            this.labelX8.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX8.ForeColor = System.Drawing.Color.White;
+            this.labelX8.Location = new System.Drawing.Point(136, 16);
+            this.labelX8.Name = "labelX8";
+            this.labelX8.Size = new System.Drawing.Size(57, 26);
+            this.labelX8.TabIndex = 6;
+            this.labelX8.Text = "数量：";
             // 
             // labelX1
             // 
@@ -311,9 +438,10 @@
             // 
             this.buttonX2.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.buttonX2.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonX2.Location = new System.Drawing.Point(415, 4);
+            this.buttonX2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.buttonX2.Location = new System.Drawing.Point(398, -2);
             this.buttonX2.Name = "buttonX2";
-            this.buttonX2.Size = new System.Drawing.Size(81, 49);
+            this.buttonX2.Size = new System.Drawing.Size(100, 49);
             this.buttonX2.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.buttonX2.TabIndex = 0;
             this.buttonX2.Text = "历史记录";
@@ -323,9 +451,10 @@
             // 
             this.buttonX1.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.buttonX1.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonX1.Location = new System.Drawing.Point(328, 4);
+            this.buttonX1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.buttonX1.Location = new System.Drawing.Point(296, -2);
             this.buttonX1.Name = "buttonX1";
-            this.buttonX1.Size = new System.Drawing.Size(81, 49);
+            this.buttonX1.Size = new System.Drawing.Size(100, 49);
             this.buttonX1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.buttonX1.TabIndex = 0;
             this.buttonX1.Text = "人工查验";
@@ -336,6 +465,7 @@
             this.dataGridViewX1.AllowUserToAddRows = false;
             this.dataGridViewX1.AllowUserToDeleteRows = false;
             this.dataGridViewX1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewX1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.dataGridViewX1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewX1.ColumnHeadersVisible = false;
             this.dataGridViewX1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -357,7 +487,7 @@
             this.dataGridViewX1.Name = "dataGridViewX1";
             this.dataGridViewX1.RowHeadersVisible = false;
             this.dataGridViewX1.RowTemplate.Height = 23;
-            this.dataGridViewX1.Size = new System.Drawing.Size(512, 205);
+            this.dataGridViewX1.Size = new System.Drawing.Size(500, 180);
             this.dataGridViewX1.TabIndex = 3;
             // 
             // dataGridViewButtonXColumn1
@@ -415,23 +545,14 @@
             // splitContainer4.Panel2
             // 
             this.splitContainer4.Panel2.Controls.Add(this.splitContainer5);
-            this.splitContainer4.Size = new System.Drawing.Size(511, 728);
-            this.splitContainer4.SplitterDistance = 467;
-            this.splitContainer4.SplitterWidth = 1;
+            this.splitContainer4.Size = new System.Drawing.Size(492, 660);
+            this.splitContainer4.SplitterDistance = 422;
+            this.splitContainer4.SplitterWidth = 10;
             this.splitContainer4.TabIndex = 0;
-            // 
-            // compareInfo1
-            // 
-            this.compareInfo1.ContextMenuStrip = this.contextMenuStrip1;
-            this.compareInfo1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.compareInfo1.Location = new System.Drawing.Point(0, 0);
-            this.compareInfo1.Margin = new System.Windows.Forms.Padding(4);
-            this.compareInfo1.Name = "compareInfo1";
-            this.compareInfo1.Size = new System.Drawing.Size(511, 467);
-            this.compareInfo1.TabIndex = 0;
             // 
             // splitContainer5
             // 
+            this.splitContainer5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.splitContainer5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer5.IsSplitterFixed = true;
             this.splitContainer5.Location = new System.Drawing.Point(0, 0);
@@ -440,7 +561,9 @@
             // 
             // splitContainer5.Panel1
             // 
-            this.splitContainer5.Panel1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.splitContainer5.Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.splitContainer5.Panel1.Controls.Add(this.labelX6);
+            this.splitContainer5.Panel1.Controls.Add(this.labelX5);
             this.splitContainer5.Panel1.Controls.Add(this.labelX2);
             this.splitContainer5.Panel1.Controls.Add(this.btnPersonRecord);
             this.splitContainer5.Panel1.Controls.Add(this.btnCheckPerson);
@@ -450,10 +573,38 @@
             // splitContainer5.Panel2
             // 
             this.splitContainer5.Panel2.Controls.Add(this.dataGridViewX2);
-            this.splitContainer5.Size = new System.Drawing.Size(511, 260);
-            this.splitContainer5.SplitterDistance = 54;
+            this.splitContainer5.Size = new System.Drawing.Size(492, 228);
+            this.splitContainer5.SplitterDistance = 45;
             this.splitContainer5.SplitterWidth = 1;
             this.splitContainer5.TabIndex = 0;
+            // 
+            // labelX6
+            // 
+            this.labelX6.AutoSize = true;
+            // 
+            // 
+            // 
+            this.labelX6.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX6.ForeColor = System.Drawing.Color.White;
+            this.labelX6.Location = new System.Drawing.Point(208, 15);
+            this.labelX6.Name = "labelX6";
+            this.labelX6.Size = new System.Drawing.Size(18, 26);
+            this.labelX6.TabIndex = 4;
+            this.labelX6.Text = "0";
+            // 
+            // labelX5
+            // 
+            this.labelX5.AutoSize = true;
+            // 
+            // 
+            // 
+            this.labelX5.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX5.ForeColor = System.Drawing.Color.White;
+            this.labelX5.Location = new System.Drawing.Point(145, 15);
+            this.labelX5.Name = "labelX5";
+            this.labelX5.Size = new System.Drawing.Size(57, 26);
+            this.labelX5.TabIndex = 4;
+            this.labelX5.Text = "数量：";
             // 
             // labelX2
             // 
@@ -472,9 +623,10 @@
             // 
             this.btnPersonRecord.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnPersonRecord.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnPersonRecord.Location = new System.Drawing.Point(417, 4);
+            this.btnPersonRecord.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnPersonRecord.Location = new System.Drawing.Point(389, -1);
             this.btnPersonRecord.Name = "btnPersonRecord";
-            this.btnPersonRecord.Size = new System.Drawing.Size(81, 49);
+            this.btnPersonRecord.Size = new System.Drawing.Size(100, 49);
             this.btnPersonRecord.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.btnPersonRecord.TabIndex = 2;
             this.btnPersonRecord.Text = "历史记录";
@@ -486,9 +638,10 @@
             this.btnCheckPerson.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnCheckPerson.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.btnCheckPerson.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnCheckPerson.Location = new System.Drawing.Point(330, 4);
+            this.btnCheckPerson.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnCheckPerson.Location = new System.Drawing.Point(286, -1);
             this.btnCheckPerson.Name = "btnCheckPerson";
-            this.btnCheckPerson.Size = new System.Drawing.Size(81, 49);
+            this.btnCheckPerson.Size = new System.Drawing.Size(100, 49);
             this.btnCheckPerson.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.btnCheckPerson.TabIndex = 3;
             this.btnCheckPerson.Text = "人工查验";
@@ -500,6 +653,7 @@
             this.dataGridViewX2.AllowUserToAddRows = false;
             this.dataGridViewX2.AllowUserToDeleteRows = false;
             this.dataGridViewX2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewX2.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.dataGridViewX2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewX2.ColumnHeadersVisible = false;
             this.dataGridViewX2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -521,7 +675,7 @@
             this.dataGridViewX2.Name = "dataGridViewX2";
             this.dataGridViewX2.RowHeadersVisible = false;
             this.dataGridViewX2.RowTemplate.Height = 23;
-            this.dataGridViewX2.Size = new System.Drawing.Size(511, 205);
+            this.dataGridViewX2.Size = new System.Drawing.Size(490, 180);
             this.dataGridViewX2.TabIndex = 2;
             this.dataGridViewX2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewX2_CellContentClick);
             // 
@@ -564,30 +718,69 @@
             this.column4.Text = null;
             this.column4.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
             // 
-            // imageList1
+            // imageList2
             // 
-            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
-            this.imageList1.ImageSize = new System.Drawing.Size(48, 48);
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList2.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList2.ImageStream")));
+            this.imageList2.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList2.Images.SetKeyName(0, "查询.png");
+            this.imageList2.Images.SetKeyName(1, "人工查验.png");
+            // 
+            // deviceState1
+            // 
+            this.deviceState1.Location = new System.Drawing.Point(522, 0);
+            this.deviceState1.Name = "deviceState1";
+            this.deviceState1.Size = new System.Drawing.Size(490, 32);
+            this.deviceState1.TabIndex = 9;
+            // 
+            // peopleVehicleVideo1
+            // 
+            this.peopleVehicleVideo1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.peopleVehicleVideo1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.peopleVehicleVideo1.Location = new System.Drawing.Point(0, 0);
+            this.peopleVehicleVideo1.Margin = new System.Windows.Forms.Padding(4);
+            this.peopleVehicleVideo1.Name = "peopleVehicleVideo1";
+            this.peopleVehicleVideo1.Size = new System.Drawing.Size(502, 422);
+            this.peopleVehicleVideo1.TabIndex = 0;
+            // 
+            // compareInfo1
+            // 
+            this.compareInfo1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.compareInfo1.ContextMenuStrip = this.contextMenuStrip1;
+            this.compareInfo1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.compareInfo1.Location = new System.Drawing.Point(0, 0);
+            this.compareInfo1.Margin = new System.Windows.Forms.Padding(4);
+            this.compareInfo1.Name = "compareInfo1";
+            this.compareInfo1.Size = new System.Drawing.Size(492, 422);
+            this.compareInfo1.TabIndex = 0;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.BackgroundImage = global::IMS.Properties.Resources.背景2;
             this.ClientSize = new System.Drawing.Size(1024, 768);
-            this.Controls.Add(this.splitContainer1);
-            this.DoubleBuffered = true;
+            this.Controls.Add(this.splitContainer7);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.contextMenuStrip1.ResumeLayout(false);
+            this.splitContainer7.Panel1.ResumeLayout(false);
+            this.splitContainer7.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer7)).EndInit();
+            this.splitContainer7.ResumeLayout(false);
+            this.panelEx1.ResumeLayout(false);
+            this.panelEx1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.panelEx2.ResumeLayout(false);
+            this.panelEx2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
@@ -597,6 +790,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
             this.splitContainer3.ResumeLayout(false);
             this.splitContainer6.Panel1.ResumeLayout(false);
+            this.splitContainer6.Panel1.PerformLayout();
             this.splitContainer6.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer6)).EndInit();
             this.splitContainer6.ResumeLayout(false);
@@ -606,6 +800,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).EndInit();
             this.splitContainer4.ResumeLayout(false);
             this.splitContainer5.Panel1.ResumeLayout(false);
+            this.splitContainer5.Panel1.PerformLayout();
             this.splitContainer5.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer5)).EndInit();
             this.splitContainer5.ResumeLayout(false);
@@ -617,39 +812,50 @@
         #endregion
 
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem tsmiExit;
+        private System.Windows.Forms.ToolStripMenuItem tsmiSysConfig;
+        private System.Windows.Forms.ToolStripMenuItem tsmiCloseComputer;
+        private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.SplitContainer splitContainer7;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.SplitContainer splitContainer3;
-        private System.Windows.Forms.SplitContainer splitContainer4;
-        private System.Windows.Forms.ToolStripMenuItem tsmiExit;
+        private PeopleVehicleVideo peopleVehicleVideo1;
         private System.Windows.Forms.SplitContainer splitContainer6;
         private DevComponents.DotNetBar.LabelX labelX1;
         private DevComponents.DotNetBar.ButtonX buttonX2;
         private DevComponents.DotNetBar.ButtonX buttonX1;
-        private System.Windows.Forms.SplitContainer splitContainer5;
-        private DevComponents.DotNetBar.LabelX labelX2;
-        private DevComponents.DotNetBar.ButtonX btnPersonRecord;
-        private DevComponents.DotNetBar.ButtonX btnCheckPerson;
-        private PeopleVehicleVideo peopleVehicleVideo1;
-        private System.Windows.Forms.ToolStripMenuItem tsmiSysConfig;
-        private System.Windows.Forms.ToolStripMenuItem tsmiCloseComputer;
-        private CompareInfo compareInfo1;
-        private DevComponents.DotNetBar.LabelX lbInspectMode;
-        private DevComponents.DotNetBar.Controls.DataGridViewX dataGridViewX2;
-        private DevComponents.DotNetBar.LabelX lbSwipeMode;
-        private DevComponents.DotNetBar.LabelX labelX4;
-        private DevComponents.DotNetBar.LabelX labelX3;
-        private DevComponents.DotNetBar.LabelX lbBlackList;
-        private System.Windows.Forms.ImageList imageList1;
         private DevComponents.DotNetBar.Controls.DataGridViewX dataGridViewX1;
         private DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn dataGridViewButtonXColumn1;
         private DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn dataGridViewButtonXColumn2;
         private DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn dataGridViewButtonXColumn3;
         private DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn dataGridViewButtonXColumn4;
+        private System.Windows.Forms.SplitContainer splitContainer4;
+        private CompareInfo compareInfo1;
+        private System.Windows.Forms.SplitContainer splitContainer5;
+        private DevComponents.DotNetBar.LabelX labelX2;
+        private DevComponents.DotNetBar.ButtonX btnPersonRecord;
+        private DevComponents.DotNetBar.ButtonX btnCheckPerson;
+        private DevComponents.DotNetBar.Controls.DataGridViewX dataGridViewX2;
         private DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn column1;
         private DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn column2;
         private DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn column3;
         private DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn column4;
+        private DevComponents.DotNetBar.PanelEx panelEx1;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private DevComponents.DotNetBar.LabelX labelX4;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private DevComponents.DotNetBar.PanelEx panelEx2;
+        private MainCtrl.DeviceState deviceState1;
+        private DevComponents.DotNetBar.LabelX lbBlackList;
+        private DevComponents.DotNetBar.LabelX lbSwipeMode;
+        private DevComponents.DotNetBar.LabelX lbInspectMode;
+        private DevComponents.DotNetBar.LabelX labelX3;
+        private System.Windows.Forms.ImageList imageList2;
+        private DevComponents.DotNetBar.LabelX labelX7;
+        private DevComponents.DotNetBar.LabelX labelX8;
+        private DevComponents.DotNetBar.LabelX labelX6;
+        private DevComponents.DotNetBar.LabelX labelX5;
     }
 }
 
