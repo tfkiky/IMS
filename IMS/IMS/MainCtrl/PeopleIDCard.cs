@@ -22,16 +22,13 @@ namespace IMS
         {
             try
             {
-                this.Invoke(new Action(() =>
-                {
-                    lbName.Text = idcard.Name;
-                    lbSex.Text = idcard.Sex;
-                    lbNation.Text = idcard.Nation;
-                    lbBirth.Text = idcard.Birth;
-                    lbAddr.Text = idcard.Address;
-                    lbCardNo.Text = idcard.Id;
-                    pbPhoto.ImageLocation = idcard.PhotoFile;
-                }));
+                lbName.Text = idcard.Name;
+                lbSex.Text = idcard.Sex;
+                lbNation.Text = idcard.Nation;
+                lbBirth.Text = idcard.Birth;
+                lbAddr.Text = idcard.Address;
+                lbCardNo.Text = idcard.Id;
+                pbPhoto.ImageLocation = idcard.PhotoFile;
             }
             catch { }
 

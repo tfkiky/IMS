@@ -32,7 +32,11 @@ namespace IMS
 
         private void tsmiExit_Click(object sender, EventArgs e)
         {
-            CloseClient();
+           DialogResult dr = MessageBox.Show("确定退出系统？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+           if (dr == DialogResult.OK)
+           {
+               CloseClient();
+           }
         }
 
         public void CloseClient()

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupPanel1 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.btnSwipe2 = new DevComponents.DotNetBar.ButtonX();
             this.btnSwipe1 = new DevComponents.DotNetBar.ButtonX();
             this.tbDeleteTick = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.tbStoreLength = new DevComponents.DotNetBar.Controls.TextBoxX();
@@ -56,7 +57,6 @@
             this.groupPanel3 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.cbBlackList = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.labelX9 = new DevComponents.DotNetBar.LabelX();
-            this.btnSwipe2 = new DevComponents.DotNetBar.ButtonX();
             this.groupPanel1.SuspendLayout();
             this.groupPanel3.SuspendLayout();
             this.SuspendLayout();
@@ -96,17 +96,17 @@
             // 
             // 
             // 
-            this.groupPanel1.Style.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
+            this.groupPanel1.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(171)))), ((int)(((byte)(171)))), ((int)(((byte)(171)))));
+            this.groupPanel1.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(171)))), ((int)(((byte)(171)))), ((int)(((byte)(171)))));
             this.groupPanel1.Style.BackColorGradientAngle = 90;
-            this.groupPanel1.Style.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
-            this.groupPanel1.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel1.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Double;
             this.groupPanel1.Style.BorderBottomWidth = 1;
             this.groupPanel1.Style.BorderColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
-            this.groupPanel1.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel1.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Double;
             this.groupPanel1.Style.BorderLeftWidth = 1;
-            this.groupPanel1.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel1.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Double;
             this.groupPanel1.Style.BorderRightWidth = 1;
-            this.groupPanel1.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel1.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Double;
             this.groupPanel1.Style.BorderTopWidth = 1;
             this.groupPanel1.Style.CornerDiameter = 4;
             this.groupPanel1.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
@@ -123,6 +123,19 @@
             this.groupPanel1.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.groupPanel1.TabIndex = 0;
             this.groupPanel1.Text = "验证模式";
+            // 
+            // btnSwipe2
+            // 
+            this.btnSwipe2.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnSwipe2.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btnSwipe2.Enabled = false;
+            this.btnSwipe2.Location = new System.Drawing.Point(425, 193);
+            this.btnSwipe2.Name = "btnSwipe2";
+            this.btnSwipe2.Size = new System.Drawing.Size(75, 23);
+            this.btnSwipe2.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btnSwipe2.TabIndex = 21;
+            this.btnSwipe2.Text = "刷卡方式";
+            this.btnSwipe2.Click += new System.EventHandler(this.btnSwipe1_Click);
             // 
             // btnSwipe1
             // 
@@ -431,17 +444,17 @@
             // 
             // 
             // 
-            this.groupPanel3.Style.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
+            this.groupPanel3.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(171)))), ((int)(((byte)(171)))), ((int)(((byte)(171)))));
+            this.groupPanel3.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(171)))), ((int)(((byte)(171)))), ((int)(((byte)(171)))));
             this.groupPanel3.Style.BackColorGradientAngle = 90;
-            this.groupPanel3.Style.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
-            this.groupPanel3.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel3.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Double;
             this.groupPanel3.Style.BorderBottomWidth = 1;
             this.groupPanel3.Style.BorderColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
-            this.groupPanel3.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel3.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Double;
             this.groupPanel3.Style.BorderLeftWidth = 1;
-            this.groupPanel3.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel3.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Double;
             this.groupPanel3.Style.BorderRightWidth = 1;
-            this.groupPanel3.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel3.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Double;
             this.groupPanel3.Style.BorderTopWidth = 1;
             this.groupPanel3.Style.CornerDiameter = 4;
             this.groupPanel3.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
@@ -485,19 +498,6 @@
             this.labelX9.Size = new System.Drawing.Size(428, 23);
             this.labelX9.TabIndex = 8;
             this.labelX9.Text = "（再次验证，提前预警）";
-            // 
-            // btnSwipe2
-            // 
-            this.btnSwipe2.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnSwipe2.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnSwipe2.Enabled = false;
-            this.btnSwipe2.Location = new System.Drawing.Point(425, 193);
-            this.btnSwipe2.Name = "btnSwipe2";
-            this.btnSwipe2.Size = new System.Drawing.Size(75, 23);
-            this.btnSwipe2.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.btnSwipe2.TabIndex = 21;
-            this.btnSwipe2.Text = "刷卡方式";
-            this.btnSwipe2.Click += new System.EventHandler(this.btnSwipe1_Click);
             // 
             // ValidateModeConfig
             // 

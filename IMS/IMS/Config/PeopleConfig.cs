@@ -116,6 +116,8 @@ namespace IMS
                 MessageBox.Show("保存成功");
                 cbCtrl.Enabled = false;
                 cbDoor.Enabled = false;
+                MainForm.Instance.IsCtrlConn = true;
+                MainForm.Instance.LoadDeviceState();
             }
             catch (Exception ex)
             {
@@ -126,7 +128,7 @@ namespace IMS
 
         private void btnTest_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void btnEdit1_Click(object sender, EventArgs e)
@@ -150,10 +152,23 @@ namespace IMS
             MainForm.Instance.FaceCamera = camera;
 
             MessageBox.Show("保存成功");
+
+            MainForm.Instance.CloseCamera();
+            MainForm.Instance.LoadCamera();
+
             ipAddressInput1.Enabled = false;
             tbPort.Enabled = false;
             tbUserName.Enabled = false;
             tbPwd.Enabled = false;
+            bool bRet = SysConfigClass.TestCamera();
+            if (!bRet)
+            {
+                MainForm.Instance.IsCamConn = true;
+            }
+            else
+                MainForm.Instance.IsCamConn = false;
+
+            MainForm.Instance.LoadDeviceState();
         }
 
         private void btnTest1_Click(object sender, EventArgs e)

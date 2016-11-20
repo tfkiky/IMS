@@ -128,11 +128,14 @@ namespace IMS.Config
                         using (SqlConnection conn = DatabaseHelper.ConnectDatabase(GetInputConfig().ToString()))
                         {
                             MainForm.Instance.IsDBConn = true;
+                            MainForm.Instance.LoadDeviceState();
+
                         }
                     }
                     catch (System.Exception ex)
                     {
                         MainForm.Instance.IsDBConn = false;
+                        MainForm.Instance.LoadDeviceState();
                     }
                   
                 }

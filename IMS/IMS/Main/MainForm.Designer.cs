@@ -39,6 +39,7 @@
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.splitContainer7 = new System.Windows.Forms.SplitContainer();
             this.panelEx1 = new DevComponents.DotNetBar.PanelEx();
+            this.lbDateTime = new DevComponents.DotNetBar.LabelX();
             this.labelX4 = new DevComponents.DotNetBar.LabelX();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -142,6 +143,7 @@
             this.tsmiCloseComputer.Name = "tsmiCloseComputer";
             this.tsmiCloseComputer.Size = new System.Drawing.Size(124, 22);
             this.tsmiCloseComputer.Text = "关机";
+            this.tsmiCloseComputer.Click += new System.EventHandler(this.tsmiCloseComputer_Click);
             // 
             // imageList1
             // 
@@ -173,6 +175,7 @@
             this.panelEx1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panelEx1.CanvasColor = System.Drawing.SystemColors.Control;
             this.panelEx1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2010;
+            this.panelEx1.Controls.Add(this.lbDateTime);
             this.panelEx1.Controls.Add(this.labelX4);
             this.panelEx1.Controls.Add(this.pictureBox2);
             this.panelEx1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -188,6 +191,19 @@
             this.panelEx1.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
             this.panelEx1.Style.GradientAngle = 90;
             this.panelEx1.TabIndex = 0;
+            // 
+            // lbDateTime
+            // 
+            // 
+            // 
+            // 
+            this.lbDateTime.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lbDateTime.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbDateTime.ForeColor = System.Drawing.Color.White;
+            this.lbDateTime.Location = new System.Drawing.Point(811, 6);
+            this.lbDateTime.Name = "lbDateTime";
+            this.lbDateTime.Size = new System.Drawing.Size(200, 30);
+            this.lbDateTime.TabIndex = 2;
             // 
             // labelX4
             // 
@@ -761,9 +777,11 @@
             this.BackgroundImage = global::IMS.Properties.Resources.背景2;
             this.ClientSize = new System.Drawing.Size(1024, 768);
             this.Controls.Add(this.splitContainer7);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.contextMenuStrip1.ResumeLayout(false);
@@ -856,6 +874,7 @@
         private DevComponents.DotNetBar.LabelX labelX8;
         private DevComponents.DotNetBar.LabelX labelX6;
         private DevComponents.DotNetBar.LabelX labelX5;
+        private DevComponents.DotNetBar.LabelX lbDateTime;
     }
 }
 

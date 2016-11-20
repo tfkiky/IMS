@@ -17,6 +17,7 @@ using DevComponents.DotNetBar.Controls;
 using IMS.Main;
 using System.Threading;
 using Li.Access.Core;
+using System.Diagnostics;
 
 namespace IMS
 {
@@ -25,12 +26,30 @@ namespace IMS
         #region 定义全局变量
         private ILog mlog = LogManager.GetLogger("MainForm");
 
-        private System.Threading.Timer timer;
+        private System.Timers.Timer timer;
         private SplashForm splash;
 
         private bool isCamConn = false;
+
+        public bool IsCamConn
+        {
+            get { return isCamConn; }
+            set { isCamConn = value; }
+        }
         private bool isCarConn = false;
+
+        public bool IsCarConn
+        {
+            get { return isCarConn; }
+            set { isCarConn = value; }
+        }
         private bool isCtrlConn = false;
+
+        public bool IsCtrlConn
+        {
+            get { return isCtrlConn; }
+            set { isCtrlConn = value; }
+        }
         private bool isDBConn = false;
 
         public bool IsDBConn
@@ -125,86 +144,124 @@ namespace IMS
             //splash.SetText("初始化主窗体...");
 
             InitializeComponent();
+
+            this.Left = 0;
+            this.Top = 0;
             btnPersonRecord.Image = imageList2.Images[0];
             btnCheckPerson.Image = imageList2.Images[1];
+            buttonX1.Image = imageList2.Images[0];
+            buttonX2.Image = imageList2.Images[1];
             FillDataGrid();
 
             instance = this;
            
             StyleManager.Style = eStyle.Office2007Black;
             InitMain();
+
+            timer=new System.Timers.Timer(1000);
+            timer.Elapsed += timer_Elapsed;
+            timer.Start();
+        }
+
+        void timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            try
+            {
+                this.Invoke(new Action(() =>
+                {
+                    lbDateTime.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                }));
+            }
+            catch { }
         }
 
         private void InitMain()
         {
-            Maticsoft.DBUtility.DbHelperSQL.connectionString = SysConfigClass.GetSqlServerConnectString();
-            //splash.SetText("正在检查数据库连接，请稍后");
-            bool bRet = SysConfigClass.TestDBConn();
-            if (!bRet)
+            try
             {
-                //ClientMainForm.Instance.LoadConnState(false);
-                splash.SetText("数据库连接失败，请检查网络或数据库配置");
-                isDBConn = false;
+                Maticsoft.DBUtility.DbHelperSQL.connectionString = SysConfigClass.GetSqlServerConnectString();
+                //splash.SetText("正在检查数据库连接，请稍后");
+                bool bRet = SysConfigClass.TestDBConn();
+                if (!bRet)
+                {
+                    //ClientMainForm.Instance.LoadConnState(false);
+                    splash.SetText("数据库连接失败，请检查网络或数据库配置");
+                    isDBConn = false;
+                }
+                else
+                {
+                    isDBConn = true;
+                }
+                //splash.SetText("正在检查门禁控制器连接，请稍后");
+                bRet = SysConfigClass.TestController();
+                if (!bRet)
+                {
+                    //ClientMainForm.Instance.LoadCtrlState(false);
+                    splash.SetText("门禁控制器连接失败，请检查门禁控制器配置");
+                    isCtrlConn = false;
+                }
+                else
+                    isCtrlConn = true;
+                //splash.SetText("正在检查摄像机连接，请稍后");
+                bRet = SysConfigClass.TestCamera();
+                if (!bRet)
+                {
+                    //ClientMainForm.Instance.LoadCtrlState(false);
+                    splash.SetText("摄像机连接失败，请检查摄像机配置");
+                    isCamConn = false;
+                }
+                else
+                    isCamConn = true;
+                //ClientMainForm.Instance.LoadConnState(true);
+                LoadDeviceState();
+                LoadParams();
+                LoadCamera();
+                LoadSwipeMode();
+                accessCollect.Start();
+                accessCollect.AccessEvent += accessCollect_AccessEvent;
+                //splash.SetText("初始化身份证读卡器连接，请稍后");
+                //bRet = idCardCollect.Start();
+                if (!bRet)
+                {
+                    //ClientMainForm.Instance.LoadCtrlState(false);
+                    splash.SetText("身份证读卡器连接失败，请检查读卡器连接");
+                    return;
+                }
+                idCardCollect.IDCardEvent += idCardCollect_IDCardEvent;
+                //splash.SetText("初始化人脸识别，请稍后");
+                //bRet = faceCollect.Start(iFaceMode, iSwipeMode, iThreshold, iBlackMode);
+                if (!bRet)
+                {
+                    //ClientMainForm.Instance.LoadCtrlState(false);
+                    splash.SetText("人脸识别连接失败，请检查加密狗连接");
+                    return;
+                }
+                faceCollect.ValidateEvent += faceCollect_ValidateEvent;
+                //splash.SetText("初始化完成");
+                Thread.Sleep(2000);
+                splash.Close();
             }
-            else
-            {
-                isDBConn = true;
+            catch(Exception ex){
+                splash.Close();
             }
-            //splash.SetText("正在检查门禁控制器连接，请稍后");
-            bRet = SysConfigClass.TestController();
-            if (!bRet)
-            {
-                //ClientMainForm.Instance.LoadCtrlState(false);
-                splash.SetText("门禁控制器连接失败，请检查门禁控制器配置");
-                isCtrlConn = false;
-            }
-            else
-                isCtrlConn = true;
-            //splash.SetText("正在检查摄像机连接，请稍后");
-            bRet = SysConfigClass.TestCamera();
-            if (!bRet)
-            {
-                //ClientMainForm.Instance.LoadCtrlState(false);
-                splash.SetText("摄像机连接失败，请检查摄像机配置");
-                isCamConn = false;
-            }
-            else
-                isCamConn = true;
-            deviceState1.LoadState(isDBConn, isCamConn, isCtrlConn,isCarConn);
-            //ClientMainForm.Instance.LoadConnState(true);
-            LoadParams();
-            LoadCamera();
-            LoadSwipeMode();
-            accessCollect.Start();
-            accessCollect.AccessEvent += accessCollect_AccessEvent;
-            //splash.SetText("初始化身份证读卡器连接，请稍后");
-            bRet = idCardCollect.Start();
-            if (!bRet)
-            {
-                //ClientMainForm.Instance.LoadCtrlState(false);
-                splash.SetText("身份证读卡器连接失败，请检查读卡器连接");
-                return;
-            }
-            idCardCollect.IDCardEvent += idCardCollect_IDCardEvent;
-            //splash.SetText("初始化人脸识别，请稍后");
-            bRet = faceCollect.Start(iFaceMode, iSwipeMode, iThreshold, iBlackMode);
-            if (!bRet)
-            {
-                //ClientMainForm.Instance.LoadCtrlState(false);
-                splash.SetText("人脸识别连接失败，请检查加密狗连接");
-                return;
-            }
-            faceCollect.ValidateEvent += faceCollect_ValidateEvent;
-            //splash.SetText("初始化完成");
-            Thread.Sleep(2000);
-            splash.Close();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            string DeviceName = Screen.FromControl(this).DeviceName;
             ClientMainForm client = new ClientMainForm();
             client.Show();
-            
+            client.Top = 0;
+            string str = SunCreate.Common.ConfigHelper.GetConfigString("ScreenMode");
+            if (!string.IsNullOrEmpty(str) && str == "1")
+            {
+                client.Left = 1024;
+            }
+        }
+
+        public void LoadDeviceState()
+        {
+            deviceState1.LoadState(isDBConn, isCamConn, isCtrlConn, isCarConn);
         }
 
         public void LoadSwipeMode()
@@ -378,17 +435,20 @@ namespace IMS
                         lbBlackList.Text = "";
                         break;
                 }
+                if (iFaceMode!=3)
+                {
                 switch (iSwipeMode)
                 {
                     case 0:
-                        lbSwipeMode.Text = "门禁刷卡";
+                        lbSwipeMode.Text = "+门禁刷卡";
                         break;
                     case 1:
-                        lbSwipeMode.Text = "身份证刷卡";
+                        lbSwipeMode.Text = "+身份证刷卡";
                         break;
                     default:
-                        lbSwipeMode.Text = "门禁刷卡";
+                        lbSwipeMode.Text = "+门禁刷卡";
                         break;
+                }
                 }
 
                 int faceCameraID = int.Parse(SysConfigClass.GetIMSConfig("IMS_CONFIG", "FaceCamera"));
@@ -400,7 +460,7 @@ namespace IMS
             }
         }
 
-        private void LoadCamera()
+        public void LoadCamera()
         {
             if (faceCamera != null && !string.IsNullOrEmpty(faceCamera.CameraIP))
             {
@@ -409,7 +469,7 @@ namespace IMS
             }
         }
 
-        private void CloseCamera()
+        public void CloseCamera()
         {
             if (!string.IsNullOrEmpty(playHandle))
             {
@@ -471,7 +531,11 @@ namespace IMS
 
         private void tsmiExit_Click(object sender, EventArgs e)
         {
-            CloseIMS();
+            DialogResult dr = MessageBox.Show("确定退出系统？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+            if (dr == DialogResult.OK)
+            {
+                CloseIMS();
+            }
         }
 
         public void CloseIMS()
@@ -488,6 +552,7 @@ namespace IMS
             faceCollect.Stop();
             accessCollect.Stop();
             idCardCollect.Stop();
+            timer.Stop();
             this.Close();
         }
 
@@ -545,6 +610,15 @@ namespace IMS
                 bRet = false;
 
             return bRet;
+        }
+
+        private void tsmiCloseComputer_Click(object sender, EventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("确定关机？", "警告", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+            if (dr == DialogResult.OK)
+            {
+                Process.Start("shutdown", "-s -t 0");
+            }
         }
 
        

@@ -65,6 +65,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.splitContainer1.Panel1.Controls.Add(this.lbValidate);
             this.splitContainer1.Panel1.Controls.Add(this.lbIsAllow);
             this.splitContainer1.Panel1.Controls.Add(this.labelX6);
@@ -93,6 +94,7 @@
             // 
             this.lbValidate.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lbValidate.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbValidate.ForeColor = System.Drawing.Color.White;
             this.lbValidate.Location = new System.Drawing.Point(768, 82);
             this.lbValidate.Name = "lbValidate";
             this.lbValidate.Size = new System.Drawing.Size(99, 23);
@@ -106,6 +108,7 @@
             // 
             this.lbIsAllow.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lbIsAllow.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbIsAllow.ForeColor = System.Drawing.Color.White;
             this.lbIsAllow.Location = new System.Drawing.Point(499, 82);
             this.lbIsAllow.Name = "lbIsAllow";
             this.lbIsAllow.Size = new System.Drawing.Size(102, 23);
@@ -119,6 +122,7 @@
             // 
             this.labelX6.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX6.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labelX6.ForeColor = System.Drawing.Color.White;
             this.labelX6.Location = new System.Drawing.Point(672, 82);
             this.labelX6.Name = "labelX6";
             this.labelX6.Size = new System.Drawing.Size(99, 23);
@@ -132,6 +136,7 @@
             // 
             this.labelX8.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX8.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labelX8.ForeColor = System.Drawing.Color.White;
             this.labelX8.Location = new System.Drawing.Point(403, 82);
             this.labelX8.Name = "labelX8";
             this.labelX8.Size = new System.Drawing.Size(102, 23);
@@ -145,6 +150,7 @@
             // 
             this.lbForward.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lbForward.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbForward.ForeColor = System.Drawing.Color.White;
             this.lbForward.Location = new System.Drawing.Point(154, 82);
             this.lbForward.Name = "lbForward";
             this.lbForward.Size = new System.Drawing.Size(167, 23);
@@ -158,6 +164,7 @@
             // 
             this.labelX12.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX12.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labelX12.ForeColor = System.Drawing.Color.White;
             this.labelX12.Location = new System.Drawing.Point(58, 82);
             this.labelX12.Name = "labelX12";
             this.labelX12.Size = new System.Drawing.Size(90, 23);
@@ -171,6 +178,7 @@
             // 
             this.lbValue.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lbValue.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbValue.ForeColor = System.Drawing.Color.White;
             this.lbValue.Location = new System.Drawing.Point(768, 31);
             this.lbValue.Name = "lbValue";
             this.lbValue.Size = new System.Drawing.Size(99, 23);
@@ -184,6 +192,7 @@
             // 
             this.lbSwipe.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lbSwipe.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbSwipe.ForeColor = System.Drawing.Color.White;
             this.lbSwipe.Location = new System.Drawing.Point(499, 31);
             this.lbSwipe.Name = "lbSwipe";
             this.lbSwipe.Size = new System.Drawing.Size(102, 23);
@@ -197,6 +206,7 @@
             // 
             this.labelX7.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX7.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labelX7.ForeColor = System.Drawing.Color.White;
             this.labelX7.Location = new System.Drawing.Point(672, 31);
             this.labelX7.Name = "labelX7";
             this.labelX7.Size = new System.Drawing.Size(99, 23);
@@ -210,6 +220,7 @@
             // 
             this.labelX3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX3.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labelX3.ForeColor = System.Drawing.Color.White;
             this.labelX3.Location = new System.Drawing.Point(403, 31);
             this.labelX3.Name = "labelX3";
             this.labelX3.Size = new System.Drawing.Size(102, 23);
@@ -223,6 +234,7 @@
             // 
             this.lbTime.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lbTime.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbTime.ForeColor = System.Drawing.Color.White;
             this.lbTime.Location = new System.Drawing.Point(154, 31);
             this.lbTime.Name = "lbTime";
             this.lbTime.Size = new System.Drawing.Size(193, 23);
@@ -236,6 +248,7 @@
             // 
             this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labelX1.ForeColor = System.Drawing.Color.White;
             this.labelX1.Location = new System.Drawing.Point(58, 31);
             this.labelX1.Name = "labelX1";
             this.labelX1.Size = new System.Drawing.Size(90, 23);
@@ -256,7 +269,7 @@
             // 
             this.splitContainer2.Panel2.Controls.Add(this.peopleIDCard1);
             this.splitContainer2.Size = new System.Drawing.Size(934, 303);
-            this.splitContainer2.SplitterDistance = 465;
+            this.splitContainer2.SplitterDistance = 464;
             this.splitContainer2.SplitterWidth = 1;
             this.splitContainer2.TabIndex = 1;
             // 
@@ -268,7 +281,7 @@
             this.pbCaptrue.Image = global::IMS.Properties.Resources.暂无图片;
             this.pbCaptrue.Location = new System.Drawing.Point(0, 0);
             this.pbCaptrue.Name = "pbCaptrue";
-            this.pbCaptrue.Size = new System.Drawing.Size(465, 303);
+            this.pbCaptrue.Size = new System.Drawing.Size(464, 303);
             this.pbCaptrue.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbCaptrue.TabIndex = 0;
             this.pbCaptrue.TabStop = false;
@@ -286,6 +299,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::IMS.Properties.Resources.背景2;
             this.ClientSize = new System.Drawing.Size(934, 441);
             this.Controls.Add(this.splitContainer1);
             this.DoubleBuffered = true;

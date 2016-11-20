@@ -125,6 +125,7 @@ namespace IMS.Config
 
                 MainForm.Instance.LoadParams();
                 MainForm.Instance.LoadSwipeMode();
+                
                 MessageBox.Show("保存成功");
             }
             catch (System.Exception ex)
