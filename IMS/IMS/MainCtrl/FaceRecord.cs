@@ -89,16 +89,17 @@ namespace IMS.MainCtrl
                 }
                 else
                 {
-                    List<Maticsoft.Model.SMT_CARD_INFO> cardList = cardBll.GetModelList("CARD_NO='" + _peopleRecord.CardNo + "'");
+                    List<Maticsoft.Model.SMT_CARD_INFO> cardList = cardBll.GetModelList("CARD_WG_NO='" + _peopleRecord.CardNo + "'");
                     if (cardList!=null&&cardList.Count>0)
                     {
-                        List<Maticsoft.Model.SMT_STAFF_CARD> scardList = scardBll.GetModelList("CARD_ID=" + cardList[0].CARD_NO + "");
+                        List<Maticsoft.Model.SMT_STAFF_CARD> scardList = scardBll.GetModelList("CARD_ID=" + cardList[0].ID );
                         if (scardList != null && scardList.Count > 0)
                         {
                             Maticsoft.Model.SMT_STAFF_INFO staffInfo = staffBll.GetModel(scardList[0].STAFF_ID);
                             idcard.Address = staffInfo.ADDRESS;
                             idcard.Birth = staffInfo.BIRTHDAY.Value.ToString("yyyy-MM-dd HH:mm:ss");
                             idcard.Nation = staffInfo.NATION;
+                            idcard.Id = staffInfo.CER_NO;
                             switch (staffInfo.SEX)
                             {
                                 case 0:

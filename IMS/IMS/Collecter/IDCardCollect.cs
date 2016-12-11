@@ -108,6 +108,9 @@ namespace IMS.Collecter
                         {
                             if (lastIDCard == currentIDCard.Id && DateTime.Now.AddSeconds(-5) < lastDateTime)
                             {
+                                FaceCollect.StaffInfo = null;
+                                FaceCollect.IdCard = null;
+                                FaceCollect.CurrentFacePic = "";
                                 return;
                             }
                         }
@@ -135,6 +138,7 @@ namespace IMS.Collecter
                                             }
                                             FaceCollect.CardType = 1;
                                             FaceCollect.StaffInfo = staffList[0];
+                                            FaceCollect.IdCard = currentIDCard;
                                             FaceCollect.CurrentFacePic = FaceCollect.StaffFacePath + staffList[0].ID + ".jpg";
                                             mlog.Info("通过身份证识别人员：" + staffList[0].REAL_NAME);
 

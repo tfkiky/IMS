@@ -220,21 +220,19 @@ namespace IMS
                 accessCollect.Start();
                 accessCollect.AccessEvent += accessCollect_AccessEvent;
                 //splash.SetText("初始化身份证读卡器连接，请稍后");
-                //bRet = idCardCollect.Start();
+                bRet = idCardCollect.Start();
                 if (!bRet)
                 {
                     //ClientMainForm.Instance.LoadCtrlState(false);
                     splash.SetText("身份证读卡器连接失败，请检查读卡器连接");
-                    return;
                 }
                 idCardCollect.IDCardEvent += idCardCollect_IDCardEvent;
                 //splash.SetText("初始化人脸识别，请稍后");
-                //bRet = faceCollect.Start(iFaceMode, iSwipeMode, iThreshold, iBlackMode);
+                bRet = faceCollect.Start(iFaceMode, iSwipeMode, iThreshold, iBlackMode);
                 if (!bRet)
                 {
                     //ClientMainForm.Instance.LoadCtrlState(false);
                     splash.SetText("人脸识别连接失败，请检查加密狗连接");
-                    return;
                 }
                 faceCollect.ValidateEvent += faceCollect_ValidateEvent;
                 //splash.SetText("初始化完成");
