@@ -57,6 +57,22 @@ namespace IMS
             get { return isDBConn; }
             set { isDBConn = value; }
         }
+
+        private bool isIDCardConn = false;
+
+        public bool IsIDCardConn
+        {
+            get { return isIDCardConn; }
+            set { isIDCardConn = value; }
+        }
+
+        private bool isFaceKeyConn = false;
+
+        public bool IsFaceKeyConn
+        {
+            get { return isFaceKeyConn; }
+            set { isFaceKeyConn = value; }
+        }
         private Maticsoft.BLL.IMS_FACE_CAMERA faceCameraBll = new Maticsoft.BLL.IMS_FACE_CAMERA();
         private Maticsoft.Model.IMS_FACE_CAMERA faceCamera;
 
@@ -180,11 +196,10 @@ namespace IMS
             try
             {
                 Maticsoft.DBUtility.DbHelperSQL.connectionString = SysConfigClass.GetSqlServerConnectString();
-                //splash.SetText("正在检查数据库连接，请稍后");
+                splash.SetText("正在检查数据库连接，请稍后");
                 bool bRet = SysConfigClass.TestDBConn();
                 if (!bRet)
                 {
-                    //ClientMainForm.Instance.LoadConnState(false);
                     splash.SetText("数据库连接失败，请检查网络或数据库配置");
                     isDBConn = false;
                 }
@@ -192,55 +207,57 @@ namespace IMS
                 {
                     isDBConn = true;
                 }
-                //splash.SetText("正在检查门禁控制器连接，请稍后");
+                splash.SetText("正在检查门禁控制器连接，请稍后");
                 bRet = SysConfigClass.TestController();
                 if (!bRet)
                 {
-                    //ClientMainForm.Instance.LoadCtrlState(false);
                     splash.SetText("门禁控制器连接失败，请检查门禁控制器配置");
                     isCtrlConn = false;
                 }
                 else
                     isCtrlConn = true;
-                //splash.SetText("正在检查摄像机连接，请稍后");
+                splash.SetText("正在检查摄像机连接，请稍后");
                 bRet = SysConfigClass.TestCamera();
                 if (!bRet)
                 {
-                    //ClientMainForm.Instance.LoadCtrlState(false);
                     splash.SetText("摄像机连接失败，请检查摄像机配置");
                     isCamConn = false;
                 }
                 else
                     isCamConn = true;
-                //ClientMainForm.Instance.LoadConnState(true);
                 LoadDeviceState();
                 LoadParams();
                 LoadCamera();
-                LoadSwipeMode();
                 accessCollect.Start();
                 accessCollect.AccessEvent += accessCollect_AccessEvent;
-                //splash.SetText("初始化身份证读卡器连接，请稍后");
+                splash.SetText("初始化身份证读卡器连接，请稍后");
                 bRet = idCardCollect.Start();
                 if (!bRet)
                 {
-                    //ClientMainForm.Instance.LoadCtrlState(false);
                     splash.SetText("身份证读卡器连接失败，请检查读卡器连接");
+                    isIDCardConn = false;
                 }
+                else
+                    isIDCardConn = true;
+
                 idCardCollect.IDCardEvent += idCardCollect_IDCardEvent;
-                //splash.SetText("初始化人脸识别，请稍后");
+                splash.SetText("初始化人脸识别，请稍后");
                 bRet = faceCollect.Start(iFaceMode, iSwipeMode, iThreshold, iBlackMode);
                 if (!bRet)
                 {
-                    //ClientMainForm.Instance.LoadCtrlState(false);
                     splash.SetText("人脸识别连接失败，请检查加密狗连接");
+                    isFaceKeyConn = false;
                 }
+                else
+                    isFaceKeyConn = false;
                 faceCollect.ValidateEvent += faceCollect_ValidateEvent;
-                //splash.SetText("初始化完成");
+                splash.SetText("初始化完成");
                 Thread.Sleep(2000);
                 splash.Close();
             }
             catch(Exception ex){
                 splash.Close();
+                mlog.Error(ex);
             }
         }
 
@@ -259,31 +276,12 @@ namespace IMS
 
         public void LoadDeviceState()
         {
-            deviceState1.LoadState(isDBConn, isCamConn, isCtrlConn, isCarConn);
-        }
-
-        public void LoadSwipeMode()
-        {
-            try
-            {
-                if (iSwipeMode == 0)
-                {
-                    idCardCollect.IDCardEvent -= idCardCollect_IDCardEvent;
-                    accessCollect.AccessEvent += accessCollect_AccessEvent;
-                }
-                else
-                {
-
-                    accessCollect.AccessEvent -= accessCollect_AccessEvent;
-                    idCardCollect.IDCardEvent += idCardCollect_IDCardEvent;
-                }
-            }
-            catch { }
+            deviceState1.LoadState(isDBConn, isCamConn, isCtrlConn, isCarConn,isIDCardConn);
         }
 
         void idCardCollect_IDCardEvent(object sender, IDCardEventArgs e)
         {
-            if(e.IDCard!=null)
+            if (e.IDCard != null)
             {
                 compareInfo1.LoadIDInfo(e.IDCard);
                 e.IDCard.PhotoFile = FaceCollect.FaceWhiteList[(int)e.StaffInfo.ID];

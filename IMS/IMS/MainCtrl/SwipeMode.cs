@@ -24,8 +24,12 @@ namespace IMS.MainCtrl
             {
                 SysConfigClass.SetIMSConfig("IMS_CONFIG", "SwipeMode", "0");
             }
-            else
+            else if (radioButton2.Checked)
+            {
                 SysConfigClass.SetIMSConfig("IMS_CONFIG", "SwipeMode", "1");
+            }
+            else
+                SysConfigClass.SetIMSConfig("IMS_CONFIG", "SwipeMode", "2");
 
             this.Close();
         }
@@ -36,8 +40,13 @@ namespace IMS.MainCtrl
             {
                 radioButton1.Checked = true;
             }
-            else
+            else if (int.Parse(SysConfigClass.GetIMSConfig("IMS_CONFIG", "SwipeMode")) == 1)
+            {
                 radioButton2.Checked = true;
+            }
+            else
+                radioButton3.Checked = true;
+
         }
     }
 }

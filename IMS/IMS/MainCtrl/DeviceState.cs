@@ -16,7 +16,7 @@ namespace IMS.MainCtrl
             InitializeComponent();
         }
 
-        public void LoadState(bool isDBConn, bool isCamConn, bool isCtrlConn, bool isCarConn)
+        public void LoadState(bool isDBConn, bool isCamConn, bool isCtrlConn, bool isCarConn,bool isIDCardConn)
         {
             if(isDBConn)
             {
@@ -42,7 +42,13 @@ namespace IMS.MainCtrl
             }
             else
                 pictureBox7.Image = Properties.Resources.LED红;
-               
+
+            if (isIDCardConn)
+            {
+                pictureBox9.Image = Properties.Resources.LED绿;
+            }
+            else
+                pictureBox9.Image = Properties.Resources.LED红;
         }
     }
 }

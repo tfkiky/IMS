@@ -8,12 +8,13 @@ using System.Text;
 using System.Windows.Forms;
 using IMS.Common.Config;
 using IMS.MainCtrl;
+using log4net;
 
 namespace IMS.Config
 {
     public partial class ValidateModeConfig : UserControl
     {
-
+        private ILog mlog = LogManager.GetLogger("ValidateModeConfig");
         public ValidateModeConfig()
         {
             InitializeComponent();
@@ -64,18 +65,10 @@ namespace IMS.Config
                 {
                     cbBlackList.Checked = false;
                 }
-                if (MainForm.Instance.ISwipeMode == 0)
-                {
-                    //rbAccessMode.Checked = true;
-                }
-                else
-                {
-                    //rbIDCardMode.Checked = true;
-                }
             }
             catch (System.Exception ex)
             {
-            	
+                mlog.Error(ex);
             }
            
         }
@@ -90,13 +83,6 @@ namespace IMS.Config
                 }
                 else
                     SysConfigClass.SetIMSConfig("IMS_CONFIG", "IsBlackMode", "1");
-
-                //if (rbAccessMode.Checked)
-                //{
-                //    SysConfigClass.SetIMSConfig("IMS_CONFIG", "SwipeMode", "0");
-                //}
-                //else
-                //    SysConfigClass.SetIMSConfig("IMS_CONFIG", "SwipeMode", "1");
 
                 if (radioButton1.Checked)
                 {
@@ -124,13 +110,12 @@ namespace IMS.Config
                 SysConfigClass.SetIMSConfig("FACE_1_LN", "DELETETICK", tbDeleteTick.Text);
 
                 MainForm.Instance.LoadParams();
-                MainForm.Instance.LoadSwipeMode();
                 
                 MessageBox.Show("保存成功");
             }
             catch (System.Exception ex)
             {
-            	
+                mlog.Error(ex);
             }
            
         }

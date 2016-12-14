@@ -9,11 +9,14 @@ using System.Windows.Forms;
 using IMS.Common.Database;
 using System.Data.SqlClient;
 using IMS.Common.Config;
+using log4net;
 
 namespace IMS.Config
 {
     public partial class DBConfig : UserControl
     {
+        private ILog mlog = LogManager.GetLogger("DBConfig");
+
         public DBConfig()
         {
             InitializeComponent();
@@ -107,6 +110,7 @@ namespace IMS.Config
             catch (Exception ex)
             {
                 lbMsg.Text = "测试连接异常，" + ex.Message + "！";
+                mlog.Error(ex);
             }
         }
 
@@ -136,6 +140,7 @@ namespace IMS.Config
                     {
                         MainForm.Instance.IsDBConn = false;
                         MainForm.Instance.LoadDeviceState();
+                        mlog.Error(ex);
                     }
                   
                 }

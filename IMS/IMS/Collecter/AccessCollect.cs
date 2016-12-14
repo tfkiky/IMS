@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 
 namespace IMS.Collecter
 {
@@ -14,8 +15,12 @@ namespace IMS.Collecter
     {
         private ILog mlog = LogManager.GetLogger("AccessCollect");
 
+        private System.Threading.Timer timer;
+        Maticsoft.BLL.SMT_CARD_INFO cardBll = new Maticsoft.BLL.SMT_CARD_INFO();
+        Maticsoft.BLL.SMT_STAFF_CARD scardBll = new Maticsoft.BLL.SMT_STAFF_CARD();
         private Maticsoft.BLL.SMT_STAFF_INFO staffBll = new Maticsoft.BLL.SMT_STAFF_INFO();
         private List<Maticsoft.Model.SMT_STAFF_INFO> staffList = new List<Maticsoft.Model.SMT_STAFF_INFO>();
+        private static Maticsoft.BLL.SMT_CONTROLLER_INFO ctrlBll = new Maticsoft.BLL.SMT_CONTROLLER_INFO();
         Maticsoft.BLL.SMT_CARD_RECORDS recordBll = new Maticsoft.BLL.SMT_CARD_RECORDS();
         List<Maticsoft.Model.SMT_CARD_RECORDS> recordList ;
         private AccessReader accessReader = null;
@@ -68,15 +73,75 @@ namespace IMS.Collecter
             faceDoorID = int.Parse(SysConfigClass.GetIMSConfig("IMS_CONFIG", "Door"));
             faceControllerID = int.Parse(SysConfigClass.GetIMSConfig("IMS_CONFIG", "Controller"));
 
-            recordList = recordBll.GetModelList(" DOOR_ID="+AccessCollect.Instance.FaceDoorID+" ORDER BY  ID DESC ");
-            if (recordList != null && recordList.Count > 0)
-            {
-                lastAccessIndex = recordList[0].ID;
-            }
-            accessReader = new AccessReader();
-            accessReader.DataRead += new DataReadHandler(dataReader_DataRead);
-            accessReader.start();
+            //recordList = recordBll.GetModelList(" DOOR_ID="+AccessCollect.Instance.FaceDoorID+" ORDER BY  ID DESC ");
+            //if (recordList != null && recordList.Count > 0)
+            //{
+            //    lastAccessIndex = recordList[0].ID;
+            //}
+            timer = new System.Threading.Timer(new TimerCallback(CollectAccess), null, 1000, 1000);
+            //accessReader = new AccessReader();
+            //accessReader.DataRead += new DataReadHandler(dataReader_DataRead);
+            //accessReader.start();
             bStarted = true;
+        }
+
+        private void CollectAccess(object state)
+        {
+            if ((MainForm.Instance.ISwipeMode == 0 || MainForm.Instance.ISwipeMode == 2))
+            {
+                using (IAccessCore acc = new WGAccess())
+                {
+                    try
+                    {
+                        Maticsoft.Model.SMT_CONTROLLER_INFO _ctrlr = ctrlBll.GetModel(faceControllerID);
+                        Maticsoft.Model.SMT_CARD_RECORDS modelRecord = new Maticsoft.Model.SMT_CARD_RECORDS();
+                        Controller c = ControllerHelper.ToController(_ctrlr);
+                        if (acc.BeginReadRecord(c))
+                        {
+                            while (true)
+                            {
+                                ControllerState record = acc.ReadNextRecord();
+                                if (record == null || record.recordType == RecordType.NoRecord)
+                                {
+                                    acc.EndReadRecord();
+                                    mlog.Info("记录读取完毕：" + c.sn);
+                                    break;
+                                }
+                                modelRecord.IS_ALLOW = record.isAllowValid;
+                                modelRecord.RECORD_DATE = record.recordTime;
+                                modelRecord.IS_ENTER = record.isEnterDoor;
+                                modelRecord.CARD_NO = record.cardOrNoNumber;
+
+                                List<Maticsoft.Model.SMT_CARD_INFO> cardList = cardBll.GetModelList("CARD_WG_NO='" + modelRecord.CARD_NO + "'");
+                                if (cardList != null && cardList.Count > 0)
+                                {
+                                    List<Maticsoft.Model.SMT_STAFF_CARD> scardList = scardBll.GetModelList("CARD_ID=" + cardList[0].ID);
+                                    if (scardList != null && scardList.Count > 0)
+                                    {
+                                        Maticsoft.Model.SMT_STAFF_INFO staffInfo = staffBll.GetModel(scardList[0].STAFF_ID);
+                                        if (FaceCollect.FaceWhiteList != null && FaceCollect.FaceWhiteList.ContainsKey((int)staffInfo.ID))
+                                        {
+                                            FaceCollect.CurrentFacePic = FaceCollect.FaceWhiteList[(int)staffInfo.ID];
+                                            FaceCollect.StaffInfo = staffList[0];
+                                            FaceCollect.CardRecord = modelRecord;
+                                            FaceCollect.CardType = 0;
+                                            if (AccessEvent != null)
+                                            {
+                                                AccessEvent(this, new AccessEventArgs(staffInfo, modelRecord));
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        
+                    }
+                    catch (Exception ex)
+                    {
+                        mlog.Error(ex);
+                    }
+                }
+            }
         }
 
         public void Stop()
@@ -84,8 +149,12 @@ namespace IMS.Collecter
             if (accessReader != null)
             {
                 accessReader.stop();
-                bStarted = false;
             }
+            if (timer!=null)
+            {
+                timer.Dispose();
+            }
+            bStarted = false;
         }
 
         /// <summary>
