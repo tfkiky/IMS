@@ -225,13 +225,12 @@ namespace IMS
                 }
                 else
                     isCamConn = true;
-                LoadDeviceState();
                 LoadParams();
                 LoadCamera();
                 accessCollect.Start();
                 accessCollect.AccessEvent += accessCollect_AccessEvent;
                 splash.SetText("初始化身份证读卡器连接，请稍后");
-                bRet = idCardCollect.Start();
+                //bRet = idCardCollect.Start();
                 if (!bRet)
                 {
                     splash.SetText("身份证读卡器连接失败，请检查读卡器连接");
@@ -242,7 +241,7 @@ namespace IMS
 
                 idCardCollect.IDCardEvent += idCardCollect_IDCardEvent;
                 splash.SetText("初始化人脸识别，请稍后");
-                bRet = faceCollect.Start(iFaceMode, iSwipeMode, iThreshold, iBlackMode);
+                //bRet = faceCollect.Start(iFaceMode, iSwipeMode, iThreshold, iBlackMode);
                 if (!bRet)
                 {
                     splash.SetText("人脸识别连接失败，请检查加密狗连接");
@@ -250,6 +249,7 @@ namespace IMS
                 }
                 else
                     isFaceKeyConn = false;
+                LoadDeviceState();
                 faceCollect.ValidateEvent += faceCollect_ValidateEvent;
                 splash.SetText("初始化完成");
                 Thread.Sleep(2000);
@@ -285,6 +285,7 @@ namespace IMS
             {
                 compareInfo1.LoadIDInfo(e.IDCard);
                 e.IDCard.PhotoFile = FaceCollect.FaceWhiteList[(int)e.StaffInfo.ID];
+                compareInfo1.LoadStaffInfo(e.IDCard.PhotoFile);
                 ClientMainForm.Instance.LoadIDCardInfo(e.IDCard);
                 peopleVehicleVideo1.LoadIDCardResult(e.StaffInfo, e.IsAllow);
             }
@@ -318,8 +319,8 @@ namespace IMS
                 idcard.Address = e.StaffInfo.ADDRESS;
                 idcard.Nation = e.StaffInfo.NATION;
                 idcard.PhotoFile = FaceCollect.FaceWhiteList[(int)e.StaffInfo.ID];
-
                 compareInfo1.LoadStaffInfo(idcard.PhotoFile);
+
                 ClientMainForm.Instance.LoadIDCardInfo(idcard);
                 peopleVehicleVideo1.LoadAccessResult(e.StaffInfo, e.CardRecord);
             }

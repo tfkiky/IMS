@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using IMS.Collecter;
 using log4net;
+using System.Threading;
 
 namespace IMS
 {
@@ -50,7 +51,7 @@ namespace IMS
         public void LoadStaffInfo(string staffPic)
         {
             pbLocalPhoto.ImageLocation = staffPic;
-
+            //pbRealPhoto.Image = Properties.Resources.暂无图片;
         }
 
         public void LoadAccessInfo(Maticsoft.Model.SMT_STAFF_INFO staffInfo, Maticsoft.Model.SMT_CARD_RECORDS cardRecord)
@@ -104,5 +105,6 @@ namespace IMS
 
             }));
         }
+
     }
 }

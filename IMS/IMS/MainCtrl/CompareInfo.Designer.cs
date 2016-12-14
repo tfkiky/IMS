@@ -32,6 +32,9 @@
             this.labelX4 = new DevComponents.DotNetBar.LabelX();
             this.labelX3 = new DevComponents.DotNetBar.LabelX();
             this.labelX2 = new DevComponents.DotNetBar.LabelX();
+            this.pbBlack = new System.Windows.Forms.PictureBox();
+            this.pbLocalPhoto = new System.Windows.Forms.PictureBox();
+            this.pbRealPhoto = new System.Windows.Forms.PictureBox();
             this.tbPassTime = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.tbIDCard = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.tbAddress = new DevComponents.DotNetBar.Controls.TextBoxX();
@@ -48,9 +51,6 @@
             this.labelX13 = new DevComponents.DotNetBar.LabelX();
             this.labelX14 = new DevComponents.DotNetBar.LabelX();
             this.labelX12 = new DevComponents.DotNetBar.LabelX();
-            this.pbBlack = new System.Windows.Forms.PictureBox();
-            this.pbLocalPhoto = new System.Windows.Forms.PictureBox();
-            this.pbRealPhoto = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -98,7 +98,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.labelX14);
             this.splitContainer1.Panel2.Controls.Add(this.labelX12);
             this.splitContainer1.Size = new System.Drawing.Size(509, 465);
-            this.splitContainer1.SplitterDistance = 226;
+            this.splitContainer1.SplitterDistance = 225;
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -140,6 +140,39 @@
             this.labelX2.Size = new System.Drawing.Size(75, 15);
             this.labelX2.TabIndex = 0;
             this.labelX2.Text = "实时照片";
+            // 
+            // pbBlack
+            // 
+            this.pbBlack.BackgroundImage = global::IMS.Properties.Resources.暂无图片;
+            this.pbBlack.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pbBlack.Location = new System.Drawing.Point(333, 24);
+            this.pbBlack.Name = "pbBlack";
+            this.pbBlack.Size = new System.Drawing.Size(150, 198);
+            this.pbBlack.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbBlack.TabIndex = 0;
+            this.pbBlack.TabStop = false;
+            // 
+            // pbLocalPhoto
+            // 
+            this.pbLocalPhoto.BackgroundImage = global::IMS.Properties.Resources.暂无图片;
+            this.pbLocalPhoto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pbLocalPhoto.Location = new System.Drawing.Point(175, 24);
+            this.pbLocalPhoto.Name = "pbLocalPhoto";
+            this.pbLocalPhoto.Size = new System.Drawing.Size(150, 198);
+            this.pbLocalPhoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbLocalPhoto.TabIndex = 0;
+            this.pbLocalPhoto.TabStop = false;
+            // 
+            // pbRealPhoto
+            // 
+            this.pbRealPhoto.BackgroundImage = global::IMS.Properties.Resources.暂无图片;
+            this.pbRealPhoto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pbRealPhoto.Location = new System.Drawing.Point(17, 24);
+            this.pbRealPhoto.Name = "pbRealPhoto";
+            this.pbRealPhoto.Size = new System.Drawing.Size(150, 198);
+            this.pbRealPhoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbRealPhoto.TabIndex = 0;
+            this.pbRealPhoto.TabStop = false;
             // 
             // tbPassTime
             // 
@@ -348,39 +381,6 @@
             this.labelX12.Size = new System.Drawing.Size(66, 23);
             this.labelX12.TabIndex = 27;
             this.labelX12.Text = "性      别：";
-            // 
-            // pbBlack
-            // 
-            this.pbBlack.BackgroundImage = global::IMS.Properties.Resources.暂无图片;
-            this.pbBlack.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pbBlack.Location = new System.Drawing.Point(333, 24);
-            this.pbBlack.Name = "pbBlack";
-            this.pbBlack.Size = new System.Drawing.Size(150, 198);
-            this.pbBlack.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbBlack.TabIndex = 0;
-            this.pbBlack.TabStop = false;
-            // 
-            // pbLocalPhoto
-            // 
-            this.pbLocalPhoto.BackgroundImage = global::IMS.Properties.Resources.暂无图片;
-            this.pbLocalPhoto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pbLocalPhoto.Location = new System.Drawing.Point(175, 24);
-            this.pbLocalPhoto.Name = "pbLocalPhoto";
-            this.pbLocalPhoto.Size = new System.Drawing.Size(150, 198);
-            this.pbLocalPhoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbLocalPhoto.TabIndex = 0;
-            this.pbLocalPhoto.TabStop = false;
-            // 
-            // pbRealPhoto
-            // 
-            this.pbRealPhoto.BackgroundImage = global::IMS.Properties.Resources.暂无图片;
-            this.pbRealPhoto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pbRealPhoto.Location = new System.Drawing.Point(17, 24);
-            this.pbRealPhoto.Name = "pbRealPhoto";
-            this.pbRealPhoto.Size = new System.Drawing.Size(150, 198);
-            this.pbRealPhoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbRealPhoto.TabIndex = 0;
-            this.pbRealPhoto.TabStop = false;
             // 
             // CompareInfo
             // 

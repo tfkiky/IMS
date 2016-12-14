@@ -94,6 +94,7 @@ namespace IMS
         public void LoadIDCardInfo(IDCardClass idcard)
         {
             peopleIDCard1.LoadIDCard(idcard);
+            //pbRealPhoto.Image = Properties.Resources.暂无图片;
         }
 
         public void LoadRealPic(string realPic)

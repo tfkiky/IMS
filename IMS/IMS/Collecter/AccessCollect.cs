@@ -87,8 +87,7 @@ namespace IMS.Collecter
 
         private void CollectAccess(object state)
         {
-            if ((MainForm.Instance.ISwipeMode == 0 || MainForm.Instance.ISwipeMode == 2))
-            {
+           
                 using (IAccessCore acc = new WGAccess())
                 {
                     try
@@ -100,48 +99,50 @@ namespace IMS.Collecter
                         {
                             while (true)
                             {
+                                long index = acc.GetControllerReadedIndex(c);
                                 ControllerState record = acc.ReadNextRecord();
+                                index = acc.GetControllerReadedIndex(c);
                                 if (record == null || record.recordType == RecordType.NoRecord)
                                 {
                                     acc.EndReadRecord();
-                                    mlog.Info("记录读取完毕：" + c.sn);
+                                    //mlog.Info("记录读取完毕：" + c.sn);
                                     break;
                                 }
                                 modelRecord.IS_ALLOW = record.isAllowValid;
                                 modelRecord.RECORD_DATE = record.recordTime;
                                 modelRecord.IS_ENTER = record.isEnterDoor;
                                 modelRecord.CARD_NO = record.cardOrNoNumber;
-
-                                List<Maticsoft.Model.SMT_CARD_INFO> cardList = cardBll.GetModelList("CARD_WG_NO='" + modelRecord.CARD_NO + "'");
-                                if (cardList != null && cardList.Count > 0)
+                                if (MainForm.Instance.IFaceMode == 3 || (MainForm.Instance.ISwipeMode == 0 || MainForm.Instance.ISwipeMode == 2))
                                 {
-                                    List<Maticsoft.Model.SMT_STAFF_CARD> scardList = scardBll.GetModelList("CARD_ID=" + cardList[0].ID);
-                                    if (scardList != null && scardList.Count > 0)
+                                    List<Maticsoft.Model.SMT_CARD_INFO> cardList = cardBll.GetModelList("CARD_WG_NO='" + modelRecord.CARD_NO + "'");
+                                    if (cardList != null && cardList.Count > 0)
                                     {
-                                        Maticsoft.Model.SMT_STAFF_INFO staffInfo = staffBll.GetModel(scardList[0].STAFF_ID);
-                                        if (FaceCollect.FaceWhiteList != null && FaceCollect.FaceWhiteList.ContainsKey((int)staffInfo.ID))
+                                        List<Maticsoft.Model.SMT_STAFF_CARD> scardList = scardBll.GetModelList("CARD_ID=" + cardList[0].ID);
+                                        if (scardList != null && scardList.Count > 0)
                                         {
-                                            FaceCollect.CurrentFacePic = FaceCollect.FaceWhiteList[(int)staffInfo.ID];
-                                            FaceCollect.StaffInfo = staffList[0];
-                                            FaceCollect.CardRecord = modelRecord;
-                                            FaceCollect.CardType = 0;
-                                            if (AccessEvent != null)
+                                            Maticsoft.Model.SMT_STAFF_INFO staffInfo = staffBll.GetModel(scardList[0].STAFF_ID);
+                                            if (FaceCollect.FaceWhiteList != null && FaceCollect.FaceWhiteList.ContainsKey((int)staffInfo.ID))
                                             {
-                                                AccessEvent(this, new AccessEventArgs(staffInfo, modelRecord));
+                                                FaceCollect.CurrentFacePic = FaceCollect.FaceWhiteList[(int)staffInfo.ID];
+                                                FaceCollect.StaffInfo = staffInfo;
+                                                FaceCollect.CardRecord = modelRecord;
+                                                FaceCollect.CardType = 0;
+                                                if (AccessEvent != null)
+                                                {
+                                                    AccessEvent(this, new AccessEventArgs(staffInfo, modelRecord));
+                                                }
                                             }
                                         }
                                     }
                                 }
                             }
                         }
-                        
                     }
                     catch (Exception ex)
                     {
                         mlog.Error(ex);
                     }
                 }
-            }
         }
 
         public void Stop()
