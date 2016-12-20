@@ -18,6 +18,7 @@ using IMS.Main;
 using System.Threading;
 using Li.Access.Core;
 using System.Diagnostics;
+using System.IO;
 
 namespace IMS
 {
@@ -101,7 +102,7 @@ namespace IMS
             set { playHandle = value; }
         }
 
-        private FaceCollect faceCollect = new FaceCollect();
+        private FaceCollect faceCollect;
         private AccessCollect accessCollect = new AccessCollect();
         private IDCardCollect idCardCollect = new IDCardCollect();
 
@@ -241,7 +242,8 @@ namespace IMS
 
                 idCardCollect.IDCardEvent += idCardCollect_IDCardEvent;
                 splash.SetText("初始化人脸识别，请稍后");
-                bRet = faceCollect.Start(iFaceMode, iSwipeMode, iThreshold, iBlackMode);
+                faceCollect = new FaceCollect();
+                //bRet = faceCollect.Start(iFaceMode, iSwipeMode, iThreshold, iBlackMode);
                 if (!bRet)
                 {
                     splash.SetText("人脸识别连接失败，请检查加密狗连接");
@@ -284,8 +286,11 @@ namespace IMS
             if (e.IDCard != null)
             {
                 compareInfo1.LoadIDInfo(e.IDCard);
-                e.IDCard.PhotoFile = FaceCollect.FaceWhiteList[(int)e.StaffInfo.ID];
-                compareInfo1.LoadStaffInfo(e.IDCard.PhotoFile);
+                if(File.Exists("./zp.bmp"))
+                {
+                    e.IDCard.PhotoFile = "./zp.bmp";
+                    compareInfo1.LoadStaffInfo(e.IDCard.PhotoFile);
+                }
                 ClientMainForm.Instance.LoadIDCardInfo(e.IDCard);
                 peopleVehicleVideo1.LoadIDCardResult(e.StaffInfo, e.IsAllow);
             }

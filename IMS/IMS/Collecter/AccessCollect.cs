@@ -119,7 +119,7 @@ namespace IMS.Collecter
                                 modelRecord.IS_ENTER = record.isEnterDoor;
                                 modelRecord.CARD_NO = record.cardOrNoNumber;
                                 lastAccessIndex = record.lastRecordIndex;
-                                //mlog.Info("记录读取：" + record.lastRecordIndex);
+                                mlog.Info("记录读取：" + record.lastRecordIndex);
 
                                 if (MainForm.Instance.IFaceMode == 3 || (MainForm.Instance.ISwipeMode == 0 || MainForm.Instance.ISwipeMode == 2))
                                 {
@@ -139,11 +139,10 @@ namespace IMS.Collecter
                                                     FaceCollect.CardRecord = modelRecord;
                                                     FaceCollect.CardType = 0;
                                                 }
-
-                                                if (AccessEvent != null)
-                                                {
-                                                    AccessEvent(this, new AccessEventArgs(staffInfo, modelRecord));
-                                                }
+                                            }
+                                            if (AccessEvent != null)
+                                            {
+                                                AccessEvent(this, new AccessEventArgs(staffInfo, modelRecord));
                                             }
                                         }
                                     }
