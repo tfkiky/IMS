@@ -116,11 +116,20 @@ namespace IMS
                 MessageBox.Show("保存成功");
                 cbCtrl.Enabled = false;
                 cbDoor.Enabled = false;
-                MainForm.Instance.IsCtrlConn = true;
+                bool bRet = SysConfigClass.TestController();
+                if (!bRet)
+                {
+                    MainForm.Instance.IsCtrlConn = true;
+                }
+                else
+                    MainForm.Instance.IsCtrlConn = false;
+
                 MainForm.Instance.LoadDeviceState();
             }
             catch (Exception ex)
             {
+                MainForm.Instance.IsCtrlConn = false;
+                MainForm.Instance.LoadDeviceState();
                 mlog.Error(ex);
             }
 
@@ -128,7 +137,13 @@ namespace IMS
 
         private void btnTest_Click(object sender, EventArgs e)
         {
-            
+            bool bRet = SysConfigClass.TestController();
+            if (!bRet)
+            {
+                tbContent.Text = "测试成功！";
+            }
+            else
+                tbContent.Text = "测试失败！";
         }
 
         private void btnEdit1_Click(object sender, EventArgs e)
@@ -141,39 +156,54 @@ namespace IMS
 
         private void btnSave1_Click(object sender, EventArgs e)
         {
-            
-            Maticsoft.BLL.IMS_FACE_CAMERA cameraBll=new Maticsoft.BLL.IMS_FACE_CAMERA();
-            Maticsoft.Model.IMS_FACE_CAMERA camera=cameraBll.GetModel(1);
-            camera.CameraIP=ipAddressInput1.Value;
-            camera.CameraPort=tbPort.Text;
-            camera.CameraUser=tbUserName.Text;
-            camera.CameraPwd=tbPwd.Text;
-            cameraBll.Update(camera);
-            MainForm.Instance.FaceCamera = camera;
-
-            MessageBox.Show("保存成功");
-
-            MainForm.Instance.CloseCamera();
-            MainForm.Instance.LoadCamera();
-
-            ipAddressInput1.Enabled = false;
-            tbPort.Enabled = false;
-            tbUserName.Enabled = false;
-            tbPwd.Enabled = false;
-            bool bRet = SysConfigClass.TestCamera();
-            if (!bRet)
+            try
             {
-                MainForm.Instance.IsCamConn = true;
-            }
-            else
-                MainForm.Instance.IsCamConn = false;
+                Maticsoft.BLL.IMS_FACE_CAMERA cameraBll = new Maticsoft.BLL.IMS_FACE_CAMERA();
+                Maticsoft.Model.IMS_FACE_CAMERA camera = cameraBll.GetModel(1);
+                camera.CameraIP = ipAddressInput1.Value;
+                camera.CameraPort = tbPort.Text;
+                camera.CameraUser = tbUserName.Text;
+                camera.CameraPwd = tbPwd.Text;
+                cameraBll.Update(camera);
+                MainForm.Instance.FaceCamera = camera;
 
-            MainForm.Instance.LoadDeviceState();
+                MessageBox.Show("保存成功");
+
+                MainForm.Instance.CloseCamera();
+                MainForm.Instance.LoadCamera();
+
+                ipAddressInput1.Enabled = false;
+                tbPort.Enabled = false;
+                tbUserName.Enabled = false;
+                tbPwd.Enabled = false;
+                bool bRet = SysConfigClass.TestCamera();
+                if (!bRet)
+                {
+                    MainForm.Instance.IsCamConn = true;
+                }
+                else
+                    MainForm.Instance.IsCamConn = false;
+
+                MainForm.Instance.LoadDeviceState();
+            }
+            catch (System.Exception ex)
+            {
+                MainForm.Instance.IsCamConn = false;
+                MainForm.Instance.LoadDeviceState();
+                mlog.Error(ex);
+            }
+            
         }
 
         private void btnTest1_Click(object sender, EventArgs e)
         {
-
+            bool bRet = SysConfigClass.TestCamera();
+            if (!bRet)
+            {
+                tbContent2.Text = "测试成功！";
+            }
+            else
+                tbContent2.Text = "测试失败！";
         }
 
         

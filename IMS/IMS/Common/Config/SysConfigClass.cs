@@ -1,4 +1,7 @@
 ﻿using IMS.Common.Database;
+using Li.Access.Core;
+using Li.Access.Core.WGAccesses;
+using SmartAccess.Common.Datas;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -107,9 +110,20 @@ namespace IMS.Common.Config
                 decimal doorid = decimal.Parse(SysConfigClass.GetIMSConfig("IMS_CONFIG", "Door"));
                 Maticsoft.BLL.SMT_DOOR_INFO doorBll = new Maticsoft.BLL.SMT_DOOR_INFO();
                 Maticsoft.Model.SMT_DOOR_INFO door = doorBll.GetModel(doorid);
+
                 if (ctrl != null && door != null)
                 {
-                    return true;
+                    using (IAccessCore acc = new WGAccess())
+                    {
+                        Controller c = ControllerHelper.ToController(ctrl);
+                        ControllerState cs = acc.GetControllerState(c);
+                        if (cs!=null)
+                        {
+                            return true;
+                        }
+                        else
+                            return false;
+                    }
                 }
                 else
                     return false;

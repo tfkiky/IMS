@@ -25,7 +25,7 @@ namespace IMS
             RegistryKey rk = Registry.LocalMachine;
             RegistryKey rk2 = rk.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run");
             rk2.SetValue("IMS", path);
-            rk2.DeleteValue("IMS");
+            //rk2.DeleteValue("IMS");
 
             Application.Run(new MainForm());
             
