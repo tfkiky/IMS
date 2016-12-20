@@ -54,9 +54,9 @@ namespace IMS.Collecter
             get { return faceControllerID; }
             set { faceControllerID = value; }
         }
-        private decimal lastAccessIndex=0;
+        private long lastAccessIndex=0;
 
-        public decimal LastAccessIndex
+        public long LastAccessIndex
         {
             get { return lastAccessIndex; }
             set { lastAccessIndex = value; }
@@ -79,6 +79,7 @@ namespace IMS.Collecter
             //    lastAccessIndex = recordList[0].ID;
             //}
             timer = new System.Threading.Timer(new TimerCallback(CollectAccess), null, 1000, 1000);
+
             //accessReader = new AccessReader();
             //accessReader.DataRead += new DataReadHandler(dataReader_DataRead);
             //accessReader.start();
@@ -99,19 +100,27 @@ namespace IMS.Collecter
                         {
                             while (true)
                             {
-                                long index = acc.GetControllerReadedIndex(c);
-                                ControllerState record = acc.ReadNextRecord();
-                                index = acc.GetControllerReadedIndex(c);
-                                if (record == null || record.recordType == RecordType.NoRecord)
+                                if (lastAccessIndex == 0)
+                                {
+                                    lastAccessIndex = acc.GetControllerReadedIndex(c);
+                                }
+                                ControllerState record = acc.GetControllerRecord(c,0xffffffff);
+                                //ControllerState record = acc.ReadNextRecord();
+                                if (record == null || record.recordType == RecordType.NoRecord||record.lastRecordIndex==lastAccessIndex)
                                 {
                                     acc.EndReadRecord();
                                     //mlog.Info("记录读取完毕：" + c.sn);
                                     break;
                                 }
                                 modelRecord.IS_ALLOW = record.isAllowValid;
+                                modelRecord.IS_ENTER = record.isEnterDoor;
+                                modelRecord.RECORD_INDEX = record.lastRecordIndex;
                                 modelRecord.RECORD_DATE = record.recordTime;
                                 modelRecord.IS_ENTER = record.isEnterDoor;
                                 modelRecord.CARD_NO = record.cardOrNoNumber;
+                                lastAccessIndex = record.lastRecordIndex;
+                                //mlog.Info("记录读取：" + record.lastRecordIndex);
+
                                 if (MainForm.Instance.IFaceMode == 3 || (MainForm.Instance.ISwipeMode == 0 || MainForm.Instance.ISwipeMode == 2))
                                 {
                                     List<Maticsoft.Model.SMT_CARD_INFO> cardList = cardBll.GetModelList("CARD_WG_NO='" + modelRecord.CARD_NO + "'");
@@ -123,10 +132,14 @@ namespace IMS.Collecter
                                             Maticsoft.Model.SMT_STAFF_INFO staffInfo = staffBll.GetModel(scardList[0].STAFF_ID);
                                             if (FaceCollect.FaceWhiteList != null && FaceCollect.FaceWhiteList.ContainsKey((int)staffInfo.ID))
                                             {
-                                                FaceCollect.CurrentFacePic = FaceCollect.FaceWhiteList[(int)staffInfo.ID];
-                                                FaceCollect.StaffInfo = staffInfo;
-                                                FaceCollect.CardRecord = modelRecord;
-                                                FaceCollect.CardType = 0;
+                                                if (MainForm.Instance.IFaceMode != 3)
+                                                {
+                                                    FaceCollect.CurrentFacePic = FaceCollect.FaceWhiteList[(int)staffInfo.ID];
+                                                    FaceCollect.StaffInfo = staffInfo;
+                                                    FaceCollect.CardRecord = modelRecord;
+                                                    FaceCollect.CardType = 0;
+                                                }
+
                                                 if (AccessEvent != null)
                                                 {
                                                     AccessEvent(this, new AccessEventArgs(staffInfo, modelRecord));
@@ -167,7 +180,7 @@ namespace IMS.Collecter
             try
             {
                 recordList = recordBll.GetModelList(" DOOR_ID="+AccessCollect.Instance.FaceDoorID+" ORDER BY  ID DESC ");
-                lastAccessIndex = recordList[0].ID;
+                //lastAccessIndex = recordList[0].ID;
 
                 if (record.STAFF_ID != null)
                 {

@@ -230,7 +230,7 @@ namespace IMS
                 accessCollect.Start();
                 accessCollect.AccessEvent += accessCollect_AccessEvent;
                 splash.SetText("初始化身份证读卡器连接，请稍后");
-                //bRet = idCardCollect.Start();
+                bRet = idCardCollect.Start();
                 if (!bRet)
                 {
                     splash.SetText("身份证读卡器连接失败，请检查读卡器连接");
@@ -241,7 +241,7 @@ namespace IMS
 
                 idCardCollect.IDCardEvent += idCardCollect_IDCardEvent;
                 splash.SetText("初始化人脸识别，请稍后");
-                //bRet = faceCollect.Start(iFaceMode, iSwipeMode, iThreshold, iBlackMode);
+                bRet = faceCollect.Start(iFaceMode, iSwipeMode, iThreshold, iBlackMode);
                 if (!bRet)
                 {
                     splash.SetText("人脸识别连接失败，请检查加密狗连接");
@@ -332,7 +332,7 @@ namespace IMS
             {
                 if (e.Record.CapturePic != null)
                 {
-                    mlog.InfoFormat("抓拍图片：{0}", e.Record.CapturePic);
+                    //mlog.InfoFormat("抓拍图片：{0}", e.Record.CapturePic);
                     compareInfo1.LoadValidateResult(e);
                     ClientMainForm.Instance.LoadValidateResult(e);
                     ClientMainForm.Instance.LoadRealPic(e.Record.CapturePic);
@@ -373,7 +373,7 @@ namespace IMS
                     Maticsoft.Model.IMS_PEOPLE_RECORD record = cell.Tag as Maticsoft.Model.IMS_PEOPLE_RECORD;
                     Bitmap bmp = new Bitmap(recordList.Find(rec => rec.ID == record.ID).OriginPic);
                     bcx.Image = new Bitmap(bmp, 48, 48);
-                    mlog.InfoFormat("加载图片：{0},行{1},列{2}", record.Name, e.RowIndex, e.ColumnIndex);
+                    //mlog.InfoFormat("加载图片：{0},行{1},列{2}", record.Name, e.RowIndex, e.ColumnIndex);
                     bmp.Dispose();
                 }
                 else
@@ -397,7 +397,7 @@ namespace IMS
                     case 0:
                         lbInspectMode.Text = "1:1模式";
                         iThreshold = int.Parse(SysConfigClass.GetIMSConfig("FACE_1_1", "Threshold"));
-                        DoorHelper.SetControlType(DoorControlStyle.Online);
+                        DoorHelper.SetControlType(DoorControlStyle.AlwaysClose);
                         break;
                     case 1:
                         lbInspectMode.Text = "1:N模式";
@@ -432,21 +432,26 @@ namespace IMS
                         lbBlackList.Text = "";
                         break;
                 }
-                if (iFaceMode!=3)
+                if (iFaceMode != 3)
                 {
-                switch (iSwipeMode)
-                {
-                    case 0:
-                        lbSwipeMode.Text = "+门禁刷卡";
-                        break;
-                    case 1:
-                        lbSwipeMode.Text = "+身份证刷卡";
-                        break;
-                    default:
-                        lbSwipeMode.Text = "+门禁刷卡";
-                        break;
+                    switch (iSwipeMode)
+                    {
+                        case 0:
+                            lbSwipeMode.Text = "+门禁刷卡";
+                            break;
+                        case 1:
+                            lbSwipeMode.Text = "+身份证刷卡";
+                            break;
+                        case 2:
+                            lbSwipeMode.Text = "+门禁/身份证刷卡";
+                            break;
+                        default:
+                            lbSwipeMode.Text = "+门禁刷卡";
+                            break;
+                    }
                 }
-                }
+                else
+                    lbSwipeMode.Text = "";
 
                 int faceCameraID = int.Parse(SysConfigClass.GetIMSConfig("IMS_CONFIG", "FaceCamera"));
                 faceCamera = faceCameraBll.GetModelList("ID=" + faceCameraID)[0];
@@ -488,7 +493,7 @@ namespace IMS
                     //if (recordList.Count==0||recordList.Last().ID != record.ID)
                     //{
                         recordList.Add(record);
-                        mlog.InfoFormat("新进记录：{0}", record.Name);
+                        //mlog.InfoFormat("新进记录：{0}", record.Name);
                     //}
                     LoadPerson();
 
@@ -514,7 +519,7 @@ namespace IMS
                         {
                             cell.Value = recordList[i * dataGridViewX2.ColumnCount + j].Name;
                             cell.Tag = recordList[i * dataGridViewX2.ColumnCount + j];
-                            mlog.InfoFormat("加载记录：{0},行{1},列{2}", cell.Value,i,j);
+                            //mlog.InfoFormat("加载记录：{0},行{1},列{2}", cell.Value,i,j);
                         }
 
                     }

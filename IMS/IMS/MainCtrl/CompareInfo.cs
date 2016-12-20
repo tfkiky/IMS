@@ -33,6 +33,8 @@ namespace IMS
                    //lbValue.Text = e.Record.Similarity.ToString();
 
                    Maticsoft.BLL.SMT_ORG_INFO orgBll = new Maticsoft.BLL.SMT_ORG_INFO();
+                   if (!string.IsNullOrEmpty(e.Record.Depart))
+                   {
                    List<Maticsoft.Model.SMT_ORG_INFO> orgList = orgBll.GetModelList("ID=" + e.Record.Depart);
                    if (orgList != null && orgList.Count > 0)
                    {
@@ -40,6 +42,7 @@ namespace IMS
                    }
                    else
                        tbDepart.Text = "";
+                   }
                }));
             }
             catch (Exception ex)

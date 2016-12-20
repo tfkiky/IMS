@@ -245,9 +245,8 @@ namespace IMS.Collecter
         {
             try
             {
-                if (isFaceLoad)
+                if (isFaceLoad && !string.IsNullOrEmpty(currentFacePic))
                 {
-
                     string capturePic = GetCameraPic();
                     string localPic = currentFacePic;
                     string blackPic = "";
@@ -315,6 +314,7 @@ namespace IMS.Collecter
                                 faceValue = FaceService.face_comp_feature(feature1, feature2);
                                 mlog.InfoFormat("1:1验证得分：{0},验证目标{1},{2},{3}", faceValue, staffInfo.REAL_NAME, localPic, capturePic);
                             }
+                            else return;
                             break;
                         case 1: ///1：N验证
                             if (faceWhiteList != null)
@@ -339,6 +339,9 @@ namespace IMS.Collecter
                         case 2:
 
                             break;
+                        case 3:
+
+                            break;
                     }
 
                     tagFaceCoord[] position = new tagFaceCoord[15];
@@ -350,7 +353,7 @@ namespace IMS.Collecter
                         //record.FacePosition += ";" + position[i].x1 + "," + position[i].x2 + "," + position[i].y1 + "," + position[i].y2 + ";";
                     }
 
-                    if (faceValue > MainForm.Instance.IThreshold && !string.IsNullOrEmpty(localPic))
+                    if (faceValue > MainForm.Instance.IThreshold && !string.IsNullOrEmpty(localPic) && !string.IsNullOrEmpty(capturePic))
                     {
                         if (ValidateEvent != null)
                         {
@@ -461,7 +464,7 @@ namespace IMS.Collecter
             {
                 if(FaceService.face_exist(sBmpPicFileName)==1)
                 {
-                    mlog.Info("当前图像中存在人脸！");
+                    //mlog.Info("当前图像中存在人脸！");
                     return sBmpPicFileName;
                 }
                 else

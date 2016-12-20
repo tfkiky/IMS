@@ -64,10 +64,10 @@ namespace IMS
             }
             else
             {
-                if (!cardRecord.IS_ALLOW)
-                {
-                    lbResult.Text = string.Format("{0}无权限,禁止通行！",staffInfo.REAL_NAME);
-                }
+                //if (!cardRecord.IS_ALLOW)
+                //{
+                //    lbResult.Text = string.Format("{0}无权限,禁止通行！",staffInfo.REAL_NAME);
+                //}
 
             }
             
@@ -81,10 +81,10 @@ namespace IMS
             }
             else
             {
-                if (!isAllow)
-                {
-                    lbResult.Text = string.Format("{0}无权限,禁止通行！", staffInfo.REAL_NAME);
-                }
+                //if (!isAllow)
+                //{
+                //    lbResult.Text = string.Format("{0}无权限,禁止通行！", staffInfo.REAL_NAME);
+                //}
 
             }
 
