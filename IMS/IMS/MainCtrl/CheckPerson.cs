@@ -37,10 +37,10 @@ namespace IMS.MainCtrl
                 strSql = new StringBuilder("1=1");
                 
                 dataGridView.Rows.Clear();
-                if (!string.IsNullOrEmpty(tbName.Text))
-                {
-                    strSql.Append(" AND REAL_NAME LIKE '%" + tbName.Text + "%'");
-                }
+                //if (!string.IsNullOrEmpty(tbName.Text))
+                //{
+                //    strSql.Append(" AND REAL_NAME LIKE '%" + tbName.Text + "%'");
+                //}
                 recordRowsCount = staffBll.GetRecordCount(strSql.ToString());
                 pageCtrlRecords.TotalRecords = recordRowsCount;
                 pageCtrlRecords.CurrentPage = 1;
@@ -157,6 +157,25 @@ namespace IMS.MainCtrl
             {
                 Maticsoft.Model.SMT_STAFF_INFO record = dataGridView.SelectedRows[0].Tag as Maticsoft.Model.SMT_STAFF_INFO;
 
+            }
+        }
+
+        private void buttonX20_Click(object sender, EventArgs e)
+        {
+            ButtonX btn = sender as ButtonX;
+            textBoxX1.Text += btn.Text;
+        }
+
+        private void buttonX27_Click(object sender, EventArgs e)
+        {
+            textBoxX1.Text = "";
+        }
+
+        private void buttonX26_Click(object sender, EventArgs e)
+        {
+            if (textBoxX1.Text.Length > 0)
+            {
+                textBoxX1.Text = textBoxX1.Text.Substring(0, textBoxX1.Text.Length - 1);
             }
         }
 

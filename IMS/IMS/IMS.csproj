@@ -96,6 +96,10 @@
     <Compile Include="Config\DBConfig.Designer.cs">
       <DependentUpon>DBConfig.cs</DependentUpon>
     </Compile>
+    <Compile Include="Config\UIConfig.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Config\UIConfig.Designer.cs" />
     <Compile Include="Config\ValidateModeConfig.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -227,6 +231,7 @@
     <EmbeddedResource Include="Config\DBConfig.resx">
       <DependentUpon>DBConfig.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Config\UIConfig.resx" />
     <EmbeddedResource Include="Config\ValidateModeConfig.resx">
       <DependentUpon>ValidateModeConfig.cs</DependentUpon>
     </EmbeddedResource>

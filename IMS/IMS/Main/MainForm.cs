@@ -231,7 +231,7 @@ namespace IMS
                 accessCollect.Start();
                 accessCollect.AccessEvent += accessCollect_AccessEvent;
                 splash.SetText("初始化身份证读卡器连接，请稍后");
-                bRet = idCardCollect.Start();
+                //bRet = idCardCollect.Start();
                 if (!bRet)
                 {
                     splash.SetText("身份证读卡器连接失败，请检查读卡器连接");
