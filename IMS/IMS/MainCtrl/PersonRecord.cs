@@ -27,6 +27,7 @@ namespace IMS.MainCtrl
         {
             dtiFromDate.Value = DateTime.Now.AddDays(-1);
             dtiToDate.Value = DateTime.Now;
+            btnSearch_Click(null,null);
         }
 
         private void btnSearch_Click(object sender, EventArgs e)

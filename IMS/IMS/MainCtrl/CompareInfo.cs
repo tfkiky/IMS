@@ -72,25 +72,25 @@ namespace IMS
                tbPassTime.Text = cardRecord.RECORD_DATE.Value.ToString("yyyy-MM-dd HH:mm:ss");
                tbName.Text = staffInfo.REAL_NAME;
 
-               switch (staffInfo.SEX)
-               {
-                   case 0:
-                       tbSex.Text = "未知";
-                       break;
-                   case 1:
-                       tbSex.Text = "男";
-                       break;
-                   case 2:
-                       tbSex.Text = "女";
-                       break;
-                   default:
-                       tbSex.Text = "未知";
-                       break;
-               }
+               //switch (staffInfo.SEX)
+               //{
+               //    case 0:
+               //        tbSex.Text = "未知";
+               //        break;
+               //    case 1:
+               //        tbSex.Text = "男";
+               //        break;
+               //    case 2:
+               //        tbSex.Text = "女";
+               //        break;
+               //    default:
+               //        tbSex.Text = "未知";
+               //        break;
+               //}
                tbIDCard.Text = staffInfo.CER_NO;
-               tbBirth.Text = staffInfo.BIRTHDAY.Value.ToString("yyyy-MM-dd HH:mm:ss");
-               tbAddress.Text = staffInfo.ADDRESS;
-               tbNation.Text = staffInfo.NATION;
+               //tbBirth.Text = staffInfo.BIRTHDAY.Value.ToString("yyyy-MM-dd HH:mm:ss");
+               //tbAddress.Text = staffInfo.ADDRESS;
+               //tbNation.Text = staffInfo.NATION;
            }));
         }
 
@@ -99,10 +99,10 @@ namespace IMS
             this.Invoke(new Action(() =>
             {
                 tbName.Text = idcard.Name;
-                tbSex.Text = idcard.Sex;
-                tbNation.Text = idcard.Nation;
-                tbBirth.Text = idcard.Birth;
-                tbAddress.Text = idcard.Address;
+                //tbSex.Text = idcard.Sex;
+                //tbNation.Text = idcard.Nation;
+                //tbBirth.Text = idcard.Birth;
+                //tbAddress.Text = idcard.Address;
                 tbIDCard.Text = idcard.Id;
                 tbPassTime.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 

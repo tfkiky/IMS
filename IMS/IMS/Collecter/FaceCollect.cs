@@ -197,6 +197,12 @@ namespace IMS.Collecter
             }
 
         }
+
+        public FaceCollect()
+        {
+            InitFacePath();
+            InitFaceStore();
+        }
         
         public bool Start(int faceMode, int swipeMode, int threshold,int isBlackList)
         {
@@ -206,8 +212,6 @@ namespace IMS.Collecter
                 if (iret == 0)
                 {
                     mlog.Info("人脸识别算法库初始化成功");
-                    InitFacePath();
-                    InitFaceStore();
                     timer = new System.Threading.Timer(new TimerCallback(FaceValidate), null, 1000, 2000);
                     return true;
                 }
