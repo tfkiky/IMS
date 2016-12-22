@@ -17,7 +17,7 @@ namespace IMS
         public PeopleVehicleVideo()
         {
             InitializeComponent();
-            lbResult.Text = "人员/车辆查验结果显示区";
+            lbResult.Text = "";
         }
 
         public Panel VideoPanel
@@ -44,7 +44,7 @@ namespace IMS
                         lbResult.Text = "验证错误";
                         break;
                     default:
-                        lbResult.Text = "人员/车辆查验结果显示区";
+                        lbResult.Text = "";
                         break;
 
                 }

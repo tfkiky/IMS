@@ -556,10 +556,22 @@ namespace IMS
             {
                 SplashForm.Instance.Close();
             }
-            faceCollect.Stop();
-            accessCollect.Stop();
-            idCardCollect.Stop();
-            timer.Stop();
+            if (faceCollect.BStarted)
+            {
+                faceCollect.Stop();
+            }
+            if (accessCollect.BStarted)
+            {
+                accessCollect.Stop();
+            }
+            if (idCardCollect.BStarted)
+            {
+                idCardCollect.Stop();
+            }
+            if (timer.Enabled)
+            {
+                timer.Stop();
+            }
             this.Close();
         }
 

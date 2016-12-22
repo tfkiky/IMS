@@ -41,6 +41,25 @@ namespace IMS.MainCtrl
                 //{
                 //    strSql.Append(" AND REAL_NAME LIKE '%" + tbName.Text + "%'");
                 //}
+               
+                if (!string.IsNullOrEmpty(textBoxX1.Text)&&FaceCollect.staffExList!=null)
+                {
+                    strSql.Append(" AND ( 1=0 ");
+                    if (FaceCollect.staffExList.Exists(staff => staff.Pinyi.IndexOf(textBoxX1.Text.ToLower())!=-1))
+                    {
+                        List<Maticsoft.Model.SMT_STAFF_INFO_EX> staffinfo = FaceCollect.staffExList.FindAll(staff => staff.Pinyi.IndexOf(textBoxX1.Text.ToLower()) != -1);
+                        foreach(Maticsoft.Model.SMT_STAFF_INFO_EX staff in staffinfo)
+                        {
+                            strSql.Append(" OR  REAL_NAME = '" + staff.REAL_NAME + "'");
+
+                        }
+                    }
+                    //else
+                    //    strSql.Append(" OR 1=1 ");
+                }
+                strSql.Append(" )");
+
+                mlog.Info(strSql);
                 recordRowsCount = staffBll.GetRecordCount(strSql.ToString());
                 pageCtrlRecords.TotalRecords = recordRowsCount;
                 pageCtrlRecords.CurrentPage = 1;

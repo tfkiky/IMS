@@ -12,6 +12,7 @@ using Li.Access.Core;
 using Li.Access.Core.WGAccesses;
 using SmartAccess.Common.Datas;
 using log4net;
+using IMS.Common.Data;
 
 namespace IMS.Collecter
 {
@@ -25,7 +26,15 @@ namespace IMS.Collecter
         private static Maticsoft.BLL.SMT_STAFF_INFO staffInfoBll = new Maticsoft.BLL.SMT_STAFF_INFO();
         private static Maticsoft.BLL.IMS_FACE_BLACKLIST blackListBll = new Maticsoft.BLL.IMS_FACE_BLACKLIST();
         private static Maticsoft.BLL.IMS_PEOPLE_RECORD recordBll = new Maticsoft.BLL.IMS_PEOPLE_RECORD();
+        public static List<Maticsoft.Model.SMT_STAFF_INFO_EX> staffExList = new List<Maticsoft.Model.SMT_STAFF_INFO_EX>();
         private static System.Threading.Timer timer;
+        private bool bStarted;
+
+        public bool BStarted
+        {
+            get { return bStarted; }
+            set { bStarted = value; }
+        }
         private static string staffFacePath, blackFacePath, tempFacePath;
 
         public static string StaffFacePath
@@ -161,6 +170,12 @@ namespace IMS.Collecter
             {
                 foreach (Maticsoft.Model.SMT_STAFF_INFO staff in staffList)
                 {
+                    staffExList.Add(new Maticsoft.Model.SMT_STAFF_INFO_EX() { 
+                        ID=staff.ID,
+                        REAL_NAME=staff.REAL_NAME,
+                        Pinyi = (PinyiHelper.GetPinyin(staff.REAL_NAME) + "," + PinyiHelper.GetFirstPinyin(staff.REAL_NAME)).ToLower()
+                    });
+                    mlog.Info(staff.REAL_NAME+"："+ (PinyiHelper.GetPinyin(staff.REAL_NAME) + "," + PinyiHelper.GetFirstPinyin(staff.REAL_NAME)).ToLower());
                     ImageHelper.ImageSave(staffFacePath + staff.ID + ".jpg", staff.PHOTO);
                 }
                 mlog.InfoFormat("下载人员库白名单图片:人数{0}", staffList.Count);
@@ -213,11 +228,13 @@ namespace IMS.Collecter
                 {
                     mlog.Info("人脸识别算法库初始化成功");
                     timer = new System.Threading.Timer(new TimerCallback(FaceValidate), null, 1000, 2000);
+                    bStarted = true;
                     return true;
                 }
                 else
                 {
                     mlog.Info("人脸识别算法库初始化失败");
+                    bStarted = false;
                     return false;
                 }
             }
@@ -232,10 +249,12 @@ namespace IMS.Collecter
             try
             {
                 timer.Dispose();
+                bStarted = false;
                 FaceService.face_exit();
             }
             catch (System.Exception ex)
             {
+                bStarted = false;
                 mlog.Error("Stop Error", ex);
             }
         }

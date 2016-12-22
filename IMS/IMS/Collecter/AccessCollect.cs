@@ -103,6 +103,7 @@ namespace IMS.Collecter
                                 if (lastAccessIndex == 0)
                                 {
                                     lastAccessIndex = acc.GetControllerReadedIndex(c);
+                                    mlog.Info("标记初始化：" + lastAccessIndex);
                                 }
                                 ControllerState record = acc.GetControllerRecord(c,0xffffffff);
                                 //ControllerState record = acc.ReadNextRecord();
@@ -118,7 +119,8 @@ namespace IMS.Collecter
                                 modelRecord.RECORD_DATE = record.recordTime;
                                 modelRecord.IS_ENTER = record.isEnterDoor;
                                 modelRecord.CARD_NO = record.cardOrNoNumber;
-                                lastAccessIndex = record.lastRecordIndex;
+                                    lastAccessIndex = record.lastRecordIndex;
+
                                 mlog.Info("记录读取：" + record.lastRecordIndex);
 
                                 if (MainForm.Instance.IFaceMode == 3 || (MainForm.Instance.ISwipeMode == 0 || MainForm.Instance.ISwipeMode == 2))
@@ -138,6 +140,10 @@ namespace IMS.Collecter
                                                     FaceCollect.StaffInfo = staffInfo;
                                                     FaceCollect.CardRecord = modelRecord;
                                                     FaceCollect.CardType = 0;
+                                                }
+                                                else
+                                                {
+
                                                 }
                                             }
                                             if (AccessEvent != null)

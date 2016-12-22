@@ -36,6 +36,9 @@
     <ApplicationIcon>logo1.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ChnCharInfo">
+      <HintPath>G:\Program Files (x86)\Microsoft Visual Studio International Pack\Simplified Chinese Pin-Yin Conversion Library\ChnCharInfo.dll</HintPath>
+    </Reference>
     <Reference Include="DevComponents.DotNetBar2, Version=10.7.0.3, Culture=neutral, PublicKeyToken=c39c3242a43eee2b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\dll\dotnetbar\DevComponents.DotNetBar2.dll</HintPath>
@@ -84,6 +87,7 @@
     <Compile Include="Common\Database\DatabaseHelper.cs" />
     <Compile Include="Common\Data\DoorDataHelper.cs" />
     <Compile Include="Common\Data\NationHelper.cs" />
+    <Compile Include="Common\Data\PinyiHelper.cs" />
     <Compile Include="Common\Data\SexHelper.cs" />
     <Compile Include="Common\EncDec\EncDecClass.cs" />
     <Compile Include="Common\Data\ImageHelper.cs" />

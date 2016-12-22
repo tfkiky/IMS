@@ -133,6 +133,7 @@
     <Compile Include="Model\SMT_VERMODEL_INFO.cs" />
     <Compile Include="Model\SMT_VER_FORMAT.cs" />
     <Compile Include="Model\SMT_WEEKEX_INFO.cs" />
+    <Compile Include="Model\SMT_STAFF_INFO_EX.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

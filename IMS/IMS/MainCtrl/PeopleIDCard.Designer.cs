@@ -80,7 +80,6 @@
             this.lbName.Name = "lbName";
             this.lbName.Size = new System.Drawing.Size(70, 23);
             this.lbName.TabIndex = 1;
-            this.lbName.Text = "XX";
             // 
             // labelX3
             // 
@@ -150,7 +149,6 @@
             this.lbSex.Name = "lbSex";
             this.lbSex.Size = new System.Drawing.Size(53, 23);
             this.lbSex.TabIndex = 1;
-            this.lbSex.Text = "XX";
             // 
             // lbNation
             // 
@@ -164,7 +162,6 @@
             this.lbNation.Name = "lbNation";
             this.lbNation.Size = new System.Drawing.Size(53, 23);
             this.lbNation.TabIndex = 1;
-            this.lbNation.Text = "XX";
             // 
             // lbBirth
             // 
@@ -178,7 +175,6 @@
             this.lbBirth.Name = "lbBirth";
             this.lbBirth.Size = new System.Drawing.Size(185, 23);
             this.lbBirth.TabIndex = 1;
-            this.lbBirth.Text = "XX";
             // 
             // lbAddr
             // 
@@ -192,7 +188,6 @@
             this.lbAddr.Name = "lbAddr";
             this.lbAddr.Size = new System.Drawing.Size(185, 59);
             this.lbAddr.TabIndex = 1;
-            this.lbAddr.Text = "XX";
             this.lbAddr.WordWrap = true;
             // 
             // labelX11
@@ -221,7 +216,6 @@
             this.lbCardNo.Name = "lbCardNo";
             this.lbCardNo.Size = new System.Drawing.Size(262, 23);
             this.lbCardNo.TabIndex = 1;
-            this.lbCardNo.Text = "XXXX";
             // 
             // PeopleIDCard
             // 

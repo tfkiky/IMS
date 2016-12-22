@@ -82,7 +82,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.labelX5);
             this.splitContainer1.Panel2.Controls.Add(this.labelX13);
             this.splitContainer1.Size = new System.Drawing.Size(509, 465);
-            this.splitContainer1.SplitterDistance = 224;
+            this.splitContainer1.SplitterDistance = 259;
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -167,7 +167,7 @@
             this.tbPassTime.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.tbPassTime.Enabled = false;
             this.tbPassTime.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tbPassTime.Location = new System.Drawing.Point(142, 168);
+            this.tbPassTime.Location = new System.Drawing.Point(142, 141);
             this.tbPassTime.Name = "tbPassTime";
             this.tbPassTime.Size = new System.Drawing.Size(310, 26);
             this.tbPassTime.TabIndex = 35;
@@ -181,7 +181,7 @@
             this.tbIDCard.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.tbIDCard.Enabled = false;
             this.tbIDCard.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tbIDCard.Location = new System.Drawing.Point(142, 125);
+            this.tbIDCard.Location = new System.Drawing.Point(142, 98);
             this.tbIDCard.Name = "tbIDCard";
             this.tbIDCard.Size = new System.Drawing.Size(310, 26);
             this.tbIDCard.TabIndex = 34;
@@ -195,7 +195,7 @@
             this.tbDepart.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.tbDepart.Enabled = false;
             this.tbDepart.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tbDepart.Location = new System.Drawing.Point(142, 82);
+            this.tbDepart.Location = new System.Drawing.Point(142, 55);
             this.tbDepart.Name = "tbDepart";
             this.tbDepart.Size = new System.Drawing.Size(310, 26);
             this.tbDepart.TabIndex = 30;
@@ -209,7 +209,7 @@
             this.tbName.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.tbName.Enabled = false;
             this.tbName.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tbName.Location = new System.Drawing.Point(142, 39);
+            this.tbName.Location = new System.Drawing.Point(142, 12);
             this.tbName.Name = "tbName";
             this.tbName.Size = new System.Drawing.Size(310, 26);
             this.tbName.TabIndex = 29;
@@ -221,7 +221,7 @@
             // 
             this.labelX9.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX9.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelX9.Location = new System.Drawing.Point(52, 171);
+            this.labelX9.Location = new System.Drawing.Point(52, 144);
             this.labelX9.Name = "labelX9";
             this.labelX9.Size = new System.Drawing.Size(110, 23);
             this.labelX9.TabIndex = 26;
@@ -234,7 +234,7 @@
             // 
             this.labelX8.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX8.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelX8.Location = new System.Drawing.Point(52, 128);
+            this.labelX8.Location = new System.Drawing.Point(52, 101);
             this.labelX8.Name = "labelX8";
             this.labelX8.Size = new System.Drawing.Size(110, 23);
             this.labelX8.TabIndex = 25;
@@ -247,7 +247,7 @@
             // 
             this.labelX5.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX5.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelX5.Location = new System.Drawing.Point(51, 42);
+            this.labelX5.Location = new System.Drawing.Point(51, 15);
             this.labelX5.Name = "labelX5";
             this.labelX5.Size = new System.Drawing.Size(111, 23);
             this.labelX5.TabIndex = 23;
@@ -260,7 +260,7 @@
             // 
             this.labelX13.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX13.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelX13.Location = new System.Drawing.Point(51, 85);
+            this.labelX13.Location = new System.Drawing.Point(51, 58);
             this.labelX13.Name = "labelX13";
             this.labelX13.Size = new System.Drawing.Size(110, 23);
             this.labelX13.TabIndex = 22;
