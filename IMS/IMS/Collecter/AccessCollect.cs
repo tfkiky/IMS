@@ -100,11 +100,7 @@ namespace IMS.Collecter
                         {
                             while (true)
                             {
-                                if (lastAccessIndex == 0)
-                                {
-                                    lastAccessIndex = acc.GetControllerReadedIndex(c);
-                                    mlog.Info("标记初始化：" + lastAccessIndex);
-                                }
+                                
                                 ControllerState record = acc.GetControllerRecord(c,0xffffffff);
                                 //ControllerState record = acc.ReadNextRecord();
                                 if (record == null || record.recordType == RecordType.NoRecord||record.lastRecordIndex==lastAccessIndex)
@@ -119,7 +115,15 @@ namespace IMS.Collecter
                                 modelRecord.RECORD_DATE = record.recordTime;
                                 modelRecord.IS_ENTER = record.isEnterDoor;
                                 modelRecord.CARD_NO = record.cardOrNoNumber;
+                                if (lastAccessIndex == 0)
+                                {
                                     lastAccessIndex = record.lastRecordIndex;
+                                    return;
+                                }
+                                else
+                                {
+                                    lastAccessIndex = record.lastRecordIndex;
+                                }
 
                                 mlog.Info("记录读取：" + record.lastRecordIndex);
 
