@@ -89,10 +89,6 @@ namespace IMS.Collecter
                         string myStr = System.Text.Encoding.Unicode.GetString(heByte);
                         fsRead.Close();
 
-                        if (File.Exists("./wz.txt"))
-                        {
-                            File.Delete("./wz.txt");
-                        }
                         //唐飞             10119890130安徽省合肥市蜀山区科学大道１９号华地紫园１５幢１００２室       340122198901300018合肥市公安局蜀山分局     2016032120360321          
                         if (!string.IsNullOrEmpty(myStr))
                         {
@@ -108,18 +104,22 @@ namespace IMS.Collecter
                             currentIDCard.StartDate = idInfo[3].Substring(0, 8);
                             currentIDCard.LimitDate = idInfo[3].Substring(8);
 
-                            //if (lastIDCard == "")
-                            //{
-                            //    lastIDCard = currentIDCard.Id;
-                            //        lastDateTime = DateTime.Now;
-                            //        mlog.Info("本次获取时间：" + lastDateTime);
-                            //}
-                            //else if (lastIDCard == currentIDCard.Id && DateTime.Now.AddSeconds(-5) < lastDateTime && !string.IsNullOrEmpty(FaceCollect.CurrentFacePic))
-                            //{
-                            //    mlog.Info("上次获取时间：" + lastDateTime + ",当前时间：" + DateTime.Now);
-                            //    FaceCollect.CurrentFacePic = "";
-                            //    return;
-                            //}
+                            if (lastIDCard == "")
+                            {
+                                lastIDCard = currentIDCard.Id;
+                                lastDateTime = DateTime.Now;
+                                mlog.Info("本次获取时间：" + lastDateTime);
+                            }
+                            else
+                            {
+                                if (lastIDCard == currentIDCard.Id && DateTime.Now.AddSeconds(-5) < lastDateTime)
+                                {
+                                    mlog.Info("上次获取时间：" + lastDateTime + ",当前时间：" + DateTime.Now);
+                                    return;
+                                }
+                                else
+                                    lastDateTime = DateTime.Now;
+                            }
                            
                                 
                             if (File.Exists("./zp.bmp"))
@@ -140,10 +140,10 @@ namespace IMS.Collecter
                                         {
                                             if (staffDoorList[0].IS_UPLOAD)
                                             {
-                                                if (!FaceCollect.FaceWhiteList.ContainsKey((int)staffList[0].ID))
-                                                {
-                                                    File.Copy(currentIDCard.PhotoFile, FaceCollect.StaffFacePath + staffList[0].ID + ".jpg", true);
-                                                }
+                                                //if (!FaceCollect.FaceWhiteList.ContainsKey((int)staffList[0].ID))
+                                                //{
+                                                //    File.Copy(currentIDCard.PhotoFile, FaceCollect.StaffFacePath + staffList[0].ID + ".jpg", true);
+                                                //}
                                                 FaceCollect.CardType = 1;
                                                 FaceCollect.StaffInfo = staffList[0];
                                                 FaceCollect.IdCard = currentIDCard;
@@ -163,10 +163,7 @@ namespace IMS.Collecter
                                         {
                                             IDCardEvent(this, new IDCardEventArgs(currentIDCard, staffList[0], isAllow));
                                             
-                                            if (File.Exists("./zp.bmp"))
-                                            {
-                                                File.Delete("./zp.bmp");
-                                            }
+                                            
                                         }
                                     }
                                     else
@@ -175,10 +172,7 @@ namespace IMS.Collecter
                                         {
                                             IDCardEvent(this, new IDCardEventArgs(currentIDCard, null, false));
                                         }
-                                        if (File.Exists("./zp.bmp"))
-                                        {
-                                            File.Delete("./zp.bmp");
-                                        }
+                                        
                                     }
                                 }
                                 else
@@ -188,10 +182,6 @@ namespace IMS.Collecter
                                         IDCardEvent(this, new IDCardEventArgs(currentIDCard, null, false));
                                     }
                                    
-                                    if (File.Exists("./zp.bmp"))
-                                    {
-                                        File.Delete("./zp.bmp");
-                                    }
                                 }
                             }
                         }

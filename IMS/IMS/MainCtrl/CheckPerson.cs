@@ -172,7 +172,7 @@ namespace IMS.MainCtrl
 
         private void dataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dataGridView.SelectedRows[0].Tag is Maticsoft.Model.IMS_PEOPLE_RECORD)
+            if (dataGridView.SelectedRows.Count>0&&dataGridView.SelectedRows[0].Tag is Maticsoft.Model.IMS_PEOPLE_RECORD)
             {
                 Maticsoft.Model.SMT_STAFF_INFO record = dataGridView.SelectedRows[0].Tag as Maticsoft.Model.SMT_STAFF_INFO;
 

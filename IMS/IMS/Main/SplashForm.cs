@@ -28,8 +28,19 @@ namespace IMS.Main
 
         public void SetText(string message)
         {
-            this.lbLoading.Text = message;
-            this.lbLoading.Refresh();
+            BackgroundWorker worker = new BackgroundWorker();
+
+
+
+            worker.DoWork += (p, q) =>
+            {
+                this.Invoke(new Action(() =>
+                {
+                    this.lbLoading.Text = message;
+                    this.lbLoading.Refresh();
+                }));
+            };
+            worker.RunWorkerAsync();
             Thread.Sleep(50);
         }
 

@@ -106,6 +106,8 @@ namespace IMS
         private AccessCollect accessCollect = new AccessCollect();
         private IDCardCollect idCardCollect = new IDCardCollect();
 
+        private DateTime lastTime;
+
         private int iFaceMode = 0;
         //人脸识别验证模式 0- 1:1验证、1- 1：N验证、2- 1：n验证
         public int IFaceMode
@@ -157,25 +159,34 @@ namespace IMS
         public MainForm()
         {
             splash = new SplashForm();
-            splash.Show(this);
-            //splash.SetText("初始化主窗体...");
+            splash.Show();
+            splash.TopMost = true;
 
-            InitializeComponent();
-
-            this.Left = 0;
-            this.Top = 0;
-            btnPersonRecord.Image = imageList2.Images[0];
-            btnCheckPerson.Image = imageList2.Images[1];
-            buttonX1.Image = imageList2.Images[0];
-            buttonX2.Image = imageList2.Images[1];
-            FillDataGrid();
-
+            splash.SetText("初始化主窗体...");
             instance = this;
-           
-            StyleManager.Style = eStyle.Office2007Black;
+            
+            lastTime = DateTime.Now;
+
+
             InitMain();
 
-            timer=new System.Timers.Timer(1000);
+            InitializeComponent();
+            StyleManager.Style = eStyle.Office2007Black;
+            
+
+
+                LoadParams();
+                LoadCamera();
+                LoadDeviceState();
+
+                this.Left = 0;
+                this.Top = 0;
+                btnPersonRecord.Image = imageList2.Images[0];
+                btnCheckPerson.Image = imageList2.Images[1];
+                buttonX1.Image = imageList2.Images[0];
+                buttonX2.Image = imageList2.Images[1];
+                FillDataGrid(); 
+            timer = new System.Timers.Timer(1000);
             timer.Elapsed += timer_Elapsed;
             timer.Start();
         }
@@ -187,6 +198,12 @@ namespace IMS
                 this.Invoke(new Action(() =>
                 {
                     lbDateTime.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                    if(DateTime.Now.AddSeconds(-3)>lastTime)
+                    {
+                        compareInfo1.Clear();
+                        ClientMainForm.Instance.Clear();
+                        peopleVehicleVideo1.Clear();
+                    }
                 }));
             }
             catch { }
@@ -197,6 +214,8 @@ namespace IMS
             try
             {
                 Maticsoft.DBUtility.DbHelperSQL.connectionString = SysConfigClass.GetSqlServerConnectString();
+                //this.Invoke(new Action(() =>
+                //{
                 splash.SetText("正在检查数据库连接，请稍后");
                 bool bRet = SysConfigClass.TestDBConn();
                 if (!bRet)
@@ -226,12 +245,11 @@ namespace IMS
                 }
                 else
                     isCamConn = true;
-                LoadParams();
-                LoadCamera();
+                
                 accessCollect.Start();
                 accessCollect.AccessEvent += accessCollect_AccessEvent;
                 splash.SetText("初始化身份证读卡器连接，请稍后");
-                //bRet = idCardCollect.Start();
+                bRet = idCardCollect.Start();
                 if (!bRet)
                 {
                     splash.SetText("身份证读卡器连接失败，请检查读卡器连接");
@@ -243,7 +261,7 @@ namespace IMS
                 idCardCollect.IDCardEvent += idCardCollect_IDCardEvent;
                 splash.SetText("初始化人脸识别，请稍后");
                 faceCollect = new FaceCollect();
-                //bRet = faceCollect.Start(iFaceMode, iSwipeMode, iThreshold, iBlackMode);
+                bRet = faceCollect.Start(iFaceMode, iSwipeMode, iThreshold, iBlackMode);
                 if (!bRet)
                 {
                     splash.SetText("人脸识别连接失败，请检查加密狗连接");
@@ -251,15 +269,23 @@ namespace IMS
                 }
                 else
                     isFaceKeyConn = false;
-                LoadDeviceState();
                 faceCollect.ValidateEvent += faceCollect_ValidateEvent;
+
+                
                 splash.SetText("初始化完成");
                 Thread.Sleep(2000);
                 splash.Close();
+
+               
+                //}));
+
             }
             catch(Exception ex){
-                splash.Close();
-                mlog.Error(ex);
+              //this.Invoke(new Action(() =>
+              //  {  
+                    splash.Close();
+                //}));
+              mlog.Error(ex);
             }
         }
 
@@ -283,8 +309,9 @@ namespace IMS
 
         void idCardCollect_IDCardEvent(object sender, IDCardEventArgs e)
         {
-            if (e.IDCard != null)
+            if (iFaceMode!=3&&e.IDCard != null)
             {
+                lastTime = DateTime.Now;
                 compareInfo1.LoadIDInfo(e.IDCard);
                 if(File.Exists("./zp.bmp"))
                 {
@@ -292,7 +319,7 @@ namespace IMS
                     compareInfo1.LoadStaffInfo(e.IDCard.PhotoFile);
                 }
                 ClientMainForm.Instance.LoadIDCardInfo(e.IDCard);
-                peopleVehicleVideo1.LoadIDCardResult(e.StaffInfo, e.IsAllow);
+                peopleVehicleVideo1.LoadResult(e.StaffInfo, e.IsAllow);
             }
         }
 
@@ -300,6 +327,7 @@ namespace IMS
         {
             if (e.StaffInfo != null)
             {
+                lastTime = DateTime.Now;
                 compareInfo1.LoadAccessInfo(e.StaffInfo, e.CardRecord);
                 IDCardClass idcard = new IDCardClass();
                 idcard.Name = e.StaffInfo.REAL_NAME;
@@ -327,7 +355,21 @@ namespace IMS
                 compareInfo1.LoadStaffInfo(idcard.PhotoFile);
 
                 ClientMainForm.Instance.LoadIDCardInfo(idcard);
-                peopleVehicleVideo1.LoadAccessResult(e.StaffInfo, e.CardRecord);
+                peopleVehicleVideo1.LoadResult(e.StaffInfo, e.CardRecord.IS_ALLOW);
+                if (MainForm.Instance.IFaceMode == 3)
+                {
+                    Maticsoft.BLL.IMS_PEOPLE_RECORD recordBll = new Maticsoft.BLL.IMS_PEOPLE_RECORD();
+                    Maticsoft.Model.IMS_PEOPLE_RECORD record = new Maticsoft.Model.IMS_PEOPLE_RECORD();
+                    record.CardNo = e.CardRecord.CARD_NO;
+                    record.CardType = 0;
+                    record.Name = e.StaffInfo.REAL_NAME;
+                    record.ThroughTime = e.CardRecord.RECORD_DATE;
+                    record.ThroughResult = (e.CardRecord.IS_ALLOW)?1:0;
+                    record.ThroughForward = (e.CardRecord.IS_ENTER)?1:0;
+                    record.OriginPic = idcard.PhotoFile;
+                    recordBll.Add(record);
+                    AddNewPerson(record);
+                }
             }
         }
 

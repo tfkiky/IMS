@@ -21,6 +21,17 @@ namespace IMS
             InitializeComponent();
         }
 
+        public void Clear()
+        {
+            pbRealPhoto.Image = Properties.Resources.暂无图片;
+            pbLocalPhoto.Image = Properties.Resources.暂无图片;
+            pbBlack.Image = Properties.Resources.暂无图片;
+            tbDepart.Text = "";
+            tbName.Text = "";
+            tbPassTime.Text = "";
+            tbIDCard.Text = ""; 
+        }
+
         public void LoadValidateResult(ValidateResultEventArgs e)
         {
             try

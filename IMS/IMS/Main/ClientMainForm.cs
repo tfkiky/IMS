@@ -53,7 +53,7 @@ namespace IMS
             }
         }
 
-        private void LoadCamera()
+        public void LoadCamera()
         {
             if (MainForm.Instance.FaceCamera != null && !string.IsNullOrEmpty(MainForm.Instance.FaceCamera.CameraIP))
             {
@@ -62,7 +62,7 @@ namespace IMS
             }
         }
 
-        private void CloseCamera()
+        public void CloseCamera()
         {
             if (!string.IsNullOrEmpty(playHandle))
             {
@@ -91,6 +91,29 @@ namespace IMS
             }
         }
 
+        public void LoadResult(Maticsoft.Model.SMT_STAFF_INFO staffInfo, bool isAllow)
+        {
+            this.Invoke(new Action(() =>
+            {
+                if (staffInfo == null)
+                {
+                    lbResult.Text = "此卡无效，无此用户！";
+                }
+                else
+                {
+                    if (MainForm.Instance.IFaceMode == 3)
+                    {
+                        lbResult.Text = string.Format("{0}，请通行", staffInfo.REAL_NAME);
+                    }
+                    if (MainForm.Instance.IFaceMode != 3 && !isAllow)
+                    {
+                        lbResult.Text = string.Format("{0}无权限,禁止通行！", staffInfo.REAL_NAME);
+                    }
+
+                }
+
+            }));
+        }
         public void LoadIDCardInfo(IDCardClass idcard)
         {
             peopleIDCard1.LoadIDCard(idcard);
@@ -128,6 +151,14 @@ namespace IMS
             //{
             //    lbConn.Text = "门禁控制器连接失败，请检查门禁控制器配置";
             //}
+        }
+
+        public void Clear()
+        {
+            peopleIDCard1.Clear();
+            lbResult.Text = "";
+            pbRealPhoto.Image = Properties.Resources.暂无图片;
+            pbBlack.Image = Properties.Resources.暂无图片;
         }
 
         private void ClientMainForm_Load(object sender, EventArgs e)

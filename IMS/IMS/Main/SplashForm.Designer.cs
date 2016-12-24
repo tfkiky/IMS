@@ -47,7 +47,7 @@
             this.lbLoading.ForeColor = System.Drawing.Color.White;
             this.lbLoading.Location = new System.Drawing.Point(283, 369);
             this.lbLoading.Name = "lbLoading";
-            this.lbLoading.Size = new System.Drawing.Size(111, 33);
+            this.lbLoading.Size = new System.Drawing.Size(0, 0);
             this.lbLoading.TabIndex = 0;
             // 
             // contextMenuStrip1
@@ -70,14 +70,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::IMS.Properties.Resources.欢迎界面;
             this.ClientSize = new System.Drawing.Size(1024, 768);
-            this.ContextMenuStrip = this.contextMenuStrip1;
             this.Controls.Add(this.lbLoading);
-            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "SplashForm";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SplashForm";
+            this.TopMost = true;
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();

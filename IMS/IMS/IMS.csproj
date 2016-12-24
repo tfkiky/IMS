@@ -352,7 +352,6 @@
     <None Include="Resources\1.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="1.ico" />
     <Content Include="logo1.ico" />
     <None Include="Resources\dkq_2525.png" />
     <None Include="Resources\header2.png" />

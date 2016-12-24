@@ -33,5 +33,21 @@ namespace IMS
             catch { }
 
         }
+
+
+        public void Clear()
+        {
+            try
+            {
+                lbName.Text = "";
+                lbSex.Text = "";
+                lbNation.Text = "";
+                lbBirth.Text = "";
+                lbAddr.Text = "";
+                lbCardNo.Text = "";
+                pbPhoto.Image = Properties.Resources.暂无图片;
+            }
+            catch { }
+        }
     }
 }

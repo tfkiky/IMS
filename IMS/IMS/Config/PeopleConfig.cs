@@ -117,7 +117,7 @@ namespace IMS
                 cbCtrl.Enabled = false;
                 cbDoor.Enabled = false;
                 bool bRet = SysConfigClass.TestController();
-                if (!bRet)
+                if (bRet)
                 {
                     MainForm.Instance.IsCtrlConn = true;
                 }
@@ -138,7 +138,7 @@ namespace IMS
         private void btnTest_Click(object sender, EventArgs e)
         {
             bool bRet = SysConfigClass.TestController();
-            if (!bRet)
+            if (bRet)
             {
                 tbContent.Text = "测试成功！";
             }
@@ -169,15 +169,12 @@ namespace IMS
 
                 MessageBox.Show("保存成功");
 
-                MainForm.Instance.CloseCamera();
-                MainForm.Instance.LoadCamera();
-
                 ipAddressInput1.Enabled = false;
                 tbPort.Enabled = false;
                 tbUserName.Enabled = false;
                 tbPwd.Enabled = false;
                 bool bRet = SysConfigClass.TestCamera();
-                if (!bRet)
+                if (bRet)
                 {
                     MainForm.Instance.IsCamConn = true;
                 }
@@ -185,6 +182,21 @@ namespace IMS
                     MainForm.Instance.IsCamConn = false;
 
                 MainForm.Instance.LoadDeviceState();
+
+
+                BackgroundWorker worker = new BackgroundWorker();
+                worker.DoWork += (p, q) =>
+                {
+                    this.Invoke(new Action(() =>
+                        {
+                            MainForm.Instance.CloseCamera();
+                            MainForm.Instance.LoadCamera();
+
+                            ClientMainForm.Instance.CloseCamera();
+                            ClientMainForm.Instance.LoadCamera();
+                        }));
+                };
+                worker.RunWorkerAsync();
             }
             catch (System.Exception ex)
             {
@@ -198,7 +210,7 @@ namespace IMS
         private void btnTest1_Click(object sender, EventArgs e)
         {
             bool bRet = SysConfigClass.TestCamera();
-            if (!bRet)
+            if (bRet)
             {
                 tbContent2.Text = "测试成功！";
             }
