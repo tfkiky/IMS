@@ -55,6 +55,7 @@ namespace IMS.Collecter
                 File.Delete("./zp.bmp");
             }
             iLastErrorCode = IDCardDll.IDCard.InitCommExt();
+            mlog.Info("身份证读卡器开启成功，开启读取线程——");
             timer = new System.Threading.Timer(new TimerCallback(CollectIDCard), null, 1000, 1000);
             bStarted = true;
             return iLastErrorCode == 0 ? false : true;
@@ -88,7 +89,10 @@ namespace IMS.Collecter
                         int r = fsRead.Read(heByte, 0, heByte.Length);
                         string myStr = System.Text.Encoding.Unicode.GetString(heByte);
                         fsRead.Close();
-
+                        if (File.Exists("./wz.txt"))
+                        {
+                            File.Delete("./wz.txt");
+                        }
                         //唐飞             10119890130安徽省合肥市蜀山区科学大道１９号华地紫园１５幢１００２室       340122198901300018合肥市公安局蜀山分局     2016032120360321          
                         if (!string.IsNullOrEmpty(myStr))
                         {
@@ -108,17 +112,21 @@ namespace IMS.Collecter
                             {
                                 lastIDCard = currentIDCard.Id;
                                 lastDateTime = DateTime.Now;
-                                mlog.Info("本次获取时间：" + lastDateTime);
+                                //mlog.Info("本次获取时间：" + lastDateTime);
                             }
                             else
                             {
                                 if (lastIDCard == currentIDCard.Id && DateTime.Now.AddSeconds(-5) < lastDateTime)
                                 {
-                                    mlog.Info("上次获取时间：" + lastDateTime + ",当前时间：" + DateTime.Now);
+                                    //mlog.Info("上次获取时间：" + lastDateTime + ",当前时间：" + DateTime.Now);
+                                    //FaceCollect.CurrentFacePic = "";
                                     return;
                                 }
                                 else
+                                {
                                     lastDateTime = DateTime.Now;
+                                    lastIDCard = currentIDCard.Id;
+                                }
                             }
                            
                                 
@@ -162,26 +170,17 @@ namespace IMS.Collecter
                                         if (IDCardEvent != null)
                                         {
                                             IDCardEvent(this, new IDCardEventArgs(currentIDCard, staffList[0], isAllow));
-                                            
-                                            
                                         }
                                     }
                                     else
                                     {
+                                        mlog.InfoFormat("无此用户：{0},身份证号：{1}" + currentIDCard.Name,currentIDCard.Id);
                                         if (IDCardEvent != null)
                                         {
                                             IDCardEvent(this, new IDCardEventArgs(currentIDCard, null, false));
                                         }
                                         
                                     }
-                                }
-                                else
-                                {
-                                    if (IDCardEvent != null)
-                                    {
-                                        IDCardEvent(this, new IDCardEventArgs(currentIDCard, null, false));
-                                    }
-                                   
                                 }
                             }
                         }

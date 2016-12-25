@@ -103,11 +103,21 @@ namespace IMS
                 {
                     if (MainForm.Instance.IFaceMode == 3)
                     {
-                        lbResult.Text = string.Format("{0}，请通行", staffInfo.REAL_NAME);
+                        if (isAllow)
+                        {
+                            lbResult.Text = string.Format("{0}，请通行", staffInfo.REAL_NAME);
+                        }
+                        else
+                        {
+                            lbResult.Text = string.Format("{0}无权限,禁止通行！", staffInfo.REAL_NAME);
+                        }
                     }
-                    if (MainForm.Instance.IFaceMode != 3 && !isAllow)
+                    else
                     {
-                        lbResult.Text = string.Format("{0}无权限,禁止通行！", staffInfo.REAL_NAME);
+                        if (!isAllow)
+                        {
+                            lbResult.Text = string.Format("{0}无权限,禁止通行！", staffInfo.REAL_NAME);
+                        }
                     }
 
                 }

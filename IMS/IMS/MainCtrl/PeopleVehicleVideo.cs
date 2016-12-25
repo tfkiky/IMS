@@ -65,25 +65,35 @@ namespace IMS
         {
             ClientMainForm.Instance.LoadResult(staffInfo, isAllow);
             this.Invoke(new Action(() =>
-   {
-            if (staffInfo == null)
-            {
-                lbResult.Text = "此卡无效，无此用户！";
-            }
-            else
-            {
-                if (MainForm.Instance.IFaceMode == 3)
-                {
-                    lbResult.Text = string.Format("{0}，请通行", staffInfo.REAL_NAME);
-                }
-                if (MainForm.Instance.IFaceMode!=3&&!isAllow)
-                {
-                    lbResult.Text = string.Format("{0}无权限,禁止通行！", staffInfo.REAL_NAME);
-                }
+           {
+               if (staffInfo == null)
+               {
+                   lbResult.Text = "此卡无效，无此用户！";
+               }
+               else
+               {
+                   if (MainForm.Instance.IFaceMode == 3)
+                   {
+                       if (isAllow)
+                       {
+                           lbResult.Text = string.Format("{0}，请通行", staffInfo.REAL_NAME);
+                       }
+                       else
+                       {
+                           lbResult.Text = string.Format("{0}无权限,禁止通行！", staffInfo.REAL_NAME);
+                       }
+                   }
+                   else
+                   {
+                       if (!isAllow)
+                       {
+                           lbResult.Text = string.Format("{0}无权限,禁止通行！", staffInfo.REAL_NAME);
+                       }
+                   }
 
-            }
+               }
 
-   }));
+           }));
         }
     }
 }

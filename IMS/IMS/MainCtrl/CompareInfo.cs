@@ -39,7 +39,7 @@ namespace IMS
                 this.Invoke(new Action(() =>
                {
                    pbRealPhoto.ImageLocation = e.Record.CapturePic;
-                   pbLocalPhoto.ImageLocation = e.Record.OriginPic;
+                   //pbLocalPhoto.ImageLocation = e.Record.OriginPic;
                    pbBlack.ImageLocation = e.BlackPic;
                    //lbValue.Text = e.Record.Similarity.ToString();
 

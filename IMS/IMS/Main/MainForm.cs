@@ -26,9 +26,10 @@ namespace IMS
     {
         #region 定义全局变量
         private ILog mlog = LogManager.GetLogger("MainForm");
-
+        private int appMode = 1;
         private System.Timers.Timer timer;
         private SplashForm splash;
+        private double clearPeriod=3;
 
         private bool isCamConn = false;
 
@@ -106,6 +107,7 @@ namespace IMS
         private AccessCollect accessCollect = new AccessCollect();
         private IDCardCollect idCardCollect = new IDCardCollect();
 
+        private int passCount = 0;
         private DateTime lastTime;
 
         private int iFaceMode = 0;
@@ -164,28 +166,28 @@ namespace IMS
 
             splash.SetText("初始化主窗体...");
             instance = this;
-            
+
             lastTime = DateTime.Now;
+
+
+
+            InitializeComponent();
+            StyleManager.Style = eStyle.Office2007Black;
 
 
             InitMain();
 
-            InitializeComponent();
-            StyleManager.Style = eStyle.Office2007Black;
-            
+            LoadParams();
+            LoadCamera();
+            LoadDeviceState();
 
-
-                LoadParams();
-                LoadCamera();
-                LoadDeviceState();
-
-                this.Left = 0;
-                this.Top = 0;
-                btnPersonRecord.Image = imageList2.Images[0];
-                btnCheckPerson.Image = imageList2.Images[1];
-                buttonX1.Image = imageList2.Images[0];
-                buttonX2.Image = imageList2.Images[1];
-                FillDataGrid(); 
+            this.Left = 0;
+            this.Top = 0;
+            btnPersonRecord.Image = imageList2.Images[0];
+            btnCheckPerson.Image = imageList2.Images[1];
+            buttonX1.Image = imageList2.Images[0];
+            buttonX2.Image = imageList2.Images[1];
+            FillDataGrid();
             timer = new System.Timers.Timer(1000);
             timer.Elapsed += timer_Elapsed;
             timer.Start();
@@ -198,7 +200,7 @@ namespace IMS
                 this.Invoke(new Action(() =>
                 {
                     lbDateTime.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                    if(DateTime.Now.AddSeconds(-3)>lastTime)
+                    if (DateTime.Now.AddSeconds(0 - clearPeriod) > lastTime)
                     {
                         compareInfo1.Clear();
                         ClientMainForm.Instance.Clear();
@@ -216,6 +218,8 @@ namespace IMS
                 Maticsoft.DBUtility.DbHelperSQL.connectionString = SysConfigClass.GetSqlServerConnectString();
                 //this.Invoke(new Action(() =>
                 //{
+                appMode = int.Parse(SunCreate.Common.ConfigHelper.GetConfigString("AppMode"));
+                clearPeriod = double.Parse(SunCreate.Common.ConfigHelper.GetConfigString("ShowTime"));
                 splash.SetText("正在检查数据库连接，请稍后");
                 bool bRet = SysConfigClass.TestDBConn();
                 if (!bRet)
@@ -249,6 +253,7 @@ namespace IMS
                 accessCollect.Start();
                 accessCollect.AccessEvent += accessCollect_AccessEvent;
                 splash.SetText("初始化身份证读卡器连接，请稍后");
+
                 bRet = idCardCollect.Start();
                 if (!bRet)
                 {
@@ -261,16 +266,18 @@ namespace IMS
                 idCardCollect.IDCardEvent += idCardCollect_IDCardEvent;
                 splash.SetText("初始化人脸识别，请稍后");
                 faceCollect = new FaceCollect();
-                bRet = faceCollect.Start(iFaceMode, iSwipeMode, iThreshold, iBlackMode);
-                if (!bRet)
+                if (appMode == 1)
                 {
-                    splash.SetText("人脸识别连接失败，请检查加密狗连接");
-                    isFaceKeyConn = false;
+                    bRet = faceCollect.Start(iFaceMode, iSwipeMode, iThreshold, iBlackMode);
+                    if (!bRet)
+                    {
+                        splash.SetText("人脸识别连接失败，请检查加密狗连接");
+                        isFaceKeyConn = false;
+                    }
+                    else
+                        isFaceKeyConn = false;
+                    faceCollect.ValidateEvent += faceCollect_ValidateEvent;
                 }
-                else
-                    isFaceKeyConn = false;
-                faceCollect.ValidateEvent += faceCollect_ValidateEvent;
-
                 
                 splash.SetText("初始化完成");
                 Thread.Sleep(2000);
@@ -358,18 +365,28 @@ namespace IMS
                 peopleVehicleVideo1.LoadResult(e.StaffInfo, e.CardRecord.IS_ALLOW);
                 if (MainForm.Instance.IFaceMode == 3)
                 {
-                    Maticsoft.BLL.IMS_PEOPLE_RECORD recordBll = new Maticsoft.BLL.IMS_PEOPLE_RECORD();
-                    Maticsoft.Model.IMS_PEOPLE_RECORD record = new Maticsoft.Model.IMS_PEOPLE_RECORD();
-                    record.CardNo = e.CardRecord.CARD_NO;
-                    record.CardType = 0;
-                    record.Name = e.StaffInfo.REAL_NAME;
-                    record.ThroughTime = e.CardRecord.RECORD_DATE;
-                    record.ThroughResult = (e.CardRecord.IS_ALLOW)?1:0;
-                    record.ThroughForward = (e.CardRecord.IS_ENTER)?1:0;
-                    record.OriginPic = idcard.PhotoFile;
-                    recordBll.Add(record);
-                    AddNewPerson(record);
+                    if (e.CardRecord.IS_ALLOW)
+                    {
+                        Maticsoft.BLL.IMS_PEOPLE_RECORD recordBll = new Maticsoft.BLL.IMS_PEOPLE_RECORD();
+                        Maticsoft.Model.IMS_PEOPLE_RECORD record = new Maticsoft.Model.IMS_PEOPLE_RECORD();
+                        record.CardNo = e.CardRecord.CARD_NO;
+                        record.CardType = 0;
+                        record.Name = e.StaffInfo.REAL_NAME;
+                        record.ThroughTime = e.CardRecord.RECORD_DATE;
+                        record.ThroughResult = (e.CardRecord.IS_ALLOW) ? 1 : 0;
+                        record.ThroughForward = (e.CardRecord.IS_ENTER) ? 1 : 0;
+                        record.OriginPic = idcard.PhotoFile;
+                        recordBll.Add(record);
+                        AddNewPerson(record);
+                        passCount++;
+                        labelX6.Text = passCount.ToString();
+                    }
                 }
+            }
+            else
+            {
+                //mlog.InfoFormat("没有关联人员");
+                peopleVehicleVideo1.LoadResult(null, false);
             }
         }
 
@@ -388,6 +405,9 @@ namespace IMS
                     if (e.ValidateResult == IMS.Collecter.ValidateResult.Success)
                     {
                         AddNewPerson(e.Record);
+                        passCount++;
+                        labelX6.Text = passCount.ToString();
+
                     }
                 }
             }
@@ -479,7 +499,7 @@ namespace IMS
                         lbBlackList.Text = "";
                         break;
                 }
-                if (iFaceMode != 3)
+                if (iFaceMode != 3 && iFaceMode != 1)
                 {
                     switch (iSwipeMode)
                     {

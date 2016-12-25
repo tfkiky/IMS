@@ -226,7 +226,7 @@ namespace IMS.Collecter
                 int iret = FaceService.face_init();
                 if (iret == 0)
                 {
-                    mlog.Info("人脸识别算法库初始化成功");
+                    mlog.Info("人脸识别算法库初始化成功，开启抓取比对线程——");
                     timer = new System.Threading.Timer(new TimerCallback(FaceValidate), null, 1000, 2000);
                     bStarted = true;
                     return true;
@@ -375,91 +375,96 @@ namespace IMS.Collecter
                         //mlog.InfoFormat("图像中人脸坐标{0}，{1}，{2}，{3}", position[i].x1, position[i].x2, position[i].y1, position[i].y2);
                         //record.FacePosition += ";" + position[i].x1 + "," + position[i].x2 + "," + position[i].y1 + "," + position[i].y2 + ";";
                     }
-
-                    if (faceValue > MainForm.Instance.IThreshold && !string.IsNullOrEmpty(localPic) && !string.IsNullOrEmpty(capturePic))
+                    if(!string.IsNullOrEmpty(localPic) && !string.IsNullOrEmpty(capturePic))
                     {
-                        if (ValidateEvent != null)
+
+                        try
                         {
-                            try
+                            record.Similarity = faceValue;
+                            record.ThroughResult = 1;
+                            record.OriginPic = localPic;
+                            record.CapturePic = capturePic;
+                            record.CompareResult = 1;
+                            record.CardType = cardType;
+                            if (staffInfo != null && staffInfo.ORG_ID != null)
                             {
-                                record.Similarity = faceValue;
-                                record.ThroughResult = 1;
-                                record.OriginPic = localPic;
-                                record.CapturePic = capturePic;
-                                record.CompareResult = 1;
-                                record.CardType = cardType;
-                                if (staffInfo!=null&&staffInfo.ORG_ID != null)
+                                record.Depart = staffInfo.ORG_ID.ToString();
+                            }
+                            else record.Depart = "";
+                            if (cardType == 0)
+                            {
+                                record.ThroughForward = (cardRecord.IS_ENTER == true) ? 0 : 1;
+                                record.ThroughTime = cardRecord.RECORD_DATE.Value;
+                                record.CardNo = cardRecord.CARD_NO;
+                            }
+                            else if (cardType == 1)
+                            {
+                                record.ThroughForward = 2;
+                                record.ThroughTime = DateTime.Now;
+                                if (idCard != null && !string.IsNullOrEmpty(idCard.Id))
                                 {
-                                    record.Depart = staffInfo.ORG_ID.ToString();
+                                    record.CardNo = idCard.Id;
                                 }
-                                else record.Depart = "";
-                                if (cardType == 0)
+                                else record.CardNo = "";
+
+                            }
+                            else
+                            {
+                                record.ThroughForward = 2;
+                                record.ThroughTime = DateTime.Now;
+                                record.CardNo = "";
+                            }
+                            record.AccessChannel = AccessCollect.Instance.FaceControllerID.ToString();
+                            record.FacePosition = "";
+                            recordBll.Add(record);
+
+                            record = recordBll.GetModelList("CardNo='" + record.CardNo + "' AND Name='" + record.Name + "' AND CONVERT(VARCHAR(24),ThroughTime,20) ='" + record.ThroughTime.Value.ToString("yyyy-MM-dd HH:mm:ss") + "'")[0];
+                        }
+                        catch (System.Exception ex)
+                        {
+                            mlog.ErrorFormat("添加人脸通行记录：{0}", ex);
+                        }
+
+                        if (faceValue > MainForm.Instance.IThreshold)
+                        {
+                            if (ValidateEvent != null)
+                            {
+                                mlog.InfoFormat("人脸验证结果：验证成功，员工{0},验证得分{1},阈值{2}", record.Name, faceValue.ToString(), MainForm.Instance.IThreshold.ToString());
+                                ValidateEvent(this, new ValidateResultEventArgs(record, blackPic, ValidateResult.Success));
+                                currentFacePic = "";
+
+                                using (IAccessCore access = new WGAccess())
                                 {
-                                    record.ThroughForward = (cardRecord.IS_ENTER == true) ? 0 : 1;
-                                    record.ThroughTime = cardRecord.RECORD_DATE.Value;
-                                    record.CardNo = cardRecord.CARD_NO;
-                                }
-                                else if (cardType == 1)
-                                {
-                                    record.ThroughForward = 2;
-                                    record.ThroughTime = DateTime.Now;
-                                    if (idCard != null && !string.IsNullOrEmpty(idCard.Id))
+                                    ///控制开门
+                                    Maticsoft.Model.SMT_CONTROLLER_INFO _ctrlr = ctrlBll.GetModel(AccessCollect.Instance.FaceControllerID);
+                                    Controller c = ControllerHelper.ToController(_ctrlr);
+                                    Maticsoft.Model.SMT_DOOR_INFO _door = doorBll.GetModel(AccessCollect.Instance.FaceDoorID);
+
+                                    bool ret = access.OpenRemoteControllerDoor(c, _door.CTRL_DOOR_INDEX.Value);
+                                    if (!ret)
                                     {
-                                        record.CardNo = idCard.Id;
+                                        //WinInfoHelper.ShowInfoWindow(this, "上传门控制方式失败！");
+                                        return;
                                     }
-                                    else record.CardNo = "";
-
-                                }
-                                else
-                                {
-                                    record.ThroughForward = 2;
-                                    record.ThroughTime = DateTime.Now;
-                                    record.CardNo = "";
-                                }
-                                record.AccessChannel = AccessCollect.Instance.FaceControllerID.ToString();
-                                record.FacePosition = "";
-                                recordBll.Add(record);
-
-                                record = recordBll.GetModelList("CardNo='" + record.CardNo + "' AND Name='" + record.Name + "' AND CONVERT(VARCHAR(24),ThroughTime,20) ='" + record.ThroughTime.Value.ToString("yyyy-MM-dd HH:mm:ss") + "'")[0];
-                            }
-                            catch (System.Exception ex)
-                            {
-                                mlog.ErrorFormat("添加人脸通行记录：{0}", ex);
-                            }
-
-                            mlog.InfoFormat("人脸验证结果：验证成功，员工{0},验证得分{1},阈值{2}", record.Name, faceValue.ToString(), MainForm.Instance.IThreshold.ToString());
-                            ValidateEvent(this, new ValidateResultEventArgs(record, blackPic, ValidateResult.Success));
-                            currentFacePic = "";
-
-                            using (IAccessCore access = new WGAccess())
-                            {
-                                ///控制开门
-                                Maticsoft.Model.SMT_CONTROLLER_INFO _ctrlr = ctrlBll.GetModel(AccessCollect.Instance.FaceControllerID);
-                                Controller c = ControllerHelper.ToController(_ctrlr);
-                                Maticsoft.Model.SMT_DOOR_INFO _door = doorBll.GetModel(AccessCollect.Instance.FaceDoorID);
-
-                                bool ret = access.OpenRemoteControllerDoor(c, _door.CTRL_DOOR_INDEX.Value);
-                                if (!ret)
-                                {
-                                    //WinInfoHelper.ShowInfoWindow(this, "上传门控制方式失败！");
-                                    return;
                                 }
                             }
                         }
-                    }
-                    else
-                    {
-                        if (ValidateEvent != null)
+                        else
                         {
-                            //mlog.InfoFormat("人脸验证结果：验证失败无此人");
-                            ValidateEvent(this, new ValidateResultEventArgs(record, blackPic, ValidateResult.NoPerson));
-                            currentFacePic = "";
-                            //if (File.Exists(capturePic))
-                            //{
-                            //    File.Delete(capturePic);
-                            //}
+                            if (ValidateEvent != null)
+                            {
+                                //mlog.InfoFormat("人脸验证结果：验证失败无此人");
+                                mlog.InfoFormat("人脸验证结果：验证成功但低于阈值，员工{0},验证得分{1},阈值{2}", record.Name, faceValue.ToString(), MainForm.Instance.IThreshold.ToString());
+                                ValidateEvent(this, new ValidateResultEventArgs(record, blackPic, ValidateResult.Success));
+                                currentFacePic = "";
+                                //if (File.Exists(capturePic))
+                                //{
+                                //    File.Delete(capturePic);
+                                //}
+                            }
                         }
                     }
+                    
                 }
             }
             catch (Exception ex)

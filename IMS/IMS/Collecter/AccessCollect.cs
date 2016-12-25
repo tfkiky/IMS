@@ -19,6 +19,7 @@ namespace IMS.Collecter
         Maticsoft.BLL.SMT_CARD_INFO cardBll = new Maticsoft.BLL.SMT_CARD_INFO();
         Maticsoft.BLL.SMT_STAFF_CARD scardBll = new Maticsoft.BLL.SMT_STAFF_CARD();
         private Maticsoft.BLL.SMT_STAFF_INFO staffBll = new Maticsoft.BLL.SMT_STAFF_INFO();
+        private Maticsoft.BLL.SMT_STAFF_DOOR staffDoorBll = new Maticsoft.BLL.SMT_STAFF_DOOR();
         private List<Maticsoft.Model.SMT_STAFF_INFO> staffList = new List<Maticsoft.Model.SMT_STAFF_INFO>();
         private static Maticsoft.BLL.SMT_CONTROLLER_INFO ctrlBll = new Maticsoft.BLL.SMT_CONTROLLER_INFO();
         Maticsoft.BLL.SMT_CARD_RECORDS recordBll = new Maticsoft.BLL.SMT_CARD_RECORDS();
@@ -78,6 +79,7 @@ namespace IMS.Collecter
             //{
             //    lastAccessIndex = recordList[0].ID;
             //}
+            mlog.Info("门禁收集器开启成功，开启收集线程——");
             timer = new System.Threading.Timer(new TimerCallback(CollectAccess), null, 1000, 1000);
 
             //accessReader = new AccessReader();
@@ -115,6 +117,7 @@ namespace IMS.Collecter
                                 modelRecord.RECORD_DATE = record.recordTime;
                                 modelRecord.IS_ENTER = record.isEnterDoor;
                                 modelRecord.CARD_NO = record.cardOrNoNumber;
+                                mlog.Info("记录读取：" + record.lastRecordIndex);
                                 if (lastAccessIndex == 0)
                                 {
                                     lastAccessIndex = record.lastRecordIndex;
@@ -125,8 +128,10 @@ namespace IMS.Collecter
                                     lastAccessIndex = record.lastRecordIndex;
                                 }
 
-                                mlog.Info("记录读取：" + record.lastRecordIndex);
-
+                                if (record.reasonNo==RecordReasonNo.RemoteOpenDoor)
+                                {
+                                    return;
+                                }
                                 if (MainForm.Instance.IFaceMode == 3 || (MainForm.Instance.ISwipeMode == 0 || MainForm.Instance.ISwipeMode == 2))
                                 {
                                     List<Maticsoft.Model.SMT_CARD_INFO> cardList = cardBll.GetModelList("CARD_WG_NO='" + modelRecord.CARD_NO + "'");
@@ -136,24 +141,66 @@ namespace IMS.Collecter
                                         if (scardList != null && scardList.Count > 0)
                                         {
                                             Maticsoft.Model.SMT_STAFF_INFO staffInfo = staffBll.GetModel(scardList[0].STAFF_ID);
-                                            if (FaceCollect.FaceWhiteList != null && FaceCollect.FaceWhiteList.ContainsKey((int)staffInfo.ID))
+                                            List<Maticsoft.Model.SMT_STAFF_DOOR> staffDoorList = staffDoorBll.GetModelList("STAFF_ID="+staffInfo.ID);
+
+                                            if (staffDoorList != null && staffDoorList.Count > 0)
                                             {
-                                                if (MainForm.Instance.IFaceMode != 3)
+                                                if (staffDoorList.Exists(temp => temp.DOOR_ID == this.faceDoorID))
                                                 {
-                                                    FaceCollect.CurrentFacePic = FaceCollect.FaceWhiteList[(int)staffInfo.ID];
-                                                    FaceCollect.StaffInfo = staffInfo;
-                                                    FaceCollect.CardRecord = modelRecord;
-                                                    FaceCollect.CardType = 0;
+                                                    if (FaceCollect.FaceWhiteList != null && FaceCollect.FaceWhiteList.ContainsKey((int)staffInfo.ID))
+                                                    {
+                                                        if (MainForm.Instance.IFaceMode != 3)
+                                                        {
+                                                            modelRecord.IS_ALLOW = true;
+                                                            FaceCollect.CurrentFacePic = FaceCollect.FaceWhiteList[(int)staffInfo.ID];
+                                                            FaceCollect.StaffInfo = staffInfo;
+                                                            FaceCollect.CardRecord = modelRecord;
+                                                            FaceCollect.CardType = 0;
+                                                        }
+                                                        else
+                                                        {
+
+                                                        }
+                                                    }
+                                                    mlog.InfoFormat("记录读取成功——人员姓名：{0}，通行时间{1}", staffInfo.REAL_NAME, modelRecord.RECORD_DATE);
+                                                    if (AccessEvent != null)
+                                                    {
+                                                        AccessEvent(this, new AccessEventArgs(staffInfo, modelRecord));
+                                                    }
                                                 }
                                                 else
                                                 {
-
+                                                    mlog.InfoFormat("此人未授权该门禁，人员姓名：{0}", staffInfo.REAL_NAME);
+                                                    if (AccessEvent != null)
+                                                    {
+                                                        AccessEvent(this, new AccessEventArgs(staffInfo, modelRecord));
+                                                    }
                                                 }
                                             }
+                                            else
+                                            {
+                                                mlog.InfoFormat("此人无权限，人员姓名：{0}", staffInfo.REAL_NAME);
+                                                if (AccessEvent != null)
+                                                {
+                                                    AccessEvent(this, new AccessEventArgs(staffInfo, modelRecord));
+                                                }
+                                            }
+                                        }
+                                        else
+                                        {
+                                            mlog.InfoFormat("此卡未关联人员信息，卡编号:{0}", cardList[0].ID);
                                             if (AccessEvent != null)
                                             {
-                                                AccessEvent(this, new AccessEventArgs(staffInfo, modelRecord));
+                                                AccessEvent(this, new AccessEventArgs(null, modelRecord));
                                             }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        mlog.InfoFormat("无此卡信息，卡号：{0}", modelRecord.CARD_NO);
+                                        if (AccessEvent != null)
+                                        {
+                                            AccessEvent(this, new AccessEventArgs(null, modelRecord));
                                         }
                                     }
                                 }
