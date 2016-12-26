@@ -88,6 +88,9 @@ namespace IMS
                 case IMS.Collecter.ValidateResult.Error:
                     lbResult.Text = "验证错误，请重试";
                     break;
+                case IMS.Collecter.ValidateResult.BelowValue:
+                    lbResult.Text = "人脸比对失败，请重试";
+                    break;
             }
         }
 

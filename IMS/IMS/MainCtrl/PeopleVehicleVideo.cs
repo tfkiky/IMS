@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using log4net;
+using IMS.Common;
 
 namespace IMS
 {
@@ -33,15 +34,23 @@ namespace IMS
                 {
                     case IMS.Collecter.ValidateResult.Success:
                         lbResult.Text = "验证通过，相似度"+similarity;
+                        //请进
+                        MediaPlayer.PlaySound("./wav/请进.wav");
                         break;
                     case IMS.Collecter.ValidateResult.NoPerson:
                         lbResult.Text = "验证无此人";
+                        //非法卡
+                        MediaPlayer.PlaySound("./wav/非法卡.wav");
                         break;
                     case IMS.Collecter.ValidateResult.Black:
                         lbResult.Text = "验证为黑名单成员";
                         break;
                     case IMS.Collecter.ValidateResult.Error:
                         lbResult.Text = "验证错误";
+                        break;
+                    case IMS.Collecter.ValidateResult.BelowValue:
+                        lbResult.Text = "人脸比对失败，相似度"+similarity;
+                        MediaPlayer.PlaySound("./wav/比对失败.wav");
                         break;
                     default:
                         lbResult.Text = "";
@@ -69,6 +78,8 @@ namespace IMS
                if (staffInfo == null)
                {
                    lbResult.Text = "此卡无效，无此用户！";
+                   //非法卡
+                   MediaPlayer.PlaySound("./wav/非法卡.wav");
                }
                else
                {
@@ -77,10 +88,14 @@ namespace IMS
                        if (isAllow)
                        {
                            lbResult.Text = string.Format("{0}，请通行", staffInfo.REAL_NAME);
+                           MediaPlayer.PlaySound("./wav/请进.wav");
+                           //请进
                        }
                        else
                        {
                            lbResult.Text = string.Format("{0}无权限,禁止通行！", staffInfo.REAL_NAME);
+                           MediaPlayer.PlaySound("./wav/无权限.wav");
+                           //无权限
                        }
                    }
                    else
@@ -88,6 +103,8 @@ namespace IMS
                        if (!isAllow)
                        {
                            lbResult.Text = string.Format("{0}无权限,禁止通行！", staffInfo.REAL_NAME);
+                           MediaPlayer.PlaySound("./wav/无权限.wav");
+                           //无权限
                        }
                    }
 

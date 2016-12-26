@@ -94,6 +94,7 @@
     <Compile Include="Collecter\FaceCollect.cs" />
     <Compile Include="Collecter\IDCardClass.cs" />
     <Compile Include="Collecter\IDCardCollect.cs" />
+    <Compile Include="Common\MediaPlayer.cs" />
     <Compile Include="Config\DBConfig.cs">
       <SubType>UserControl</SubType>
     </Compile>

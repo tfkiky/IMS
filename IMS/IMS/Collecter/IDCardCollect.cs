@@ -138,7 +138,8 @@ namespace IMS.Collecter
                                 {
                                     List<Maticsoft.Model.SMT_STAFF_INFO> staffList = new List<Maticsoft.Model.SMT_STAFF_INFO>();
                                     //通过姓名和身份证号码验证库中是否有此员工
-                                    staffList = staffBll.GetModelList("REAL_NAME='" + currentIDCard.Name + "' AND CER_NO='" + currentIDCard.Id + "'");
+                                    //staffList = staffBll.GetModelList("REAL_NAME='" + currentIDCard.Name + "' AND CER_NO='" + currentIDCard.Id + "'");
+                                    staffList = staffBll.GetModelList(" CER_NO='" + currentIDCard.Id + "'");
                                     if (staffList != null && staffList.Count > 0)
                                     {
                                         //验证此员工是否有此门同行权限
@@ -156,7 +157,7 @@ namespace IMS.Collecter
                                                 FaceCollect.StaffInfo = staffList[0];
                                                 FaceCollect.IdCard = currentIDCard;
                                                 FaceCollect.CurrentFacePic = FaceCollect.StaffFacePath + staffList[0].ID + ".jpg";
-                                                mlog.Info("通过身份证识别人员：" + staffList[0].REAL_NAME);
+                                                mlog.Info("通过身份证识别人员：" + currentIDCard.Name);
 
                                                 isAllow = true;
                                             }
@@ -174,7 +175,7 @@ namespace IMS.Collecter
                                     }
                                     else
                                     {
-                                        mlog.InfoFormat("无此用户：{0},身份证号：{1}" + currentIDCard.Name,currentIDCard.Id);
+                                        mlog.InfoFormat("无此用户：{0},身份证号：{1}",currentIDCard.Name,currentIDCard.Id);
                                         if (IDCardEvent != null)
                                         {
                                             IDCardEvent(this, new IDCardEventArgs(currentIDCard, null, false));

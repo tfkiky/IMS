@@ -227,7 +227,7 @@ namespace IMS.Collecter
                 if (iret == 0)
                 {
                     mlog.Info("人脸识别算法库初始化成功，开启抓取比对线程——");
-                    timer = new System.Threading.Timer(new TimerCallback(FaceValidate), null, 1000, 2000);
+                    timer = new System.Threading.Timer(new TimerCallback(FaceValidate), null, 1000, 1000);
                     bStarted = true;
                     return true;
                 }
@@ -455,7 +455,7 @@ namespace IMS.Collecter
                             {
                                 //mlog.InfoFormat("人脸验证结果：验证失败无此人");
                                 mlog.InfoFormat("人脸验证结果：验证成功但低于阈值，员工{0},验证得分{1},阈值{2}", record.Name, faceValue.ToString(), MainForm.Instance.IThreshold.ToString());
-                                ValidateEvent(this, new ValidateResultEventArgs(record, blackPic, ValidateResult.Success));
+                                ValidateEvent(this, new ValidateResultEventArgs(record, blackPic, ValidateResult.BelowValue));
                                 currentFacePic = "";
                                 //if (File.Exists(capturePic))
                                 //{

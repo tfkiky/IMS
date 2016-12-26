@@ -46,9 +46,10 @@ namespace IMS.Collecter
     
     public enum ValidateResult
     {
-        Success=0,
+        Success = 0,
         NoPerson,
         Black,
-        Error
+        Error,
+        BelowValue
     }
 }
