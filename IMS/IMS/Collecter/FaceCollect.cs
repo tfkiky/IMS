@@ -170,12 +170,23 @@ namespace IMS.Collecter
             {
                 foreach (Maticsoft.Model.SMT_STAFF_INFO staff in staffList)
                 {
-                    staffExList.Add(new Maticsoft.Model.SMT_STAFF_INFO_EX() { 
-                        ID=staff.ID,
-                        REAL_NAME=staff.REAL_NAME,
-                        Pinyi = (PinyiHelper.GetPinyin(staff.REAL_NAME) + "," + PinyiHelper.GetFirstPinyin(staff.REAL_NAME)).ToLower()
-                    });
-                    mlog.Info(staff.REAL_NAME+"："+ (PinyiHelper.GetPinyin(staff.REAL_NAME) + "," + PinyiHelper.GetFirstPinyin(staff.REAL_NAME)).ToLower());
+                    try
+                    {
+                        if (!string.IsNullOrEmpty(staff.REAL_NAME))
+                        {
+                            staffExList.Add(new Maticsoft.Model.SMT_STAFF_INFO_EX()
+                            {
+                                ID = staff.ID,
+                                REAL_NAME = staff.REAL_NAME,
+                                Pinyi = (PinyiHelper.GetPinyin(staff.REAL_NAME) + "," + PinyiHelper.GetFirstPinyin(staff.REAL_NAME)).ToLower()
+                            });
+                            mlog.Info(staff.REAL_NAME + "：" + (PinyiHelper.GetPinyin(staff.REAL_NAME) + "," + PinyiHelper.GetFirstPinyin(staff.REAL_NAME)).ToLower());
+                        }
+                    }
+                    catch (System.Exception ex)
+                    {
+                        mlog.ErrorFormat("获取人员姓名：{0}拼音异常，{1}",staff.REAL_NAME ,ex);
+                    }
                     ImageHelper.ImageSave(staffFacePath + staff.ID + ".jpg", staff.PHOTO);
                 }
                 mlog.InfoFormat("下载人员库白名单图片:人数{0}", staffList.Count);
