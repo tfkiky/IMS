@@ -39,7 +39,6 @@
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -52,8 +51,8 @@
             // 
             this.splitContainer1.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.splitContainer1.Panel2.Controls.Add(this.lbResult);
-            this.splitContainer1.Size = new System.Drawing.Size(581, 462);
-            this.splitContainer1.SplitterDistance = 380;
+            this.splitContainer1.Size = new System.Drawing.Size(436, 370);
+            this.splitContainer1.SplitterDistance = 304;
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -65,21 +64,19 @@
             this.lbResult.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lbResult.Font = new System.Drawing.Font("微软雅黑", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbResult.ForeColor = System.Drawing.Color.Red;
-            this.lbResult.Location = new System.Drawing.Point(100, 25);
-            this.lbResult.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lbResult.Location = new System.Drawing.Point(56, 19);
             this.lbResult.Name = "lbResult";
-            this.lbResult.Size = new System.Drawing.Size(419, 29);
+            this.lbResult.Size = new System.Drawing.Size(361, 23);
             this.lbResult.TabIndex = 0;
             // 
             // PeopleVehicleVideo
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.splitContainer1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "PeopleVehicleVideo";
-            this.Size = new System.Drawing.Size(581, 462);
+            this.Size = new System.Drawing.Size(436, 370);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);

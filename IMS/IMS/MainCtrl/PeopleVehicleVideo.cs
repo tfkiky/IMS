@@ -67,6 +67,12 @@ namespace IMS
         public void Clear()
         {
             lbResult.Text = "";
+            //labelX1.Text = "";
+        }
+
+        public void SetVideoText()
+        {
+            lbResult.Text = "抓拍中，请将面部对准相机镜头";
         }
 
 

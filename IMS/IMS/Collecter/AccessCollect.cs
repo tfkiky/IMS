@@ -80,7 +80,7 @@ namespace IMS.Collecter
             //    lastAccessIndex = recordList[0].ID;
             //}
             mlog.Info("门禁收集器开启成功，开启收集线程——");
-            timer = new System.Threading.Timer(new TimerCallback(CollectAccess), null, 1000, 1000);
+            timer = new System.Threading.Timer(new TimerCallback(CollectAccess), null, 1000, 200);
 
             //accessReader = new AccessReader();
             //accessReader.DataRead += new DataReadHandler(dataReader_DataRead);
