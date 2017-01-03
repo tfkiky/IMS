@@ -187,7 +187,14 @@ namespace IMS.Collecter
                     {
                         mlog.ErrorFormat("获取人员姓名：{0}拼音异常，{1}",staff.REAL_NAME ,ex);
                     }
-                    ImageHelper.ImageSave(staffFacePath + staff.ID + ".jpg", staff.PHOTO);
+                    try
+                    {
+                        ImageHelper.ImageSave(staffFacePath + staff.ID + ".jpg", staff.PHOTO);
+                    }
+                    catch (System.Exception ex)
+                    {
+                        mlog.ErrorFormat("保存图片失败：{0}，{1}", staff.REAL_NAME, ex);
+                    }
                 }
                 mlog.InfoFormat("下载人员库白名单图片:人数{0}", staffList.Count);
             }
@@ -239,16 +246,11 @@ namespace IMS.Collecter
                 {
                     mlog.Info("人脸识别算法库初始化成功，开启抓取比对线程——");
                     bStarted = true;
-                    timer = new System.Threading.Timer(new TimerCallback(FaceValidate), null, 1000, 200);
+                    timer = new System.Threading.Timer(new TimerCallback(FaceValidate), null, 1000, 1000);
                     //BackgroundWorker worker = new BackgroundWorker();
                     //worker.DoWork += (p, q) =>
                     //{
                     //    FaceValidate();
-                    //};
-                    //worker.RunWorkerCompleted += (p, q) =>
-                    //{
-                    //    InitFaceList();
-                    //    isFaceLoad = true;
                     //};
                     //worker.RunWorkerAsync();
                     return true;
@@ -271,6 +273,7 @@ namespace IMS.Collecter
             try
             {
                 timer.Dispose();
+                sw.Stop();
                 bStarted = false;
                 FaceService.face_exit();
             }
@@ -281,6 +284,7 @@ namespace IMS.Collecter
             }
         }
         int faceValue = 0;
+        System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
 
         /// <summary>
         /// 人脸验证
@@ -292,11 +296,21 @@ namespace IMS.Collecter
             {
                 //while (bStarted)
                 {
+                    //timer.Change(Timeout.Infinite,0);
                     //Thread.Sleep(200);
                     if (isFaceLoad && !string.IsNullOrEmpty(currentFacePic))
                     {
                         mlog.InfoFormat("建立比对任务：{0}，开始抓图！", currentFacePic);
+                        sw.Restart();
                         string capturePic = GetCameraPic();
+                        if(string.IsNullOrEmpty(capturePic))
+                        {
+                            mlog.InfoFormat("截图耗时：{0}毫秒,当前画面无人脸", sw.ElapsedMilliseconds);
+                            //timer.Change(Timeout.Infinite, 500);
+                            return;
+                            //continue;
+                        }
+                        mlog.InfoFormat("截图耗时：{0}毫秒,路径{1}", sw.ElapsedMilliseconds, capturePic);
                         string localPic = currentFacePic;
                         string blackPic = "";
                         byte[] feature1 = new byte[3000], feature2 = new byte[3000];
@@ -358,12 +372,17 @@ namespace IMS.Collecter
                             case 0: ///1:1验证
                                 if (!string.IsNullOrEmpty(localPic) && !string.IsNullOrEmpty(capturePic))
                                 {
+                                    mlog.InfoFormat("1:1验证，库内图片：{0}，实时截图：{1}", localPic, capturePic);
                                     int f1 = FaceService.face_get_feature_from_image(localPic, feature1);
                                     int f2 = FaceService.face_get_feature_from_image(capturePic, feature2);
                                     faceValue = FaceService.face_comp_feature(feature1, feature2);
-                                    mlog.InfoFormat("1:1验证得分：{0},验证目标{1},{2},{3}", faceValue, staffInfo.REAL_NAME, localPic, capturePic);
+                                    mlog.InfoFormat("1:1验证得分：{0},验证目标{1},{2},{3},验证耗时{4}毫秒", faceValue, staffInfo.REAL_NAME, localPic, capturePic, sw.ElapsedMilliseconds);
                                 }
-                                else return;
+                                else
+                                {
+                                    //timer.Change(Timeout.Infinite, 500);
+                                    return;
+                                }
                                 break;
                             case 1: ///1：N验证
                                 if (faceWhiteList != null)
@@ -455,7 +474,8 @@ namespace IMS.Collecter
                             {
                                 if (ValidateEvent != null)
                                 {
-                                    mlog.InfoFormat("人脸验证结果：验证成功，员工{0},验证得分{1},阈值{2}", record.Name, faceValue.ToString(), MainForm.Instance.IThreshold.ToString());
+                                    sw.Stop();
+                                    mlog.InfoFormat("人脸验证结果：验证成功，员工{0},验证得分{1},阈值{2},验证耗时{3}毫秒", record.Name, faceValue.ToString(), MainForm.Instance.IThreshold.ToString(),sw.ElapsedMilliseconds);
                                     ValidateEvent(this, new ValidateResultEventArgs(record, blackPic, ValidateResult.Success));
                                     currentFacePic = "";
 
@@ -470,9 +490,11 @@ namespace IMS.Collecter
                                         if (!ret)
                                         {
                                             //WinInfoHelper.ShowInfoWindow(this, "上传门控制方式失败！");
+                                            //timer.Change(Timeout.Infinite, 500);
                                             return;
                                         }
                                     }
+                                    //timer.Change(Timeout.Infinite, 500);
                                 }
                             }
                             else
@@ -480,9 +502,11 @@ namespace IMS.Collecter
                                 if (ValidateEvent != null)
                                 {
                                     //mlog.InfoFormat("人脸验证结果：验证失败无此人");
-                                    mlog.InfoFormat("人脸验证结果：验证成功但低于阈值，员工{0},验证得分{1},阈值{2}", record.Name, faceValue.ToString(), MainForm.Instance.IThreshold.ToString());
+                                    sw.Stop();
+                                    mlog.InfoFormat("人脸验证结果：验证成功但低于阈值，员工{0},验证得分{1},阈值{2},验证耗时{3}毫秒", record.Name, faceValue.ToString(), MainForm.Instance.IThreshold.ToString(), sw.ElapsedMilliseconds);
                                     ValidateEvent(this, new ValidateResultEventArgs(record, blackPic, ValidateResult.BelowValue));
                                     currentFacePic = "";
+                                    //timer.Change(Timeout.Infinite, 500);
                                     //if (File.Exists(capturePic))
                                     //{
                                     //    File.Delete(capturePic);
@@ -503,36 +527,40 @@ namespace IMS.Collecter
         private string GetCameraPic()
         {
             //return @"C:\查验系统\Code\IMS\IMS\IMS\bin\Debug\Faces\20161106194611546.jpg";
-
-            string dir=AppDomain.CurrentDomain.BaseDirectory+"Faces\\";
-            if (!Directory.Exists(dir))
+            try
             {
-                Directory.CreateDirectory(dir);
-            }
-            string sBmpPicFileName =dir+ DateTime.Now.ToString("yyyyMMddHHmmssfff")+".jpg";
-            if (!string.IsNullOrEmpty(MainForm.Instance.PlayHandle))
-            {
-                MainForm.Instance.HikCam.CapturePicture(int.Parse(MainForm.Instance.PlayHandle), sBmpPicFileName);
-                Thread.Sleep(100);
-            }
-            if (File.Exists(sBmpPicFileName))
-            {
-                if(FaceService.face_exist(sBmpPicFileName)==1)
+                string dir = AppDomain.CurrentDomain.BaseDirectory + "Faces\\";
+                if (!Directory.Exists(dir))
                 {
-                    mlog.Info("当前图像中存在人脸！");
-                    return sBmpPicFileName;
+                    Directory.CreateDirectory(dir);
                 }
-                else
+                string sBmpPicFileName = dir + DateTime.Now.ToString("yyyyMMddHHmmssfff") + ".jpg";
+                MainForm.Instance.HikCam.CapturePicture(sBmpPicFileName);
+                if (File.Exists(sBmpPicFileName))
                 {
-                    do 
+                    if (FaceService.face_exist(sBmpPicFileName) == 1)
                     {
-                        File.Delete(sBmpPicFileName);
-                    } 
-                    while (File.Exists(sBmpPicFileName));
-                    return null;
+                        mlog.Info("当前图像中存在人脸！");
+                        return sBmpPicFileName;
+                    }
+                    else
+                    {
+                        mlog.Info("当前图像中无人脸！");
+                        do
+                        {
+                            File.Delete(sBmpPicFileName);
+                        }
+                        while (File.Exists(sBmpPicFileName));
+                        return null;
+                    }
                 }
+                else return null;
             }
-            else  return null;
+            catch (Exception ex)
+            {
+                mlog.Error(ex);
+                return null;
+            }
         }
     }
 }

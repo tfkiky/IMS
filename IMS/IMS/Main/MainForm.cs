@@ -278,7 +278,7 @@ namespace IMS
                 }
                 
                 splash.SetText("初始化完成");
-                Thread.Sleep(2000);
+                //Thread.Sleep(2000);
                 splash.Close();
 
                
@@ -316,8 +316,19 @@ namespace IMS
         {
             if (iFaceMode != 3 && e.IDCard != null)
             {
-                //bPassPos = false;
-                //lastTime = DateTime.Now;
+                ClientMainForm.Instance.Clear();
+                peopleVehicleVideo1.Clear();
+                compareInfo1.ClearCapturePic();
+                bPassPos = false;
+                if (e.IsAllow)
+                {
+                    peopleVehicleVideo1.SetVideoText();
+                }
+                else
+                {
+                    bPassPos = true;
+                    lastTime = DateTime.Now;
+                }
                 compareInfo1.LoadIDInfo(e.IDCard);
                 if (File.Exists("./zp.bmp"))
                 {
@@ -326,7 +337,6 @@ namespace IMS
                 }
                 ClientMainForm.Instance.LoadIDCardInfo(e.IDCard);
                 peopleVehicleVideo1.LoadResult(e.StaffInfo, e.IsAllow);
-                peopleVehicleVideo1.SetVideoText();
             }
         }
 
@@ -334,6 +344,13 @@ namespace IMS
         {
             if (e.StaffInfo != null)
             {
+                if (MainForm.Instance.IFaceMode!=3)
+                {
+                    ClientMainForm.Instance.Clear();
+                    compareInfo1.ClearCapturePic();
+                    peopleVehicleVideo1.Clear();
+                    bPassPos = false; 
+                }
                 //bPassPos = false;
                 //lastTime = DateTime.Now;
                 compareInfo1.LoadAccessInfo(e.StaffInfo, e.CardRecord);
@@ -366,6 +383,8 @@ namespace IMS
                 peopleVehicleVideo1.LoadResult(e.StaffInfo, e.CardRecord.IS_ALLOW);
                 if (MainForm.Instance.IFaceMode == 3)
                 {
+                    bPassPos = true;
+                    lastTime = DateTime.Now;
                     if (e.CardRecord.IS_ALLOW)
                     {
                         Maticsoft.BLL.IMS_PEOPLE_RECORD recordBll = new Maticsoft.BLL.IMS_PEOPLE_RECORD();
@@ -385,6 +404,7 @@ namespace IMS
                 }
                 else
                 {
+                   
                     peopleVehicleVideo1.SetVideoText();
                 }
             }
@@ -408,13 +428,12 @@ namespace IMS
                     ClientMainForm.Instance.LoadRealPic(e.Record.CapturePic);
                     ClientMainForm.Instance.LoadBlackPic(e.BlackPic);
                     peopleVehicleVideo1.LoadValidateResult(e.ValidateResult,e.Record.Similarity.ToString());
+                    lastTime = DateTime.Now;
                     if (e.ValidateResult == IMS.Collecter.ValidateResult.Success)
                     {
-                        lastTime = DateTime.Now;
                         AddNewPerson(e.Record);
                         passCount++;
                         labelX6.Text = passCount.ToString();
-
                     }
                 }
             }

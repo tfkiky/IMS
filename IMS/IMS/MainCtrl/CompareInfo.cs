@@ -68,6 +68,11 @@ namespace IMS
             //pbRealPhoto.Image = Properties.Resources.暂无图片;
         }
 
+        public void ClearCapturePic()
+        {
+            pbRealPhoto.Image = Properties.Resources.暂无图片;
+        }
+
         public void LoadAccessInfo(Maticsoft.Model.SMT_STAFF_INFO staffInfo, Maticsoft.Model.SMT_CARD_RECORDS cardRecord)
         {
             this.Invoke(new Action(() =>

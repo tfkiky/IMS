@@ -156,7 +156,8 @@ namespace IMS.Collecter
                                                 FaceCollect.CardType = 1;
                                                 FaceCollect.StaffInfo = staffList[0];
                                                 FaceCollect.IdCard = currentIDCard;
-                                                FaceCollect.CurrentFacePic = FaceCollect.StaffFacePath + staffList[0].ID + ".jpg";
+                                                //FaceCollect.CurrentFacePic = FaceCollect.StaffFacePath + staffList[0].ID + ".jpg";
+                                                FaceCollect.CurrentFacePic = "./zp.bmp";
                                                 mlog.Info("通过身份证识别人员：" + currentIDCard.Name);
 
                                                 isAllow = true;

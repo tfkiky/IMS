@@ -140,6 +140,7 @@ namespace HikSDK
             {
                 lastErrorCode = (int)CHCNetSDK.NET_DVR_GetLastError();
                 lastError = CHCNetSDK.NET_DVR_GetErrorMsg(ref lastErrorCode);
+                log.Error(lastError);
             }
             else
             {
@@ -205,7 +206,7 @@ namespace HikSDK
             return str;
         }
 
-        public void CapturePicture(int playHandle,string sJpegPicFileName)
+        public void CapturePicture(string sJpegPicFileName)
         {
             CHCNetSDK.NET_DVR_JPEGPARA lpJpegPara = new CHCNetSDK.NET_DVR_JPEGPARA();
             lpJpegPara.wPicQuality = 0; //图像质量 Image quality

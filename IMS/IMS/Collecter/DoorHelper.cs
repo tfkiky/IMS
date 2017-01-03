@@ -36,7 +36,7 @@ namespace IMS.Collecter
                         //设置门控制方式
                         using (IAccessCore access = new WGAccess())
                         {
-                            bool ret = access.SetDoorControlStyle(c, (int)door.CTRL_DOOR_INDEX, style, door.CTRL_DELAY_TIME);
+                            bool ret = access.SetDoorControlStyle(c, (int)door.CTRL_DOOR_INDEX, style);
                             if (!ret)
                             {
                                 //mlog.Info("设置门禁模式失败");

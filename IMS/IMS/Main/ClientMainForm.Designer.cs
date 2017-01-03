@@ -229,9 +229,9 @@
             this.lbResult.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lbResult.Font = new System.Drawing.Font("微软雅黑", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbResult.ForeColor = System.Drawing.Color.Red;
-            this.lbResult.Location = new System.Drawing.Point(214, 84);
+            this.lbResult.Location = new System.Drawing.Point(194, 84);
             this.lbResult.Name = "lbResult";
-            this.lbResult.Size = new System.Drawing.Size(240, 80);
+            this.lbResult.Size = new System.Drawing.Size(300, 80);
             this.lbResult.TabIndex = 4;
             this.lbResult.WordWrap = true;
             // 
@@ -243,7 +243,7 @@
             this.labelX5.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX5.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.labelX5.ForeColor = System.Drawing.Color.White;
-            this.labelX5.Location = new System.Drawing.Point(88, 109);
+            this.labelX5.Location = new System.Drawing.Point(68, 109);
             this.labelX5.Name = "labelX5";
             this.labelX5.Size = new System.Drawing.Size(106, 23);
             this.labelX5.TabIndex = 5;
