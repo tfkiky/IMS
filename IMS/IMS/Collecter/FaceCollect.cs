@@ -412,7 +412,7 @@ namespace IMS.Collecter
                                 break;
                         }
 
-                        tagFaceCoord[] position = new tagFaceCoord[15];
+                        FacePos[] position = new FacePos[15];
                         int iret = FaceService.face_get_pos(capturePic, ref position);
                         //mlog.InfoFormat("图像中有{0}个人脸", iret);
                         for (int i = 0; i < iret; i++)
